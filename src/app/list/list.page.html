@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button right></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      List
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+      <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" (click)="goto(p.Id)">
+        <ion-icon slot="start" [name]="p.icon"></ion-icon>
+        <ion-label text-wrap>
+          {{p.title}}
+          </ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+   
+  </ion-list>
+  <!--
+    <div *ngIf="selectedItem" padding>
+      You navigated here from <b>{{selectedItem.title }}</b>
+    </div>
+  -->
+</ion-content>

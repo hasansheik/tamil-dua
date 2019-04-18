@@ -1,0 +1,7 @@
+{
+  "name": "TamilDuaApplication",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

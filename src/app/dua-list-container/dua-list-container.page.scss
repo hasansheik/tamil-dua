@@ -1,0 +1,12 @@
+
+.play {
+    animation: ma 5s 1s infinite linear;
+}
+@keyframes ma {
+    0% {
+        margin-left: 0px;
+    }
+    100% {
+        margin-left: -1200px;
+    }
+}

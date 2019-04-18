@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+        <ion-back-button text="back" icon="add"></ion-back-button>
+      <ion-button> அன்றாடப் பிரார்த்தனைகள் </ion-button>  
+    </ion-buttons>
+    <ion-button align ="right" color="primary" shape="round"  (click)="goToSettingsPage()">
+        <ion-icon name="settings"> </ion-icon>
+        </ion-button>  
+  </ion-toolbar>
+  <header align="center">{{title}}</header>
+    
+</ion-header>
+
+<ion-content>
+    <ion-list> 
+    <ion-item text-wrap *ngFor="let dua of duaList">
+      <div>
+        <ion-list-header style="font-weight: bold; background: blue; color: white; ">
+
+          <div align="center">{{dua.DuaTitle}}</div>
+          <ion-button color="primary" shape="round" (click)="onShare(dua.Id)">
+            <ion-icon name="share"> </ion-icon>
+          </ion-button>
+
+        </ion-list-header>
+        <div>
+
+          <p [style.font-size]="arabicFontSize" align="right">
+            {{dua.DuaContent.ArabicDua}}
+          </p>
+          <p [style.font-size]="tamilFontSize" align="center"> {{dua.DuaContent.TamilDua}} </p>
+          <p [style.font-size]="tamilFontSize" align="center">
+            {{dua.DuaContent.Translation}}
+          </p>
+        </div>
+        <p></p>
+      </div>
+
+    </ion-item>
+
+  </ion-list>
+</ion-content>
