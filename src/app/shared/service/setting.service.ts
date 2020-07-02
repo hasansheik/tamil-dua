@@ -30,10 +30,10 @@ export class SettingService {
     this.setTamilFont(this.tamilFont +"px");
   }
 
-  arabicFont = 20;
-  tamilFont = 12;
+  arabicFont = 30;
+  tamilFont = 17;
 
-  private settingsData = {ArabicFontSize: "20px" , TamilFontSize : '12px'};
+  private settingsData = {ArabicFontSize: "30px" , TamilFontSize : '17px'};
   private settingsSubject = new BehaviorSubject(this.settingsData);
   observableSettings = this.settingsSubject.asObservable();
 

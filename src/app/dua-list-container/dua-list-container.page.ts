@@ -21,8 +21,8 @@ export class DuaListContainerPage implements OnInit {
    duaList =[];
   title ="empty";
   duaContent : any;
-  arabicFontSize = "20px";
-  tamilFontSize = "12px";
+  arabicFontSize = "32px";
+  tamilFontSize = "17px";
 
   shareTemplate = "@title \n\r\n\r @arabic  \n\r\n\r தமிழ்: @tamilDua  \n\r\n\r பொருள்: @translation"
 
@@ -42,6 +42,17 @@ export class DuaListContainerPage implements OnInit {
    }
 
 
+
+
+
+
+
+   
+
+
+
+
+   
    onShare(id) {
     let dataTeamplate = this.shareTemplate;
     
