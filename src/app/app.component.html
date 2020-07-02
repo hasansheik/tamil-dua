@@ -1,24 +1,29 @@
+<div class="spinner">
+  <div class="dot1"></div>
+  <div class="dot2"></div>
+</div>
 <ion-app>
   <ion-split-pane>
     <ion-menu>
       <ion-header>
-       
+
         <ion-toolbar>
-          <ion-title>துஆக்கள்</ion-title>
+          <ion-title align="center">துஆக்கள்</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            
-            <ion-item-divider style=" color: black;" [routerDirection]="'root'" [routerLink]="[p.url]" (click)="goto(p.Id)">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+
+            <ion-item-divider style=" color: black;" [routerDirection]="'root'" [routerLink]="[p.url]"
+              (click)="goto(p.Id)">
+              <!-- <ion-icon slot="start" [name]="p.icon"></ion-icon> -->
               <ion-label text-wrap>
                 {{p.title}}
-                </ion-label>
+              </ion-label>
             </ion-item-divider>
           </ion-menu-toggle>
-         
+
         </ion-list>
       </ion-content>
     </ion-menu>
