@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>துஆ அட்டவணை </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list id="Daily Dua of Muslims - Tamil">
+       
+          <ion-item *ngFor="let p of appPages; let i = index" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+            <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+            <ion-label>{{ p.title }}</ion-label>
+          </ion-item>
+         
+      </ion-list>
+</ion-content>

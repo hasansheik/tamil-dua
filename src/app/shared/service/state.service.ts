@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class StateService {
-  private selectedPage : any;
+  private selectedPage : 0;
   private dataSubject = new BehaviorSubject(this.selectedPage);
   observableSelectedPage = this.dataSubject.asObservable();
   constructor(private stateService : StateService) { }

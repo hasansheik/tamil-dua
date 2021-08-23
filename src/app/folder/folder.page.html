@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{duaGroupTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item class ="arabic" text-wrap *ngFor="let dua of duaList">
+      <div>
+        <ion-list-header style="font-weight: bold; background: rgb(7, 58, 28); color: white; ">
+
+          <div align="center">{{dua.DuaTitle}}</div>
+          <ion-button color="warning" (click)="onShare(dua.Id)">
+            <ion-icon name="share"> </ion-icon>
+          </ion-button>
+
+        </ion-list-header>
+        <div>
+          <p  [hidden] = hideNotes(dua.DuaContent) style="border-color: black;">
+            குறிப்பு:  {{dua.DuaContent.Notes}}
+          </p>
+
+          <p class="arabic" [style.font-size]="arabicFontSize" align="right">
+            {{dua.DuaContent.ArabicDua}}
+          </p>
+
+          தமிழ்:
+
+          <ion-item-divider>
+            <ion-row>
+              <ion-col text-wrap>
+                <p [style.font-size]="tamilFontSize" [style.font-color] ="black" align="left"> {{dua.DuaContent.TamilDua}} </p>
+              </ion-col>
+            </ion-row>
+          </ion-item-divider>
+          <br>
+          பொருள்:
+          <ion-item-divider>
+            <ion-row>
+              <ion-col text-wrap>
+                <p [style.font-size]="tamilFontSize" align="left">
+                  {{dua.DuaContent.Translation}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-item-divider>
+        </div>
+        <p></p>
+      </div>
+
+    </ion-item>
+
+  </ion-list>
+</ion-content>

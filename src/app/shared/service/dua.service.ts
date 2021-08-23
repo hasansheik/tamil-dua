@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import {} from '@ionic/angular'
 import { map } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { promise } from 'protractor';
-import { forEach } from '@angular/router/src/utils/collection';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,22 +20,30 @@ export class DuaService {
   getDuaPageList() {
     this.http.get('assets/data/duaPages.json').toPromise().then(
       (data) => {
-        this.duaPageArray = data.json();
+        this.duaPageArray = data;
+        this.pageList = [];
+        this.pageList.push( { title: 'முகவுரை', url: '/home', icon: 'mail' })
+
+        //console.log(this.duaPageArray);
         for(let page of this.duaPageArray){
-          this.pageList.push( {
+          console.log(page.PageTitle);
+          var menu = {
             title: page.PageTitle,
-            url:  '/DuaListContainer',
+            url:  '/folder/'+page.Id,
             icon: 'star',
             Id: page.Id
-          });          
+          };
+          this.pageList.push(menu);  
+          console.log(menu);        
         }
         this.pageListSubject.next(this.pageList);
-        console.log(data.json()); 
+       
+       // console.log(JSON.stringify(data)); 
       }
-    )
+    ).catch((err) => {console.log(err)});
   }
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   private _productURL = 'assets/data/1adhan.json';    
 
