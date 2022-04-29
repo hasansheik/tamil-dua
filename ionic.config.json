@@ -1,7 +1,7 @@
 {
   "name": "TamilDuaApplication",
   "integrations": {
-    "cordova": {}
+    "capacitor": {}
   },
   "type": "angular"
 }

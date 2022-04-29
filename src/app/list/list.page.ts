@@ -3,13 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { StateService } from '../shared/service/state.service';
 import { DuaService } from '../shared/service/dua.service';
-import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-list',
   templateUrl: 'list.page.html',
-  styleUrls: ['list.page.scss'],
-  providers: [Http]
+  styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
   public appPages = [];

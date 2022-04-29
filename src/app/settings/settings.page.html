@@ -23,12 +23,66 @@
         </ion-button>
       </div>
     </ion-item>
-    <ion-item text-wrap>
+    <ion-item>
+        <br>
+        உங்களுக்கு விருப்பமான அரபிக் எழுத்துருவை  தேர்வு செய்யவும் 
+    </ion-item>
+    <ion-item text-wrap >
+      
+
       <div style="display:block;">
-        <ion-label text-wrap text-align-right>
-          <ion-row>
+        <ion-label text-wrap text-align-right [style.color]="arabicColor"   (click) = "OnArabicFontSelected('arabic')" >
+          <ion-row  (click) = "OnArabicFontSelected('arabic')">
             <ion-col text-wrap>
-              <p [style.font-size]="arabicFontSize"> أَشْهَدُ أَنْ لاَ إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ
+              <p class="arabic"  id="arabicId" [style.font-size]="arabicFontSize"> أَشْهَدُ أَنْ لاَ إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ
+                وَأَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ، رَضِيتُ بِاللّٰهِ رَبًّا وَبِمُحَمَّدٍ رَسُوْلاً
+                وَبِالإِْسْلاَمِ دِيْنًا
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+
+        <br>
+        <ion-label  text-wrap text-align-right [style.color]="arColor">
+          <ion-row >
+            <ion-col text-wrap>
+              <p   (click) = "OnArabicFontSelected('ar')" class="ar" [style.font-size]="arabicFontSize"> أَشْهَدُ أَنْ لاَ إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ
+                وَأَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ، رَضِيتُ بِاللّٰهِ رَبًّا وَبِمُحَمَّدٍ رَسُوْلاً
+                وَبِالإِْسْلاَمِ دِيْنًا
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+
+        <br>
+        <ion-label  [style.color]="arabColor" text-wrap text-align-right>
+          <ion-row>
+            <ion-col text-wrap   (click) = "OnArabicFontSelected('arab')">
+              <p class="arab" [style.font-size]="arabicFontSize" > أَشْهَدُ أَنْ لاَ إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ
+                وَأَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ، رَضِيتُ بِاللّٰهِ رَبًّا وَبِمُحَمَّدٍ رَسُوْلاً
+                وَبِالإِْسْلاَمِ دِيْنًا
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+
+        <br>
+        <ion-label  [style.color]="arab2Color" text-wrap text-align-right>
+          <ion-row>
+            <ion-col text-wrap   (click) = "OnArabicFontSelected('arab2')">
+              <p class="arab2" [style.font-size]="arabicFontSize" > أَشْهَدُ أَنْ لاَ إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ
+                وَأَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ، رَضِيتُ بِاللّٰهِ رَبًّا وَبِمُحَمَّدٍ رَسُوْلاً
+                وَبِالإِْسْلاَمِ دِيْنًا
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+
+        <br>
+        <ion-label  [style.color]="arab3Color" text-wrap text-align-right>
+          <ion-row>
+            <ion-col text-wrap   (click) = "OnArabicFontSelected('arab3')">
+              <p class="arab3" [style.font-size]="arabicFontSize" > أَشْهَدُ أَنْ لاَ إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ
                 وَأَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ، رَضِيتُ بِاللّٰهِ رَبًّا وَبِمُحَمَّدٍ رَسُوْلاً
                 وَبِالإِْسْلاَمِ دِيْنًا
               </p>
@@ -56,7 +110,7 @@
         <ion-label text-wrap>
           <ion-row>
             <ion-col text-wrap>
-              <p [style.font-size]="tamilFontSize">அல்லாஹ்வைத் தவிர (தகுதியான) இலாஹ் எவருமில்லை அவன் தனித்தவன் அவனுக்கு
+              <p id="tamilId" [style.font-size]="tamilFontSize">அல்லாஹ்வைத் தவிர (தகுதியான) இலாஹ் எவருமில்லை அவன் தனித்தவன் அவனுக்கு
                 எவ்வித இணையுமில்லை\" எனவும். முஹம்மத்(ஸல்) அவனுடைய அடியாரும்,அவனுடைய தூதரும் ஆவார்கள்\" எனவும் நான்
                 சாட்சி
                 கூறுகின்றேன்.அல்லாஹ்வை \"ரப்\"பாகவும், முஹம்மத்(ஸல்) அவர்களைத் தூதராகவும்,இஸ்லாத்தை தீனாகவும் (நான்)

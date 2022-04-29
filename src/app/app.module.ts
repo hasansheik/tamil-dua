@@ -2,18 +2,19 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy, NavController } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import {SocialSharing} from '@ionic-native/social-sharing/ngx'
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import {SocialSharing} from '@awesome-cordova-plugins/social-sharing/ngx';
+import {NativeStorage} from '@awesome-cordova-plugins/native-storage/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [ AppRoutingModule, BrowserModule, IonicModule.forRoot(),  HttpClientModule],
   providers: [SocialSharing, NativeStorage, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

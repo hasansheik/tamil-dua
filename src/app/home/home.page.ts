@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { DuaService } from '../shared/service/dua.service';
 
 @Component({
   selector: 'app-home',
@@ -8,18 +9,8 @@ import { Platform } from '@ionic/angular';
 })
 export class HomePage {
 
-  subscription : any;
-  constructor (private platform : Platform){
-    
-  }
-  
-  ionViewDidEnter(){
-    this.subscription = this.platform.backButton.subscribe(()=>{
-        navigator['app'].exitApp();
-    });
-}
+  subscription: any;
+  constructor(private platform: Platform, private duaService: DuaService) {
 
-ionViewWillLeave(){
-    this.subscription.unsubscribe();
-}
+  }
 }

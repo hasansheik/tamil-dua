@@ -12,7 +12,7 @@ export class MenuItemPage implements OnInit {
       
   ];
   constructor( private platform: Platform, private duaService: DuaService) {
-    this.InitializeApp();
+    
   } 
 
   InitializeApp(){
@@ -28,6 +28,7 @@ export class MenuItemPage implements OnInit {
   selectedpage= 0;
   
   ngOnInit() {
+    this.InitializeApp();
   }
 
 }

@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { ListPage } from './list.page';
 import { SharedModule } from '../shared/shared.module';
-import { HttpModule } from '@angular/http';
+// import { HttpClientModule } from '@angular/';
 
 @NgModule({
   imports: [

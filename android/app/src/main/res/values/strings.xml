@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">முஸ்லிம்களின் அன்றாடப் பிரார்த்தனைகள்</string>
+    <string name="title_activity_main">முஸ்லிம்களின் அன்றாடப் பிரார்த்தனைகள்</string>
+    <string name="package_name">com.hasan.app.tamildua</string>
+    <string name="custom_url_scheme">com.hasan.app.tamildua</string>
+</resources>

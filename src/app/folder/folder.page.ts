@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Platform, NavController } from '@ionic/angular';
 import { DuaService } from '../shared/service/dua.service';
 import { SettingService } from '../shared/service/setting.service';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 
 @Component({
   selector: 'app-folder',
@@ -15,6 +15,7 @@ export class FolderPage implements OnInit {
   duaList = [];
   title = "empty";
   duaContent: any;
+  selectedArabicFont = "arabic"
   arabicFontSize = "32px";
   tamilFontSize = "17px";
   duaGroupTitle ="முஸ்லீம்களின் அன்றாடப் பிரார்தனைகள்"
@@ -28,13 +29,33 @@ export class FolderPage implements OnInit {
     private duaService: DuaService,
     private settingService: SettingService,
     private navController: NavController) {
-    this.subscription = this.platform.backButton.subscribe(() => {
-      this.navController.navigateForward("/home");
-    });
+   
+
+    this.settingService.observableSettings.subscribe(
+      (data) => {
+        if (data) {
+          this.arabicFontSize = data.ArabicFontSize;
+          this.tamilFontSize = data.TamilFontSize;
+          this.selectedArabicFont = data.ArabicFont;         
+        }
+      }
+    );
   }
+
+//   ionViewDidEnter(){
+//     this.subscription = this.platform.backButton.subscribe(()=>{
+//        this.navController.navigateBack('\home');
+//     });
+//     this.duaService.getDuaPageList();
+// }
+
+// ionViewWillLeave(){
+//     this.subscription.unsubscribe();
+// }
 
   goToSettingsPage()
   {
+    var id = this.activatedRoute.snapshot.paramMap.get('id');
     this.navController.navigateForward("/settings");
     //this.router.navigate(["/settings"]);
   }
