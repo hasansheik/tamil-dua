@@ -1,7 +1,6 @@
 /* eslint-disable eqeqeq */
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
 import { Preferences } from '@capacitor/preferences';
 
 @Injectable({
@@ -20,7 +19,7 @@ export class SettingService {
   observableSettings = this.settingsSubject.asObservable();
 
 
-  constructor(private nativeStore: NativeStorage) {
+  constructor() {
 
     // this.nativeStore.getItem('settingData').then(
     //   (data) => {

@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Platform, NavController } from '@ionic/angular';
 import { DuaService } from '../shared/service/dua.service';
 import { SettingService } from '../shared/service/setting.service';
-import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 import { Share } from '@capacitor/share';
 
 @Component({
@@ -27,7 +26,6 @@ export class FolderPage implements OnInit {
   subscription: any;
   constructor(private activatedRoute: ActivatedRoute,
     private platform: Platform,
-    private socialSharing: SocialSharing,
     private duaService: DuaService,
     private settingService: SettingService,
     private navController: NavController) {
