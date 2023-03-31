@@ -2,9 +2,24 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
+      <ion-button float-right>
+        <ion-label float-left>{{duaGroupTitle}}</ion-label>
+
+
+      </ion-button>
+      <ion-button float-right (click)="goToSettingsPage()">
+
+        <ion-icon   size="small" name="settings"> </ion-icon>
+
+    </ion-button>
     </ion-buttons>
-    <ion-title>{{duaGroupTitle}}</ion-title>
+
+    <ion-title>
+
+    </ion-title>
+
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -14,12 +29,10 @@
         <ion-list-header style="font-weight: bold; background: rgb(7, 58, 28); color: white; ">
 
           <div align="center">{{dua.DuaTitle}}</div>
-          <ion-button color="warning" (click)="onShare(dua.Id)">
+          <ion-button color="primary" (click)="onShare(dua.Id)">
             <ion-icon size="large" name="share"> </ion-icon>
           </ion-button>
-          <a href="./settings">
-            <ion-icon size="large" name="settings"> </ion-icon>
-          </a>
+
 
         </ion-list-header>
         <div>
@@ -38,10 +51,10 @@
               <ion-col text-wrap>
                 <p [style.font-size]="tamilFontSize" style= "line-height: 150%;" align="left"> {{dua.DuaContent.TamilDua}} </p>
               </ion-col>
-          
+
           <br>
           பொருள்:
-         
+
             <ion-row>
               <ion-col text-wrap>
                 <p [style.font-size]="tamilFontSize" style= "line-height: 150%;" align="left">
@@ -49,7 +62,7 @@
                 </p>
               </ion-col>
             </ion-row>
-         
+
         </div>
         <p></p>
       </div>
