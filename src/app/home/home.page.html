@@ -1,3 +1,5 @@
+<!-- TODO: Move the content to a separate component (e.g., about-book.component.html) and Redesign the home page with a better UI -->
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -5,40 +7,47 @@
     </ion-buttons>
     <ion-row>
       <ion-col text-center>
-        <ion-label class="home_title" align = "center" text-wrap>
-        Tamil Dua of Muslims
-        </ion-label>
+        <ion-title class="ion-text">
+          {{ pageTitle }}
+        </ion-title>
       </ion-col>
     </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <ion-content text-wrap>
-  <div>
-
-    <br>
-  <ion-item text-wrap class="item item-text-wrap" href="/list">
-    <ion-label text-wrap class="notes" align ="center"> முஸ்லீம்களின் அன்றாடப் பிரார்தனைகள் எனும் நூலில் தொகுக்கப்பட்ட துஆக்களை,  மொபைல் போன் பயன்பாட்டாளர்களின் வசதிக்காக இந்த ஆண்டிராய்டு அப்ளிகேஷனில் கொடுத்துள்ளோம்.</ion-label>
-    </ion-item>
-    
-      <div style='display: block;padding: 20px; text-align:center;'> மேலதிக தொடர்புகளுக்கு : 
-  <br>
-  <a href="http://onlinemuslims.blogspot.in/">ஜமாஅத்துல் முஸ்லிமீன், ஏத்தாலை,   புத்தளம் - இலங்கை </a>
+  <div class="container">
+    <ion-button routerLink="/menu-item">
+      <ion-label text-wrap class="notes">
+        {{ bookDescription }}
+      </ion-label>
+    </ion-button>
   </div>
-  
-  
-<ion-item text-wrap class="item item-text-wrap"  href="#">
-<ion-label align ="center" text-wrap class="notes" > 
-  உங்களின் மேலான கருத்துக்கள்  மற்றும் ஆலோசனைகளுக்கு  தொடர்பு கொள்ள வேண்டிய இ - மெயில் :
+  <div class="additional-links">
+    மேலதிக தொடர்புகளுக்கு :
     <br>
-  hasansexperiment@gmail.com
-</ion-label>
-   </ion-item>
- 
- <ion-item  class="item item-text-wrap"  href="#">
- <ion-label align ="center" text-wrap class="notes" > 
-  சகோதரர்களே "முஸ்லிம்களின் அன்றாடப் பிரார்த்தனைகள்" எனும் இந் நூலை கணிணிப் படுத்த வேண்டும் என்ற விருப்பத்தில் அல்லாஹ்வின் பேரருளால்  நான் செய்த இந்த சிறு முயற்சியை அல்லாஹ் பொருத்திக் கொண்டு,  எனக்கும் என் குடும்பத்தாருக்கும் ஹிதாயத் அளிக்க துஆ  செய்யுமாறு அன்போடு கேட்டுக் கொள்கின்றேன்.
- </ion-label>
-   </ion-item>	
-</div>
+    <a href="{{ additionalLinks[0].url }}">{{ additionalLinks[0].label }}</a>
+  </div>
+
+  <ion-item text-wrap class="item item-text-wrap" href="#">
+    <ion-label text-wrap class="notes">
+      {{ aboutBook }}
+    </ion-label>
+  </ion-item>
+
+  <ion-item text-wrap class="item item-text-wrap" href="#">
+    <ion-label text-wrap class="notes">
+      உங்களின் மேலான கருத்துக்கள் மற்றும் ஆலோசனைகளுக்கு தொடர்பு கொள்ள வேண்டிய இ - மெயில் :
+      <br>
+      {{ contactEmail }}
+    </ion-label>
+  </ion-item>
+
+  <div class="center-button">
+    <ion-button color="primary" routerLink="/menu-item">
+      <ion-label text-wrap class="notes">
+        {{ duaListLabel }}
+      </ion-label>
+    </ion-button>
+  </div>
 </ion-content>

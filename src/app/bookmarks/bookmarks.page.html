@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Bookmarks</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="bookmarkedDuas.length > 0; else noBookmarks">
+    <ion-card *ngFor="let p of bookmarkedDuas;" [routerLink]="['/folder', p.Id]" routerDirection="root">
+      <ion-item lines="none">
+        <ion-icon name="star" color="primary"></ion-icon>
+        <ion-label>{{ p.PageTitle }}</ion-label>
+      </ion-item>
+    </ion-card>
+  </ng-container>
+
+  <ng-template #noBookmarks>
+    <div class="no-bookmarks-message">
+      No bookmarks available.
+    </div>
+  </ng-template>
+</ion-content>

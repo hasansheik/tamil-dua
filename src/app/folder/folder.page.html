@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ duaGroupTitle }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleBookmark()" fill="clear" color="primary">
+        <ion-icon [name]="isBookmarked() ? 'bookmark' : 'bookmark-outline'"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-card *ngFor="let dua of duaList">
+      <ion-row>
+        <ion-col size="auto">
+        </ion-col>
+        <ion-col>
+          <ion-button color="primary" (click)="onShare(dua.Id)" class="share-button" fill="clear">
+            <ion-icon name="share-social"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="card-title">{{ dua.DuaTitle }}</div>
+        </ion-col>
+      </ion-row>
+      <ion-card-content>
+        <p [hidden]="hideNotes(dua.DuaContent)" class="notes">
+          <strong>குறிப்பு:</strong> {{ dua.DuaContent.Notes }}
+        </p>
+        <p [ngClass]="selectedArabicFont" [style.font-size]="arabicFontSize" class="arabic">
+          {{ dua.DuaContent.ArabicDua }}
+        </p>
+        <div class="divider"></div>
+        <p class="tamil">
+          <strong>தமிழ்:</strong> {{ dua.DuaContent.TamilDua }}
+        </p>
+        <div class="divider"></div>
+        <p class="translation">
+          <strong>பொருள்:</strong> {{ dua.DuaContent.Translation }}
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,27 @@
+ion-content {
+    ion-card {
+        margin: 10px 10px 0 10px;
+
+        ion-item {
+            ion-icon {
+                --color: var(--ion-color-primary);
+                font-size: var(--font-size-large);
+                margin-right: 10px;
+            }
+
+            ion-label {
+                font-size: var(--font-size);
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.no-bookmarks-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 18px;
+    color: gray;
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingService } from '../shared/service/setting.service';
+import { SettingsService } from '../service/settings.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,42 +7,40 @@ import { SettingService } from '../shared/service/setting.service';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
-  arabicFontSize ="12ef";
-  tamilFontSize ="12ef";
-  constructor(private settingService: SettingService) {
-    
-    this.settingService.observableSettings.subscribe(
-      (data) =>
-          {
-            if(data) {
-              this.arabicFontSize = data.ArabicFontSize;
-              this.tamilFontSize = data.TamilFontSize;
-              console.log("increased  notification received arabic font set is" + this.arabicFontSize);
-              console.log("increased  notification received tamil font set is" + this.tamilFontSize);
-            }
-          }
-    );
+  darkMode: boolean = false;
+  tamilFontSize: number = 16;
+  arabicFontSize: number = 16;
 
-   }
+  constructor(private settingService: SettingsService) { }
 
-   increaseArabicSize(){
-     this.settingService.increaseArabicFont();
-   }
-
-   decreaseArabicSize(){
-    this.settingService.decreaseArabicFont();
+  ngOnInit(): void {
+    this.loadSettings();
   }
 
-  increaseTamilSize(){
-    this.settingService.increaseTamilFont();
+  ionViewWillEnter() {
+    this.loadSettings();
   }
 
-  decreaseTamilSize(){
-    this.settingService.decreaseTamilFont();
+  async loadSettings() {
+    this.darkMode = await this.settingService.getDarkMode();
+    this.tamilFontSize = await this.settingService.getTamilFontSize();
+    this.arabicFontSize = await this.settingService.getArabicFontSize();
   }
 
-
-  ngOnInit() {
+  async toggleDarkMode() {
+    await this.settingService.setDarkMode(this.darkMode);
   }
 
+  async changeTamilFontSize() {
+    await this.settingService.setTamilFontSize(this.tamilFontSize);
+  }
+
+  async changeArabicFontSize() {
+    await this.settingService.setArabicFontSize(this.arabicFontSize);
+  }
+
+  async resetSettings() {
+    await this.settingService.resetSettings();
+    this.loadSettings();
+  }
 }

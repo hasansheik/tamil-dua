@@ -1,0 +1,25 @@
+ion-header {
+
+    ion-title {
+        margin-bottom: 5px;
+    }
+}
+
+ion-content {
+    ion-card {
+        margin: 10px 10px 0 10px;
+
+        ion-item {
+            ion-icon {
+                --color: var(--ion-color-primary);
+                font-size: var(--font-size-large);
+                margin-right: 10px;
+            }
+
+            ion-label {
+                font-size: var(--font-size);
+                font-weight: bold;
+            }
+        }
+    }
+}

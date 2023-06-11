@@ -1,0 +1,41 @@
+ion-title {
+  margin-bottom: 5px;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 16px;
+}
+
+.bookmark-button,
+.share-button {
+  --padding-start: 16px;
+  --padding-end: 16px;
+}
+
+.bookmark-button.bookmarked {
+  color: var(--ion-color-primary);
+}
+
+.notes {
+  margin-bottom: 8px;
+}
+
+.arabic {
+  font-family: Scheherazade !important;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.tamil,
+.translation {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.divider {
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 16px 0;
+}

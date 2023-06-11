@@ -1,68 +1,32 @@
-import { Component, Injector } from '@angular/core';
-
-import { Platform, ToastController, NavController } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { getBootstrapListener } from '@angular/router/src/router_module';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { StateService } from './shared/service/state.service';
-import { DuaService } from './shared/service/dua.service';
+import { Component, OnInit } from '@angular/core';
+import { SettingsService } from './service/settings.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  public duaList: any[] = [];
   public appPages = [
-    // {
-    //   title: 'Home',
-    //   url: '/home',
-    //   icon: 'home'
-    // },
-    //  {
-    //    title: 'List',
-    //    url: '/list',
-    //    icon: 'list'
-    //  },
-    // {
-    //   title: 'DuaContainer',
-    //   url: '/DuaListContainer',
-    //   icon: 'list'
-    // }
+    { title: 'Home', url: '/home', icon: 'home' },
+    { title: 'Dua List', url: '/menu-item', icon: 'list' },
+    { title: 'Bookmarks', url: '/bookmarks', icon: 'bookmarks' },
+    { title: 'Settings', url: '/settings', icon: 'settings' },
   ];
+  constructor(private settingService: SettingsService) { }
 
-  constructor(
-    private router: Router,
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar, 
-    private stateService: StateService,
-    private injector: Injector,
-    private duaService: DuaService,
-    private toast: ToastController
-      ) {
-    this.initializeApp();
+  ngOnInit(): void {
+    this.loadApp();
   }
-  
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-      this.duaService.getDuaPageList();
+
+  loadApp() {
+    this.settingService.getDarkMode().then((data) => {
+      this.checkToggle(data);
     });
+  }
 
- 
-    this.duaService.observablePageList.subscribe(
-      (data) => {this.appPages = data;}
-    );
-}
-  selectedpage= 0;
-  
-  goto(id){
-    //const stateservice = this.injector.get(StateService);
-    //this.stateService.log();
-    this.stateService.setSelectedPage(id);
-    //this.router.navigate(['/list', {id: 123}])
+  checkToggle(shouldCheck: boolean) {
+    this.settingService.setDarkMode(shouldCheck);
   }
 }
- 

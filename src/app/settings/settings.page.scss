@@ -1,0 +1,48 @@
+ion-toggle {
+    --background-checked: var(--ion-color-primary);
+}
+
+ion-range {
+    --bar-background: var(--ion-color-primary);
+}
+
+ion-item ion-label {
+    white-space: nowrap;
+}
+
+ion-item ion-label[slot="end"] {
+    margin-right: 8px;
+}
+
+.live-preview {
+    margin: 16px;
+    padding: 16px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.live-preview p {
+    margin-bottom: 12px;
+}
+
+.live-preview p:first-child {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--ion-color-primary);
+}
+
+.live-preview p:last-child {
+    font-size: 18px;
+    font-style: italic;
+    color: #888888;
+}
+
+.ion-padding {
+    padding: 16px;
+}
+
+.reset-btn {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}

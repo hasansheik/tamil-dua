@@ -3,69 +3,37 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      Settings
-    </ion-title>
+    <ion-title>Settings</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content padding>
+
+<ion-content>
   <ion-list>
     <ion-item>
-      <div>
-        <ion-button round outline color="success" shape="round" (click)="increaseArabicSize()">
-          <ion-icon name="add-circle"></ion-icon>
-        </ion-button>
-        <ion-button color="light" round outline>
-          Arabic letter size
-        </ion-button>
-        <ion-button round outline float-right color="danger" shape="round" (click)="decreaseArabicSize()">
-          <ion-icon name="remove-circle"></ion-icon>
-        </ion-button>
-      </div>
-    </ion-item>
-    <ion-item text-wrap>
-      <div style="display:block;">
-        <ion-label text-wrap text-align-right>
-          <ion-row>
-            <ion-col text-wrap>
-              <p [style.font-size]="arabicFontSize"> أَشْهَدُ أَنْ لاَ إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ
-                وَأَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ، رَضِيتُ بِاللّٰهِ رَبًّا وَبِمُحَمَّدٍ رَسُوْلاً
-                وَبِالإِْسْلاَمِ دِيْنًا
-              </p>
-            </ion-col>
-          </ion-row>
-        </ion-label>
-      </div>
+      <ion-label>Dark Mode</ion-label>
+      <ion-toggle [(ngModel)]="darkMode" (ionChange)="toggleDarkMode()"></ion-toggle>
     </ion-item>
 
     <ion-item>
-      <div>
-        <ion-button round outline color="success" shape="round" (click)="increaseTamilSize()">
-          <ion-icon name="add-circle"></ion-icon>
-        </ion-button>
-        <ion-button color="light" round outline>
-          Tamil letter size
-        </ion-button>
-        <ion-button round outline float-right color="danger" shape="round" (click)="decreaseTamilSize()">
-          <ion-icon name="remove-circle"></ion-icon>
-        </ion-button>
-      </div>
-    </ion-item>
-    <ion-item text-wrap>
-      <div style="display:block;">
-        <ion-label text-wrap>
-          <ion-row>
-            <ion-col text-wrap>
-              <p [style.font-size]="tamilFontSize">அல்லாஹ்வைத் தவிர (தகுதியான) இலாஹ் எவருமில்லை அவன் தனித்தவன் அவனுக்கு
-                எவ்வித இணையுமில்லை\" எனவும். முஹம்மத்(ஸல்) அவனுடைய அடியாரும்,அவனுடைய தூதரும் ஆவார்கள்\" எனவும் நான்
-                சாட்சி
-                கூறுகின்றேன்.அல்லாஹ்வை \"ரப்\"பாகவும், முஹம்மத்(ஸல்) அவர்களைத் தூதராகவும்,இஸ்லாத்தை தீனாகவும் (நான்)
-                மனமுவந்து ஏற்று கொண்டேன். </p>
-            </ion-col>
-          </ion-row>
-        </ion-label>
-      </div>
+      <ion-label>Tamil Font Size</ion-label>
+      <ion-range min="12" max="24" step="2" [(ngModel)]="tamilFontSize" (ionChange)="changeTamilFontSize()"></ion-range>
+      <ion-label slot="end">{{ tamilFontSize }}</ion-label>
     </ion-item>
 
+    <ion-item>
+      <ion-label>Arabic Font Size</ion-label>
+      <ion-range min="14" max="28" step="2" [(ngModel)]="arabicFontSize"
+        (ionChange)="changeArabicFontSize()"></ion-range>
+      <ion-label slot="end">{{ arabicFontSize }}</ion-label>
+    </ion-item>
+
+    <div class="ion-padding">
+      <ion-button expand="full" class="reset-btn" color="danger" (click)="resetSettings()">Reset</ion-button>
+    </div>
   </ion-list>
+
+  <div class="live-preview">
+    <p [ngStyle]="{ 'font-size': tamilFontSize + 'px' }">துஆ அட்டவணை</p>
+    <p [ngStyle]="{ 'font-size': arabicFontSize + 'px' }">الدعاء اليومي</p>
+  </div>
 </ion-content>
