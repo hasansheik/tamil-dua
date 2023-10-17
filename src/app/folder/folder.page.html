@@ -36,9 +36,11 @@
 
         </ion-list-header>
         <div>
-          <p  [hidden] = hideNotes(dua.DuaContent) style="border-color: black;line-height: 150%;">
-            குறிப்பு:  {{dua.DuaContent.Notes}}
-          </p>
+
+
+        <ion-col text-wrap>
+          <p [style.font-size]="tamilFontSize" style= "line-height: 150%;" align="left">  குறிப்பு:  {{dua.DuaContent.Notes}} </p>
+        </ion-col>
 
           <p  [ngClass]="selectedArabicFont" [style.font-size]="arabicFontSize" style= "line-height: 140%;" align="right">
             {{dua.DuaContent.ArabicDua}}
