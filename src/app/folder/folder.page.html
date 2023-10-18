@@ -39,7 +39,7 @@
 
 
         <ion-col text-wrap>
-          <p [style.font-size]="tamilFontSize" style= "line-height: 150%;" align="left">  குறிப்பு:  {{dua.DuaContent.Notes}} </p>
+          <p [style.font-size]="tamilFontSize" [hidden] = hideNotes(dua.DuaContent) style= "line-height: 150%;" align="left">  குறிப்பு:  {{dua.DuaContent.Notes}} </p>
         </ion-col>
 
           <p  [ngClass]="selectedArabicFont" [style.font-size]="arabicFontSize" style= "line-height: 140%;" align="right">
