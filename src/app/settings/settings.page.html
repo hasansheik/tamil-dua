@@ -3,123 +3,108 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      Settings
-    </ion-title>
+    <ion-title>அமைப்புகள்</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content padding>
+
+<ion-content class="ion-padding">
   <ion-list>
-    <ion-item>
-      <div>
-        <ion-button round outline color=primary shape="round" (click)="increaseArabicSize()">
-          <ion-icon name="add-circle"></ion-icon>
-        </ion-button>
-        <ion-button color="light" round outline>
-          Arabic letter size
-        </ion-button>
-        <ion-button round outline float-right color="primary" shape="round" (click)="decreaseArabicSize()">
-          <ion-icon name="remove-circle"></ion-icon>
-        </ion-button>
-      </div>
-    </ion-item>
-    <ion-item>
-        <br>
-        உங்களுக்கு விருப்பமான அரபிக் எழுத்துருவை  தேர்வு செய்யவும்
-    </ion-item>
-    <ion-item text-wrap >
+    <!-- Arabic Font Size -->
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>அரபிக் எழுத்துரு அளவு</ion-label>
+      </ion-item-divider>
+      <ion-item lines="none">
+        <ion-range
+          [value]="arabicFontSize"
+          (ionChange)="onArabicFontSizeChange($event)"
+          min="15"
+          max="50"
+          step="3"
+          snaps="true"
+          pin="true"
+          color="primary"
+        >
+          <ion-icon slot="start" name="text-outline" size="small"></ion-icon>
+          <ion-icon slot="end" name="text-outline" size="large"></ion-icon>
+        </ion-range>
+      </ion-item>
+    </ion-item-group>
 
+    <!-- Arabic Font Style -->
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>அரபிக் எழுத்துரு பாணி</ion-label>
+      </ion-item-divider>
+      <ion-radio-group [(ngModel)]="selectedArabicFont" (ionChange)="onArabicFontChange($event)">
+        <ion-item>
+          <ion-label>
+            <p class="arabic preview-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+          </ion-label>
+          <ion-radio slot="start" value="arabic"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <p class="ar preview-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+          </ion-label>
+          <ion-radio slot="start" value="ar"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <p class="arab preview-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+          </ion-label>
+          <ion-radio slot="start" value="arab"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <p class="arab2 preview-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+          </ion-label>
+          <ion-radio slot="start" value="arab2"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <p class="arab3 preview-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+          </ion-label>
+          <ion-radio slot="start" value="arab3"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-item-group>
 
-      <div style="display:block;">
-        <ion-label text-wrap text-align-right [style.background-color]="arabicColor"   (click) = "onArabicFontSelected('arabic')" >
-          <ion-row  (click) = "onArabicFontSelected('arabic')">
-            <ion-col text-wrap>
-              <p class="arabic"  id="arabicId" [style.font-size]="arabicFontSize"> أَشْهَدُ أَنْ لاَ إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ
-                وَأَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ، رَضِيتُ بِاللّٰهِ رَبًّا وَبِمُحَمَّدٍ رَسُوْلاً
-                وَبِالإِْسْلاَمِ دِيْنًا
-              </p>
-            </ion-col>
-          </ion-row>
-        </ion-label>
+    <!-- Tamil Font Size -->
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>தமிழ் எழுத்துரு அளவு</ion-label>
+      </ion-item-divider>
+      <ion-item lines="none">
+        <ion-range
+          [value]="tamilFontSize"
+          (ionChange)="onTamilFontSizeChange($event)"
+          min="8"
+          max="32"
+          step="3"
+          snaps="true"
+          pin="true"
+          color="primary"
+        >
+          <ion-icon slot="start" name="text-outline" size="small"></ion-icon>
+          <ion-icon slot="end" name="text-outline" size="large"></ion-icon>
+        </ion-range>
+      </ion-item>
+    </ion-item-group>
 
-        <br>
-        <ion-label  text-wrap text-align-right [style.background-color]="arColor">
-          <ion-row >
-            <ion-col text-wrap>
-              <p   (click) = "onArabicFontSelected('ar')" class="ar" [style.font-size]="arabicFontSize"> أَشْهَدُ أَنْ لاَ إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ
-                وَأَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ، رَضِيتُ بِاللّٰهِ رَبًّا وَبِمُحَمَّدٍ رَسُوْلاً
-                وَبِالإِْسْلاَمِ دِيْنًا
-              </p>
-            </ion-col>
-          </ion-row>
-        </ion-label>
-
-        <br>
-        <ion-label  [style.background-color]="arabColor" text-wrap text-align-right>
-          <ion-row>
-            <ion-col text-wrap   (click) = "onArabicFontSelected('arab')">
-              <p class="arab"  [style.font-size]="arabicFontSize" > أَشْهَدُ أَنْ لاَ إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ
-                وَأَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ، رَضِيتُ بِاللّٰهِ رَبًّا وَبِمُحَمَّدٍ رَسُوْلاً
-                وَبِالإِْسْلاَمِ دِيْنًا
-              </p>
-            </ion-col>
-          </ion-row>
-        </ion-label>
-
-        <br>
-        <ion-label  [style.background-color]="arab2Color" text-wrap text-align-right>
-          <ion-row>
-            <ion-col text-wrap   (click) = "onArabicFontSelected('arab2')">
-              <p class="arab2" style="overflow-wrap: anywhere; white-space: pre-line;" [style.font-size]="arabicFontSize" > أَشْهَدُ أَنْ لاَ إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ
-                وَأَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ، رَضِيتُ بِاللّٰهِ رَبًّا وَبِمُحَمَّدٍ رَسُوْلاً
-                وَبِالإِْسْلاَمِ دِيْنًا
-              </p>
-            </ion-col>
-          </ion-row>
-        </ion-label>
-
-        <br>
-        <ion-label  [style.background-color]="arab3Color" text-wrap text-align-right>
-          <ion-row>
-            <ion-col text-wrap   (click) = "onArabicFontSelected('arab3')">
-              <p class="arab3" style="overflow-wrap: anywhere; white-space: pre-line;" [style.font-size]="arabicFontSize" > أَشْهَدُ أَنْ لاَ إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ
-                وَأَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ، رَضِيتُ بِاللّٰهِ رَبًّا وَبِمُحَمَّدٍ رَسُوْلاً
-                وَبِالإِْسْلاَمِ دِيْنًا
-              </p>
-            </ion-col>
-          </ion-row>
-        </ion-label>
-      </div>
-    </ion-item>
-
-    <ion-item>
-      <div>
-        <ion-button round outline color="primary" shape="round" (click)="increaseTamilSize()">
-          <ion-icon name="add-circle"></ion-icon>
-        </ion-button>
-        <ion-button color="light" round outline>
-          Tamil letter size
-        </ion-button>
-        <ion-button round outline float-right color="primary" shape="round" (click)="decreaseTamilSize()">
-          <ion-icon name="remove-circle"></ion-icon>
-        </ion-button>
-      </div>
-    </ion-item>
-    <ion-item text-wrap>
-      <div style="display:block;">
-        <ion-label text-wrap>
-          <ion-row>
-            <ion-col text-wrap>
-              <p id="tamilId" style="overflow-wrap: anywhere; white-space: pre-line;" [style.font-size]="tamilFontSize">அல்லாஹ்வைத் தவிர (தகுதியான) இலாஹ் எவருமில்லை அவன் தனித்தவன் அவனுக்கு
-                எவ்வித இணையுமில்லை\" எனவும். முஹம்மத்(ஸல்) அவனுடைய அடியாரும்,அவனுடைய தூதரும் ஆவார்கள்\" எனவும் நான்
-                சாட்சி
-                கூறுகின்றேன்.அல்லாஹ்வை \"ரப்\"பாகவும், முஹம்மத்(ஸல்) அவர்களைத் தூதராகவும்,இஸ்லாத்தை தீனாகவும் (நான்)
-                மனமுவந்து ஏற்று கொண்டேன். </p>
-            </ion-col>
-          </ion-row>
-        </ion-label>
-      </div>
-    </ion-item>
-
+    <!-- Preview Section -->
+    <ion-card class="preview-card">
+      <ion-card-header>
+        <ion-card-subtitle>முன்னோட்டம்</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p [style.font-size.px]="arabicFontSize" [class]="selectedArabicFont">
+          بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+        </p>
+        <p [style.font-size.px]="tamilFontSize" class="tamil-text">
+          அல்லாஹ்வின் பெயரால் அருளாளனும் நிகரற்ற அன்புடையோனும்
+        </p>
+      </ion-card-content>
+    </ion-card>
   </ion-list>
 </ion-content>

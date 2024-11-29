@@ -2,74 +2,137 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-      <ion-button float-right>
-        <ion-label float-left>{{duaGroupTitle}}</ion-label>
-
-
-      </ion-button>
-      <ion-button float-right (click)="goToSettingsPage()">
-
-        <ion-icon   size="small" name="settings"> </ion-icon>
-
-    </ion-button>
     </ion-buttons>
-
-    <ion-title>
-
-    </ion-title>
-
+    <ion-buttons slot="end">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="home-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="presentActionSheet()">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ duaGroupTitle }}</ion-title>
   </ion-toolbar>
-
+  <ion-toolbar *ngIf="showSearch">
+    <ion-searchbar [(ngModel)]="searchText" 
+                  (ionInput)="filterDuas()"
+                  placeholder="தேடல்... தமிழ் கீபோர்டைப் பயன்படுத்தவும்"
+                  animated="true"
+                  showCancelButton="always"
+                  (ionCancel)="toggleSearchBar()">
+    </ion-searchbar>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="selectedCategory" (ionChange)="onCategoryChange()">
+      <ion-segment-button value="all">
+        <ion-icon name="book-outline"></ion-icon>
+        <ion-label>துஆக்கள்</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        <ion-icon name="heart"></ion-icon>
+        <ion-label>நெஞ்சில் நின்றவை</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="search">
+        <ion-icon name="search"></ion-icon>
+        <ion-label>தேடல்</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-item text-wrap *ngFor="let dua of duaList">
-      <div>
-        <ion-list-header style="font-weight: bold; background: rgb(7, 58, 28); color: white; ">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ duaGroupTitle }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-          <div align="center">{{dua.DuaTitle}}</div>
-          <ion-button color="primary" (click)="onShare(dua.Id)">
-            <ion-icon size="large" name="share"> </ion-icon>
-          </ion-button>
-
-
-        </ion-list-header>
-        <div>
-
-
-        <ion-col text-wrap>
-          <p [style.font-size]="tamilFontSize" [hidden] = hideNotes(dua.DuaContent) style= "line-height: 150%;" align="left">  குறிப்பு:  {{dua.DuaContent.Notes}} </p>
-        </ion-col>
-
-          <p  [ngClass]="selectedArabicFont" [style.font-size]="arabicFontSize" style= "line-height: 140%;" align="right">
-            {{dua.DuaContent.ArabicDua}}
-          </p>
-
-          <br>
-
-          தமிழ்:
-
-              <ion-col text-wrap>
-                <p [style.font-size]="tamilFontSize" style= "line-height: 150%;" align="left"> {{dua.DuaContent.TamilDua}} </p>
-              </ion-col>
-
-          <br>
-          பொருள்:
-
-            <ion-row>
-              <ion-col text-wrap>
-                <p [style.font-size]="tamilFontSize" style= "line-height: 150%;" align="left">
-                  {{dua.DuaContent.Translation}}
-                </p>
-              </ion-col>
-            </ion-row>
-
-        </div>
-        <p></p>
-      </div>
-
+  <!-- Loading Skeleton -->
+  <ion-list *ngIf="isLoading">
+    <ion-item *ngFor="let i of [1,2,3,4,5]">
+      <ion-card class="dua-card">
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+      </ion-card>
     </ion-item>
-
   </ion-list>
+
+  <!-- Offline Message -->
+  <ion-item *ngIf="isOffline" lines="none" color="warning">
+    <ion-icon slot="start" name="cloud-offline"></ion-icon>
+    <ion-label>
+      நீங்கள் ஆஃப்லைனில் உள்ளீர்கள். சில உள்ளடக்கம் கிடைக்காமல் போகலாம்.
+    </ion-label>
+  </ion-item>
+
+  <!-- Empty State -->
+  <ion-item *ngIf="!isLoading && filteredDuas.length === 0" lines="none" class="ion-text-center">
+    <ion-label>
+      <ion-icon name="search" size="large"></ion-icon>
+      <h2>துஆக்கள் எதுவும் கிடைக்கவில்லை</h2>
+      <p>வேறு தேடல் சொற்களை முயற்சிக்கவும்</p>
+    </ion-label>
+  </ion-item>
+
+  <!-- Dua List -->
+  <ion-list *ngIf="!isLoading">
+    <ion-item *ngFor="let dua of filteredDuas" lines="none" class="dua-item">
+      <ion-card class="dua-card">
+        <ion-card-header>
+          <ion-card-title>{{ dua.DuaTitle }}</ion-card-title>
+         
+        </ion-card-header>
+
+        <ion-card-content>
+
+          <div *ngIf="!hideNotes(dua.DuaContent)">
+            {{ dua.DuaContent.Notes }}
+          </div>
+
+          <!-- Arabic Text -->
+          <div class="arabic-text" [style.font-size]="arabicFontSize" [style.font-family]="selectedArabicFont">
+            {{ dua.DuaContent.ArabicDua }}
+          </div>
+          <div class="separator"></div>
+          <!-- Tamil Translation -->
+          <div class="tamil-text" [style.font-size]="tamilFontSize">
+            <strong>தமிழ்:</strong> {{ dua.DuaContent.TamilDua }}
+          </div>
+
+          <!-- Meaning -->
+          <div class="meaning-text" [style.font-size]="tamilFontSize">
+            <strong>பொருள்:</strong> {{ dua.DuaContent.Translation }}
+          </div>
+
+          <!-- Action Buttons -->
+          <ion-row class="ion-justify-content-between ion-align-items-center">
+            <ion-col size="auto">
+              <ion-button fill="clear" (click)="toggleFavorite(dua)" [color]="isFavorite(dua) ? 'danger' : 'medium'">
+                <ion-icon slot="icon-only" [name]="isFavorite(dua) ? 'heart' : 'heart-outline'"></ion-icon>
+              </ion-button>
+              <ion-button fill="clear" (click)="copyToClipboard(dua)">
+                <ion-icon slot="icon-only" name="copy-outline"></ion-icon>
+              </ion-button>
+              <ion-button fill="clear" (click)="onShare(dua.Id)">
+                <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col size="auto" *ngIf="dua.hasAudio">
+              <ion-button fill="clear" (click)="toggleAudioPlay(dua)">
+                <ion-icon slot="icon-only" [name]="isPlaying(dua) ? 'pause' : 'play'"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <!-- Settings FAB -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goToSettingsPage()">
+      <ion-icon name="settings-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

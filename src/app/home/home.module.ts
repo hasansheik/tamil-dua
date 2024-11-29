@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-
 import { HomePage } from './home.page';
-import { AppRoutingModule } from '../app-routing.module';
+import { DuaListModalComponent } from '../components/dua-list-modal/dua-list-modal.component';
 
 @NgModule({
   imports: [
@@ -20,6 +19,6 @@ import { AppRoutingModule } from '../app-routing.module';
     ])
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  declarations: [HomePage]
+  declarations: [HomePage, DuaListModalComponent]
 })
 export class HomePageModule {}

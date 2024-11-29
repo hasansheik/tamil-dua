@@ -25,3 +25,80 @@
     line-height: 140%;
     align-content: right;
   }
+
+ion-content {
+  --background: var(--ion-color-light);
+}
+
+ion-item-divider {
+  --background: var(--ion-color-light-shade);
+  --color: var(--ion-color-dark);
+  font-weight: 500;
+  font-size: 0.9em;
+  margin-top: 16px;
+  border-radius: 8px;
+}
+
+ion-item {
+  --background: var(--ion-color-light);
+  margin: 4px 0;
+  border-radius: 8px;
+
+  &.selected {
+    --background: var(--ion-color-light-shade);
+  }
+}
+
+.preview-text {
+  margin: 8px 0;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.preview-card {
+  margin: 16px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  ion-card-header {
+    padding-bottom: 8px;
+  }
+
+  ion-card-content {
+    text-align: center;
+    padding: 16px;
+
+    p {
+      margin: 12px 0;
+      line-height: 1.6;
+
+      &.arabic, &.ar, &.arab, &.arab2, &.arab3 {
+        direction: rtl;
+        margin-bottom: 16px;
+      }
+
+      &.tamil-text {
+        color: var(--ion-color-dark);
+      }
+    }
+  }
+}
+
+ion-radio-group {
+  ion-item {
+    --padding-start: 16px;
+    --inner-padding-end: 16px;
+  }
+
+  ion-radio {
+    margin-right: 16px;
+  }
+}
+
+ion-range {
+  padding: 8px 16px;
+  
+  ion-icon {
+    color: var(--ion-color-medium);
+  }
+}

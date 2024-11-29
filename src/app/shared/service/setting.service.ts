@@ -18,6 +18,7 @@ export class SettingService {
   // eslint-disable-next-line @typescript-eslint/member-ordering
   observableSettings = this.settingsSubject.asObservable();
 
+  private readonly FAVORITES_KEY = 'favorites';
 
   constructor() {
 
@@ -140,5 +141,17 @@ export class SettingService {
 
    updateSettings() {
    // this.nativeStore.setItem('settingData', this.settingsData);
+  }
+
+  async getFavorites(): Promise<string[]> {
+    const result = await Preferences.get({ key: this.FAVORITES_KEY });
+    return result.value ? JSON.parse(result.value) : [];
+  }
+
+  async setFavorites(favorites: string[]): Promise<void> {
+    await Preferences.set({
+      key: this.FAVORITES_KEY,
+      value: JSON.stringify(favorites)
+    });
   }
 }
