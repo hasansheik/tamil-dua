@@ -431,6 +431,41 @@ ion-button:focus {
   }
 }
 
+// Hadith references styling
+.hadith-reference {
+  margin: 12px 0;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--ion-color-light-shade);
+  border-left: 3px solid var(--ion-color-primary);
+
+  p {
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .hadith-link {
+    color: var(--ion-color-primary);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 8px;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.tamil-text {
+  margin: 12px 0;
+  line-height: 1.6;
+
+  strong {
+    color: var(--ion-color-dark);
+  }
+}
+
 // Media Queries for Responsive Design
 @media (min-width: 768px) {
   .dua-item {

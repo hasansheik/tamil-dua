@@ -1,50 +1,82 @@
 /* eslint-disable eqeqeq */
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SettingService } from '../shared/service/setting.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
 })
-export class SettingsPage implements OnInit, OnDestroy {
-  arabicFontSize: number = 30;
-  tamilFontSize: number = 16;
+export class SettingsPage implements OnInit {
+  // Font settings
+  arabicFontSize: number = 32;
+  tamilFontSize: number = 17;
   selectedArabicFont: string = 'arabic';
-  private settingsSubscription: Subscription;
+
+  // Visibility settings
+  showTamilDua: boolean = true;
+  showTranslation: boolean = true;
+  showHadees: boolean = true;
 
   constructor(private settingService: SettingService) {}
 
   ngOnInit() {
     // Subscribe to settings changes
-    this.settingsSubscription = this.settingService.observableSettings.subscribe(settings => {
+    this.settingService.observableSettings.subscribe(settings => {
       if (settings) {
-        this.arabicFontSize = parseInt(settings.ArabicFontSize);
-        this.tamilFontSize = parseInt(settings.TamilFontSize);
+        // Update font settings
+        this.arabicFontSize = parseInt(settings.ArabicFontSize, 10);
+        this.tamilFontSize = parseInt(settings.TamilFontSize, 10);
         this.selectedArabicFont = settings.ArabicFont;
+
+        // Update visibility settings
+        this.showTamilDua = settings.ShowTamilDua;
+        this.showTranslation = settings.ShowTranslation;
+        this.showHadees = settings.ShowHadees;
       }
     });
   }
 
-  ngOnDestroy() {
-    if (this.settingsSubscription) {
-      this.settingsSubscription.unsubscribe();
+  // Font size handlers
+  increaseArabicFontSize() {
+    this.arabicFontSize += 2;
+    this.settingService.setArabicFontSize(this.arabicFontSize);
+  }
+
+  decreaseArabicFontSize() {
+    if (this.arabicFontSize > 16) {
+      this.arabicFontSize -= 2;
+      this.settingService.setArabicFontSize(this.arabicFontSize);
     }
   }
 
-  onArabicFontSizeChange(event: any) {
-    const newSize = event.detail.value;
-    this.settingService.setArabicFontSize(newSize);
+  increaseTamilFontSize() {
+    this.tamilFontSize += 2;
+    this.settingService.setTamilFontSize(this.tamilFontSize);
   }
 
-  onTamilFontSizeChange(event: any) {
-    const newSize = event.detail.value;
-    this.settingService.setTamilFontSize(newSize);
+  decreaseTamilFontSize() {
+    if (this.tamilFontSize > 12) {
+      this.tamilFontSize -= 2;
+      this.settingService.setTamilFontSize(this.tamilFontSize);
+    }
   }
 
-  onArabicFontChange(event: any) {
-    const newFont = event.detail.value;
-    this.settingService.setArabicFont(newFont);
+  // Font style handler
+  onArabicFontChange() {
+    this.settingService.setArabicFont(this.selectedArabicFont);
+  }
+
+  // Visibility toggle handlers
+  async onShowTamilDuaChange() {
+    await this.settingService.setShowTamilDua(this.showTamilDua);
+  }
+
+  async onShowTranslationChange() {
+    await this.settingService.setShowTranslation(this.showTranslation);
+  }
+
+  async onShowHadeesChange() {
+    await this.settingService.setShowHadees(this.showHadees);
   }
 }

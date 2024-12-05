@@ -30,6 +30,9 @@ export class FolderPage implements OnInit, OnDestroy {
   selectedCategory = 'all';
   favorites: string[] = [];
   currentlyPlaying: string | null = null;
+  showTamilDua: boolean = true;
+  showTranslation: boolean = true;
+  showHadees: boolean = true;
 
   private networkSubscription: Subscription | null = null;
   private settingsSubscription: Subscription | null = null;
@@ -78,6 +81,21 @@ export class FolderPage implements OnInit, OnDestroy {
       }
       console.log('Route changed - Updating last visited pages');
       await this.updateLastVisitedPages(id!);
+    });
+
+    // Subscribe to settings changes
+    this.settingsSubscription = this.settingService.observableSettings.subscribe(settings => {
+      if (settings) {
+        // Update font settings
+        this.arabicFontSize = settings.ArabicFontSize;
+        this.tamilFontSize = settings.TamilFontSize;
+        this.selectedArabicFont = settings.ArabicFont;
+
+        // Update visibility settings
+        this.showTamilDua = settings.ShowTamilDua;
+        this.showTranslation = settings.ShowTranslation;
+        this.showHadees = settings.ShowHadees;
+      }
     });
   }
 
@@ -131,7 +149,7 @@ export class FolderPage implements OnInit, OnDestroy {
       if (duaGroup) {
         console.log('loadDuaGroup - Data received, updating view');
         this.duaList = duaGroup.DuaList || [];
-        this.duaGroupTitle = duaGroup.PageTitle || 'முஸ்லீம்களின் அன்றாடப் பிரார்தனைகள்';
+        this.duaGroupTitle = duaGroup.PageTitle || 'முஸ்லீம்களின் அன்றாடப் பிரார்த்தனைகள்';
         await this.filterDuas();
       } else {
         console.log('loadDuaGroup - No data received');
@@ -172,7 +190,7 @@ export class FolderPage implements OnInit, OnDestroy {
         // Reset title to the original dua group title when showing all
         const duaGroup = await this.duaService.getDuaGroupById(this.pageId!);
         if (duaGroup) {
-          this.duaGroupTitle = duaGroup.PageTitle || 'முஸ்லீம்களின் அன்றாடப் பிரார்தனைகள்';
+          this.duaGroupTitle = duaGroup.PageTitle || 'முஸ்லீம்களின் அன்றாடப் பிரார்த்தனைகள்';
         }
       }
 

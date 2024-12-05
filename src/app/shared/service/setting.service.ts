@@ -7,70 +7,85 @@ import { Preferences } from '@capacitor/preferences';
   providedIn: 'root'
 })
 export class SettingService {
-  fontSizeIncrease= 3;
-  arabicFontSize = 30;
-  tamilFontSize = 16;
-  arabicfont ='arabic';
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  private settingsData = {ArabicFontSize: '30px' , TamilFontSize : '16px', ArabicFont :'arabic'};
+  fontSizeIncrease = 3;
+  arabicFontSize = 32;
+  tamilFontSize = 17;
+  arabicfont = 'arabic';
+  
+  private settingsData = {
+    ArabicFontSize: '32px',
+    TamilFontSize: '17px',
+    ArabicFont: 'arabic',
+    ShowTamilDua: true,
+    ShowTranslation: true,
+    ShowHadees: true
+  };
 
   private settingsSubject = new BehaviorSubject(this.settingsData);
-  // eslint-disable-next-line @typescript-eslint/member-ordering
   observableSettings = this.settingsSubject.asObservable();
 
   private readonly FAVORITES_KEY = 'favorites';
 
   constructor() {
+    this.initializeSettings();
+  }
 
-    // this.nativeStore.getItem('settingData').then(
-    //   (data) => {
-    //     if (data) {
-    //       if (this.settingsData.ArabicFont != undefined ||
-    //         this.settingsData.ArabicFontSize != undefined ||
-    //         this.settingsData.TamilFontSize != undefined) {
-    //         this.settingsData = data;
-    //         this.settingsSubject.next(this.settingsData);
-    //         this.arabicFontSize = Number(this.settingsData.ArabicFontSize.substring(0, this.settingsData.ArabicFontSize.length - 3));
-    //         this.tamilFontSize = Number(this.settingsData.TamilFontSize.substring(0, this.settingsData.TamilFontSize.length - 3));
-    //       }
-    //       else {
-    //         this.updateSettings();
-    //       }
-    //     }
-    //   },
-    //   (err) => {
-    //    this.updateSettings();
+  private async initializeSettings() {
+    // Initialize visibility settings first time
+    const showTamilDua = await Preferences.get({ key: 'ShowTamilDua' });
+    const showTranslation = await Preferences.get({ key: 'ShowTranslation' });
+    const showHadees = await Preferences.get({ key: 'ShowHadees' });
 
-    //   }).catch((err) => {
-    //     this.updateSettings();
+    if (showTamilDua.value === null) {
+      await Preferences.set({ key: 'ShowTamilDua', value: 'true' });
+    }
+    if (showTranslation.value === null) {
+      await Preferences.set({ key: 'ShowTranslation', value: 'true' });
+    }
+    if (showHadees.value === null) {
+      await Preferences.set({ key: 'ShowHadees', value: 'true' });
+    }
 
-    //   });
-      this.settingsSubject.next(this.settingsData);
-   }
-   readSettingsData(){
+    await this.readSettingsData();
+  }
 
-    Preferences.get({ key: 'ArabicFontSize' }).then(data=>{
-      console.log('call back invoked for read ');
+  async readSettingsData() {
+    try {
+      const [arabicFontSize, tamilFontSize, arabicFont, showTamilDua, showTranslation, showHadees] = 
+        await Promise.all([
+          Preferences.get({ key: 'ArabicFontSize' }),
+          Preferences.get({ key: 'TamilFontSize' }),
+          Preferences.get({ key: 'ArabicFont' }),
+          Preferences.get({ key: 'ShowTamilDua' }),
+          Preferences.get({ key: 'ShowTranslation' }),
+          Preferences.get({ key: 'ShowHadees' })
+        ]);
 
-      if (Number(data) ){
-        console.log('reading data call back in place ');
-        this.arabicFontSize = Number(data);
-      this.settingsData.ArabicFontSize=this.arabicFontSize+'px';
+      // Update font settings
+      if (arabicFontSize.value) {
+        this.arabicFontSize = Number(arabicFontSize.value);
+        this.settingsData.ArabicFontSize = this.arabicFontSize + 'px';
       }
-      Preferences.get({ key: 'TamilFontSize' }).then(data1=>{
-        if (Number(data) ){
-          this.tamilFontSize = Number(data1);
-        this.settingsData.TamilFontSize=this.tamilFontSize+'px';
-        }
-        Preferences.get({ key: 'ArabicFont' }).then(data2=>{
-          this.arabicfont = data2.value+'';
-          this.settingsData.ArabicFont=this.arabicfont;
-          this.settingsSubject.next(this.settingsData);
-        });
-      });
-    });
-   }
+      if (tamilFontSize.value) {
+        this.tamilFontSize = Number(tamilFontSize.value);
+        this.settingsData.TamilFontSize = this.tamilFontSize + 'px';
+      }
+      if (arabicFont.value) {
+        this.arabicfont = arabicFont.value;
+        this.settingsData.ArabicFont = this.arabicfont;
+      }
 
+      // Update visibility settings with default to true if not set
+      this.settingsData.ShowTamilDua = showTamilDua.value !== 'false';
+      this.settingsData.ShowTranslation = showTranslation.value !== 'false';
+      this.settingsData.ShowHadees = showHadees.value !== 'false';
+
+      // Notify subscribers of the updated settings
+      this.settingsSubject.next({...this.settingsData});
+    } catch (error) {
+      console.error('Error reading settings:', error);
+    }
+  }
 
   increaseArabicFont(): any {
     if(this.arabicFontSize <= 15) {
@@ -137,6 +152,33 @@ export class SettingService {
     }).then(data=>{
       this.readSettingsData();
     });
+  }
+
+  async setShowTamilDua(show: boolean) {
+    this.settingsData.ShowTamilDua = show;
+    await Preferences.set({
+      key: 'ShowTamilDua',
+      value: show.toString()
+    });
+    this.settingsSubject.next({...this.settingsData});
+  }
+
+  async setShowTranslation(show: boolean) {
+    this.settingsData.ShowTranslation = show;
+    await Preferences.set({
+      key: 'ShowTranslation',
+      value: show.toString()
+    });
+    this.settingsSubject.next({...this.settingsData});
+  }
+
+  async setShowHadees(show: boolean) {
+    this.settingsData.ShowHadees = show;
+    await Preferences.set({
+      key: 'ShowHadees',
+      value: show.toString()
+    });
+    this.settingsSubject.next({...this.settingsData});
   }
 
    updateSettings() {

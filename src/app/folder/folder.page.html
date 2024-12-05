@@ -96,13 +96,25 @@
           </div>
           <div class="separator"></div>
           <!-- Tamil Translation -->
-          <div class="tamil-text" [style.font-size]="tamilFontSize">
+          <div class="tamil-text" [style.font-size]="tamilFontSize" *ngIf="showTamilDua">
             <strong>தமிழ்:</strong> {{ dua.DuaContent.TamilDua }}
           </div>
-
-          <!-- Meaning -->
-          <div class="meaning-text" [style.font-size]="tamilFontSize">
+          <!-- Translation -->
+          <div class="translation-text" [style.font-size]="tamilFontSize"   *ngIf="showTranslation">
             <strong>பொருள்:</strong> {{ dua.DuaContent.Translation }}
+          </div>
+          <!-- Hadees References -->
+          <div class="hadees-text" [style.font-size]="tamilFontSize"  *ngIf="showHadees && dua.DuaContent.HadithReferences?.length">
+            <strong>ஆதாரம்              :</strong>
+            <div *ngFor="let hadith of dua.DuaContent.HadithReferences" class="hadith-reference">
+              <p>
+                <strong>மூலம்:</strong> {{hadith.Source}}<br>
+                <strong>புத்தக எண்:</strong> {{hadith.BookNumber}}<br>
+                <strong>ஹதீஸ் எண்:</strong> {{hadith.HadithNumber}}<br>
+                <strong>விளக்கம்:</strong> {{hadith.Reference}}<br>
+                <a [href]="hadith.Link" target="_blank" class="hadith-link">மேலும் விவரங்களுக்கு</a>
+              </p>
+            </div>
           </div>
 
           <!-- Action Buttons -->
