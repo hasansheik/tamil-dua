@@ -12,6 +12,7 @@ export class SettingsPage implements OnInit {
   arabicFontSize: number = 32;
   tamilFontSize: number = 17;
   selectedArabicFont: string = 'arabic';
+  arabicFont: string = 'defaultFont';
 
   // Visibility settings
   showTamilDua: boolean = true;
@@ -62,9 +63,19 @@ export class SettingsPage implements OnInit {
     }
   }
 
+  // Font size change handlers
+  onArabicFontSizeChange(event: any) {
+    console.log('Arabic font size changed', event);
+  }
+
+  onTamilFontSizeChange(event: any) {
+    console.log('Tamil font size changed', event);
+  }
+
   // Font style handler
-  onArabicFontChange() {
+  onArabicFontChange(event?: any) {
     this.settingService.setArabicFont(this.selectedArabicFont);
+    console.log('Arabic font changed', event);
   }
 
   // Visibility toggle handlers
