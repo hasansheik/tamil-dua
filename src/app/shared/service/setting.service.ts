@@ -125,9 +125,10 @@ export class SettingService {
 
   setArabicFontSize(arabicFontSize){
     this.settingsData.ArabicFontSize = arabicFontSize + 'px';
+    this.arabicFontSize = arabicFontSize; 
     Preferences.set({
       key: 'ArabicFontSize',
-      value: this.arabicFontSize.toString(),
+      value: arabicFontSize.toString(),
     }).then(data=>{
       this.readSettingsData();
     });
@@ -135,6 +136,7 @@ export class SettingService {
 
   setTamilFontSize(tamilFont){
     this.settingsData.TamilFontSize = tamilFont+ 'px';
+    this.tamilFontSize = tamilFont;
     Preferences.set({
       key: 'TamilFontSize',
       value: this.tamilFontSize.toString(),

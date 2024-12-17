@@ -3,9 +3,9 @@
     font-size: 23px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 500;
-    vertical-align: center;    
+    vertical-align: center;
 }
-ion-menu-button 
+ion-menu-button
 {
     text-shadow: 1px;
 }
@@ -48,7 +48,7 @@ ion-content {
   ion-item {
     --padding-start: 0;
     --inner-padding-end: 0;
-    
+
     ion-label {
       h2 {
         font-size: min(4vw, 16px);
@@ -68,11 +68,11 @@ ion-content {
 
 .website-link {
   text-decoration: none;
-  
+
   ion-button {
     --color: var(--ion-color-primary);
     font-size: min(3.5vw, 14px);
-    
+
     ion-icon {
       margin-right: 4px;
     }
@@ -116,7 +116,7 @@ ion-content {
       margin: 4px 0;
       border-radius: 8px;
       --background: var(--ion-color-light);
-      
+
       &:hover {
         --background: var(--ion-color-light-shade);
       }
@@ -180,5 +180,53 @@ ion-content {
         color: var(--ion-color-primary);
       }
     }
+  }
+
+  .tamil-card {
+    margin: 16px;
+    padding: 16px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .tamil-title {
+    font-family: 'Noto Sans Tamil', 'Latha', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333333;
+    text-align: right;
+    margin-bottom: 16px;
+  }
+
+  .tamil-content {
+    margin: 12px 0;
+    line-height: 2;
+    color: var(--ion-color-dark);
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    word-break: break-word;
+    padding: 0 4px;
+
+    strong {
+      color: var(--ion-color-primary);
+      font-weight: 600;
+      margin-right: 8px;
+    }
+  }
+
+  .tamil-paragraph {
+    margin-bottom: 20px;
+  }
+
+  .tamil-paragraph:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Add support for Arabic characters (for ﷺ symbol) */
+  @font-face {
+    font-family: 'Arabic';
+    src: local('Traditional Arabic');
+    unicode-range: U+0600-06FF, U+0750-077F, U+FE70-FEFC;
   }
 }

@@ -14,7 +14,7 @@
     <ion-title>{{ duaGroupTitle }}</ion-title>
   </ion-toolbar>
   <ion-toolbar *ngIf="showSearch">
-    <ion-searchbar [(ngModel)]="searchText" 
+    <ion-searchbar [(ngModel)]="searchText"
                   (ionInput)="filterDuas()"
                   placeholder="தேடல்... தமிழ் கீபோர்டைப் பயன்படுத்தவும்"
                   animated="true"
@@ -81,7 +81,7 @@
       <ion-card class="dua-card">
         <ion-card-header>
           <ion-card-title>{{ dua.DuaTitle }}</ion-card-title>
-         
+
         </ion-card-header>
 
         <ion-card-content>
@@ -104,15 +104,16 @@
             <strong>பொருள்:</strong> {{ dua.DuaContent.Translation }}
           </div>
           <!-- Hadees References -->
-          <div class="hadees-text" [style.font-size]="tamilFontSize"  *ngIf="showHadees && dua.DuaContent.HadithReferences?.length">
+          <div class="hadees-text" [style.font-size]="tamilFontSize"  *ngIf=" dua.DuaContent.HadithReferences?.length">
             <strong>ஆதாரம்              :</strong>
             <div *ngFor="let hadith of dua.DuaContent.HadithReferences" class="hadith-reference">
               <p>
-                <strong>மூலம்:</strong> {{hadith.Source}}<br>
+                 {{hadith.ReadableReference}}<br>
+                <!-- <strong>மூலம்:</strong> {{hadith.Source}}<br> *ngIf="showHadees && dua.DuaContent.HadithReferences?.length"
                 <strong>புத்தக எண்:</strong> {{hadith.BookNumber}}<br>
                 <strong>ஹதீஸ் எண்:</strong> {{hadith.HadithNumber}}<br>
                 <strong>விளக்கம்:</strong> {{hadith.Reference}}<br>
-                <a [href]="hadith.Link" target="_blank" class="hadith-link">மேலும் விவரங்களுக்கு</a>
+                <a [href]="hadith.Link" target="_blank" class="hadith-link">மேலும் விவரங்களுக்கு</a> -->
               </p>
             </div>
           </div>

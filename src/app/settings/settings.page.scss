@@ -1,31 +1,33 @@
-.arabic {
-    font-family:Scheherazade !important;
-    line-height: 140%;
-    align-content: right;
-  }
-  
-  .ar {
-    font-family:Katibeh !important;
-    line-height: 140%;
-    align-content: right;
-  }
-  
-  .arab {
-    font-family:'Qahiri' !important;
-    line-height: 140%;
-    align-content: right;
-  }
-  .arab2 {
-    font-family:'Amiri-Regular' !important;
-    line-height: 140%;
-    align-content: right;
-  }
-  .arab3 {
-    font-family:'ScheherazadeRegOT' !important;
-    line-height: 140%;
-    align-content: right;
-  }
+// Common styles for Arabic text
+%arabic-base {
+  line-height: 140%;
+  text-align: right;
+}
 
+.arabic {
+  @extend %arabic-base;
+  font-family: 'Scheherazade', serif;
+}
+
+.ar {
+  @extend %arabic-base;
+  font-family: 'Katibeh', cursive;
+}
+
+.arab {
+  @extend %arabic-base;
+  font-family: 'Qahiri', sans-serif;
+}
+
+.arab2 {
+  @extend %arabic-base;
+  font-family: 'Amiri-Regular', serif;
+}
+
+.arab3 {
+  @extend %arabic-base;
+  font-family: 'ScheherazadeRegOT', sans-serif;
+}
 ion-content {
   --background: var(--ion-color-light);
 }
@@ -97,7 +99,7 @@ ion-radio-group {
 
 ion-range {
   padding: 8px 16px;
-  
+
   ion-icon {
     color: var(--ion-color-medium);
   }

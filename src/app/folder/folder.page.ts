@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Platform, NavController, LoadingController, ToastController, ActionSheetController, IonContent } from '@ionic/angular';
 import { DuaService } from '../shared/service/dua.service';
@@ -22,7 +22,7 @@ export class FolderPage implements OnInit, OnDestroy {
   arabicFontSize = '32px';
   tamilFontSize = '17px';
   duaGroupTitle = 'முஸ்லீம்களின் அன்றாடப் பிரார்தனைகள்';
-  shareTemplate = ' @title @notes \n\r\n\r @arabic  \n\r\n\r தமிழ்: @tamilDua  \n\r\n\r பொருள்: @translation';
+  shareTemplate = ' *@title* \n\n\r@notes \n\r\n\r @arabic  \n\r\n\r *தமிழ்:* @tamilDua-  \n\r\n\r *பொருள்:* @translation \n\n\r *ஆதாரம்:* \n\n\r @evidence';
   isLoading = false;
   isOffline = false;
   showSearch = false;
@@ -49,8 +49,9 @@ export class FolderPage implements OnInit, OnDestroy {
     private toastCtrl: ToastController,
     private actionSheetCtrl: ActionSheetController,
     private navController: NavController,
-    private storageService: StorageService
-  ) {}
+    private storageService: StorageService,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter - Checking if reload needed');
@@ -65,7 +66,7 @@ export class FolderPage implements OnInit, OnDestroy {
     console.log('ngOnInit - Initializing page');
     await this.initializeSubscriptions();
     await this.loadFavorites();
-    
+
     // Subscribe to route changes
     this.routeSubscription = this.activatedRoute.paramMap.subscribe(async (paramMap) => {
       if (!paramMap.has('id')) {
@@ -137,7 +138,7 @@ export class FolderPage implements OnInit, OnDestroy {
     this.isLoading = true;
     this.duaList = [];
     this.filteredDuas = [];
-    
+
     const loading = await this.loadingCtrl.create({
       message: 'தரவுகளை ஏற்றுகிறது...',
     });
@@ -180,9 +181,9 @@ export class FolderPage implements OnInit, OnDestroy {
           this.duaGroupTitle = 'தேடல் செய்ய உள்ளிடவும்';
         }
       } else if (this.selectedCategory === 'favorites') {
-        console.log('filterDuas - Favorites selected'); 
+        console.log('filterDuas - Favorites selected');
         filtered = await this.duaService.getFavoriteDuas(this.favorites);
-        console.log('filterDuas - Favorites received'); 
+        console.log('filterDuas - Favorites received');
         this.duaGroupTitle = 'நெஞ்சில் நின்றவை';
       } else {
         filtered = [...this.duaList];
@@ -196,6 +197,7 @@ export class FolderPage implements OnInit, OnDestroy {
 
       this.filteredDuas = filtered;
       console.log('filterDuas - Filtered duas:', this.filteredDuas);
+      this.cdr.detectChanges();
     } catch (error) {
       console.error('Error in filterDuas:', error);
       this.filteredDuas = [];
@@ -203,11 +205,11 @@ export class FolderPage implements OnInit, OnDestroy {
   }
 
   // Search and Filter Functions
-  toggleSearchBar() {
+  async toggleSearchBar() {
     this.showSearch = !this.showSearch;
     if (!this.showSearch) {
       this.searchText = '';
-      this.filterDuas();
+      await this.filterDuas();
     }
   }
 
@@ -257,18 +259,6 @@ export class FolderPage implements OnInit, OnDestroy {
     return this.favorites.includes(dua.Id);
   }
 
-  // Audio Playback
-  toggleAudioPlay(dua: any) {
-    if (!dua.hasAudio) return;
-
-    if (this.currentlyPlaying === dua.Id) {
-      // Stop playing
-      this.currentlyPlaying = null;
-    } else {
-      // Start playing
-      this.currentlyPlaying = dua.Id;
-    }
-  }
 
   isPlaying(dua: any): boolean {
     return this.currentlyPlaying === dua.Id;
@@ -296,23 +286,23 @@ export class FolderPage implements OnInit, OnDestroy {
         {
           text: 'பிடித்தவைகளை காட்டு',
           icon: 'heart',
-          handler: () => {
+          handler: async () => {
             this.selectedCategory = 'favorites';
-            this.filterDuas();
+            await this.filterDuas();
           }
         },
         {
           text: 'அனைத்தையும் காட்டு',
           icon: 'list',
-          handler: () => {
+          handler: async () => {
             this.selectedCategory = 'all';
-            this.filterDuas();
+            await this.filterDuas();
           }
         },
         {
           text: 'தேடல்',
           icon: 'search',
-          handler: () => {
+          handler: async () => {
             this.toggleSearchBar();
           }
         },
@@ -356,12 +346,25 @@ export class FolderPage implements OnInit, OnDestroy {
     const dua = this.duaList.find(d => d.Id === id);
     if (!dua) return;
 
+    var readableReference = "";
+
+    if (dua.DuaContent.HadithReferences != null && dua.DuaContent.HadithReferences.length != 0) {
+      readableReference = dua.DuaContent.HadithReferences[0].ReadableReference;
+      console.log("Hadees Reference Object : -", dua.DuaContent.HadithReferences[0]);
+      console.log("readable Reference : ", readableReference);
+    }
+    else {
+      console.log("Hadees  Reference  is empty : ", dua.DuaContent.HadithReferences);
+
+    }
+
     let shareText = this.shareTemplate
       .replace(/@title/gi, dua.DuaTitle)
       .replace(/@notes/gi, dua.DuaContent.Notes || '')
       .replace(/@arabic/gi, dua.DuaContent.ArabicDua)
       .replace(/@tamilDua/gi, dua.DuaContent.TamilDua)
-      .replace(/@translation/gi, dua.DuaContent.Translation);
+      .replace(/@translation/gi, dua.DuaContent.Translation)
+      .replace(/@evidence/gi, readableReference);
 
     try {
       await Share.share({
@@ -386,16 +389,16 @@ export class FolderPage implements OnInit, OnDestroy {
     try {
       // Get current list of last visited pages
       let lastVisited: string[] = await this.storageService.getData('lastVisitedPages') || [];
-      
+
       // Remove the current page if it exists in the list
       lastVisited = lastVisited.filter(id => id !== pageId);
-      
+
       // Add the current page to the beginning
       lastVisited.unshift(pageId);
-      
+
       // Keep only the last 10 visited pages
       lastVisited = lastVisited.slice(0, 10);
-      
+
       // Save back to storage
       await this.storageService.setData('lastVisitedPages', lastVisited);
     } catch (error) {

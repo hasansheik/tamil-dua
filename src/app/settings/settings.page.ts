@@ -1,6 +1,8 @@
 /* eslint-disable eqeqeq */
 import { Component, OnInit } from '@angular/core';
 import { SettingService } from '../shared/service/setting.service';
+import { RangeCustomEvent } from '@ionic/angular';
+import { DuaService } from '../shared/service/dua.service';
 
 @Component({
   selector: 'app-settings',
@@ -19,7 +21,7 @@ export class SettingsPage implements OnInit {
   showTranslation: boolean = true;
   showHadees: boolean = true;
 
-  constructor(private settingService: SettingService) {}
+  constructor(private settingService: SettingService, private duaService: DuaService) { }
 
   ngOnInit() {
     // Subscribe to settings changes
@@ -34,6 +36,7 @@ export class SettingsPage implements OnInit {
         this.showTamilDua = settings.ShowTamilDua;
         this.showTranslation = settings.ShowTranslation;
         this.showHadees = settings.ShowHadees;
+        this.duaService.clear_cache();
       }
     });
   }
@@ -65,11 +68,15 @@ export class SettingsPage implements OnInit {
 
   // Font size change handlers
   onArabicFontSizeChange(event: any) {
-    console.log('Arabic font size changed', event);
+    var fontSize = (event as RangeCustomEvent).detail.value;
+    console.log('ionChange emitted value:', fontSize);
+    this.settingService.setArabicFontSize(fontSize);
   }
 
   onTamilFontSizeChange(event: any) {
-    console.log('Tamil font size changed', event);
+    var fontSize = (event as RangeCustomEvent).detail.value;
+    console.log('ionChange emitted value:', fontSize);
+    this.settingService.setTamilFontSize(fontSize);
   }
 
   // Font style handler

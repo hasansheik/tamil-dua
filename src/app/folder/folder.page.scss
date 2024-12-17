@@ -1,6 +1,3 @@
-ion-menu-button {
-  color: var(--ion-color-primary);
-}
 
 // Search bar styling
 ion-searchbar {
@@ -16,7 +13,7 @@ ion-searchbar {
 ion-searchbar {
   --placeholder-font-size: min(3.5vw, 14px);
   --placeholder-opacity: 0.8;
-  
+
   .searchbar-input {
     font-size: min(3.5vw, 14px) !important;
     padding-inline-start: 35px !important;
@@ -44,7 +41,7 @@ ion-segment {
     --padding-start: 0;
     --padding-end: 0;
     min-width: auto;
-    
+
     ion-label {
       font-size: min(3.5vw, 14px);
       margin: 0;
@@ -76,7 +73,7 @@ ion-header {
       padding: 8px 0;
       white-space: normal;
       line-height: 1.3;
-      
+
       &.ios {
         padding: 8px 35px;
       }
@@ -94,7 +91,7 @@ ion-header {
 
     ion-segment {
       width: 100%;
-      
+
       ion-segment-button {
         flex: 1;
         min-width: 0;
@@ -105,7 +102,7 @@ ion-header {
       ion-button {
         --padding-start: 8px;
         --padding-end: 8px;
-        
+
         ion-icon {
           font-size: 18px;
         }
@@ -124,7 +121,7 @@ ion-header {
       --padding-start: 0;
       --padding-end: 0;
       min-width: auto;
-      
+
       ion-label {
         font-size: min(3.5vw, 14px);
         margin: 0;
@@ -153,7 +150,7 @@ ion-header {
   padding: 8px;
   display: grid;
   gap: 16px;
-  
+
   @media (min-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   }
@@ -194,7 +191,9 @@ ion-header {
       color: var(--ion-color-dark);
     }
 
+    .translation-text,
     .tamil-text,
+    .hadees-text,
     .meaning-text {
       margin: 12px 0;
       line-height: 2;
@@ -328,7 +327,7 @@ ion-header {
     --padding-start: 8px;
     --padding-end: 8px;
     height: 36px;
-    
+
     ion-icon {
       font-size: 20px;
     }
@@ -387,21 +386,34 @@ ion-item[color="warning"] {
   }
 }
 
-// Arabic font classes
 .arabic {
-  font-family: 'Noto Naskh Arabic' !important;
+  font-family:Scheherazade !important;
   line-height: 140%;
+  align-content: right;
 }
 
+.ar {
+  font-family:Katibeh !important;
+  line-height: 140%;
+  align-content: right;
+}
+
+.arab {
+  font-family:Qahiri !important;
+  line-height: 140%;
+  align-content: right;
+}
 .arab2 {
-  font-family: 'Droid Arabic Naskh' !important;
+  font-family:Amiri-Regular !important;
   line-height: 140%;
+  align-content: right;
+}
+.arab3 {
+  font-family:ScheherazadeRegOT !important;
+  line-height: 140%;
+  align-content: right;
 }
 
-.arab3 {
-  font-family: 'ScheherazadeRegOT' !important;
-  line-height: 140%;
-}
 
 // Focus styles for better accessibility
 ion-button:focus {
@@ -417,7 +429,7 @@ ion-button:focus {
   margin: 16px auto;
   opacity: 0.5;
   position: relative;
-  
+
   &::before {
     content: '';
     position: absolute;

@@ -14,7 +14,7 @@
         <ion-label>எழுத்துரு அமைப்புகள்</ion-label>
       </ion-item-divider>
 
-      <ion-item>
+      <!-- <ion-item>
         <ion-label>அரபி எழுத்துரு அளவு</ion-label>
         <ion-button (click)="decreaseArabicFontSize()">
           <ion-icon name="remove"></ion-icon>
@@ -22,9 +22,9 @@
         <ion-button (click)="increaseArabicFontSize()">
           <ion-icon name="add"></ion-icon>
         </ion-button>
-      </ion-item>
+      </ion-item> -->
 
-      <ion-item>
+      <!-- <ion-item>
         <ion-label>தமிழ் எழுத்துரு அளவு</ion-label>
         <ion-button (click)="decreaseTamilFontSize()">
           <ion-icon name="remove"></ion-icon>
@@ -32,7 +32,7 @@
         <ion-button (click)="increaseTamilFontSize()">
           <ion-icon name="add"></ion-icon>
         </ion-button>
-      </ion-item>
+      </ion-item> -->
 
       <ion-item>
         <ion-label>அரபி எழுத்துரு</ion-label>
@@ -44,22 +44,6 @@
         </ion-select>
       </ion-item>
 
-      <!-- Arabic Font Size -->
-      <ion-item lines="none">
-        <ion-range
-          [value]="arabicFontSize"
-          (ionChange)="onArabicFontSizeChange($event)"
-          min="15"
-          max="50"
-          step="3"
-          snaps="true"
-          pin="true"
-          color="primary"
-        >
-          <ion-icon slot="start" name="text-outline" size="small"></ion-icon>
-          <ion-icon slot="end" name="text-outline" size="large"></ion-icon>
-        </ion-range>
-      </ion-item>
 
       <!-- Arabic Font Style -->
       <ion-radio-group [(ngModel)]="selectedArabicFont" (ionChange)="onArabicFontChange($event)">
@@ -81,7 +65,7 @@
           </ion-label>
           <ion-radio slot="start" value="arab"></ion-radio>
         </ion-item>
-        <ion-item>
+        <!-- <ion-item>
           <ion-label>
             <p class="arab2 preview-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
           </ion-label>
@@ -92,11 +76,30 @@
             <p class="arab3 preview-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
           </ion-label>
           <ion-radio slot="start" value="arab3"></ion-radio>
-        </ion-item>
+        </ion-item> -->
       </ion-radio-group>
+
+        <!-- Arabic Font Size -->
+        <ion-item lines="none">
+          <ion-label>அரபி எழுத்துரு அளவு</ion-label>
+          <ion-range
+            [value]="arabicFontSize"
+            (ionChange)="onArabicFontSizeChange($event)"
+            min="15"
+            max="50"
+            step="3"
+            snaps="true"
+            pin="true"
+            color="primary"
+          >
+            <ion-icon slot="start" name="text-outline" size="small"></ion-icon>
+            <ion-icon slot="end" name="text-outline" size="large"></ion-icon>
+          </ion-range>
+        </ion-item>
 
       <!-- Tamil Font Size -->
       <ion-item lines="none">
+        <ion-label>தமிழ் எழுத்துரு அளவு</ion-label>
         <ion-range
           [value]="tamilFontSize"
           (ionChange)="onTamilFontSizeChange($event)"
@@ -115,28 +118,6 @@
 
     <ion-item-group>
       <ion-item-divider>
-        <ion-label>காட்சி அமைப்புகள்</ion-label>
-      </ion-item-divider>
-
-      <ion-item>
-        <ion-label>தமிழ் துஆ காட்டு</ion-label>
-        <ion-toggle [(ngModel)]="showTamilDua" (ionChange)="onShowTamilDuaChange()"></ion-toggle>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>பொருள் காட்டு</ion-label>
-        <ion-toggle [(ngModel)]="showTranslation" (ionChange)="onShowTranslationChange()"></ion-toggle>
-      </ion-item>
-<!-- 
-      <ion-item>
-        <ion-label>ஹதீஸ் ஆதாரங்கள் காட்டு</ion-label>
-        <ion-toggle [(ngModel)]="showHadees" (ionChange)="onShowHadeesChange()"></ion-toggle>
-      </ion-item> -->
-    </ion-item-group>
-
-    <!-- Preview Section -->
-    <ion-item-group>
-      <ion-item-divider>
         <ion-label>முன்னோட்டம்</ion-label>
       </ion-item-divider>
       <ion-card class="preview-card">
@@ -153,5 +134,29 @@
         </ion-card-content>
       </ion-card>
     </ion-item-group>
+
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>காட்சி அமைப்புகள்</ion-label>
+      </ion-item-divider>
+
+      <ion-item>
+        <ion-label>தமிழ் துஆ காட்டு</ion-label>
+        <ion-toggle [(ngModel)]="showTamilDua" (ionChange)="onShowTamilDuaChange()"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>பொருள் காட்டு</ion-label>
+        <ion-toggle [(ngModel)]="showTranslation" (ionChange)="onShowTranslationChange()"></ion-toggle>
+      </ion-item>
+<!--
+      <ion-item>
+        <ion-label>ஹதீஸ் ஆதாரங்கள் காட்டு</ion-label>
+        <ion-toggle [(ngModel)]="showHadees" (ionChange)="onShowHadeesChange()"></ion-toggle>
+      </ion-item> -->
+    </ion-item-group>
+
+    <!-- Preview Section -->
+
   </ion-list>
 </ion-content>
