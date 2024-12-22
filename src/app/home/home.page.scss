@@ -217,6 +217,7 @@ ion-content {
 
   .tamil-paragraph {
     margin-bottom: 20px;
+    text-align: justify;
   }
 
   .tamil-paragraph:last-child {
@@ -228,5 +229,99 @@ ion-content {
     font-family: 'Arabic';
     src: local('Traditional Arabic');
     unicode-range: U+0600-06FF, U+0750-077F, U+FE70-FEFC;
+  }
+  .link-container {
+    margin-bottom: 10px;
+  }
+
+  .link-item {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .link-icon {
+    margin-right: 8px;
+  }
+
+  .link-text {
+    font-weight: bold;
+  }
+
+}
+
+.guidance-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 16px;
+  overflow: hidden;
+
+  .header-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ion-color-primary);
+    text-align: center;
+    padding: 16px;
+  }
+
+  .link-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .link-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    color: var(--ion-color-dark);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgba(var(--ion-color-primary-rgb), 0.1);
+      transform: translateX(4px);
+    }
+  }
+
+  .link-icon {
+    font-size: 1.5rem;
+    margin-right: 12px;
+    color: var(--ion-color-primary);
+  }
+
+  .link-text {
+    flex: 1;
+    font-size: 1rem;
+  }
+
+  .arrow-icon {
+    font-size: 1.2rem;
+    color: var(--ion-color-medium);
+  }
+
+  .ripple {
+    position: relative;
+    overflow: hidden;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(var(--ion-color-primary-rgb), 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s;
+    }
+
+    &:active:after {
+      width: 200px;
+      height: 200px;
+    }
   }
 }

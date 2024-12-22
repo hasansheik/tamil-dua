@@ -6,8 +6,8 @@ android {
         applicationId "com.hasan.app.tamildua"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 20241217
-    versionName "2024.12.17"
+        versionCode 20241221
+    versionName "2024.12.21"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.

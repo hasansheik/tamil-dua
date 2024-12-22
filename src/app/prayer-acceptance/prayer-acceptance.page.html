@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      {{PageTitle}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+  <ion-content [fullscreen]="true">
+    <ion-card *ngFor="let item of data">
+      <ion-card-header>
+        <ion-card-title>{{ item.SectionTitle }}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p *ngFor="let paragraph of item.Paragraphs" style="text-align: justify;">{{ paragraph }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+

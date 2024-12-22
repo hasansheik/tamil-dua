@@ -1,0 +1,36 @@
+
+
+ion-card {
+  margin: 10px;
+}
+
+ion-card-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #3880ff;
+}
+
+ion-card-content {
+  font-size: 1em;
+  color: #222;
+}
+
+
+
+/* Add this CSS to your styles */
+p {
+  color: var(--ion-color-text);
+  margin: 5px 0;
+
+}
+
+:host {
+  --ion-color-text: #000000; /* Light mode text color */
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    --ion-color-text: #ffffff; /* Dark mode text color */
+  }
+}
+
