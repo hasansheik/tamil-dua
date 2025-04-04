@@ -40,12 +40,44 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" #duaContent>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{ duaGroupTitle }}</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <!-- Dua Navigation Header - Sticky -->
+  <div *ngIf="!isLoading && filteredDuas.length > 0 && selectedCategory !== 'search'" class="sticky-nav-header">
+    <ion-card class="navigation-header-card" (click)="scrollToTop()">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-row class="ion-align-items-center">
+            <ion-col>துஆக்கள் அட்டவணை</ion-col>
+            <ion-col size="auto">
+              <ion-badge color="primary">{{ filteredDuas.length }}</ion-badge>
+            </ion-col>
+          </ion-row>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </div>
+
+  <!-- Dua Navigation List - Always Visible -->
+  <ion-card *ngIf="!isLoading && filteredDuas.length > 0 && selectedCategory !== 'search'" class="navigation-list-card">
+    <ion-card-content>
+      <ion-list lines="full" class="navigation-list">
+        <ion-item *ngFor="let dua of filteredDuas; let i = index" 
+                  button detail="false"
+                  (click)="scrollToDua(i)" 
+                  class="navigation-item">
+          <ion-label class="ion-text-wrap">
+            <span class="dua-index">{{ i + 1 }}.</span> {{ dua.DuaTitle }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
   <!-- Loading Skeleton -->
   <ion-list *ngIf="isLoading">
@@ -77,7 +109,7 @@
 
   <!-- Dua List -->
   <ion-list *ngIf="!isLoading">
-    <ion-item *ngFor="let dua of filteredDuas" lines="none" class="dua-item">
+    <ion-item *ngFor="let dua of filteredDuas; let i = index" lines="none" class="dua-item" [id]="'dua-' + i">
       <ion-card class="dua-card">
         <ion-card-header>
           <ion-card-title>{{ dua.DuaTitle }}</ion-card-title>

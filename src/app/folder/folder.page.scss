@@ -1,4 +1,3 @@
-
 // Search bar styling
 ion-searchbar {
   --background: var(--ion-color-light);
@@ -164,18 +163,21 @@ ion-header {
 
   ion-card-header {
     padding: 16px;
-    background: var(--ion-color-primary-tint);
+    background: var(--ion-color-primary);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 
     ion-card-title {
       font-size: 18px;
       font-weight: 600;
-      color: var(--ion-color-dark);
-      margin-bottom: 8px;
+      color: var(--ion-color-primary-contrast);
+      margin-bottom: 0;
+      line-height: 1.4;
     }
 
     ion-card-subtitle {
       font-size: 14px;
-      color: var(--ion-color-medium);
+      color: rgba(var(--ion-color-primary-contrast-rgb), 0.8);
       margin: 0;
     }
   }
@@ -475,6 +477,150 @@ ion-button:focus {
 
   strong {
     color: var(--ion-color-dark);
+  }
+}
+
+// Navigation Card Styles
+.navigation-card {
+  margin: 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  ion-card-header {
+    background: var(--ion-color-primary-tint);
+    padding: 12px;
+    
+    ion-card-title {
+      font-size: 16px;
+      margin: 0;
+      
+      ion-icon {
+        font-size: 20px;
+        cursor: pointer;
+        vertical-align: middle;
+        margin-right: 8px;
+      }
+      
+      ion-badge {
+        margin-left: 8px;
+      }
+    }
+  }
+  
+  ion-card-content {
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .navigation-list {
+    background: transparent;
+    
+    .navigation-item {
+      --background: transparent;
+      --padding-start: 16px;
+      --padding-end: 16px;
+      --min-height: 48px;
+      
+      &:active {
+        --background: rgba(var(--ion-color-primary-rgb), 0.1);
+      }
+      
+      ion-label {
+        font-size: 14px;
+        margin: 8px 0;
+        
+        .dua-index {
+          font-weight: bold;
+          color: var(--ion-color-primary);
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+}
+
+// Sticky Navigation Header Styles
+.sticky-nav-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: var(--ion-color-light);
+  padding: 8px 12px;
+  margin-bottom: 0;
+  
+  .navigation-header-card {
+    margin: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    cursor: pointer;
+    
+    ion-card-header {
+      background: var(--ion-color-primary);
+      padding: 12px;
+      
+      ion-card-title {
+        font-size: 16px;
+        margin: 0;
+        color: var(--ion-color-primary-contrast);
+        
+        ion-row {
+          align-items: center;
+        }
+        
+        ion-badge {
+          --background: var(--ion-color-light);
+          --color: var(--ion-color-primary);
+          font-weight: bold;
+          padding: 4px 8px;
+          border-radius: 12px;
+          margin-left: 8px;
+        }
+      }
+    }
+    
+    &:active {
+      opacity: 0.8;
+    }
+  }
+}
+
+// Navigation List Card Styles
+.navigation-list-card {
+  margin: 0 12px 12px 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  ion-card-content {
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .navigation-list {
+    background: transparent;
+    
+    .navigation-item {
+      --background: transparent;
+      --padding-start: 16px;
+      --padding-end: 16px;
+      --min-height: 48px;
+      
+      &:active {
+        --background: rgba(var(--ion-color-primary-rgb), 0.1);
+      }
+      
+      ion-label {
+        font-size: 14px;
+        margin: 8px 0;
+        
+        .dua-index {
+          font-weight: bold;
+          color: var(--ion-color-primary);
+          margin-right: 4px;
+        }
+      }
+    }
   }
 }
 

@@ -33,11 +33,14 @@ export class FolderPage implements OnInit, OnDestroy {
   showTamilDua: boolean = true;
   showTranslation: boolean = true;
   showHadees: boolean = true;
+  showNavigationMenu: boolean = true; // Controls visibility of the navigation menu
 
   private networkSubscription: Subscription | null = null;
   private settingsSubscription: Subscription | null = null;
   private routeSubscription: Subscription | null = null;
   private pageId: string | null = null;
+
+  @ViewChild('duaContent', { static: false }) duaContent: IonContent;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -404,5 +407,27 @@ export class FolderPage implements OnInit, OnDestroy {
     } catch (error) {
       console.error('Error updating last visited pages:', error);
     }
+  }
+
+  // Navigation Menu Functions
+  toggleNavigationMenu(event?: Event) {
+    if (event) {
+      event.stopPropagation(); // Prevent the card click event from firing
+    }
+    this.showNavigationMenu = !this.showNavigationMenu;
+  }
+
+  async scrollToDua(index: number) {
+    const targetId = `dua-${index}`;
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      // Scroll to the selected dua with smooth behavior
+      await this.duaContent.scrollToPoint(0, targetElement.offsetTop, 500);
+    }
+  }
+
+  scrollToTop() {
+    this.duaContent.scrollToTop(500);
   }
 }
