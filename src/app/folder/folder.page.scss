@@ -30,6 +30,63 @@ ion-searchbar {
   }
 }
 
+
+.navigation-header-card {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navigation-header-card:hover {
+  background-color: rgba(var(--ion-color-primary-rgb), 0.1);
+}
+
+.scroll-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.scroll-top-icon {
+  font-size: 16px;
+  margin-right: 4px;
+  color: var(--ion-color-primary);
+  animation: pulse 2s infinite;
+}
+
+.scroll-hint {
+  font-size: 12px;
+  color: var(--ion-color-medium);
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.7;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+  100% {
+    opacity: 0.7;
+    transform: translateY(0);
+  }
+}
+
+/* Make it more responsive to touch on mobile */
+@media (max-width: 768px) {
+  .scroll-hint {
+    display: none; /* Hide text on small screens */
+  }
+  
+  .scroll-top-icon {
+    font-size: 20px; /* Larger icon for easier tapping */
+  }
+}
+
 // Category segment styling
 ion-segment {
   background: transparent;

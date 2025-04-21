@@ -48,20 +48,22 @@
   </ion-header>
 
   <!-- Dua Navigation Header - Sticky -->
-  <div *ngIf="!isLoading && filteredDuas.length > 0 && selectedCategory !== 'search'" class="sticky-nav-header">
-    <ion-card class="navigation-header-card" (click)="scrollToTop()">
-      <ion-card-header>
-        <ion-card-title>
-          <ion-row class="ion-align-items-center">
-            <ion-col>துஆக்கள் அட்டவணை</ion-col>
-            <ion-col size="auto">
-              <ion-badge color="primary">{{ filteredDuas.length }}</ion-badge>
-            </ion-col>
-          </ion-row>
-        </ion-card-title>
-      </ion-card-header>
-    </ion-card>
-  </div>
+  <ion-card class="navigation-header-card" (click)="scrollToTop()">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-row class="ion-align-items-center">
+          <ion-col>துஆக்கள் அட்டவணை</ion-col>
+          <ion-col size="auto">
+            <ion-badge color="primary">{{ filteredDuas.length }}</ion-badge>
+          </ion-col>
+          <ion-col size="auto" class="scroll-indicator">
+            <ion-icon name="arrow-up" class="scroll-top-icon"></ion-icon>
+            <span class="scroll-hint">பட்டியல் முகப்பு</span>
+          </ion-col>
+        </ion-row>
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
 
   <!-- Dua Navigation List - Always Visible -->
   <ion-card *ngIf="!isLoading && filteredDuas.length > 0 && selectedCategory !== 'search'" class="navigation-list-card">
