@@ -82,3 +82,122 @@ h1, h2, h3, h4, h5, h6, .ios-large-title, .ios-page-title, .ios-settings-title, 
     }
   }
 }
+
+/* Custom Premium Search Bar Styling (From Scratch) */
+.custom-search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 4px 0;
+}
+
+.custom-search-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 42px;
+  background: rgba(var(--ion-color-secondary-rgb), 0.08);
+  border: 0.5px solid var(--ion-border-color);
+  border-radius: 10px;
+  padding: 0 12px;
+  transition: var(--premium-transition);
+
+  &:focus-within {
+    border-color: var(--ion-color-primary);
+    background: var(--ion-card-background);
+    box-shadow: 0 0 0 3px rgba(var(--ion-color-primary-rgb), 0.12);
+  }
+
+  .custom-search-icon {
+    font-size: 18px;
+    color: var(--ion-color-secondary);
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+
+  .custom-search-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    font-family: var(--font-family-sans) !important;
+    font-size: 0.92rem;
+    color: var(--ion-text-color);
+    line-height: var(--tamil-line-height) !important; /* Set to 2.0 to prevent clipping */
+    outline: none;
+    padding: 0;
+
+    &::placeholder {
+      color: var(--ion-color-secondary);
+      opacity: 0.85;
+    }
+  }
+
+  .custom-search-clear-btn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    color: var(--ion-color-secondary);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: var(--premium-transition);
+
+    &:hover {
+      opacity: 1;
+      color: var(--ion-color-primary);
+    }
+  }
+}
+
+.custom-search-cancel-btn {
+  background: transparent;
+  border: none;
+  color: var(--ion-color-primary);
+  font-family: var(--font-family-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--premium-transition);
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+/* Card Scroll Highlight Glow Effect */
+@keyframes goldGlowPulse {
+  0% {
+    box-shadow: var(--premium-shadow-sm);
+    border-color: var(--ion-border-color);
+  }
+  25% {
+    box-shadow: 0 0 15px rgba(var(--ion-color-primary-rgb), 0.6);
+    border-color: var(--ion-color-primary);
+    background: rgba(var(--ion-color-primary-rgb), 0.05);
+  }
+  50% {
+    box-shadow: var(--premium-shadow-sm);
+    border-color: var(--ion-border-color);
+  }
+  75% {
+    box-shadow: 0 0 15px rgba(var(--ion-color-primary-rgb), 0.6);
+    border-color: var(--ion-color-primary);
+    background: rgba(var(--ion-color-primary-rgb), 0.05);
+  }
+  100% {
+    box-shadow: var(--premium-shadow-sm);
+    border-color: var(--ion-border-color);
+  }
+}
+
+.highlight-glow {
+  animation: goldGlowPulse 2.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}

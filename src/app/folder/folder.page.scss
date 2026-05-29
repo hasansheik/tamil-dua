@@ -23,19 +23,11 @@
   }
 }
 
-.ios-search-toolbar {
+.custom-search-toolbar {
   --background: var(--ion-background-color);
-  padding: 4px 12px;
+  --border-color: var(--ion-border-color);
+  padding: 8px 0;
   border-bottom: 0.5px solid var(--ion-border-color);
-
-  .ios-searchbar {
-    --background: rgba(var(--ion-color-secondary-rgb), 0.12);
-    --color: var(--ion-text-color);
-    --placeholder-color: var(--ion-color-secondary);
-    --border-radius: 10px;
-    padding: 0;
-    margin: 0;
-  }
 }
 
 .ios-segment-toolbar {

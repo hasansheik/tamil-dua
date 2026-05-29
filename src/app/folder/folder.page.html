@@ -15,16 +15,28 @@
   </ion-toolbar>
 
   <!-- Search Bar Toolbar -->
-  <ion-toolbar *ngIf="showSearch" class="ios-search-toolbar">
-    <ion-searchbar [(ngModel)]="searchText"
-                  (ionInput)="filterDuas()"
-                  placeholder="தேடல்... தமிழ் விசைப்பலகையைப் பயன்படுத்தவும்"
-                  animated="true"
-                  showCancelButton="always"
-                  (ionCancel)="toggleSearchBar()"
-                  class="ios-searchbar"
-                  mode="ios">
-    </ion-searchbar>
+  <ion-toolbar *ngIf="showSearch" class="custom-search-toolbar">
+    <div class="custom-search-container ion-padding-horizontal">
+      <div class="custom-search-inner">
+        <ion-icon name="search-outline" class="custom-search-icon"></ion-icon>
+        <input 
+          type="text" 
+          [(ngModel)]="searchText" 
+          (input)="filterDuas()" 
+          placeholder="தேடல்... தமிழ் விசைப்பலகையைப் பயன்படுத்தவும்" 
+          class="custom-search-input"
+        />
+        <button 
+          *ngIf="searchText" 
+          (click)="searchText = ''; filterDuas()" 
+          class="custom-search-clear-btn">
+          <ion-icon name="close-circle"></ion-icon>
+        </button>
+      </div>
+      <button (click)="toggleSearchBar()" class="custom-search-cancel-btn">
+        Cancel
+      </button>
+    </div>
   </ion-toolbar>
 
   <!-- iOS-Style Segment Toolbar -->

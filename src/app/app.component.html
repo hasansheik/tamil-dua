@@ -18,13 +18,23 @@
 
       <!-- Real-time Chapter Search Bar -->
       <div class="ios-sidebar-search-box">
-        <ion-searchbar 
-          [(ngModel)]="sidebarSearchQuery"
-          placeholder="அத்தியாயங்களைத் தேடு..."
-          animated="true"
-          class="ios-sidebar-searchbar"
-          mode="ios">
-        </ion-searchbar>
+        <div class="custom-search-container">
+          <div class="custom-search-inner">
+            <ion-icon name="search-outline" class="custom-search-icon"></ion-icon>
+            <input 
+              type="text" 
+              [(ngModel)]="sidebarSearchQuery" 
+              placeholder="அத்தியாயங்களைத் தேடு..." 
+              class="custom-search-input"
+            />
+            <button 
+              *ngIf="sidebarSearchQuery" 
+              (click)="sidebarSearchQuery = ''" 
+              class="custom-search-clear-btn">
+              <ion-icon name="close-circle"></ion-icon>
+            </button>
+          </div>
+        </div>
       </div>
 
       <ion-content class="ios-sidebar-content">

@@ -434,6 +434,15 @@ export class FolderPage implements OnInit, OnDestroy {
     if (targetElement) {
       // Scroll to the selected dua with smooth behavior
       await this.duaContent.scrollToPoint(0, targetElement.offsetTop, 500);
+
+      // Find the card element inside and highlight it
+      const card = targetElement.querySelector('.ios-dua-card');
+      if (card) {
+        card.classList.add('highlight-glow');
+        setTimeout(() => {
+          card.classList.remove('highlight-glow');
+        }, 2500); // Remove after animation completes
+      }
     }
   }
 
