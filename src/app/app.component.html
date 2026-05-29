@@ -4,12 +4,15 @@
       
       <!-- Brand Header -->
       <div class="ios-sidebar-brand">
-        <div class="ios-sidebar-logo-box">
-          <ion-icon name="book" class="ios-sidebar-logo-icon"></ion-icon>
-        </div>
-        <div class="ios-sidebar-brand-text">
-          <h2 class="ios-sidebar-app-name">பிரார்த்தனைகள்</h2>
-          <span class="ios-sidebar-app-sub">Tamil Dua App</span>
+        <div class="ios-sidebar-brand-greet">அஸ்ஸலாமு அலைக்கும்</div>
+        <div class="ios-sidebar-brand-main">
+          <div class="ios-sidebar-logo-box">
+            <ion-icon name="book" class="ios-sidebar-logo-icon"></ion-icon>
+          </div>
+          <div class="ios-sidebar-brand-text">
+            <h2 class="ios-sidebar-app-name">பிரார்த்தனைகள்</h2>
+            <span class="ios-sidebar-app-sub">Tamil Dua App</span>
+          </div>
         </div>
       </div>
 
@@ -89,9 +92,7 @@
               routerLinkActive="active" 
               class="ios-sidebar-list-item ripple">
               <div class="ios-sidebar-item-inner">
-                <div class="ios-sidebar-item-icon-wrap">
-                  <ion-icon name="folder-open-outline" class="ios-sidebar-item-icon"></ion-icon>
-                </div>
+                <span class="ios-sidebar-item-num">{{ i + 1 }}</span>
                 <span class="ios-sidebar-item-text">{{ p.title }}</span>
                 <ion-icon name="chevron-forward" class="ios-sidebar-item-chevron"></ion-icon>
               </div>

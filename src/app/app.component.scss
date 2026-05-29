@@ -1,7 +1,6 @@
 ion-menu {
   --background: var(--ion-background-color) !important;
   border-right: 0.5px solid var(--ion-border-color);
-  backdrop-filter: blur(20px) saturate(180%);
 
   ion-content.ios-sidebar-content {
     --background: var(--ion-background-color) !important;
@@ -12,28 +11,43 @@ ion-menu {
   }
 }
 
-/* 1. Brand Header Area (Spacious & Sleek) */
+/* 1. Brand Header Area */
 .ios-sidebar-brand {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 28px 20px 16px 20px;
+  flex-direction: column;
+  padding: 24px 16px 14px 16px;
   background: var(--ion-background-color);
+
+  .ios-sidebar-brand-greet {
+    font-family: var(--font-family-heading);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--ion-color-primary);
+    margin-bottom: 8px;
+    opacity: 0.95;
+  }
+
+  .ios-sidebar-brand-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 
   .ios-sidebar-logo-box {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 50% !important; // Fully circular iOS emblem crest
-    background: linear-gradient(135deg, rgba(var(--ion-color-primary-rgb), 0.16), rgba(var(--ion-color-primary-rgb), 0.04));
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(var(--ion-color-primary-rgb), 0.12);
     color: var(--ion-color-primary);
-    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), var(--premium-shadow-sm);
-    border: 0.5px solid rgba(var(--ion-color-primary-rgb), 0.2);
+    box-shadow: var(--premium-shadow-sm);
 
     .ios-sidebar-logo-icon {
-      font-size: 21px;
+      font-size: 20px;
     }
   }
 
@@ -44,12 +58,11 @@ ion-menu {
 
     .ios-sidebar-app-name {
       font-family: var(--font-family-heading);
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--ion-text-color);
       margin: 0;
       line-height: var(--tamil-line-height);
-      letter-spacing: -0.3px;
     }
 
     .ios-sidebar-app-sub {
@@ -64,31 +77,31 @@ ion-menu {
 
 /* 2. Real-time Search Box */
 .ios-sidebar-search-box {
-  padding: 0 16px 14px 16px;
+  padding: 0 16px 12px 16px;
   background: var(--ion-background-color);
   border-bottom: 0.5px solid var(--ion-border-color);
 
   .ios-sidebar-searchbar {
-    --background: rgba(var(--ion-color-secondary-rgb), 0.08) !important;
+    --background: rgba(var(--ion-color-secondary-rgb), 0.12) !important;
     --color: var(--ion-text-color) !important;
     --placeholder-color: var(--ion-color-secondary) !important;
     --border-radius: 10px !important;
     padding: 0;
     margin: 0;
-    height: 44px !important;
+    height: auto !important;
 
-    &::part(search-icon) {
-      color: var(--ion-color-secondary);
-      opacity: 0.8;
-    }
-
+    /* Target inner input details to prevent Tamil characters from clipping */
     &::part(input) {
       font-family: var(--font-family-sans) !important;
+      line-height: 1.8 !important;
+      padding-top: 6px !important;
+      padding-bottom: 6px !important;
       font-size: 0.88rem !important;
-      line-height: var(--tamil-line-height) !important;
-      padding-top: 4px !important;
-      padding-bottom: 4px !important;
-      height: 100% !important;
+    }
+
+    &::part(container) {
+      height: 44px !important;
+      min-height: 44px !important;
     }
   }
 }
@@ -96,52 +109,80 @@ ion-menu {
 /* 3. Section Titles */
 .ios-sidebar-section-title {
   font-family: var(--font-family-heading);
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--ion-color-medium);
-  letter-spacing: 0.6px;
-  margin: 22px 20px 10px 20px;
-  opacity: 0.85;
+  letter-spacing: 0.5px;
+  margin: 20px 20px 8px 20px;
 }
 
-/* 4. Shortcuts Grid (Borderless iOS Reminders Style) */
+/* 4. Shortcuts Grid (2x2) */
 .ios-sidebar-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   padding: 0 16px;
 
+  /* Force toggle link containers to act as grid cells */
   ion-menu-toggle {
     display: block;
     width: 100%;
   }
 
   .ios-grid-card {
-    border-radius: 14px;
-    padding: 14px 12px;
-    border: none !important; // Completely borderless flat cards
-    box-shadow: none !important;
+    background: var(--ion-card-background);
+    border-radius: 12px;
+    padding: 12px;
+    border: 0.5px solid var(--ion-border-color);
+    box-shadow: var(--premium-shadow-sm);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     cursor: pointer;
     transition: var(--premium-transition);
     height: 100%;
 
     &:hover {
-      transform: translateY(-2px) scale(1.02);
+      transform: translateY(-1px);
+      box-shadow: var(--premium-shadow-md);
+    }
+
+    &.active {
+      border-color: rgba(var(--ion-color-primary-rgb), 0.4);
+      background: rgba(var(--ion-color-primary-rgb), 0.05);
+      box-shadow: inset 4px 0 0 var(--ion-color-primary), var(--premium-shadow-sm); /* Gold vertical selection line */
+
+      .ios-grid-card-label {
+        color: var(--ion-color-primary);
+      }
     }
 
     .ios-grid-card-icon-wrap {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      font-size: 16px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      font-size: 15px;
+
+      &.primary {
+        background: rgba(var(--ion-color-primary-rgb), 0.1);
+        color: var(--ion-color-primary);
+      }
+      &.danger {
+        background: rgba(var(--ion-color-danger-rgb), 0.1);
+        color: var(--ion-color-danger);
+      }
+      &.warning {
+        background: rgba(var(--ion-color-warning-rgb), 0.1);
+        color: var(--ion-color-warning-shade);
+      }
+      &.success {
+        background: rgba(var(--ion-color-success-rgb), 0.1);
+        color: var(--ion-color-success-shade);
+      }
     }
 
     .ios-grid-card-details {
@@ -155,146 +196,113 @@ ion-menu {
         font-weight: 700;
         color: var(--ion-text-color);
         line-height: var(--tamil-line-height);
-        transition: var(--premium-transition);
       }
 
       .ios-grid-card-value {
         font-family: var(--font-family-sans);
         font-size: 0.72rem;
         color: var(--ion-color-secondary);
-        font-weight: 600;
-        transition: var(--premium-transition);
+        font-weight: 500;
 
         &.badge-count {
+          font-weight: 700;
           color: var(--ion-color-danger);
         }
       }
     }
   }
-
-  /* Pastel Theme Tint Background Rules for cards */
-  .ios-grid-card:has(.primary) { background: rgba(var(--ion-color-primary-rgb), 0.06); }
-  .ios-grid-card:has(.danger) { background: rgba(var(--ion-color-danger-rgb), 0.06); }
-  .ios-grid-card:has(.warning) { background: rgba(var(--ion-color-warning-rgb), 0.06); }
-  .ios-grid-card:has(.success) { background: rgba(var(--ion-color-success-rgb), 0.06); }
-
-  /* Active State highlight overrides (No borders, just deep fills) */
-  .ios-grid-card.active {
-    transform: translateY(-1px) scale(1.01);
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0; bottom: 0; left: 0;
-      border-radius: 14px;
-      border: 1px solid rgba(var(--ion-color-primary-rgb), 0.15);
-      pointer-events: none;
-    }
-
-    .ios-grid-card-details .ios-grid-card-label {
-      color: var(--ion-color-primary);
-    }
-  }
-
-  .ios-grid-card.active:has(.primary) { background: rgba(var(--ion-color-primary-rgb), 0.14); }
-  .ios-grid-card.active:has(.danger) { background: rgba(var(--ion-color-danger-rgb), 0.14); }
-  .ios-grid-card.active:has(.warning) { background: rgba(var(--ion-color-warning-rgb), 0.14); }
-  .ios-grid-card.active:has(.success) { background: rgba(var(--ion-color-success-rgb), 0.14); }
 }
 
-/* 5. Inset Grouped List (macOS Pill Navigation Overhaul) */
+/* 5. Inset Grouped List Cards */
 .ios-sidebar-list-card {
-  background: transparent !important; // Completely transparent list container
-  border: none !important; // Borderless
-  box-shadow: none !important;
-  margin: 0 12px 20px 12px; // Slightly more spacious
-  overflow: visible;
+  background: var(--ion-card-background);
+  border-radius: 12px;
+  border: 0.5px solid var(--ion-border-color);
+  box-shadow: var(--premium-shadow-sm);
+  margin: 0 16px 20px 16px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 2px; // Visual spacing between pill options
 
   .ios-sidebar-list-item {
     display: block;
     text-decoration: none;
     color: inherit;
     background: transparent;
-    border-bottom: none !important; // No dividing lines
+    border-bottom: 0.5px solid var(--ion-border-color);
     cursor: pointer;
-    border-radius: 8px; // Rounded pills
     transition: var(--premium-transition);
 
-    &:hover {
-      background: rgba(var(--ion-color-secondary-rgb), 0.04);
+    &:last-child {
+      border-bottom: none;
     }
 
-    /* Active navigation highlight pill */
+    &:hover {
+      background: rgba(var(--ion-color-primary-rgb), 0.02);
+    }
+
     &.active {
-      background: rgba(var(--ion-color-primary-rgb), 0.12) !important;
+      background: rgba(var(--ion-color-primary-rgb), 0.05);
+      box-shadow: inset 4px 0 0 var(--ion-color-primary); /* Gold vertical selection line */
 
       .ios-sidebar-item-text {
-        color: var(--ion-color-primary) !important;
+        color: var(--ion-color-primary);
         font-weight: 600;
       }
 
-      .ios-sidebar-item-icon-wrap {
-        background: var(--ion-color-primary) !important;
-        color: var(--ion-color-primary-contrast) !important;
-        box-shadow: 0 2px 6px rgba(var(--ion-color-primary-rgb), 0.2);
+      .ios-sidebar-item-num {
+        background: var(--ion-color-primary);
+        color: var(--ion-color-primary-contrast);
       }
 
       .ios-sidebar-item-icon {
-        color: var(--ion-color-primary-contrast) !important;
-      }
-
-      .ios-sidebar-item-chevron {
-        color: var(--ion-color-primary) !important;
-        opacity: 0.8;
+        color: var(--ion-color-primary);
       }
     }
 
     .ios-sidebar-item-inner {
       display: flex;
       align-items: center;
-      padding: 10px 12px;
+      padding: 12px 14px;
       gap: 12px;
       width: 100%;
     }
 
-    /* Small, gold rounded container for folder icon */
-    .ios-sidebar-item-icon-wrap {
+    .ios-sidebar-item-num {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 26px;
-      height: 26px;
-      border-radius: 6px;
+      min-width: 18px;
+      height: 18px;
+      border-radius: 50%;
       background: rgba(var(--ion-color-primary-rgb), 0.08);
       color: var(--ion-color-primary);
+      font-family: var(--font-family-sans);
+      font-size: 0.72rem;
+      font-weight: 700;
       transition: var(--premium-transition);
-      flex-shrink: 0;
+    }
 
-      .ios-sidebar-item-icon {
-        font-size: 13px;
-        transition: var(--premium-transition);
-      }
+    .ios-sidebar-item-icon {
+      font-size: 16px;
+      color: var(--ion-color-primary);
+      flex-shrink: 0;
     }
 
     .ios-sidebar-item-text {
       font-family: var(--font-family-sans);
-      font-size: 0.86rem;
+      font-size: 0.85rem;
       font-weight: 500;
       color: var(--ion-text-color);
       flex: 1;
-      line-height: var(--tamil-line-height);
+      line-height: var(--tamil-line-height); /* Set to 2.0 to prevent clipping */
       padding: 2px 0;
-      transition: var(--premium-transition);
     }
 
     .ios-sidebar-item-chevron {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--ion-color-secondary);
-      opacity: 0.5;
-      transition: var(--premium-transition);
+      opacity: 0.6;
     }
   }
 
@@ -310,7 +318,7 @@ ion-menu {
 /* 6. Sidebar Info Footer */
 .ios-sidebar-footer {
   text-align: center;
-  padding: 28px 16px 16px 16px;
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
   gap: 2px;
