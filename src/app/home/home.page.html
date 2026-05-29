@@ -1,141 +1,122 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header [translucent]="true">
+  <ion-toolbar class="ios-toolbar">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button class="ios-menu-btn"></ion-menu-button>
     </ion-buttons>
-    <ion-title class="ion-text-center">
-      அன்றாடப் பிரார்தனைகள்
-    </ion-title>
+    <ion-title class="ios-page-title">முகப்பு</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-card>
-    <ion-card-content>
-      <p class="welcome-text ion-text-center">
-      *** புதிய பதிப்பு 2024 ***
+<ion-content class="ios-content-bg ion-padding">
+  <!-- Apple-Style Translucent Collapse Header Title -->
+  <div class="ios-large-title-wrapper">
+    <h1 class="ios-large-title">முகப்பு</h1>
+  </div>
+
+  <!-- iOS-Style Premium Card (No loud gradients, borderless clean structure) -->
+  <div class="ios-card intro-card">
+    <div class="intro-badge">புதிய பதிப்பு 2024</div>
+    <h2 class="intro-title">அன்றாடப் பிரார்த்தனைகள்</h2>
+    <p class="intro-desc">
+      முஸ்லீம்களின் அன்றாடப் பிரார்தனைகள் எனும் நூலில் தொகுக்கப்பட்ட துஆக்களை, மொபைல் போன் பயன்பாட்டாளர்களின் வசதிக்காக இந்த ஆண்டிராய்டு அப்ளிகேஷனில் கொடுத்துள்ளோம்.
     </p>
-      <p class="welcome-text ion-text-center">
-        முஸ்லீம்களின் அன்றாடப் பிரார்தனைகள் எனும் நூலில் தொகுக்கப்பட்ட துஆக்களை, மொபைல் போன் பயன்பாட்டாளர்களின் வசதிக்காக இந்த ஆண்டிராய்டு அப்ளிகேஷனில் கொடுத்துள்ளோம்.
-      </p>
-    </ion-card-content>
-  </ion-card>
+  </div>
 
-  <ion-card class="dua-pages-card">
-    <ion-card-header>
-      <ion-card-title>
-        <ion-icon name="time-outline"></ion-icon>
-        சமீபத்திய துஆக்கள்
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list lines="none">
-        <ion-item *ngFor="let page of lastVisitedPages" [routerLink]="['/folder', page.PageId]">
-          <ion-icon name="book-outline" slot="start"></ion-icon>
-          <ion-label>{{ page.PageTitle }}</ion-label>
-          <ion-note slot="end">{{ page.Duas?.length || 0 }}</ion-note>
-          <ion-icon name="chevron-forward" slot="end"></ion-icon>
-        </ion-item>
-
-        <ion-item *ngIf="duaPages.length > 5" (click)="showAllPages()" button>
-          <ion-icon name="list-outline" slot="start"></ion-icon>
-          <ion-label color="primary">அனைத்து துஆக்களையும் காட்டு</ion-label>
-          <ion-icon name="chevron-forward" slot="end" color="primary"></ion-icon>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle class="ion-text-center">தொடர்புகளுக்கு</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <div class="contact-info">
-        <ion-item lines="none" class="ion-text-center">
-          <ion-label>
-            <h2>ஜமாஅத்துல் முஸ்லிமீன்</h2>
-            <p>ஏத்தாலை, புத்தளம் - இலங்கை</p>
-            <a href="https://www.jamaathulmuslimeen.com/" class="website-link">
-              <ion-button fill="clear" size="small">
-                <ion-icon name="globe-outline" slot="start"></ion-icon>
-                வலைத்தளம்
-              </ion-button>
-            </a>
-          </ion-label>
-        </ion-item>
-
-        <ion-item lines="none" class="ion-text-center">
-          <ion-label>
-            <h2>மின்னஞ்சல்</h2>
-            <p>
-              <a href="mailto:hasansexperiment@gmail.com" class="email-link">
-                <ion-icon name="mail-outline"></ion-icon>
-                jamaathulmuslimeen@gmail.com
-              </a>
-            </p>
-          </ion-label>
-        </ion-item>
+  <!-- Inset Grouped Section for Recent Duas -->
+  <div class="ios-section-label">சமீபத்திய துஆக்கள்</div>
+  <div class="ios-grouped-list">
+    <div *ngFor="let page of lastVisitedPages" [routerLink]="['/folder', page.PageId]" class="ios-list-item ripple" button>
+      <div class="ios-item-content">
+        <ion-icon name="book-outline" class="ios-item-icon"></ion-icon>
+        <span class="ios-item-title">{{ page.PageTitle }}</span>
+        <div class="ios-item-end">
+          <span class="ios-badge">{{ page.Duas?.length || 0 }}</span>
+          <ion-icon name="chevron-forward" class="ios-chevron"></ion-icon>
+        </div>
       </div>
-    </ion-card-content>
-  </ion-card>
+    </div>
 
-  <ion-card class="guidance-card">
-    <ion-card-header>
-      <ion-card-subtitle class="header-title">பிற வழிகாட்டல்கள்</ion-card-subtitle>
-    </ion-card-header>
-
-    <ion-card-content class="tamil-content">
-      <div class="link-list">
-
-        <a [routerLink]="['/prayer-acceptance', 1]" class="link-item ripple">
-          <ion-icon name="bookmark" class="link-icon"></ion-icon>
-          <span class="link-text">முன்னுரை</span>
-          <ion-icon name="chevron-forward" class="arrow-icon"></ion-icon>
-        </a>
-
-        <a [routerLink]="['/prayer-acceptance', 2]" class="link-item ripple">
-          <ion-icon name="bookmark" class="link-icon"></ion-icon>
-          <span class="link-text">பிரார்த்தனை ஏற்றுக்கொள்ளுதல்</span>
-          <ion-icon name="chevron-forward" class="arrow-icon"></ion-icon>
-        </a>
-
-        <a [routerLink]="['/prayer-acceptance', 3]" class="link-item ripple">
-          <ion-icon name="bookmark" class="link-icon"></ion-icon>
-          <span class="link-text">சத்தியத்தைத் தேடும் உள்ளங்களே! </span>
-          <ion-icon name="chevron-forward" class="arrow-icon"></ion-icon>
-        </a>
-
-        <a [routerLink]="['/prayer-acceptance', 4]" class="link-item ripple">
-          <ion-icon name="bookmark" class="link-icon"></ion-icon>
-          <span class="link-text">முந்தைய பதிப்புகளின் துஆக்கள் மற்றும் திருத்தங்கள்</span>
-          <ion-icon name="chevron-forward" class="arrow-icon"></ion-icon>
-        </a>
+    <!-- View All Button in Grouped List -->
+    <div *ngIf="duaPages.length > 5" (click)="showAllPages()" class="ios-list-item ripple view-all" button>
+      <div class="ios-item-content">
+        <ion-icon name="list-outline" class="ios-item-icon accent"></ion-icon>
+        <span class="ios-item-title accent">அனைத்து துஆக்களையும் காட்டு</span>
+        <ion-icon name="chevron-forward" class="ios-chevron accent"></ion-icon>
       </div>
-    </ion-card-content>
-  </ion-card>
+    </div>
+  </div>
 
-  <ion-card>
-    <ion-card-content>
-      <p class="note-text" style="text-align: justify;">
-        சகோதரர்களே "முஸ்லிம்களின் அன்றாடப் பிரார்த்தனைகள்" எனும் இந் நூலை கணிணிப் படுத்த வேண்டும் என்ற விருப்பத்தில் அல்லாஹ்வின் பேரருளால் நான் செய்த இந்த சிறு முயற்சியை அல்லாஹ் பொருந்திக் கொள்வானாக!
-      </p>
+  <!-- Inset Grouped Section for Guidance Links -->
+  <div class="ios-section-label">பிற வழிகாட்டல்கள்</div>
+  <div class="ios-grouped-list">
+    <a [routerLink]="['/prayer-acceptance', 1]" class="ios-list-item ripple">
+      <div class="ios-item-content">
+        <ion-icon name="bookmark-outline" class="ios-item-icon"></ion-icon>
+        <span class="ios-item-title">முன்னுரை</span>
+        <ion-icon name="chevron-forward" class="ios-chevron"></ion-icon>
+      </div>
+    </a>
 
-      <p class="note-text ion-text-center">
+    <a [routerLink]="['/prayer-acceptance', 2]" class="ios-list-item ripple">
+      <div class="ios-item-content">
+        <ion-icon name="bookmark-outline" class="ios-item-icon"></ion-icon>
+        <span class="ios-item-title">பிரார்த்தனை ஏற்றுக்கொள்ளுதல்</span>
+        <ion-icon name="chevron-forward" class="ios-chevron"></ion-icon>
+      </div>
+    </a>
 
-      உங்கள் துஆவில் என்னை நினைவில் கொள்ளுங்கள்
-      </p>
-      <p class="note-text ion-text-center">
+    <a [routerLink]="['/prayer-acceptance', 3]" class="ios-list-item ripple">
+      <div class="ios-item-content">
+        <ion-icon name="bookmark-outline" class="ios-item-icon"></ion-icon>
+        <span class="ios-item-title">சத்தியத்தைத் தேடும் உள்ளங்களே! </span>
+        <ion-icon name="chevron-forward" class="ios-chevron"></ion-icon>
+      </div>
+    </a>
 
-      - எஸ். முகம்மது ஹஸன்
+    <a [routerLink]="['/prayer-acceptance', 4]" class="ios-list-item ripple">
+      <div class="ios-item-content">
+        <ion-icon name="bookmark-outline" class="ios-item-icon"></ion-icon>
+        <span class="ios-item-title">முந்தைய பதிப்புகளின் துஆக்கள் மற்றும் திருத்தங்கள்</span>
+        <ion-icon name="chevron-forward" class="ios-chevron"></ion-icon>
+      </div>
+    </a>
+  </div>
 
+  <!-- Inset Grouped Section for Contacts -->
+  <div class="ios-section-label">தொடர்புகளுக்கு</div>
+  <div class="ios-grouped-list">
+    <a href="https://www.jamaathulmuslimeen.com/" target="_blank" class="ios-list-item ripple">
+      <div class="ios-item-content">
+        <ion-icon name="globe-outline" class="ios-item-icon"></ion-icon>
+        <div class="ios-item-stacked">
+          <span class="ios-item-stacked-title">ஜமாஅத்துல் முஸ்லிமீன்</span>
+          <span class="ios-item-stacked-subtitle">ஏத்தாலை, புத்தளம் - இலங்கை (வலைத்தளம்)</span>
+        </div>
+        <ion-icon name="chevron-forward" class="ios-chevron"></ion-icon>
+      </div>
+    </a>
+
+    <a href="mailto:jamaathulmuslimeen@gmail.com" class="ios-list-item ripple">
+      <div class="ios-item-content">
+        <ion-icon name="mail-outline" class="ios-item-icon"></ion-icon>
+        <div class="ios-item-stacked">
+          <span class="ios-item-stacked-title">மின்னஞ்சல்</span>
+          <span class="ios-item-stacked-subtitle">jamaathulmuslimeen@gmail.com</span>
+        </div>
+        <ion-icon name="chevron-forward" class="ios-chevron"></ion-icon>
+      </div>
+    </a>
+  </div>
+
+  <!-- Footnote / Dedication Info Section (Very clean, iOS styled footer) -->
+  <div class="ios-footer-note">
+    <p>
+      சகோதரர்களே, "முஸ்லிம்களின் அன்றாடப் பிரார்த்தனைகள்" எனும் இந்த நூலை கணிணிமயப்படுத்த வேண்டும் என்ற விருப்பத்தில், அல்லாஹ்வின் பேரருளால் நான் செய்த இந்த சிறு முயற்சியை அல்லாஹ் பொருந்திக் கொள்வானாக!
     </p>
-    <p class="note-text ion-text-center">
-
-     hasansheik@gmail.com
-
-    </p>
-
-    </ion-card-content>
-  </ion-card>
+    <div class="ios-author-box">
+      <span class="ios-author-heading">உங்கள் துஆவில் என்னை நினைவில் கொள்ளுங்கள்</span>
+      <span class="ios-author-name">- எஸ். முகம்மது ஹஸன்</span>
+      <span class="ios-author-email">hasansheik@gmail.com</span>
+    </div>
+  </div>
 </ion-content>

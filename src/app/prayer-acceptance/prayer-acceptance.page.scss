@@ -1,36 +1,102 @@
+.ios-prayer-toolbar {
+  --background: var(--ion-card-background);
+  --color: var(--ion-text-color);
+  border-bottom: 0.5px solid var(--ion-border-color);
+  box-shadow: none;
 
+  .ios-prayer-title {
+    font-family: var(--font-family-heading);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: -0.2px;
+    line-height: var(--tamil-line-height);
+    padding: 6px 0;
+  }
 
-ion-card {
-  margin: 10px;
-}
-
-ion-card-title {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #3880ff;
-}
-
-ion-card-content {
-  font-size: 1em;
-  color: #222;
-}
-
-
-
-/* Add this CSS to your styles */
-p {
-  color: var(--ion-color-text);
-  margin: 5px 0;
-
-}
-
-:host {
-  --ion-color-text: #000000; /* Light mode text color */
-}
-
-@media (prefers-color-scheme: dark) {
-  :host {
-    --ion-color-text: #ffffff; /* Dark mode text color */
+  .ios-menu-btn {
+    --color: var(--ion-color-primary);
   }
 }
 
+.ios-prayer-content-bg {
+  --background: var(--ion-background-color);
+}
+
+.ios-large-title-wrapper {
+  padding: 12px 4px 8px 4px;
+  
+  .ios-large-title {
+    font-family: var(--font-family-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+    color: var(--ion-text-color);
+    margin: 0;
+    line-height: var(--tamil-line-height); /* Prevent clipping */
+  }
+}
+
+.ios-prayer-card-container {
+  max-width: 650px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+/* iOS Premium Text Card */
+.ios-prayer-card {
+  margin: 16px 0;
+  border-radius: var(--premium-border-radius);
+  background: var(--ion-card-background);
+  border: 0.5px solid var(--ion-border-color);
+  box-shadow: var(--premium-shadow-sm);
+  padding: 20px;
+  transition: var(--premium-transition);
+
+  &:hover {
+    box-shadow: var(--premium-shadow-md);
+  }
+
+  .ios-prayer-header {
+    background: transparent;
+    padding-bottom: 12px;
+    border-bottom: none;
+
+    .ios-prayer-card-title {
+      font-family: var(--font-family-heading);
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--ion-color-primary); // Apple gold/bronze title
+      line-height: var(--tamil-line-height);
+      padding: 4px 0;
+      margin: 0;
+    }
+
+    .ios-title-underline {
+      width: 32px;
+      height: 2.5px;
+      background: var(--ion-color-primary); // Apple gold indicator
+      margin-top: 6px;
+      border-radius: 1px;
+    }
+  }
+
+  .ios-prayer-content {
+    padding: 4px 0 0 0;
+  }
+}
+
+/* Paragraph styling with proper Tamil line-height & padding */
+.ios-prayer-paragraph {
+  font-family: var(--font-family-sans);
+  font-size: 0.92rem;
+  line-height: var(--tamil-line-height); /* Set to 2.0 to prevent script clipping */
+  color: var(--ion-text-color);
+  text-align: justify;
+  margin: 0 0 16px 0;
+  text-justify: inter-word;
+  padding: 4px 0; /* Add top/bottom padding to give scripts breathing space */
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

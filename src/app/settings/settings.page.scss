@@ -1,106 +1,304 @@
-// Common styles for Arabic text
-%arabic-base {
-  line-height: 140%;
-  text-align: right;
-}
+.ios-settings-toolbar {
+  --background: var(--ion-card-background);
+  --color: var(--ion-text-color);
+  border-bottom: 0.5px solid var(--ion-border-color);
+  box-shadow: none;
 
-.arabic {
-  @extend %arabic-base;
-  font-family: 'Scheherazade', serif;
-}
+  .ios-settings-title {
+    font-family: var(--font-family-heading);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: -0.2px;
+  }
 
-.ar {
-  @extend %arabic-base;
-  font-family: 'Katibeh', cursive;
-}
-
-.arab {
-  @extend %arabic-base;
-  font-family: 'Qahiri', sans-serif;
-}
-
-.arab2 {
-  @extend %arabic-base;
-  font-family: 'Amiri-Regular', serif;
-}
-
-.arab3 {
-  @extend %arabic-base;
-  font-family: 'ScheherazadeRegOT', sans-serif;
-}
-ion-content {
-  --background: var(--ion-color-light);
-}
-
-ion-item-divider {
-  --background: var(--ion-color-light-shade);
-  --color: var(--ion-color-dark);
-  font-weight: 500;
-  font-size: 0.9em;
-  margin-top: 16px;
-  border-radius: 8px;
-}
-
-ion-item {
-  --background: var(--ion-color-light);
-  margin: 4px 0;
-  border-radius: 8px;
-
-  &.selected {
-    --background: var(--ion-color-light-shade);
+  .ios-menu-btn {
+    --color: var(--ion-color-primary);
   }
 }
 
-.preview-text {
-  margin: 8px 0;
-  text-align: center;
-  line-height: 1.6;
+.ios-settings-bg {
+  --background: var(--ion-background-color);
 }
 
-.preview-card {
-  margin: 16px 0;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+.ios-settings-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 650px;
+  margin: 0 auto;
+}
 
-  ion-card-header {
-    padding-bottom: 8px;
+/* iOS Section Group Header */
+.ios-group-header {
+  font-family: var(--font-family-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ion-color-medium);
+  letter-spacing: 0.5px;
+  margin: 20px 6px 8px 6px;
+  line-height: var(--tamil-line-height);
+}
+
+/* iOS Grouped List Box (Rounded Inset Style) */
+.ios-group-list-box {
+  background: var(--ion-card-background);
+  border-radius: var(--premium-border-radius);
+  box-shadow: var(--premium-shadow-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 0.5px solid var(--ion-border-color);
+
+  &.padding-box {
+    padding: 16px 20px;
+  }
+}
+
+/* Radio buttons list in Grouped card */
+.ios-font-radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.ios-font-item {
+  --background: transparent;
+  --min-height: auto;
+  border-bottom: 0.5px solid var(--ion-border-color);
+  transition: var(--premium-transition);
+
+  &::part(native) {
+    padding: 12px 18px;
+    align-items: center;
   }
 
-  ion-card-content {
-    text-align: center;
-    padding: 16px;
+  &:last-child {
+    border-bottom: none;
+  }
 
-    p {
-      margin: 12px 0;
-      line-height: 1.6;
+  &:hover {
+    --background: rgba(var(--ion-color-primary-rgb), 0.02);
+  }
 
-      &.arabic, &.ar, &.arab, &.arab2, &.arab3 {
-        direction: rtl;
-        margin-bottom: 16px;
+  .ios-radio-control {
+    margin-right: 14px;
+    --color: var(--ion-color-secondary);
+    --color-checked: var(--ion-color-primary);
+  }
+
+  .ios-font-label-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+
+    .ios-font-name {
+      font-family: var(--font-family-heading);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ion-color-secondary);
+    }
+
+    .ios-font-arabic {
+      margin: 2px 0 0 0;
+      font-size: 1.6rem;
+      line-height: var(--arabic-line-height);
+      color: var(--ion-text-color);
+      text-align: left;
+      direction: rtl;
+
+      &.font-scheherazade {
+        font-family: 'Scheherazade', serif !important;
       }
-
-      &.tamil-text {
-        color: var(--ion-color-dark);
+      &.font-katibeh {
+        font-family: 'Katibeh', cursive !important;
+        font-size: 1.8rem;
+      }
+      &.font-qahiri {
+        font-family: 'Qahiri', sans-serif !important;
+      }
+      &.font-amiri {
+        font-family: 'Amiri-Regular', serif !important;
+        font-size: 1.6rem;
+      }
+      &.font-scheherazade-ot {
+        font-family: 'ScheherazadeRegOT', serif !important;
       }
     }
   }
 }
 
-ion-radio-group {
-  ion-item {
-    --padding-start: 16px;
-    --inner-padding-end: 16px;
+/* Range Sliders styling */
+.ios-slider-item {
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
   }
 
-  ion-radio {
-    margin-right: 16px;
+  .ios-slider-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+
+    .ios-slider-title {
+      font-family: var(--font-family-heading);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ion-text-color);
+      line-height: var(--tamil-line-height);
+    }
+
+    .ios-slider-value {
+      font-family: var(--font-family-sans);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--ion-color-primary);
+      background: rgba(var(--ion-color-primary-rgb), 0.08);
+      padding: 1px 6px;
+      border-radius: 6px;
+    }
+  }
+
+  .ios-range-slider {
+    padding-top: 4px;
+    padding-bottom: 4px;
+
+    .ios-range-icon-sm {
+      font-size: 13px;
+      color: var(--ion-color-secondary);
+    }
+
+    .ios-range-icon-lg {
+      font-size: 18px;
+      color: var(--ion-color-primary);
+    }
   }
 }
 
-ion-range {
-  padding: 8px 16px;
+/* iOS Preview Card */
+.ios-preview-card {
+  background: var(--ion-card-background);
+  border-radius: var(--premium-border-radius);
+  border: 0.5px solid var(--ion-border-color);
+  box-shadow: var(--premium-shadow-sm);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
 
-  ion-icon {
-    color: var(--ion-color-medium);
+  .ios-preview-arabic-block, .ios-preview-tamil-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
+
+  .ios-preview-badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-family: var(--font-family-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(var(--ion-color-primary-rgb), 0.08);
+    color: var(--ion-color-primary);
+    text-transform: uppercase;
+
+    &.gold {
+      background: rgba(var(--ion-color-secondary-rgb), 0.08);
+      color: var(--ion-color-secondary);
+    }
+  }
+
+  .ios-preview-arabic-text {
+    margin: 4px 0;
+    line-height: var(--arabic-line-height);
+    color: var(--ion-text-color);
+    text-align: right;
+    direction: rtl;
+
+    &.arabic {
+      font-family: 'Scheherazade', serif !important;
+    }
+    &.ar {
+      font-family: 'Katibeh', cursive !important;
+    }
+    &.arab {
+      font-family: 'Qahiri', sans-serif !important;
+    }
+    &.arab2 {
+      font-family: 'Amiri-Regular', serif !important;
+    }
+    &.arab3 {
+      font-family: 'ScheherazadeRegOT', serif !important;
+    }
+  }
+
+  .ios-preview-divider {
+    font-size: 0.95rem;
+    color: var(--ion-color-primary);
+    text-align: center;
+    margin: 8px 0;
+    opacity: 0.5;
+  }
+
+  .ios-preview-tamil-text {
+    margin: 4px 0;
+    line-height: var(--tamil-line-height); /* Set to 2.0 to prevent clipping */
+    color: var(--ion-text-color);
+    text-align: justify;
+    font-family: var(--font-family-sans);
+    padding: 4px 0;
+  }
+}
+
+/* iOS Grouped Toggle Switches */
+.ios-toggle-item {
+  --background: transparent;
+  border-bottom: 0.5px solid var(--ion-border-color);
+  transition: var(--premium-transition);
+
+  &::part(native) {
+    padding: 12px 18px;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    --background: rgba(var(--ion-color-primary-rgb), 0.01);
+  }
+
+  .ios-toggle-label {
+    margin: 0;
+
+    h3 {
+      font-family: var(--font-family-heading);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--ion-text-color);
+      margin: 0 0 2px 0;
+      line-height: var(--tamil-line-height);
+    }
+
+    p {
+      font-family: var(--font-family-sans);
+      font-size: 0.78rem;
+      color: var(--ion-color-secondary);
+      margin: 0;
+      line-height: var(--tamil-line-height);
+    }
+  }
+
+  .ios-toggle-control {
+    --handle-background-checked: #ffffff;
+    --background-checked: var(--ion-color-primary);
+  }
+}
+
+/* Touch feedback ripple */
+.ripple {
+  position: relative;
+  overflow: hidden;
 }

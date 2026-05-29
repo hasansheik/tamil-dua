@@ -1,24 +1,28 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header [translucent]="true">
+  <ion-toolbar class="ios-prayer-toolbar">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button class="ios-menu-btn"></ion-menu-button>
     </ion-buttons>
-    <ion-title class="ion-text-center">
+    <ion-title class="ios-prayer-title ion-text-center">
       {{PageTitle}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-content [fullscreen]="true" class="ios-prayer-content-bg ion-padding">
+  <div class="ios-large-title-wrapper" *ngIf="PageTitle">
+    <h1 class="ios-large-title">{{ PageTitle }}</h1>
+  </div>
 
-  <ion-content [fullscreen]="true">
-    <ion-card *ngFor="let item of data">
-      <ion-card-header>
-        <ion-card-title>{{ item.SectionTitle }}
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p *ngFor="let paragraph of item.Paragraphs" style="text-align: justify;">{{ paragraph }}</p>
-      </ion-card-content>
-    </ion-card>
-  </ion-content>
-
+  <div class="ios-prayer-card-container">
+    <div *ngFor="let item of data" class="ios-prayer-card ios-card">
+      <div class="ios-prayer-header" *ngIf="item.SectionTitle">
+        <h2 class="ios-prayer-card-title">{{ item.SectionTitle }}</h2>
+        <div class="ios-title-underline"></div>
+      </div>
+      <div class="ios-prayer-content">
+        <p *ngFor="let paragraph of item.Paragraphs" class="ios-prayer-paragraph">{{ paragraph }}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

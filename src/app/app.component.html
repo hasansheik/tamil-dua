@@ -5,30 +5,100 @@
         <ion-toolbar class="menu-header">
           <ion-title>
             <div class="app-title">Tamil Dua</div>
-            <ion-note>அன்றாடப் பிரார்தனைகள்</ion-note>
+            <ion-note>அன்றாடப் பிரார்த்தனைகள்</ion-note>
           </ion-title>
         </ion-toolbar>
       </ion-header>
 
       <ion-content>
         <ion-list id="inbox-list" lines="none">
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+          
+          <!-- Home Link (Direct) -->
+          <ion-menu-toggle auto-hide="false">
             <ion-item 
               class="menu-item"
               routerDirection="root" 
-              [routerLink]="[p.url]" 
+              routerLink="/home" 
               lines="none" 
               detail="false" 
               routerLinkActive="selected">
-              <ion-icon 
-                class="menu-icon"
-                aria-hidden="true" 
-                slot="start" 
-                [name]="p.icon">
-              </ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+              <ion-icon class="menu-icon" slot="start" name="home-outline"></ion-icon>
+              <ion-label>முகப்பு (Home)</ion-label>
             </ion-item>
           </ion-menu-toggle>
+
+          <!-- Accordion Group for Chapters & Guidance (UX Collapsible list) -->
+          <ion-accordion-group expand="compact" class="menu-accordion-group">
+            
+            <!-- Accordion 1: Chapters -->
+            <ion-accordion value="chapters" class="menu-accordion">
+              <ion-item slot="header" class="menu-item accordion-header-item">
+                <ion-icon class="menu-icon" slot="start" name="book-outline"></ion-icon>
+                <ion-label>துஆக்களின் அத்தியாயங்கள்</ion-label>
+              </ion-item>
+              
+              <div slot="content" class="accordion-content-list">
+                <ion-menu-toggle auto-hide="false" *ngFor="let p of getChapters()">
+                  <ion-item 
+                    class="menu-subitem"
+                    routerDirection="root" 
+                    [routerLink]="[p.url]" 
+                    lines="none" 
+                    detail="false" 
+                    routerLinkActive="selected">
+                    <ion-label class="dua-nav-label">{{ p.title }}</ion-label>
+                  </ion-item>
+                </ion-menu-toggle>
+              </div>
+            </ion-accordion>
+
+            <!-- Accordion 2: Guidance / Info -->
+            <ion-accordion value="guidance" class="menu-accordion">
+              <ion-item slot="header" class="menu-item accordion-header-item">
+                <ion-icon class="menu-icon" slot="start" name="information-circle-outline"></ion-icon>
+                <ion-label>பிற வழிகாட்டல்கள்</ion-label>
+              </ion-item>
+              
+              <div slot="content" class="accordion-content-list">
+                <ion-menu-toggle auto-hide="false">
+                  <ion-item class="menu-subitem" routerDirection="root" [routerLink]="['/prayer-acceptance', 1]" lines="none" detail="false" routerLinkActive="selected">
+                    <ion-label>முன்னுரை</ion-label>
+                  </ion-item>
+                </ion-menu-toggle>
+                <ion-menu-toggle auto-hide="false">
+                  <ion-item class="menu-subitem" routerDirection="root" [routerLink]="['/prayer-acceptance', 2]" lines="none" detail="false" routerLinkActive="selected">
+                    <ion-label>பிரார்த்தனை ஏற்றுக்கொள்ளுதல்</ion-label>
+                  </ion-item>
+                </ion-menu-toggle>
+                <ion-menu-toggle auto-hide="false">
+                  <ion-item class="menu-subitem" routerDirection="root" [routerLink]="['/prayer-acceptance', 3]" lines="none" detail="false" routerLinkActive="selected">
+                    <ion-label>சத்தியத்தைத் தேடும் உள்ளங்களே!</ion-label>
+                  </ion-item>
+                </ion-menu-toggle>
+                <ion-menu-toggle auto-hide="false">
+                  <ion-item class="menu-subitem" routerDirection="root" [routerLink]="['/prayer-acceptance', 4]" lines="none" detail="false" routerLinkActive="selected">
+                    <ion-label>பதிப்புகளின் துஆக்கள் & திருத்தங்கள்</ion-label>
+                  </ion-item>
+                </ion-menu-toggle>
+              </div>
+            </ion-accordion>
+
+          </ion-accordion-group>
+
+          <!-- Settings Link (Direct) -->
+          <ion-menu-toggle auto-hide="false">
+            <ion-item 
+              class="menu-item"
+              routerDirection="root" 
+              routerLink="/settings" 
+              lines="none" 
+              detail="false" 
+              routerLinkActive="selected">
+              <ion-icon class="menu-icon" slot="start" name="settings-outline"></ion-icon>
+              <ion-label>அமைப்புகள் (Settings)</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
         </ion-list>
       </ion-content>
     </ion-menu>

@@ -24,3 +24,61 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+/* Apple HIG Global Font Overrides */
+html, body, p, span, ion-label, ion-title, ion-content, ion-item, ion-card, ion-button, ion-badge {
+  font-family: var(--font-family-sans) !important;
+}
+
+h1, h2, h3, h4, h5, h6, .ios-large-title, .ios-page-title, .ios-settings-title, .ios-prayer-title {
+  font-family: var(--font-family-heading) !important;
+}
+
+/* Global anti-clipping rules for Tamil and Arabic scripts */
+.tamil-text,
+.translation-text,
+.ios-block-text,
+.ios-dua-card-title,
+.ios-item-title,
+.ios-large-title,
+.ios-page-title,
+.ios-note-content-text,
+.hadith-ref-txt,
+.prayer-paragraph,
+.ios-prayer-paragraph,
+.ios-font-arabic,
+.dua-nav-label,
+.ios-index-label {
+  line-height: 2.0 !important;
+  overflow: visible !important;
+  height: auto !important;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+/* Overwrite shadow borders for accordion groups in the menu */
+.menu-accordion-group {
+  background: transparent !important;
+  
+  .menu-accordion {
+    background: transparent !important;
+    
+    .accordion-header-item {
+      --background: var(--ion-card-background) !important;
+      --min-height: 48px !important;
+      border-radius: 10px !important;
+      margin-bottom: 4px !important;
+      border-bottom: none !important;
+      
+      ion-label {
+        font-weight: 600 !important;
+      }
+    }
+    
+    .accordion-content-list {
+      background: transparent !important;
+      padding-left: 12px;
+      margin-bottom: 8px;
+    }
+  }
+}

@@ -1,701 +1,587 @@
-// Search bar styling
-ion-searchbar {
-  --background: var(--ion-color-light);
-  --border-radius: 8px;
-  margin: 8px;
-  --box-shadow: none;
-  --placeholder-color: var(--ion-color-medium);
-  padding: 0 8px;
-}
+/* Toolbars & Segment Headers */
+.ios-toolbar {
+  --background: var(--ion-card-background);
+  --color: var(--ion-text-color);
+  border-bottom: 0.5px solid var(--ion-border-color);
+  box-shadow: none;
 
-// Searchbar responsive styling
-ion-searchbar {
-  --placeholder-font-size: min(3.5vw, 14px);
-  --placeholder-opacity: 0.8;
-
-  .searchbar-input {
-    font-size: min(3.5vw, 14px) !important;
-    padding-inline-start: 35px !important;
-    padding-inline-end: 35px !important;
+  .ios-detail-title {
+    font-family: var(--font-family-heading);
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: -0.2px;
+    line-height: var(--tamil-line-height); /* Prevent script clipping */
+    padding: 6px 0;
   }
 
-  .searchbar-search-icon {
-    width: 20px;
-    height: 20px;
+  .ios-menu-btn {
+    --color: var(--ion-color-primary);
   }
 
-  .searchbar-clear-button {
-    width: 20px;
-    height: 20px;
+  .ios-toolbar-btn {
+    --color: var(--ion-color-primary);
   }
 }
 
+.ios-search-toolbar {
+  --background: var(--ion-background-color);
+  padding: 4px 12px;
+  border-bottom: 0.5px solid var(--ion-border-color);
 
-.navigation-header-card {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.navigation-header-card:hover {
-  background-color: rgba(var(--ion-color-primary-rgb), 0.1);
-}
-
-.scroll-indicator {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.scroll-top-icon {
-  font-size: 16px;
-  margin-right: 4px;
-  color: var(--ion-color-primary);
-  animation: pulse 2s infinite;
-}
-
-.scroll-hint {
-  font-size: 12px;
-  color: var(--ion-color-medium);
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0.7;
-    transform: translateY(0);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(-3px);
-  }
-  100% {
-    opacity: 0.7;
-    transform: translateY(0);
+  .ios-searchbar {
+    --background: rgba(var(--ion-color-secondary-rgb), 0.12);
+    --color: var(--ion-text-color);
+    --placeholder-color: var(--ion-color-secondary);
+    --border-radius: 10px;
+    padding: 0;
+    margin: 0;
   }
 }
 
-/* Make it more responsive to touch on mobile */
-@media (max-width: 768px) {
-  .scroll-hint {
-    display: none; /* Hide text on small screens */
-  }
-  
-  .scroll-top-icon {
-    font-size: 20px; /* Larger icon for easier tapping */
-  }
-}
+.ios-segment-toolbar {
+  --background: var(--ion-card-background);
+  border-bottom: 0.5px solid var(--ion-border-color);
+  padding: 8px 16px;
 
-// Category segment styling
-ion-segment {
-  background: transparent;
-  ion-segment-button {
-    --background-checked: var(--ion-color-primary);
-    --color-checked: var(--ion-color-primary-contrast);
-    --indicator-color: var(--ion-color-primary);
-    --padding-start: 0;
-    --padding-end: 0;
-    min-width: auto;
+  .ios-segment {
+    background: rgba(var(--ion-color-secondary-rgb), 0.12);
+    border-radius: 8px;
+    padding: 2px;
 
-    ion-label {
-      font-size: min(3.5vw, 14px);
+    .ios-segment-btn {
+      --background-checked: var(--ion-card-background);
+      --color-checked: var(--ion-text-color);
+      --color: var(--ion-color-secondary);
+      border-radius: 6px;
       margin: 0;
-      white-space: normal;
-      text-overflow: ellipsis;
-      line-height: 1.2;
-      padding: 4px 2px;
-    }
-
-    ion-icon {
-      min-width: 16px;
-      font-size: min(4vw, 16px);
-    }
-  }
-}
-
-ion-content {
-  --ion-background-color: var(--ion-color-light);
-}
-
-ion-header {
-  ion-toolbar {
-    --background: var(--ion-color-primary);
-    --color: var(--ion-color-primary-contrast);
-
-    ion-title {
-      font-size: min(4vw, 18px);
-      font-weight: 600;
-      padding: 8px 0;
-      white-space: normal;
-      line-height: 1.3;
-
-      &.ios {
-        padding: 8px 35px;
-      }
-
-      &::part(native) {
-        overflow: visible;
-        white-space: normal;
-      }
-    }
-
-    ion-back-button {
-      margin-top: auto;
-      margin-bottom: auto;
-    }
-
-    ion-segment {
-      width: 100%;
-
-      ion-segment-button {
-        flex: 1;
-        min-width: 0;
-      }
-    }
-
-    ion-buttons[slot="end"] {
-      ion-button {
-        --padding-start: 8px;
-        --padding-end: 8px;
-
-        ion-icon {
-          font-size: 18px;
-        }
-      }
-    }
-  }
-
-  ion-segment {
-    padding: 8px;
-    background: var(--ion-color-light);
-
-    ion-segment-button {
-      --background-checked: var(--ion-color-primary);
-      --color-checked: var(--ion-color-primary-contrast);
-      --indicator-color: var(--ion-color-primary);
-      --padding-start: 0;
-      --padding-end: 0;
-      min-width: auto;
+      min-height: 32px;
+      font-weight: 500;
+      transition: var(--premium-transition);
 
       ion-label {
-        font-size: min(3.5vw, 14px);
-        margin: 0;
-        white-space: normal;
-        text-overflow: ellipsis;
-        line-height: 1.2;
-        padding: 4px 2px;
-      }
-
-      ion-icon {
-        min-width: 16px;
-        font-size: min(4vw, 16px);
+        font-family: var(--font-family-sans);
+        font-size: 0.82rem;
       }
     }
   }
 }
 
-.dua-item {
-  --padding-start: 8px;
-  --padding-end: 8px;
-  --inner-padding-end: 8px;
-  --background: transparent;
+.ios-detail-bg {
+  --background: var(--ion-background-color);
 }
 
-.dua-container {
-  padding: 8px;
-  display: grid;
-  gap: 16px;
+/* iOS Large Title Header */
+.ios-condense-title {
+  font-family: var(--font-family-heading);
+  font-weight: 800;
+  color: var(--ion-text-color);
+}
 
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+/* iOS Collapsible Index Header */
+.ios-index-header-card {
+  margin: 16px 16px 4px 16px;
+  background: var(--ion-card-background);
+  border-radius: var(--premium-border-radius);
+  box-shadow: var(--premium-shadow-sm);
+  cursor: pointer;
+  transition: var(--premium-transition);
+
+  &:hover {
+    background: rgba(var(--ion-color-primary-rgb), 0.02);
   }
-}
 
-.dua-card {
-  width: 100%;
-  margin: 8px 0;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  .ios-index-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+  }
 
-  ion-card-header {
-    padding: 16px;
-    background: var(--ion-color-primary);
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+  .ios-index-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
-    ion-card-title {
-      font-size: 18px;
+    .ios-index-icon {
+      font-size: 1.15rem;
+      color: var(--ion-color-primary);
+    }
+
+    .ios-index-title {
+      font-family: var(--font-family-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ion-text-color);
+      line-height: var(--tamil-line-height);
+    }
+
+    .ios-index-badge {
+      font-family: var(--font-family-sans);
+      font-size: 0.75rem;
       font-weight: 600;
-      color: var(--ion-color-primary-contrast);
-      margin-bottom: 0;
-      line-height: 1.4;
-    }
-
-    ion-card-subtitle {
-      font-size: 14px;
-      color: rgba(var(--ion-color-primary-contrast-rgb), 0.8);
-      margin: 0;
+      color: var(--ion-color-secondary);
+      background: rgba(var(--ion-color-secondary-rgb), 0.08);
+      padding: 2px 6px;
+      border-radius: 8px;
     }
   }
 
-  ion-card-content {
-    padding: 16px;
-
-    .arabic-text {
-      text-align: right;
-      direction: rtl;
-      margin: 16px 0;
-      line-height: 1.6;
-      color: var(--ion-color-dark);
-    }
-
-    .translation-text,
-    .tamil-text,
-    .hadees-text,
-    .meaning-text {
-      margin: 12px 0;
-      line-height: 2;
-      color: var(--ion-color-dark);
-      text-align: justify;
-      text-justify: inter-word;
-      hyphens: auto;
-      word-break: break-word;
-      padding: 0 4px;
-
-      strong {
-        color: var(--ion-color-primary);
-        font-weight: 600;
-        margin-right: 8px;
-      }
-    }
-
-    ion-row {
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid var(--ion-color-light);
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-
-      ion-button {
-        margin: 0 4px;
-        --padding-start: 8px;
-        --padding-end: 8px;
-
-        &:first-child {
-          margin-left: 0;
-        }
-
-        &:last-child {
-          margin-right: 0;
-        }
-
-        ion-icon {
-          font-size: 20px;
-        }
-      }
-    }
-  }
-}
-
-// Section styling
-.notes-section, .tamil-section, .meaning-section {
-  margin: 16px 0;
-  padding: 12px;
-  border-radius: 8px;
-  background: var(--ion-color-light-tint);
-
-  h3 {
-    color: var(--ion-color-medium);
-    font-size: 0.9rem;
-    margin-bottom: 8px;
-    font-weight: 500;
-  }
-
-  p {
-    margin: 0;
-    line-height: 1.6;
-    color: var(--ion-color-dark);
-  }
-}
-
-.notes-section {
-  margin: 12px 0 20px;
-  padding: 12px 16px;
-  background: rgba(var(--ion-color-warning-rgb), 0.1);
-  border-radius: 8px;
-  border-left: 4px solid var(--ion-color-warning);
-
-  .notes-text {
-    margin: 0;
+  .ios-index-chevron {
     font-size: 14px;
-    line-height: 1.5;
+    color: var(--ion-color-secondary);
+  }
+}
+
+/* iOS Collapsible Index List (Inset Grouped) */
+.ios-index-list-grouped {
+  margin: 0 16px 16px 16px;
+  background: var(--ion-card-background);
+  border-radius: var(--premium-border-radius);
+  box-shadow: var(--premium-shadow-sm);
+  overflow: hidden;
+  border-top: 0.5px solid var(--ion-border-color);
+
+  .ios-index-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-height: 260px;
+    overflow-y: auto;
+    padding: 4px;
+
+    @media (min-width: 576px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .ios-index-item {
+    background: transparent;
+    border-bottom: 0.5px solid var(--ion-border-color);
+    transition: var(--premium-transition);
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(var(--ion-color-primary-rgb), 0.03);
+    }
+
+    .ios-index-item-content {
+      display: flex;
+      align-items: center;
+      padding: 10px 14px;
+      gap: 10px;
+    }
+
+    .ios-index-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(var(--ion-color-primary-rgb), 0.1);
+      color: var(--ion-color-primary);
+      font-family: var(--font-family-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .ios-index-label {
+      font-family: var(--font-family-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ion-text-color);
+      white-space: normal; /* Wrap index titles naturally */
+      line-height: var(--tamil-line-height); /* Set to 2.0 to prevent clipping */
+      padding: 2px 0;
+    }
+  }
+}
+
+/* Skeleton iOS Loading Cards */
+.skeleton-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ios-skeleton-card {
+  background: var(--ion-card-background);
+  border-radius: var(--premium-border-radius);
+  padding: 16px;
+  box-shadow: var(--premium-shadow-sm);
+}
+
+/* iOS Offline Message Banner */
+.ios-offline-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 16px;
+  padding: 12px 16px;
+  background: rgba(var(--ion-color-warning-rgb), 0.08);
+  border-radius: var(--premium-border-radius);
+  border: 0.5px solid var(--ion-color-warning);
+
+  .ios-offline-icon {
+    font-size: 1.15rem;
     color: var(--ion-color-warning-shade);
   }
-}
 
-.arabic-text {
-  text-align: right;
-  direction: rtl;
-  margin: 16px 0;
-  line-height: 1.6;
-  color: var(--ion-color-dark);
-}
-
-// Arabic section styling
-.arabic-section {
-  margin: 24px 0;
-  padding: 20px;
-  background: rgba(var(--ion-color-primary-rgb), 0.05);
-  border-radius: 12px;
-  position: relative;
-  cursor: pointer;
-
-  .arabic-text {
-    margin: 0;
-    line-height: 1.8;
-    text-align: right;
-  }
-
-  .audio-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 24px;
-    color: var(--ion-color-primary);
-    opacity: 0.8;
-  }
-
-  &:active {
-    background: rgba(var(--ion-color-primary-rgb), 0.1);
+  .ios-offline-text {
+    font-family: var(--font-family-sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ion-color-warning-shade);
+    line-height: var(--tamil-line-height);
   }
 }
 
-// Actions styling
-.actions {
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px solid var(--ion-color-light);
+/* Empty Search State */
+.ios-empty-state {
   display: flex;
-  justify-content: flex-end;
-  gap: 8px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
 
-  ion-button {
-    --padding-start: 8px;
-    --padding-end: 8px;
-    height: 36px;
-
-    ion-icon {
-      font-size: 20px;
-    }
-  }
-}
-
-// Loading Skeleton Styles
-ion-skeleton-text {
-  margin: 8px 0;
-  border-radius: 4px;
-}
-
-// Empty State Styles
-.ion-text-center {
-  padding: 32px 16px;
-
-  ion-icon {
-    font-size: 48px;
-    color: var(--ion-color-medium);
-    margin-bottom: 16px;
+  .ios-empty-icon {
+    font-size: 3rem;
+    color: var(--ion-color-secondary);
+    margin-bottom: 12px;
+    opacity: 0.6;
   }
 
   h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--ion-color-dark);
-    margin-bottom: 8px;
+    font-family: var(--font-family-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ion-text-color);
+    margin: 0 0 6px 0;
+    line-height: var(--tamil-line-height);
   }
 
   p {
-    font-size: 16px;
-    color: var(--ion-color-medium);
+    font-family: var(--font-family-sans);
+    font-size: 0.88rem;
+    color: var(--ion-color-secondary);
     margin: 0;
+    line-height: var(--tamil-line-height);
   }
 }
 
-// FAB Button Styles
-ion-fab {
+/* Dua Cards Container */
+.ios-dua-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 80px;
+}
+
+.dua-item-anchor {
+  scroll-margin-top: 140px;
+}
+
+/* iOS Individual Supplication Card Overhaul (Minimal, sleek) */
+.ios-dua-card {
+  margin: 12px 16px;
+  border-radius: var(--premium-border-radius);
+  background: var(--ion-card-background);
+  box-shadow: var(--premium-shadow-sm);
+  border: 0.5px solid var(--ion-border-color);
+  transition: var(--premium-transition);
+
+  &:hover {
+    box-shadow: var(--premium-shadow-md);
+  }
+
+  .ios-dua-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 0.5px solid var(--ion-border-color);
+
+    .ios-dua-num-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(var(--ion-color-primary-rgb), 0.1);
+      color: var(--ion-color-primary);
+      font-family: var(--font-family-sans);
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .ios-dua-card-title {
+      font-family: var(--font-family-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ion-text-color);
+      line-height: var(--tamil-line-height); /* Set to 2.0 to prevent clipping */
+      margin: 0;
+      padding: 4px 0;
+    }
+  }
+
+  .ios-dua-card-content {
+    padding: 20px;
+  }
+}
+
+/* iOS Advisory Note Card */
+.ios-note-box {
+  background: rgba(var(--ion-color-primary-rgb), 0.04);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  border: 0.5px solid rgba(var(--ion-color-primary-rgb), 0.1);
+
+  .ios-note-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-family-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ion-color-primary);
+    margin-bottom: 4px;
+    line-height: var(--tamil-line-height);
+
+    .ios-note-icon {
+      font-size: 14px;
+    }
+  }
+
+  .ios-note-content-text {
+    font-family: var(--font-family-sans);
+    font-size: 0.88rem;
+    line-height: var(--tamil-line-height); /* Prevent clipping */
+    color: var(--ion-text-color);
+    margin: 0;
+    padding: 2px 0;
+  }
+}
+
+/* iOS Clean Arabic Block Frame */
+.ios-arabic-frame {
+  background: rgba(var(--ion-color-secondary-rgb), 0.03);
+  border-radius: 10px;
+  border: 0.5px solid var(--ion-border-color);
+  padding: 16px;
+  margin-bottom: 20px;
+
+  .ios-arabic-frame-header {
+    font-family: var(--font-family-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--ion-color-secondary);
+    letter-spacing: 0.3px;
+    margin-bottom: 8px;
+    border-bottom: 0.5px dashed var(--ion-border-color);
+    padding-bottom: 4px;
+  }
+
+  .ios-arabic-text {
+    text-align: right;
+    direction: rtl;
+    line-height: var(--arabic-line-height);
+    color: var(--ion-text-color);
+    padding: 8px 4px;
+    word-wrap: break-word;
+    word-break: normal;
+
+    &.arabic {
+      font-family: 'Scheherazade', serif !important;
+    }
+    &.ar {
+      font-family: 'Katibeh', cursive !important;
+      font-size: 1.8rem;
+    }
+    &.arab {
+      font-family: 'Qahiri', sans-serif !important;
+    }
+    &.arab2 {
+      font-family: 'Amiri-Regular', serif !important;
+    }
+    &.arab3 {
+      font-family: 'ScheherazadeRegOT', serif !important;
+    }
+  }
+}
+
+/* Transliteration & Translation Blocks (Apple Style vertical indicators) */
+.ios-translation-block {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  border-left: 3px solid var(--ion-border-color); // Clean thin left bar
+
+  .ios-block-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-family-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: var(--tamil-line-height);
+
+    ion-icon {
+      font-size: 14px;
+    }
+  }
+
+  .ios-block-text {
+    font-family: var(--font-family-sans);
+    line-height: var(--tamil-line-height); /* Set to 2.0 to prevent clipping */
+    color: var(--ion-text-color);
+    text-align: justify;
+    padding: 4px 0;
+  }
+
+  &.read-block {
+    border-left-color: var(--ion-color-primary); // System gold left bar
+
+    .read-header {
+      color: var(--ion-color-primary);
+    }
+  }
+
+  &.meaning-block {
+    border-left-color: var(--ion-color-secondary); // Muted gray left bar
+
+    .meaning-header {
+      color: var(--ion-color-secondary);
+    }
+  }
+}
+
+/* Hadith Reference block */
+.ios-hadees-card {
+  background: transparent;
+  border: none;
+  border-top: 0.5px solid var(--ion-border-color);
+  padding-top: 14px;
+  margin-top: 20px;
+
+  .ios-hadees-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-family-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ion-color-secondary);
+    margin-bottom: 4px;
+    line-height: var(--tamil-line-height);
+
+    .ios-hadees-icon {
+      font-size: 14px;
+    }
+  }
+
+  .hadith-ref-item {
+    .hadith-ref-txt {
+      font-family: var(--font-family-sans);
+      font-size: 0.82rem;
+      line-height: var(--tamil-line-height); /* Prevent clipping */
+      color: var(--ion-color-secondary);
+      margin: 0;
+      padding: 2px 0;
+    }
+  }
+}
+
+/* iOS Minimal action buttons */
+.ios-card-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  border-top: 0.5px solid var(--ion-border-color);
+  margin-top: 18px;
+  padding-top: 12px;
+
+  .ios-action-btn {
+    --padding-start: 0;
+    --padding-end: 0;
+    margin: 0;
+    width: 32px;
+    height: 32px;
+    --color: var(--ion-color-secondary);
+    transition: var(--premium-transition);
+
+    &:hover {
+      --color: var(--ion-color-primary);
+    }
+
+    &.fav.active {
+      --color: var(--ion-color-danger);
+    }
+
+    ion-icon {
+      font-size: 18px;
+    }
+  }
+}
+
+/* Settings floating action button (FAB) */
+.ios-settings-fab {
   margin-bottom: 16px;
   margin-right: 16px;
 
-  ion-fab-button {
-    --box-shadow: 0 4px 12px rgba(var(--ion-color-primary-rgb), 0.4);
-  }
-}
-
-// Offline Banner Styles
-ion-item[color="warning"] {
-  --background: rgba(var(--ion-color-warning-rgb), 0.15);
-  --color: var(--ion-color-warning-shade);
-  margin: 8px;
-  border-radius: 8px;
-
-  ion-icon {
-    color: var(--ion-color-warning-shade);
-  }
-}
-
-.arabic {
-  font-family:Scheherazade !important;
-  line-height: 140%;
-  align-content: right;
-}
-
-.ar {
-  font-family:Katibeh !important;
-  line-height: 140%;
-  align-content: right;
-}
-
-.arab {
-  font-family:Qahiri !important;
-  line-height: 140%;
-  align-content: right;
-}
-.arab2 {
-  font-family:Amiri-Regular !important;
-  line-height: 140%;
-  align-content: right;
-}
-.arab3 {
-  font-family:ScheherazadeRegOT !important;
-  line-height: 140%;
-  align-content: right;
-}
-
-
-// Focus styles for better accessibility
-ion-button:focus {
-  outline: 2px solid var(--ion-color-primary);
-  outline-offset: 2px;
-}
-
-// Separator line with a dot in the middle
-.separator {
-  width: 30%;
-  height: 1px;
-  background: var(--ion-color-medium);
-  margin: 16px auto;
-  opacity: 0.5;
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: var(--ion-color-medium);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-
-// Hadith references styling
-.hadith-reference {
-  margin: 12px 0;
-  padding: 12px;
-  border-radius: 8px;
-  background: var(--ion-color-light-shade);
-  border-left: 3px solid var(--ion-color-primary);
-
-  p {
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  .hadith-link {
-    color: var(--ion-color-primary);
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 8px;
-    font-weight: 500;
+  .ios-fab-button-gold {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary-contrast);
+    --box-shadow: var(--premium-shadow-md);
+    transition: var(--premium-transition);
 
     &:hover {
-      text-decoration: underline;
+      --box-shadow: var(--premium-shadow-lg);
+      transform: scale(1.05);
+    }
+
+    .ios-gear-icon {
+      font-size: 22px;
     }
   }
 }
 
-.tamil-text {
-  margin: 12px 0;
-  line-height: 1.6;
-
-  strong {
-    color: var(--ion-color-dark);
-  }
-}
-
-// Navigation Card Styles
-.navigation-card {
-  margin: 12px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  
-  ion-card-header {
-    background: var(--ion-color-primary-tint);
-    padding: 12px;
-    
-    ion-card-title {
-      font-size: 16px;
-      margin: 0;
-      
-      ion-icon {
-        font-size: 20px;
-        cursor: pointer;
-        vertical-align: middle;
-        margin-right: 8px;
-      }
-      
-      ion-badge {
-        margin-left: 8px;
-      }
-    }
-  }
-  
-  ion-card-content {
-    padding: 0;
-    max-height: 300px;
-    overflow-y: auto;
-  }
-  
-  .navigation-list {
-    background: transparent;
-    
-    .navigation-item {
-      --background: transparent;
-      --padding-start: 16px;
-      --padding-end: 16px;
-      --min-height: 48px;
-      
-      &:active {
-        --background: rgba(var(--ion-color-primary-rgb), 0.1);
-      }
-      
-      ion-label {
-        font-size: 14px;
-        margin: 8px 0;
-        
-        .dua-index {
-          font-weight: bold;
-          color: var(--ion-color-primary);
-          margin-right: 4px;
-        }
-      }
-    }
-  }
-}
-
-// Sticky Navigation Header Styles
-.sticky-nav-header {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background: var(--ion-color-light);
-  padding: 8px 12px;
-  margin-bottom: 0;
-  
-  .navigation-header-card {
-    margin: 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    cursor: pointer;
-    
-    ion-card-header {
-      background: var(--ion-color-primary);
-      padding: 12px;
-      
-      ion-card-title {
-        font-size: 16px;
-        margin: 0;
-        color: var(--ion-color-primary-contrast);
-        
-        ion-row {
-          align-items: center;
-        }
-        
-        ion-badge {
-          --background: var(--ion-color-light);
-          --color: var(--ion-color-primary);
-          font-weight: bold;
-          padding: 4px 8px;
-          border-radius: 12px;
-          margin-left: 8px;
-        }
-      }
-    }
-    
-    &:active {
-      opacity: 0.8;
-    }
-  }
-}
-
-// Navigation List Card Styles
-.navigation-list-card {
-  margin: 0 12px 12px 12px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  
-  ion-card-content {
-    padding: 0;
-    max-height: 300px;
-    overflow-y: auto;
-  }
-  
-  .navigation-list {
-    background: transparent;
-    
-    .navigation-item {
-      --background: transparent;
-      --padding-start: 16px;
-      --padding-end: 16px;
-      --min-height: 48px;
-      
-      &:active {
-        --background: rgba(var(--ion-color-primary-rgb), 0.1);
-      }
-      
-      ion-label {
-        font-size: 14px;
-        margin: 8px 0;
-        
-        .dua-index {
-          font-weight: bold;
-          color: var(--ion-color-primary);
-          margin-right: 4px;
-        }
-      }
-    }
-  }
-}
-
-// Media Queries for Responsive Design
+/* Responsive grid for tablets/desktop */
 @media (min-width: 768px) {
-  .dua-item {
-    --padding-start: 16px;
-    --padding-end: 16px;
+  .ios-dua-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 16px;
+    padding: 16px;
   }
 
-  .dua-card {
-    max-width: 600px;
-    margin: 16px auto;
+  .ios-dua-card {
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .ios-dua-card-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      .ios-card-action-bar {
+        margin-top: auto;
+      }
+    }
   }
 }
 
 @media (min-width: 1200px) {
-  .dua-card {
-    max-width: 800px;
+  .ios-dua-container {
+    grid-template-columns: repeat(auto-fill, minmax(550px, 1fr));
   }
 }

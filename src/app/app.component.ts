@@ -50,4 +50,8 @@ export class AppComponent {
       }
     });
   }
+
+  getChapters() {
+    return this.appPages.filter(p => p.url !== '/home');
+  }
 }
