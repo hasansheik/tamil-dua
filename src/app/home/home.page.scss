@@ -1,3 +1,5 @@
+/* Home Screen Styles from scratch */
+
 .ios-toolbar {
   --background: var(--ion-card-background);
   --color: var(--ion-text-color);
@@ -19,65 +21,303 @@
   --background: var(--ion-background-color);
 }
 
-/* iOS Large Title Wrapper */
-.ios-large-title-wrapper {
-  padding: 12px 4px 16px 4px;
-  
-  .ios-large-title {
+/* 1. iOS Premium Hero Header Banner */
+.ios-hero-banner {
+  padding: 20px 8px 14px 8px;
+  margin-bottom: 16px;
+
+  .ios-hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .ios-hero-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .ios-hero-subtitle {
+    font-family: var(--font-family-sans);
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--ion-color-secondary);
+  }
+
+  .ios-hero-title {
     font-family: var(--font-family-heading);
-    font-size: 2.1rem;
+    font-size: 1.7rem;
     font-weight: 800;
-    letter-spacing: -0.8px;
+    letter-spacing: -0.5px;
     color: var(--ion-text-color);
     margin: 0;
-    line-height: var(--tamil-line-height); /* Prevent script clipping */
+    line-height: var(--tamil-line-height);
+  }
+
+  .ios-hero-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: var(--ion-card-background);
+    box-shadow: var(--premium-shadow-sm);
+    color: var(--ion-color-primary);
+    border: 0.5px solid var(--ion-border-color);
+
+    .ios-hero-icon {
+      font-size: 24px;
+    }
   }
 }
 
-/* iOS Clean Rounded Card */
-.ios-card {
-  background: var(--ion-card-background);
-  border-radius: var(--premium-border-radius);
-  padding: 20px;
-  margin-bottom: 24px;
-  box-shadow: var(--premium-shadow-sm);
-  transition: var(--premium-transition);
+/* 2. Shortcuts Visual Grid (2x2) */
+.ios-shortcuts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 4px;
 
-  &.intro-card {
-    
-    .intro-badge {
-      display: inline-block;
-      background: rgba(var(--ion-color-primary-rgb), 0.1);
-      color: var(--ion-color-primary);
-      font-family: var(--font-family-sans);
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 6px;
-      margin-bottom: 10px;
-      letter-spacing: 0.3px;
+  .ios-grid-card {
+    background: var(--ion-card-background);
+    border-radius: 14px;
+    border: 0.5px solid var(--ion-border-color);
+    box-shadow: var(--premium-shadow-sm);
+    padding: 16px 14px;
+    cursor: pointer;
+    transition: var(--premium-transition);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--premium-shadow-md);
+      background: rgba(var(--ion-color-primary-rgb), 0.01);
     }
 
-    .intro-title {
+    .grid-card-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .grid-icon-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      font-size: 18px;
+      position: relative;
+
+      &.primary {
+        background: rgba(var(--ion-color-primary-rgb), 0.1);
+        color: var(--ion-color-primary);
+      }
+      &.danger {
+        background: rgba(var(--ion-color-danger-rgb), 0.1);
+        color: var(--ion-color-danger);
+      }
+      &.warning {
+        background: rgba(var(--ion-color-warning-rgb), 0.1);
+        color: var(--ion-color-warning-shade);
+      }
+      &.accent {
+        background: rgba(var(--ion-color-secondary-rgb), 0.1);
+        color: var(--ion-color-secondary);
+      }
+
+      .grid-badge {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        background: var(--ion-color-danger);
+        color: white;
+        font-family: var(--font-family-sans);
+        font-size: 0.65rem;
+        font-weight: 700;
+        min-width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    .grid-card-label {
       font-family: var(--font-family-heading);
-      font-size: 1.3rem;
+      font-size: 0.88rem;
       font-weight: 700;
       color: var(--ion-text-color);
-      margin: 0 0 8px 0;
       line-height: var(--tamil-line-height);
     }
 
-    .intro-desc {
+    .grid-card-desc {
       font-family: var(--font-family-sans);
-      font-size: 0.92rem;
-      line-height: var(--tamil-line-height); /* Set to 2.0 to prevent clipping */
-      color: var(--ion-color-secondary-shade);
-      margin: 0;
+      font-size: 0.72rem;
+      color: var(--ion-color-secondary);
+      font-weight: 500;
     }
   }
 }
 
-/* iOS Inset Section Label */
+/* 3. Featured Daily Prayer Card */
+.ios-featured-daily-card {
+  background: var(--ion-card-background);
+  border-radius: var(--premium-border-radius);
+  border: 0.5px solid rgba(var(--ion-color-primary-rgb), 0.22);
+  background: linear-gradient(145deg, var(--ion-card-background) 0%, rgba(var(--ion-color-primary-rgb), 0.03) 100%);
+  padding: 20px;
+  box-shadow: var(--premium-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+
+  .featured-daily-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .featured-badge {
+    background: rgba(var(--ion-color-primary-rgb), 0.08);
+    color: var(--ion-color-primary);
+    font-family: var(--font-family-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  .featured-header-icon {
+    font-size: 16px;
+    color: var(--ion-color-primary);
+  }
+
+  .featured-daily-title {
+    font-family: var(--font-family-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ion-text-color);
+    margin: 4px 0 0 0;
+    line-height: var(--tamil-line-height);
+  }
+
+  .featured-daily-arabic {
+    font-family: 'Scheherazade', serif !important;
+    font-size: 1.55rem;
+    line-height: var(--arabic-line-height);
+    color: var(--ion-text-color);
+    text-align: right;
+    direction: rtl;
+    padding: 8px 0;
+    border-bottom: 0.5px dashed var(--ion-border-color);
+    margin-bottom: 4px;
+    word-wrap: break-word;
+  }
+
+  .featured-daily-tamil {
+    font-family: var(--font-family-sans);
+    font-size: 0.88rem;
+    line-height: var(--tamil-line-height);
+    color: var(--ion-text-color);
+    margin: 0;
+    padding: 2px 0;
+  }
+
+  .featured-daily-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: 0.5px solid var(--ion-border-color);
+
+    .featured-daily-chapter {
+      font-family: var(--font-family-sans);
+      font-size: 0.75rem;
+      color: var(--ion-color-secondary);
+      font-weight: 500;
+    }
+
+    .featured-daily-btn {
+      background: var(--ion-color-primary);
+      color: var(--ion-color-primary-contrast);
+      border: none;
+      padding: 6px 14px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-family-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: var(--premium-shadow-sm);
+      transition: var(--premium-transition);
+
+      &:hover {
+        opacity: 0.95;
+        transform: translateX(2px);
+      }
+
+      ion-icon {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+/* 4. App Introduction Inset Panel */
+.ios-intro-inset-card {
+  background: rgba(var(--ion-color-secondary-rgb), 0.03);
+  border-radius: 12px;
+  border: 0.5px solid var(--ion-border-color);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  .ios-intro-header-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--ion-color-secondary-shade);
+    font-family: var(--font-family-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .ios-intro-info-icon {
+    font-size: 14px;
+  }
+
+  .ios-intro-text {
+    font-family: var(--font-family-sans);
+    font-size: 0.88rem;
+    line-height: var(--tamil-line-height);
+    color: var(--ion-text-color);
+    margin: 0;
+    padding: 2px 0;
+  }
+}
+
+/* 5. Inset Section Group Labels */
 .ios-section-label {
   font-family: var(--font-family-heading);
   font-size: 0.82rem;
@@ -85,21 +325,21 @@
   text-transform: uppercase;
   color: var(--ion-color-medium);
   letter-spacing: 0.5px;
-  margin: 16px 6px 8px 6px;
+  margin: 22px 6px 8px 6px;
   line-height: var(--tamil-line-height);
 }
 
-/* iOS Inset Grouped List Layout */
+/* 6. Inset Grouped List layouts */
 .ios-grouped-list {
   background: var(--ion-card-background);
   border-radius: var(--premium-border-radius);
+  border: 0.5px solid var(--ion-border-color);
   box-shadow: var(--premium-shadow-sm);
   overflow: hidden;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
 
-  /* Custom divider lines between items */
   .ios-list-item {
     text-decoration: none;
     color: inherit;
@@ -127,7 +367,7 @@
       font-size: 18px;
       color: var(--ion-color-primary);
       flex-shrink: 0;
-
+      
       &.accent {
         color: var(--ion-color-primary);
       }
@@ -138,8 +378,8 @@
       font-size: 0.95rem;
       font-weight: 500;
       color: var(--ion-text-color);
-      white-space: normal; /* Wrap instead of nowrap clipping */
-      line-height: var(--tamil-line-height); /* Set to 2.0 to prevent script clipping */
+      white-space: normal;
+      line-height: var(--tamil-line-height);
       padding: 4px 0;
       flex: 1;
 
@@ -177,7 +417,7 @@
       }
     }
 
-    /* Stacked Label Cells (for contacts list) */
+    /* Stacked descriptions (Contacts & Links) */
     .ios-item-stacked {
       display: flex;
       flex-direction: column;
@@ -200,18 +440,66 @@
       }
     }
   }
+
+  .view-all-row {
+    cursor: pointer;
+  }
 }
 
-/* iOS Minimal Clean Footer */
+/* 7. Inset Grouped Search Results Area */
+.search-results-wrapper {
+  margin-top: 8px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ios-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+
+  .ios-empty-icon {
+    font-size: 3rem;
+    color: var(--ion-color-secondary);
+    margin-bottom: 12px;
+    opacity: 0.6;
+  }
+
+  h2 {
+    font-family: var(--font-family-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ion-text-color);
+    margin: 0 0 6px 0;
+    line-height: var(--tamil-line-height);
+  }
+
+  p {
+    font-family: var(--font-family-sans);
+    font-size: 0.88rem;
+    color: var(--ion-color-secondary);
+    margin: 0;
+    line-height: var(--tamil-line-height);
+  }
+}
+
+/* 8. iOS Footnote & Signature */
 .ios-footer-note {
   margin-top: 36px;
   padding: 0 8px;
   text-align: center;
 
-  p {
+  .ios-footer-paragraph {
     font-family: var(--font-family-sans);
     font-size: 0.85rem;
-    line-height: var(--tamil-line-height); /* Set to 2.0 to prevent script clipping */
+    line-height: var(--tamil-line-height);
     color: var(--ion-color-secondary);
     text-align: justify;
     margin: 0 0 20px 0;
@@ -253,253 +541,17 @@
   overflow: hidden;
 }
 
-/* 1. Dynamic Greeting Panel */
-.ios-greeting-panel {
-  padding: 16px 4px 14px 4px;
-
-  .ios-greeting-header-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-  }
-
-  .ios-greeting-text-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .ios-greeting-sub {
-    font-family: var(--font-family-sans);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: var(--ion-color-secondary);
-  }
-
-  .ios-greeting-title {
-    font-family: var(--font-family-heading);
-    font-size: 1.6rem;
-    font-weight: 800;
-    letter-spacing: -0.6px;
-    color: var(--ion-text-color);
-    margin: 0;
-    line-height: var(--tamil-line-height);
-  }
-
-  .ios-greeting-icon-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: var(--ion-card-background);
-    box-shadow: var(--premium-shadow-sm);
-    color: var(--ion-color-primary);
-    border: 0.5px solid var(--ion-border-color);
-
-    .ios-greeting-icon {
-      font-size: 24px;
-    }
-  }
-}
-
-/* 2. Dashboard Stats Layout (2x1 Grid) */
-.ios-dashboard-stats {
-  display: flex;
-  gap: 12px;
-  margin-top: 4px;
-
-  .ios-stat-card {
-    flex: 1;
-    background: var(--ion-card-background);
-    border-radius: 12px;
-    padding: 12px 14px;
-    border: 0.5px solid var(--ion-border-color);
-    box-shadow: var(--premium-shadow-sm);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    transition: var(--premium-transition);
-
-    &:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--premium-shadow-md);
-    }
-
-    .stat-icon-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      font-size: 16px;
-
-      &.warning {
-        background: rgba(var(--ion-color-warning-rgb), 0.1);
-        color: var(--ion-color-warning-shade);
-      }
-      &.danger {
-        background: rgba(var(--ion-color-danger-rgb), 0.1);
-        color: var(--ion-color-danger);
-      }
-    }
-
-    .stat-details {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-
-      .stat-label {
-        font-family: var(--font-family-heading);
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: var(--ion-color-secondary);
-        line-height: var(--tamil-line-height);
-      }
-
-      .stat-value {
-        font-family: var(--font-family-sans);
-        
-        &.num {
-          font-size: 1rem;
-          font-weight: 700;
-          color: var(--ion-text-color);
-        }
-        &.text {
-          font-size: 0.72rem;
-          color: var(--ion-color-secondary);
-          font-weight: 600;
-        }
-      }
-    }
-  }
-}
-
-/* 3. Featured Daily Supplication Card */
-.ios-daily-card {
-  background: var(--ion-card-background);
-  border-radius: var(--premium-border-radius);
-  border: 0.5px solid rgba(var(--ion-color-primary-rgb), 0.25);
-  background: linear-gradient(135deg, var(--ion-card-background) 0%, rgba(var(--ion-color-primary-rgb), 0.03) 100%);
-  padding: 18px 20px;
-  box-shadow: var(--premium-shadow-sm);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  position: relative;
-  overflow: hidden;
-
-  .daily-badge {
-    align-self: flex-start;
-    background: rgba(var(--ion-color-primary-rgb), 0.1);
-    color: var(--ion-color-primary);
-    font-family: var(--font-family-sans);
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-  }
-
-  .daily-title {
-    font-family: var(--font-family-heading);
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--ion-text-color);
-    margin: 4px 0 0 0;
-    line-height: var(--tamil-line-height);
-  }
-
-  .daily-arabic {
-    font-family: 'Scheherazade', serif !important;
-    font-size: 1.5rem;
-    line-height: var(--arabic-line-height);
-    color: var(--ion-text-color);
-    text-align: right;
-    direction: rtl;
-    padding: 6px 0;
-    border-bottom: 0.5px dashed var(--ion-border-color);
-    margin-bottom: 4px;
-  }
-
-  .daily-tamil {
-    font-family: var(--font-family-sans);
-    font-size: 0.88rem;
-    line-height: var(--tamil-line-height);
-    color: var(--ion-text-color);
-    margin: 0;
-  }
-
-  .daily-action-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
-    padding-top: 8px;
-    border-top: 0.5px solid var(--ion-border-color);
-
-    .daily-chapter-name {
-      font-family: var(--font-family-sans);
-      font-size: 0.75rem;
-      color: var(--ion-color-secondary);
-      font-weight: 500;
-    }
-
-    .daily-read-btn {
-      background: var(--ion-color-primary);
-      color: var(--ion-color-primary-contrast);
-      border: none;
-      padding: 6px 12px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-family-sans);
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: var(--premium-shadow-sm);
-      transition: var(--premium-transition);
-
-      &:hover {
-        opacity: 0.9;
-        transform: translateX(1px);
-      }
-
-      ion-icon {
-        font-size: 12px;
-      }
-    }
-  }
-}
-
-/* 4. Global Search Results View */
-.search-results-wrapper {
-  margin-top: 8px;
-  animation: fadeIn 0.25s ease-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
+/* Responsive grid for tablets/desktop */
 @media (min-width: 768px) {
-  .ios-container,
-  .ios-greeting-panel,
-  .ios-dashboard-stats,
-  .ios-daily-card,
-  .ios-card {
+  .ios-hero-banner,
+  .custom-search-container,
+  .ios-shortcuts-grid,
+  .ios-featured-daily-card,
+  .ios-intro-inset-card,
+  .ios-grouped-list,
+  .ios-footer-note {
     max-width: 650px;
     margin-left: auto;
     margin-right: auto;
   }
 }
-
