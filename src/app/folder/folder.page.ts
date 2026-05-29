@@ -35,6 +35,7 @@ export class FolderPage implements OnInit, OnDestroy {
   showHadees: boolean = true;
   showNavigationMenu: boolean = true; // Controls visibility of the navigation menu
   isReaderMode: boolean = false; // New: distraction-free reader mode toggle
+  scrollProgress: number = 0;
 
   private networkSubscription: Subscription | null = null;
   private settingsSubscription: Subscription | null = null;
@@ -458,5 +459,19 @@ export class FolderPage implements OnInit, OnDestroy {
   toggleReaderMode() {
     this.isReaderMode = !this.isReaderMode;
     this.triggerHapticFeedback();
+  }
+
+  async onScroll(event: any) {
+    const scrollElement = await event.target.getScrollElement();
+    const scrollTop = event.detail.scrollTop;
+    const scrollHeight = scrollElement.scrollHeight;
+    const clientHeight = scrollElement.clientHeight;
+    
+    const totalScrollable = scrollHeight - clientHeight;
+    if (totalScrollable > 0) {
+      this.scrollProgress = (scrollTop / totalScrollable) * 100;
+    } else {
+      this.scrollProgress = 0;
+    }
   }
 }

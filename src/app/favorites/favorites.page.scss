@@ -1,4 +1,45 @@
 /* Overhauled Premium Favorites Styling */
+/* Unique Favorites Header Styling */
+.fav-header-title {
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+  
+  .fav-title-heart-icon {
+    font-size: 16px !important;
+    color: var(--ion-color-danger) !important;
+    animation: heartPulse 3s infinite ease-in-out;
+  }
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.fav-hdr-buttons {
+  gap: 8px;
+}
+
+.fav-hdr-btn {
+  --border-color: rgba(var(--ion-color-danger-rgb), 0.22) !important;
+  --color: var(--ion-color-danger) !important;
+  --background-hover: rgba(var(--ion-color-danger-rgb), 0.08) !important;
+  --background-focused: rgba(var(--ion-color-danger-rgb), 0.12) !important;
+
+  &.active {
+    --background: rgba(var(--ion-color-danger-rgb), 0.15) !important;
+    --border-color: var(--ion-color-danger) !important;
+    --color: var(--ion-color-danger) !important;
+  }
+}
+
+.fav-hdr-menu-btn {
+  --color: var(--ion-color-danger) !important;
+  --background-hover: rgba(var(--ion-color-danger-rgb), 0.08) !important;
+  border: 1px solid rgba(var(--ion-color-danger-rgb), 0.22) !important;
+}
+
 .ios-detail-bg {
   --background: var(--ion-background-color);
 }

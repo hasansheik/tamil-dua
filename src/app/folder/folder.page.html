@@ -47,9 +47,14 @@
       </button>
     </div>
   </ion-toolbar>
+
+  <!-- Premium reading scroll progress indicator -->
+  <div class="reading-progress-container">
+    <div class="reading-progress-bar" [style.width.%]="scrollProgress"></div>
+  </div>
 </ion-header>
 
-<ion-content [fullscreen]="true" #duaContent class="ios-detail-bg">
+<ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="onScroll($event)" #duaContent class="ios-detail-bg">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large" class="ios-condense-title">{{ duaGroupTitle }}</ion-title>

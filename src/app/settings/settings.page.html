@@ -1,9 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ios-settings-toolbar">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home" class="ios-back-btn" text="முகப்பு"></ion-back-button>
+      <ion-button routerLink="/home" routerDirection="back" class="premium-hdr-btn settings-hdr-back-btn">
+        <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title class="ios-settings-title">அமைப்புகள்</ion-title>
+    <ion-title class="ios-settings-title settings-header-title">
+      அமைப்புகள் <ion-icon name="settings-sharp" class="settings-title-gear-icon"></ion-icon>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 

@@ -1,22 +1,58 @@
 /* Home Screen Styles from scratch */
 
-.ios-toolbar {
-  --background: rgba(var(--ion-card-background-rgb), 0.8) !important;
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 0.5px solid rgba(var(--ion-border-color-rgb), 0.55);
+.home-header {
+  --background: transparent !important;
+  background: transparent !important;
+}
+
+.home-toolbar {
+  --background: transparent !important;
   --border-width: 0px !important;
-  
-  .ios-page-title {
-    font-family: var(--font-family-heading);
-    font-weight: 600;
-    font-size: 1.1rem;
-    letter-spacing: -0.2px;
+  border: none !important;
+  padding: 8px 12px 0 12px !important;
+  box-shadow: none !important;
+}
+
+.home-menu-btn {
+  border: 1px solid rgba(var(--ion-color-primary-rgb), 0.2) !important;
+  background: rgba(var(--ion-card-background-rgb), 0.6) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  margin-left: 0 !important;
+}
+
+.home-header-logo-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.home-header-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, rgba(var(--ion-color-primary-rgb), 0.15) 0%, rgba(var(--ion-color-primary-rgb), 0.05) 100%);
+  border: 1px solid rgba(var(--ion-color-primary-rgb), 0.25);
+  padding: 6px 12px;
+  border-radius: 50px;
+  color: var(--ion-color-primary);
+  font-family: var(--font-family-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--premium-shadow-sm);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  .home-badge-icon {
+    font-size: 13px;
+    animation: sparkleSlow 3s infinite ease-in-out;
   }
-  
-  .ios-menu-btn {
-    --color: var(--ion-color-primary);
-  }
+}
+
+@keyframes sparkleSlow {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+  50% { transform: scale(1.15) rotate(15deg); opacity: 1; }
 }
 
 .ios-content-bg {

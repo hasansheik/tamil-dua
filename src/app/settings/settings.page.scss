@@ -1,22 +1,48 @@
 /* Redesigned Settings Page Styles Version 2 */
 
 .ios-settings-toolbar {
-  --background: rgba(var(--ion-card-background-rgb), 0.8) !important;
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 0.5px solid rgba(var(--ion-border-color-rgb), 0.55);
+  --background: rgba(var(--ion-card-background-rgb), 0.82) !important;
+  backdrop-filter: saturate(180%) blur(25px) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(25px) !important;
+  border-bottom: 0.5px solid rgba(var(--ion-color-primary-rgb), 0.22) !important;
   --border-width: 0px !important;
   box-shadow: none;
 
   .ios-settings-title {
     font-family: var(--font-family-heading);
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.1rem;
     letter-spacing: -0.2px;
   }
+}
 
-  .ios-back-btn {
-    --color: var(--ion-color-primary);
+.settings-header-title {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  color: var(--ion-text-color) !important;
+
+  .settings-title-gear-icon {
+    font-size: 18px !important;
+    color: var(--ion-color-primary) !important;
+    animation: gearRotate 12s infinite linear;
+    filter: drop-shadow(0 2px 4px rgba(var(--ion-color-primary-rgb), 0.2));
+  }
+}
+
+@keyframes gearRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.settings-hdr-back-btn {
+  margin-left: 12px !important;
+  --border-color: rgba(var(--ion-color-primary-rgb), 0.25) !important;
+  --color: var(--ion-color-primary) !important;
+  
+  &:hover {
+    --border-color: rgba(var(--ion-color-primary-rgb), 0.45) !important;
+    --background: rgba(var(--ion-color-primary-rgb), 0.08) !important;
   }
 }
 

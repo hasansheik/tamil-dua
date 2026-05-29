@@ -1,17 +1,19 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ios-toolbar">
     <ion-buttons slot="start">
-      <ion-menu-button class="premium-hdr-menu-btn"></ion-menu-button>
+      <ion-menu-button class="premium-hdr-menu-btn fav-hdr-menu-btn"></ion-menu-button>
     </ion-buttons>
-    <ion-title class="ios-detail-title">விருப்பமானவை</ion-title>
-    <ion-buttons slot="end" class="premium-hdr-buttons">
-      <ion-button (click)="toggleReaderMode()" class="premium-hdr-btn" [class.active]="isReaderMode">
+    <ion-title class="ios-detail-title fav-header-title">
+      விருப்பமானவை <ion-icon name="heart" class="fav-title-heart-icon"></ion-icon>
+    </ion-title>
+    <ion-buttons slot="end" class="premium-hdr-buttons fav-hdr-buttons">
+      <ion-button (click)="toggleReaderMode()" class="premium-hdr-btn fav-hdr-btn" [class.active]="isReaderMode">
         <ion-icon slot="icon-only" [name]="isReaderMode ? 'book' : 'book-outline'"></ion-icon>
       </ion-button>
-      <ion-button id="fav-font-customizer-trigger" class="premium-hdr-btn">
+      <ion-button id="fav-font-customizer-trigger" class="premium-hdr-btn fav-hdr-btn">
         <ion-icon slot="icon-only" name="text-outline"></ion-icon>
       </ion-button>
-      <ion-button routerLink="/home" class="premium-hdr-btn">
+      <ion-button routerLink="/home" class="premium-hdr-btn fav-hdr-btn">
         <ion-icon slot="icon-only" name="home-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
