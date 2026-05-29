@@ -12,6 +12,8 @@ export class PrayerAcceptancePage implements OnInit {
   data: any[] = [];
   dataFile: string = "";
   PageTitle: String = "Prayer Acceptance";
+  scrollProgress: number = 0;
+
   constructor(private http: HttpClient, private route: ActivatedRoute) {
 
   }
@@ -65,5 +67,19 @@ export class PrayerAcceptancePage implements OnInit {
         console.error('Error fetching data:', error);
       }
     );
+  }
+
+  async onScroll(event: any) {
+    const scrollElement = await event.target.getScrollElement();
+    const scrollTop = event.detail.scrollTop;
+    const scrollHeight = scrollElement.scrollHeight;
+    const clientHeight = scrollElement.clientHeight;
+    
+    const totalScrollable = scrollHeight - clientHeight;
+    if (totalScrollable > 0) {
+      this.scrollProgress = (scrollTop / totalScrollable) * 100;
+    } else {
+      this.scrollProgress = 0;
+    }
   }
 }

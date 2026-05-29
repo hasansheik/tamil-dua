@@ -302,3 +302,130 @@
   position: relative;
   overflow: hidden;
 }
+
+/* Backup & Restore specific styles */
+.ios-settings-desc {
+  font-family: var(--font-family-sans);
+  font-size: 0.85rem;
+  color: var(--ion-color-secondary);
+  line-height: var(--tamil-line-height);
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.backup-actions-container, .restore-actions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ios-premium-btn {
+  --border-radius: 10px;
+  --box-shadow: none;
+  font-family: var(--font-family-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+  height: 44px;
+  
+  &.btn-gold {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary-contrast);
+    
+    &:hover {
+      --background: var(--ion-color-primary-tint);
+    }
+  }
+
+  &.btn-outline {
+    --border-color: var(--ion-color-primary);
+    --border-style: solid;
+    --border-width: 1px;
+    --color: var(--ion-color-primary);
+    --background: transparent;
+
+    &:hover {
+      --background: rgba(var(--ion-color-primary-rgb), 0.04);
+    }
+  }
+}
+
+.backup-code-preview {
+  margin-top: 10px;
+}
+
+.backup-textarea {
+  width: 100%;
+  border-radius: 8px;
+  border: 0.5px solid var(--ion-border-color);
+  background: rgba(var(--ion-color-secondary-rgb), 0.04);
+  padding: 10px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--ion-color-secondary);
+  resize: none;
+  word-break: break-all;
+  outline: none;
+}
+
+.ios-input-item {
+  --background: rgba(var(--ion-color-secondary-rgb), 0.02);
+  border: 0.5px solid var(--ion-border-color);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  
+  &::part(native) {
+    padding-start: 12px;
+    padding-end: 12px;
+  }
+}
+
+.ios-textarea-input {
+  font-family: monospace;
+  font-size: 0.75rem;
+  --placeholder-color: var(--ion-color-placeholder);
+  --color: var(--ion-text-color);
+}
+
+/* Reset settings styling */
+.ios-reset-item {
+  --background: transparent;
+  --min-height: auto;
+  transition: var(--premium-transition);
+
+  &::part(native) {
+    padding: 12px 18px;
+    align-items: center;
+  }
+
+  &:hover {
+    --background: rgba(var(--ion-color-danger-rgb), 0.02);
+  }
+
+  .ios-reset-icon {
+    font-size: 22px;
+    margin-right: 14px;
+  }
+
+  .ios-reset-label {
+    margin: 0;
+
+    .danger-title {
+      font-family: var(--font-family-heading);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--ion-color-danger);
+      margin: 0 0 2px 0;
+      line-height: var(--tamil-line-height);
+    }
+
+    p {
+      font-family: var(--font-family-sans);
+      font-size: 0.78rem;
+      color: var(--ion-color-secondary);
+      margin: 0;
+      line-height: var(--tamil-line-height);
+    }
+  }
+}
+

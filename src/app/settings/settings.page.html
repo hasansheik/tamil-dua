@@ -143,5 +143,50 @@
       </ion-item>
     </div>
 
+    <!-- Section 5: Favorites Backup & Restore -->
+    <div class="ios-group-header">பிடித்தவை காப்புப்பிரதி (Favorites Backup & Restore)</div>
+    <div class="ios-group-list-box padding-box">
+      <p class="ios-settings-desc">உங்கள் பிடித்தமான துஆக்களை காப்புப்பிரதி எடுத்து மற்றொரு சாதனத்தில் மீட்டமைக்கலாம்.</p>
+      
+      <div class="backup-actions-container">
+        <ion-button expand="block" (click)="generateBackup()" class="ios-premium-btn btn-gold">
+          <ion-icon slot="start" name="cloud-download-outline"></ion-icon>
+          காப்புப்பிரதி எடுத்து நகலெடு
+        </ion-button>
+        
+        <div *ngIf="backupCode" class="backup-code-preview">
+          <textarea readonly class="backup-textarea" rows="2">{{ backupCode }}</textarea>
+        </div>
+      </div>
+      
+      <div class="restore-actions-container ion-margin-top">
+        <ion-item lines="none" class="ios-input-item">
+          <ion-textarea 
+            [(ngModel)]="restoreCode" 
+            placeholder="இங்கே காப்புப்பிரதி குறியீட்டை ஒட்டவும்..." 
+            class="ios-textarea-input"
+            rows="3">
+          </ion-textarea>
+        </ion-item>
+        
+        <ion-button expand="block" (click)="restoreBackup()" class="ios-premium-btn btn-outline" [disabled]="!restoreCode">
+          <ion-icon slot="start" name="cloud-upload-outline"></ion-icon>
+          மீட்டமைக்கவும்
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- Section 6: Maintenance -->
+    <div class="ios-group-header">பயன்பாடு பராமரிப்பு (App Maintenance)</div>
+    <div class="ios-group-list-box">
+      <ion-item lines="none" detail="false" button (click)="resetDefaults()" class="ios-reset-item ripple">
+        <ion-icon slot="start" name="refresh-circle-outline" color="danger" class="ios-reset-icon"></ion-icon>
+        <ion-label class="ios-reset-label">
+          <h3 class="danger-title">அமைப்புகளை மீட்டமை</h3>
+          <p>அனைத்து அமைப்புகளையும் இயல்புநிலைக்கு மீட்டமைக்கும் (பிடித்தவை நீக்கப்படாது)</p>
+        </ion-label>
+      </ion-item>
+    </div>
+
   </div>
 </ion-content>

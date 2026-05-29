@@ -579,3 +579,88 @@
     grid-template-columns: repeat(auto-fill, minmax(550px, 1fr));
   }
 }
+
+/* Premium Inline Font Customizer Popover */
+.font-customizer-popover {
+  --width: 280px;
+  --max-width: 90vw;
+  --border-radius: 12px;
+  --box-shadow: var(--premium-shadow-lg);
+
+  .popover-content {
+    --background: var(--ion-card-background);
+    --color: var(--ion-text-color);
+  }
+
+  .popover-title {
+    font-family: var(--font-family-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: var(--ion-text-color);
+    border-bottom: 0.5px solid var(--ion-border-color);
+    padding-bottom: 8px;
+  }
+
+  .popover-control-group {
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .popover-label-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  .popover-label {
+    font-family: var(--font-family-sans);
+    font-size: 0.8rem;
+    color: var(--ion-color-secondary);
+  }
+
+  .popover-val {
+    font-family: var(--font-family-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--ion-color-primary);
+  }
+
+  .gold-range {
+    padding-top: 0;
+    padding-bottom: 0;
+    --bar-background: rgba(var(--ion-color-primary-rgb), 0.12);
+    --bar-background-active: var(--ion-color-primary);
+    --knob-background: var(--ion-color-primary);
+    --knob-size: 16px;
+    --pin-background: var(--ion-color-primary);
+    --pin-color: var(--ion-color-primary-contrast);
+    
+    ion-icon {
+      color: var(--ion-color-secondary);
+    }
+  }
+}
+
+/* Reader Mode transitions */
+.ios-arabic-frame {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.reader-mode {
+    border-color: transparent;
+    background: transparent;
+    padding: 0;
+    margin-bottom: 0;
+    
+    .ios-arabic-text {
+      text-align: center;
+      padding: 12px 0;
+    }
+  }
+}
+

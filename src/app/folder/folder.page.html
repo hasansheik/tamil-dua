@@ -5,6 +5,12 @@
     </ion-buttons>
     <ion-title class="ios-detail-title">{{ duaGroupTitle }}</ion-title>
     <ion-buttons slot="end">
+      <ion-button (click)="toggleReaderMode()" class="ios-toolbar-btn" [color]="isReaderMode ? 'warning' : ''">
+        <ion-icon slot="icon-only" [name]="isReaderMode ? 'book' : 'book-outline'"></ion-icon>
+      </ion-button>
+      <ion-button id="font-customizer-trigger" class="ios-toolbar-btn">
+        <ion-icon slot="icon-only" name="text-outline"></ion-icon>
+      </ion-button>
       <ion-button routerLink="/home" class="ios-toolbar-btn">
         <ion-icon slot="icon-only" name="home-outline"></ion-icon>
       </ion-button>
@@ -124,7 +130,7 @@
         <!-- Card Content -->
         <div class="ios-dua-card-content">
           <!-- Advisory Explanation Box -->
-          <div *ngIf="!hideNotes(dua.DuaContent)" class="ios-note-box">
+          <div *ngIf="!hideNotes(dua.DuaContent) && !isReaderMode" class="ios-note-box">
             <div class="ios-note-header">
               <ion-icon name="chatbubble-ellipses-outline" class="ios-note-icon"></ion-icon>
               <span>விளக்கம் / குறிப்பு :</span>
@@ -133,15 +139,15 @@
           </div>
 
           <!-- Arabic Typography Block (Clean centered, framed) -->
-          <div class="ios-arabic-frame">
-            <div class="ios-arabic-frame-header">அரபு வடிவம்</div>
+          <div class="ios-arabic-frame" [class.reader-mode]="isReaderMode">
+            <div class="ios-arabic-frame-header" *ngIf="!isReaderMode">அரபு வடிவம்</div>
             <div class="ios-arabic-text" [style.font-size]="arabicFontSize" [style.font-family]="selectedArabicFont">
               {{ dua.DuaContent.ArabicDua }}
             </div>
           </div>
 
           <!-- Tamil Reading Section -->
-          <div class="ios-translation-block read-block" *ngIf="showTamilDua">
+          <div class="ios-translation-block read-block" *ngIf="showTamilDua && !isReaderMode">
             <div class="ios-block-header read-header">
               <ion-icon name="text-outline"></ion-icon>
               <span>தமிழ் உச்சரிப்பு :</span>
@@ -152,7 +158,7 @@
           </div>
 
           <!-- Translation / Meaning Section -->
-          <div class="ios-translation-block meaning-block" *ngIf="showTranslation">
+          <div class="ios-translation-block meaning-block" *ngIf="showTranslation && !isReaderMode">
             <div class="ios-block-header meaning-header">
               <ion-icon name="book-outline"></ion-icon>
               <span>பொருள் / மொழிபெயர்ப்பு :</span>
@@ -163,7 +169,7 @@
           </div>
 
           <!-- Hadith References -->
-          <div class="ios-hadees-card" *ngIf="dua.DuaContent.HadithReferences?.length">
+          <div class="ios-hadees-card" *ngIf="dua.DuaContent.HadithReferences?.length && !isReaderMode">
             <div class="ios-hadees-header">
               <ion-icon name="bookmark-outline" class="ios-hadees-icon"></ion-icon>
               <span>ஆதாரம்:</span>
@@ -176,7 +182,7 @@
           </div>
 
           <!-- iOS Minimal Action Bar -->
-          <div class="ios-card-action-bar">
+          <div class="ios-card-action-bar" *ngIf="!isReaderMode">
             <ion-button fill="clear" (click)="toggleFavorite(dua)" [class.active]="isFavorite(dua)" class="ios-action-btn fav">
               <ion-icon slot="icon-only" [name]="isFavorite(dua) ? 'heart' : 'heart-outline'"></ion-icon>
             </ion-button>
@@ -199,4 +205,49 @@
       <ion-icon name="settings-sharp" class="ios-gear-icon"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+  <!-- Inline Premium Customizer Popover -->
+  <ion-popover trigger="font-customizer-trigger" dismiss-on-select="false" mode="ios" class="font-customizer-popover">
+    <ng-template>
+      <ion-content class="popover-content ion-padding">
+        <h3 class="popover-title">அளவுகள் & எழுத்துரு</h3>
+        
+        <!-- Arabic Font Size -->
+        <div class="popover-control-group">
+          <div class="popover-label-wrap">
+            <span class="popover-label">அரபு அளவு (Arabic Size)</span>
+            <span class="popover-val">{{ arabicFontSizeVal }}px</span>
+          </div>
+          <ion-range 
+            [min]="20" 
+            [max]="60" 
+            [value]="arabicFontSizeVal" 
+            (ionChange)="onArabicSizeChange($event)"
+            mode="ios"
+            class="gold-range">
+            <ion-icon slot="start" size="small" name="text-outline"></ion-icon>
+            <ion-icon slot="end" size="large" name="text-outline"></ion-icon>
+          </ion-range>
+        </div>
+
+        <!-- Tamil Font Size -->
+        <div class="popover-control-group">
+          <div class="popover-label-wrap">
+            <span class="popover-label">தமிழ் அளவு (Tamil Size)</span>
+            <span class="popover-val">{{ tamilFontSizeVal }}px</span>
+          </div>
+          <ion-range 
+            [min]="12" 
+            [max]="28" 
+            [value]="tamilFontSizeVal" 
+            (ionChange)="onTamilSizeChange($event)"
+            mode="ios"
+            class="gold-range">
+            <ion-icon slot="start" size="small" name="text-outline"></ion-icon>
+            <ion-icon slot="end" size="large" name="text-outline"></ion-icon>
+          </ion-range>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
 </ion-content>

@@ -9,6 +9,7 @@ import { Share } from '@capacitor/share';
 import { Clipboard } from '@capacitor/clipboard';
 import { Subscription } from 'rxjs';
 import { StorageService } from '../shared/service/storage.service';
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
 
 @Component({
   selector: 'app-folder',
@@ -34,6 +35,7 @@ export class FolderPage implements OnInit, OnDestroy {
   showTranslation: boolean = true;
   showHadees: boolean = true;
   showNavigationMenu: boolean = true; // Controls visibility of the navigation menu
+  isReaderMode: boolean = false; // New: distraction-free reader mode toggle
 
   private networkSubscription: Subscription | null = null;
   private settingsSubscription: Subscription | null = null;
@@ -258,7 +260,8 @@ export class FolderPage implements OnInit, OnDestroy {
       this.favorites.splice(index, 1);
     }
     await this.settingService.setFavorites(this.favorites);
-
+    await this.triggerHapticFeedback();
+    this.cdr.detectChanges();
     const message = index === -1 ? 'பிடித்தவைகளில் சேர்க்கப்பட்டது' : 'பிடித்தவைகளிலிருந்து நீக்கப்பட்டது';
     const toast = await this.toastCtrl.create({
       message,
@@ -282,6 +285,7 @@ export class FolderPage implements OnInit, OnDestroy {
     const text = `${dua.DuaTitle}\n\n${dua.DuaContent.ArabicDua}\n\nதமிழ்: ${dua.DuaContent.TamilDua}\n\nபொருள்: ${dua.DuaContent.Translation}`;
 
     await Clipboard.write({ string: text });
+    await this.triggerHapticFeedback();
 
     const toast = await this.toastCtrl.create({
       message: 'நகலெடுக்கப்பட்டது',
@@ -385,6 +389,7 @@ export class FolderPage implements OnInit, OnDestroy {
         text: shareText,
         dialogTitle: 'அன்றாடப் பிரார்த்தனைகள்',
       });
+      await this.triggerHapticFeedback();
     } catch (error) {
       console.error('Error sharing:', error);
     }
@@ -448,5 +453,37 @@ export class FolderPage implements OnInit, OnDestroy {
 
   scrollToTop() {
     this.duaContent.scrollToTop(500);
+  }
+
+  // Premium Customizer & Helpers
+  async triggerHapticFeedback() {
+    try {
+      await Haptics.impact({ style: ImpactStyle.Light });
+    } catch (e) {
+      console.log('Haptics failed/unsupported', e);
+    }
+  }
+
+  get arabicFontSizeVal(): number {
+    return parseInt(this.arabicFontSize) || 32;
+  }
+
+  get tamilFontSizeVal(): number {
+    return parseInt(this.tamilFontSize) || 17;
+  }
+
+  onArabicSizeChange(event: any) {
+    const val = event.detail.value;
+    this.settingService.setArabicFontSize(val);
+  }
+
+  onTamilSizeChange(event: any) {
+    const val = event.detail.value;
+    this.settingService.setTamilFontSize(val);
+  }
+
+  toggleReaderMode() {
+    this.isReaderMode = !this.isReaderMode;
+    this.triggerHapticFeedback();
   }
 }

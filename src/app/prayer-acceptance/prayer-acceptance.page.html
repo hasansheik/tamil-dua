@@ -7,9 +7,14 @@
       {{PageTitle}}
     </ion-title>
   </ion-toolbar>
+  
+  <!-- Sleek Apple HIG style Scroll Progress Bar -->
+  <div class="ios-scroll-progress-container">
+    <div class="ios-scroll-progress-bar" [style.width.%]="scrollProgress"></div>
+  </div>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ios-prayer-content-bg ion-padding">
+<ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="onScroll($event)" class="ios-prayer-content-bg ion-padding">
   <div class="ios-large-title-wrapper" *ngIf="PageTitle">
     <h1 class="ios-large-title">{{ PageTitle }}</h1>
   </div>

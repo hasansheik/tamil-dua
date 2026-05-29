@@ -252,9 +252,254 @@
   position: relative;
   overflow: hidden;
 }
-@media (min-width: 768px) {
-  .ios-container {
-    max-width: 600px;
-    margin: 0 auto;
+
+/* 1. Dynamic Greeting Panel */
+.ios-greeting-panel {
+  padding: 16px 4px 14px 4px;
+
+  .ios-greeting-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .ios-greeting-text-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .ios-greeting-sub {
+    font-family: var(--font-family-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--ion-color-secondary);
+  }
+
+  .ios-greeting-title {
+    font-family: var(--font-family-heading);
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+    color: var(--ion-text-color);
+    margin: 0;
+    line-height: var(--tamil-line-height);
+  }
+
+  .ios-greeting-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--ion-card-background);
+    box-shadow: var(--premium-shadow-sm);
+    color: var(--ion-color-primary);
+    border: 0.5px solid var(--ion-border-color);
+
+    .ios-greeting-icon {
+      font-size: 24px;
+    }
   }
 }
+
+/* 2. Dashboard Stats Layout (2x1 Grid) */
+.ios-dashboard-stats {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+
+  .ios-stat-card {
+    flex: 1;
+    background: var(--ion-card-background);
+    border-radius: 12px;
+    padding: 12px 14px;
+    border: 0.5px solid var(--ion-border-color);
+    box-shadow: var(--premium-shadow-sm);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: var(--premium-transition);
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--premium-shadow-md);
+    }
+
+    .stat-icon-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      font-size: 16px;
+
+      &.warning {
+        background: rgba(var(--ion-color-warning-rgb), 0.1);
+        color: var(--ion-color-warning-shade);
+      }
+      &.danger {
+        background: rgba(var(--ion-color-danger-rgb), 0.1);
+        color: var(--ion-color-danger);
+      }
+    }
+
+    .stat-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+
+      .stat-label {
+        font-family: var(--font-family-heading);
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--ion-color-secondary);
+        line-height: var(--tamil-line-height);
+      }
+
+      .stat-value {
+        font-family: var(--font-family-sans);
+        
+        &.num {
+          font-size: 1rem;
+          font-weight: 700;
+          color: var(--ion-text-color);
+        }
+        &.text {
+          font-size: 0.72rem;
+          color: var(--ion-color-secondary);
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+/* 3. Featured Daily Supplication Card */
+.ios-daily-card {
+  background: var(--ion-card-background);
+  border-radius: var(--premium-border-radius);
+  border: 0.5px solid rgba(var(--ion-color-primary-rgb), 0.25);
+  background: linear-gradient(135deg, var(--ion-card-background) 0%, rgba(var(--ion-color-primary-rgb), 0.03) 100%);
+  padding: 18px 20px;
+  box-shadow: var(--premium-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+
+  .daily-badge {
+    align-self: flex-start;
+    background: rgba(var(--ion-color-primary-rgb), 0.1);
+    color: var(--ion-color-primary);
+    font-family: var(--font-family-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  .daily-title {
+    font-family: var(--font-family-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ion-text-color);
+    margin: 4px 0 0 0;
+    line-height: var(--tamil-line-height);
+  }
+
+  .daily-arabic {
+    font-family: 'Scheherazade', serif !important;
+    font-size: 1.5rem;
+    line-height: var(--arabic-line-height);
+    color: var(--ion-text-color);
+    text-align: right;
+    direction: rtl;
+    padding: 6px 0;
+    border-bottom: 0.5px dashed var(--ion-border-color);
+    margin-bottom: 4px;
+  }
+
+  .daily-tamil {
+    font-family: var(--font-family-sans);
+    font-size: 0.88rem;
+    line-height: var(--tamil-line-height);
+    color: var(--ion-text-color);
+    margin: 0;
+  }
+
+  .daily-action-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 0.5px solid var(--ion-border-color);
+
+    .daily-chapter-name {
+      font-family: var(--font-family-sans);
+      font-size: 0.75rem;
+      color: var(--ion-color-secondary);
+      font-weight: 500;
+    }
+
+    .daily-read-btn {
+      background: var(--ion-color-primary);
+      color: var(--ion-color-primary-contrast);
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-family-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: var(--premium-shadow-sm);
+      transition: var(--premium-transition);
+
+      &:hover {
+        opacity: 0.9;
+        transform: translateX(1px);
+      }
+
+      ion-icon {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+/* 4. Global Search Results View */
+.search-results-wrapper {
+  margin-top: 8px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 768px) {
+  .ios-container,
+  .ios-greeting-panel,
+  .ios-dashboard-stats,
+  .ios-daily-card,
+  .ios-card {
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
