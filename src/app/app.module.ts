@@ -16,7 +16,10 @@ import { NetworkService } from './shared/service/network.service';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({
+      mode: 'ios',
+      animated: true
+    }),
     AppRoutingModule,
     HttpClientModule
   ],
