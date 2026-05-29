@@ -227,3 +227,73 @@ h1, h2, h3, h4, h5, h6, .ios-large-title, .ios-page-title, .ios-settings-title, 
     z-index: 10;
   }
 }
+
+/* Premium Outline Buttons & Header Styles */
+.ios-toolbar {
+  --background: rgba(var(--ion-card-background-rgb), 0.8) !important;
+  backdrop-filter: saturate(180%) blur(25px) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(25px) !important;
+  border-bottom: 0.5px solid rgba(var(--ion-color-primary-rgb), 0.2) !important;
+
+  .ios-detail-title {
+    font-family: var(--font-family-heading) !important;
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.5px !important;
+    color: var(--ion-text-color) !important;
+  }
+}
+
+.premium-hdr-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 12px;
+}
+
+.premium-hdr-btn {
+  --background: transparent !important;
+  --background-hover: rgba(var(--ion-color-primary-rgb), 0.08) !important;
+  --background-focused: rgba(var(--ion-color-primary-rgb), 0.12) !important;
+  --border-radius: 50% !important;
+  --border-style: solid !important;
+  --border-width: 1px !important;
+  --border-color: rgba(var(--ion-color-primary-rgb), 0.25) !important;
+  --color: var(--ion-color-primary) !important;
+  margin: 0 !important;
+  width: 36px !important;
+  height: 36px !important;
+  --padding-start: 0px !important;
+  --padding-end: 0px !important;
+  transition: var(--premium-transition) !important;
+
+  ion-icon {
+    font-size: 18px !important;
+  }
+
+  &.active {
+    --background: rgba(var(--ion-color-primary-rgb), 0.15) !important;
+    --border-color: var(--ion-color-primary) !important;
+    --color: var(--ion-color-primary) !important;
+  }
+}
+
+.premium-hdr-menu-btn {
+  --color: var(--ion-color-primary) !important;
+  --background-hover: rgba(var(--ion-color-primary-rgb), 0.08) !important;
+  border: 1px solid rgba(var(--ion-color-primary-rgb), 0.25) !important;
+  border-radius: 50% !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-left: 12px !important;
+  transition: var(--premium-transition) !important;
+
+  &::part(button) {
+    padding: 0 !important;
+    width: 36px !important;
+    height: 36px !important;
+  }
+}

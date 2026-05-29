@@ -1,25 +1,4 @@
-/* Dedicated Favorites Styling */
-.ios-toolbar {
-  --background: rgba(var(--ion-card-background-rgb), 0.8) !important;
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 0.5px solid rgba(var(--ion-border-color-rgb), 0.55);
-  --border-width: 0px !important;
-  box-shadow: none;
-
-  .ios-detail-title {
-    font-family: var(--font-family-heading);
-    font-weight: 600;
-    font-size: 1.05rem;
-    letter-spacing: -0.2px;
-    line-height: var(--tamil-line-height);
-  }
-
-  .ios-menu-btn, .ios-toolbar-btn {
-    --color: var(--ion-color-primary);
-  }
-}
-
+/* Overhauled Premium Favorites Styling */
 .ios-detail-bg {
   --background: var(--ion-background-color);
 }
@@ -38,12 +17,13 @@
 
 .ios-skeleton-card {
   background: var(--ion-card-background);
-  border-radius: var(--premium-border-radius);
-  padding: 16px;
+  border-radius: 16px;
+  padding: 20px;
   box-shadow: var(--premium-shadow-sm);
+  border: 1px solid var(--ion-border-color);
 }
 
-/* Empty State Styling */
+/* Premium Empty State Styling */
 .ios-empty-state {
   display: flex;
   flex-direction: column;
@@ -51,33 +31,140 @@
   justify-content: center;
   padding: 100px 24px;
   text-align: center;
+  background: transparent;
 
   .ios-empty-icon {
-    font-size: 3.8rem;
-    margin-bottom: 16px;
-    opacity: 0.85;
+    font-size: 4rem;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 4px 8px rgba(var(--ion-color-danger-rgb), 0.15));
 
     &.danger-icon {
-      color: rgba(var(--ion-color-danger-rgb), 0.65);
+      color: rgba(var(--ion-color-danger-rgb), 0.7);
     }
   }
 
   h2 {
     font-family: var(--font-family-heading);
-    font-size: 1.15rem;
-    font-weight: 700;
+    font-size: 1.25rem;
+    font-weight: 800;
     color: var(--ion-text-color);
-    margin: 0 0 8px 0;
+    margin: 0 0 10px 0;
     line-height: var(--tamil-line-height);
   }
 
   p {
     font-family: var(--font-family-sans);
-    font-size: 0.88rem;
+    font-size: 0.92rem;
     color: var(--ion-color-secondary);
     margin: 0;
     line-height: var(--tamil-line-height);
+    max-width: 280px;
   }
+}
+
+/* Premium Hero Header Banner */
+.ios-hero-banner-premium {
+  margin: 20px 16px 8px 16px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 50%, #3a3a3c 100%);
+  border: 1px solid rgba(var(--ion-color-primary-rgb), 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  color: #ffffff;
+  overflow: hidden;
+  position: relative;
+
+  /* Subtle background design element */
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(var(--ion-color-primary-rgb), 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .ios-hero-banner-premium-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ios-hero-banner-premium-left {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-right: 12px;
+  }
+
+  .ios-hero-banner-tag {
+    font-family: var(--font-family-sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--ion-color-primary);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+
+  .ios-hero-banner-title {
+    font-family: var(--font-family-heading);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 6px 0 4px 0;
+    letter-spacing: -0.5px;
+  }
+
+  .ios-hero-banner-desc {
+    font-family: var(--font-family-sans);
+    font-size: 0.82rem;
+    color: #aeaeb2;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .ios-hero-banner-premium-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ios-hero-badge-circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(var(--ion-color-primary-rgb), 0.4);
+    background: rgba(var(--ion-color-primary-rgb), 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    .ios-hero-badge-heart {
+      font-size: 20px;
+      color: var(--ion-color-primary);
+      margin-bottom: 2px;
+      animation: heartbeat 2s infinite ease-in-out;
+    }
+
+    .ios-hero-badge-count {
+      font-family: var(--font-family-sans);
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
 }
 
 /* Cards Container */
@@ -89,13 +176,13 @@
 }
 
 .animate-in {
-  animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: slideUpFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes slideUpFade {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -106,37 +193,43 @@
 /* Supplication Card Design */
 .ios-dua-card {
   margin: 12px 16px;
-  border-radius: var(--premium-border-radius);
-  background: var(--ion-card-background);
-  box-shadow: var(--premium-shadow-sm);
-  border: 0.5px solid var(--ion-border-color);
+  border-radius: 16px;
+  background: rgba(var(--ion-card-background-rgb), 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--premium-shadow-md);
+  border: 1px solid rgba(var(--ion-color-primary-rgb), 0.18);
   transition: var(--premium-transition);
 
   &:hover {
-    box-shadow: var(--premium-shadow-md);
+    box-shadow: var(--premium-shadow-lg);
+    transform: translateY(-2px);
+    border-color: rgba(var(--ion-color-primary-rgb), 0.35);
   }
 
   .ios-dua-card-header {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    padding: 16px 20px;
-    border-bottom: 0.5px solid var(--ion-border-color);
+    padding: 18px 20px;
+    border-bottom: 0.5px solid rgba(var(--ion-color-primary-rgb), 0.15);
 
     .ios-dua-num-badge {
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 24px;
-      height: 24px;
+      min-width: 26px;
+      height: 26px;
       border-radius: 50%;
-      background: rgba(var(--ion-color-primary-rgb), 0.1);
+      background: linear-gradient(135deg, rgba(var(--ion-color-primary-rgb), 0.15) 0%, rgba(var(--ion-color-primary-rgb), 0.05) 100%);
+      border: 1px solid rgba(var(--ion-color-primary-rgb), 0.3);
       color: var(--ion-color-primary);
       font-family: var(--font-family-sans);
       font-size: 0.8rem;
       font-weight: 700;
       flex-shrink: 0;
       margin-top: 2px;
+      box-shadow: var(--premium-shadow-sm);
     }
 
     .ios-dua-title-group {
@@ -158,14 +251,16 @@
     .ios-dua-chapter-badge {
       align-self: flex-start;
       font-family: var(--font-family-sans);
-      font-size: 0.72rem;
-      font-weight: 600;
+      font-size: 0.68rem;
+      font-weight: 700;
       color: var(--ion-color-primary);
-      background: rgba(var(--ion-color-primary-rgb), 0.08);
-      padding: 2px 8px;
+      background: linear-gradient(90deg, rgba(var(--ion-color-primary-rgb), 0.08) 0%, rgba(var(--ion-color-primary-rgb), 0.02) 100%);
+      padding: 2px 10px;
       border-radius: 50px;
-      border: 0.5px solid rgba(var(--ion-color-primary-rgb), 0.15);
-      margin-top: 2px;
+      border: 1px solid rgba(var(--ion-color-primary-rgb), 0.2);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
     }
   }
 
@@ -177,10 +272,10 @@
 /* Notes Frame */
 .ios-note-box {
   background: rgba(var(--ion-color-primary-rgb), 0.04);
-  border-radius: 10px;
-  padding: 12px 16px;
+  border-radius: 12px;
+  padding: 14px 18px;
   margin-bottom: 20px;
-  border: 0.5px solid rgba(var(--ion-color-primary-rgb), 0.1);
+  border: 1px solid rgba(var(--ion-color-primary-rgb), 0.12);
 
   .ios-note-header {
     display: flex;
@@ -190,11 +285,11 @@
     font-size: 0.82rem;
     font-weight: 700;
     color: var(--ion-color-primary);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     line-height: var(--tamil-line-height);
 
     .ios-note-icon {
-      font-size: 14px;
+      font-size: 15px;
     }
   }
 
@@ -209,22 +304,23 @@
 
 /* Quranic Arabic Block */
 .ios-arabic-frame {
-  background: rgba(var(--ion-color-secondary-rgb), 0.03);
-  border-radius: 10px;
-  border: 0.5px solid var(--ion-border-color);
-  padding: 16px;
+  background: rgba(var(--ion-color-secondary-rgb), 0.02);
+  border-radius: 14px;
+  border: 1.5px solid rgba(var(--ion-color-primary-rgb), 0.2);
+  padding: 18px;
   margin-bottom: 20px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.02);
 
   .ios-arabic-frame-header {
     font-family: var(--font-family-heading);
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.72rem;
+    font-weight: 700;
     text-transform: uppercase;
     color: var(--ion-color-secondary);
-    letter-spacing: 0.3px;
-    margin-bottom: 8px;
-    border-bottom: 0.5px dashed var(--ion-border-color);
-    padding-bottom: 4px;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    border-bottom: 0.5px dashed rgba(var(--ion-color-primary-rgb), 0.2);
+    padding-bottom: 6px;
   }
 
   .ios-arabic-text {
@@ -258,10 +354,11 @@
 /* Reading blocks */
 .ios-translation-block {
   margin-bottom: 16px;
-  padding: 14px 16px;
-  border-radius: 10px;
-  border: 0.5px solid var(--ion-border-color);
-  background: rgba(var(--ion-color-secondary-rgb), 0.02);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--ion-border-color);
+  background: rgba(var(--ion-color-secondary-rgb), 0.01);
+  transition: var(--premium-transition);
 
   .ios-block-header {
     display: flex;
@@ -274,7 +371,7 @@
     line-height: var(--tamil-line-height);
 
     ion-icon {
-      font-size: 14px;
+      font-size: 15px;
     }
   }
 
@@ -286,7 +383,7 @@
   }
 
   &.read-block {
-    border-color: rgba(var(--ion-color-primary-rgb), 0.18);
+    border-color: rgba(var(--ion-color-primary-rgb), 0.22);
     background: rgba(var(--ion-color-primary-rgb), 0.02);
 
     .read-header {
@@ -295,7 +392,7 @@
   }
 
   &.meaning-block {
-    border-color: var(--ion-border-color);
+    border-color: rgba(var(--ion-border-color-rgb), 0.7);
     background: rgba(var(--ion-color-secondary-rgb), 0.02);
 
     .meaning-header {
@@ -308,8 +405,8 @@
 .ios-hadees-card {
   background: transparent;
   border: none;
-  border-top: 0.5px solid var(--ion-border-color);
-  padding-top: 14px;
+  border-top: 1px solid rgba(var(--ion-color-primary-rgb), 0.12);
+  padding-top: 16px;
   margin-top: 20px;
 
   .ios-hadees-header {
@@ -320,11 +417,11 @@
     font-size: 0.82rem;
     font-weight: 700;
     color: var(--ion-color-secondary);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     line-height: var(--tamil-line-height);
 
     .ios-hadees-icon {
-      font-size: 14px;
+      font-size: 15px;
     }
   }
 
@@ -344,30 +441,39 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 16px;
-  border-top: 0.5px solid var(--ion-border-color);
+  gap: 12px;
+  border-top: 0.5px solid rgba(var(--ion-color-primary-rgb), 0.15);
   margin-top: 18px;
-  padding-top: 12px;
+  padding-top: 14px;
 
   .ios-action-btn {
+    --background: transparent;
+    --background-hover: rgba(var(--ion-color-primary-rgb), 0.08);
+    --border-radius: 50%;
+    --border-style: solid;
+    --border-width: 1px;
+    --border-color: rgba(var(--ion-color-primary-rgb), 0.2);
+    --color: var(--ion-color-secondary);
+    margin: 0;
+    width: 38px;
+    height: 38px;
     --padding-start: 0;
     --padding-end: 0;
-    margin: 0;
-    width: 32px;
-    height: 32px;
-    --color: var(--ion-color-secondary);
     transition: var(--premium-transition);
 
     &:hover {
       --color: var(--ion-color-primary);
+      --border-color: rgba(var(--ion-color-primary-rgb), 0.45);
     }
 
     &.fav.active {
       --color: var(--ion-color-danger);
+      --border-color: rgba(var(--ion-color-danger-rgb), 0.25);
+      --background-hover: rgba(var(--ion-color-danger-rgb), 0.08);
     }
 
     ion-icon {
-      font-size: 18px;
+      font-size: 17px;
     }
   }
 }

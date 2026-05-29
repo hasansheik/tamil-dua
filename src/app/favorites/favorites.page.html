@@ -1,17 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ios-toolbar">
     <ion-buttons slot="start">
-      <ion-menu-button class="ios-menu-btn"></ion-menu-button>
+      <ion-menu-button class="premium-hdr-menu-btn"></ion-menu-button>
     </ion-buttons>
     <ion-title class="ios-detail-title">விருப்பமானவை</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="toggleReaderMode()" class="ios-toolbar-btn" [color]="isReaderMode ? 'warning' : ''">
+    <ion-buttons slot="end" class="premium-hdr-buttons">
+      <ion-button (click)="toggleReaderMode()" class="premium-hdr-btn" [class.active]="isReaderMode">
         <ion-icon slot="icon-only" [name]="isReaderMode ? 'book' : 'book-outline'"></ion-icon>
       </ion-button>
-      <ion-button id="fav-font-customizer-trigger" class="ios-toolbar-btn">
+      <ion-button id="fav-font-customizer-trigger" class="premium-hdr-btn">
         <ion-icon slot="icon-only" name="text-outline"></ion-icon>
       </ion-button>
-      <ion-button routerLink="/home" class="ios-toolbar-btn">
+      <ion-button routerLink="/home" class="premium-hdr-btn">
         <ion-icon slot="icon-only" name="home-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -19,11 +19,23 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ios-detail-bg">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large" class="ios-condense-title">விருப்பமானவை</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
+  <!-- Premium Hero Header Banner -->
+  <div class="ios-hero-banner-premium animate-in" *ngIf="!isLoading && favoriteDuas.length > 0">
+    <div class="ios-hero-banner-premium-inner">
+      <div class="ios-hero-banner-premium-left">
+        <span class="ios-hero-banner-tag">விருப்பமானவை • Treasured Bookmarks</span>
+        <h1 class="ios-hero-banner-title">நெஞ்சில் நின்றவை</h1>
+        <p class="ios-hero-banner-desc">உங்கள் இதயத்திற்கு நெருக்கமான பிரார்த்தனைகள் மற்றும் இறை தியானங்கள்</p>
+      </div>
+      <div class="ios-hero-banner-premium-right">
+        <div class="ios-hero-badge-circle">
+          <ion-icon name="heart" class="ios-hero-badge-heart"></ion-icon>
+          <span class="ios-hero-badge-count">{{ favoriteDuas.length }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Loading State -->
   <div *ngIf="isLoading" class="skeleton-wrapper ion-padding">
