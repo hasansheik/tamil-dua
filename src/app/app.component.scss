@@ -72,6 +72,22 @@ ion-menu {
     --border-radius: 10px !important;
     padding: 0;
     margin: 0;
+    
+    // Custom height to prevent vertical clamping
+    height: 48px !important;
+
+    &::part(search-icon) {
+      color: var(--ion-color-secondary);
+    }
+
+    &::part(input) {
+      font-family: var(--font-family-sans) !important;
+      font-size: 0.9rem !important;
+      line-height: var(--tamil-line-height) !important; // Prevent clipping of vowels/modifiers
+      padding-top: 6px !important;
+      padding-bottom: 6px !important;
+      height: 100% !important;
+    }
   }
 }
 
@@ -113,13 +129,14 @@ ion-menu {
     height: 100%;
 
     &:hover {
-      transform: translateY(-1px);
+      transform: translateY(-2px);
       box-shadow: var(--premium-shadow-md);
     }
 
     &.active {
-      border-color: rgba(var(--ion-color-primary-rgb), 0.5);
+      border-color: rgba(var(--ion-color-primary-rgb), 0.4);
       background: rgba(var(--ion-color-primary-rgb), 0.04);
+      box-shadow: 0 4px 14px rgba(var(--ion-color-primary-rgb), 0.08) !important;
 
       .ios-grid-card-label {
         color: var(--ion-color-primary);
@@ -210,20 +227,20 @@ ion-menu {
     }
 
     &.active {
-      background: rgba(var(--ion-color-primary-rgb), 0.05);
+      background: rgba(var(--ion-color-primary-rgb), 0.04);
 
       .ios-sidebar-item-text {
         color: var(--ion-color-primary);
         font-weight: 600;
       }
 
-      .ios-sidebar-item-num {
+      .ios-sidebar-item-icon-wrap {
         background: var(--ion-color-primary);
         color: var(--ion-color-primary-contrast);
       }
 
       .ios-sidebar-item-icon {
-        color: var(--ion-color-primary);
+        color: var(--ion-color-primary-contrast);
       }
     }
 
@@ -235,25 +252,20 @@ ion-menu {
       width: 100%;
     }
 
-    .ios-sidebar-item-num {
+    .ios-sidebar-item-icon-wrap {
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 18px;
-      height: 18px;
-      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
       background: rgba(var(--ion-color-primary-rgb), 0.08);
       color: var(--ion-color-primary);
-      font-family: var(--font-family-sans);
-      font-size: 0.72rem;
-      font-weight: 700;
       transition: var(--premium-transition);
-    }
 
-    .ios-sidebar-item-icon {
-      font-size: 16px;
-      color: var(--ion-color-primary);
-      flex-shrink: 0;
+      .ios-sidebar-item-icon {
+        font-size: 14px;
+      }
     }
 
     .ios-sidebar-item-text {
