@@ -74,11 +74,4 @@ export class AppComponent {
     }
   }
 
-  getFavoritesUrl() {
-    const chapters = this.getChapters();
-    if (chapters && chapters.length > 0) {
-      return chapters[0].url;
-    }
-    return '/home';
-  }
 }

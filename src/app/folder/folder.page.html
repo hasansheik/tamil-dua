@@ -5,6 +5,9 @@
     </ion-buttons>
     <ion-title class="ios-detail-title">{{ duaGroupTitle }}</ion-title>
     <ion-buttons slot="end">
+      <ion-button (click)="toggleSearchBar()" class="ios-toolbar-btn">
+        <ion-icon slot="icon-only" [name]="showSearch ? 'search' : 'search-outline'"></ion-icon>
+      </ion-button>
       <ion-button (click)="toggleReaderMode()" class="ios-toolbar-btn" [color]="isReaderMode ? 'warning' : ''">
         <ion-icon slot="icon-only" [name]="isReaderMode ? 'book' : 'book-outline'"></ion-icon>
       </ion-button>
@@ -29,7 +32,7 @@
           type="text" 
           [(ngModel)]="searchText" 
           (input)="filterDuas()" 
-          placeholder="தேடல்... தமிழ் விசைப்பலகையைப் பயன்படுத்தவும்" 
+          placeholder="இப்பக்கத்தில் தேடுக..." 
           class="custom-search-input"
         />
         <button 
@@ -43,21 +46,6 @@
         Cancel
       </button>
     </div>
-  </ion-toolbar>
-
-  <!-- iOS-Style Segment Toolbar -->
-  <ion-toolbar class="ios-segment-toolbar">
-    <ion-segment [(ngModel)]="selectedCategory" (ionChange)="onCategoryChange()" class="ios-segment" mode="ios">
-      <ion-segment-button value="all" class="ios-segment-btn">
-        <ion-label>துஆக்கள்</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="favorites" class="ios-segment-btn">
-        <ion-label>விருப்பம்</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="search" class="ios-segment-btn">
-        <ion-label>தேடல்</ion-label>
-      </ion-segment-button>
-    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
@@ -81,7 +69,7 @@
   </div>
 
   <!-- iOS Collapsible Index List (Inset Grouped) -->
-  <div *ngIf="showNavigationMenu && !isLoading && filteredDuas.length > 0 && selectedCategory !== 'search'" class="ios-index-list-grouped">
+  <div *ngIf="showNavigationMenu && !isLoading && filteredDuas.length > 0" class="ios-index-list-grouped">
     <div class="ios-index-grid">
       <div *ngFor="let dua of filteredDuas; let i = index" 
            (click)="scrollToDua(i)" 

@@ -28,7 +28,6 @@ export class FolderPage implements OnInit, OnDestroy {
   isOffline = false;
   showSearch = false;
   searchText = '';
-  selectedCategory = 'all';
   favorites: string[] = [];
   currentlyPlaying: string | null = null;
   showTamilDua: boolean = true;
@@ -40,7 +39,6 @@ export class FolderPage implements OnInit, OnDestroy {
   private networkSubscription: Subscription | null = null;
   private settingsSubscription: Subscription | null = null;
   private routeSubscription: Subscription | null = null;
-  private queryParamsSubscription: Subscription | null = null;
   private pageId: string | null = null;
 
   @ViewChild('duaContent', { static: false }) duaContent: IonContent;
@@ -90,14 +88,6 @@ export class FolderPage implements OnInit, OnDestroy {
       await this.updateLastVisitedPages(id!);
     });
 
-    // Subscribe to query params to set segment/category (e.g. favorites)
-    this.queryParamsSubscription = this.activatedRoute.queryParams.subscribe(async (params) => {
-      if (params && params['segment']) {
-        this.selectedCategory = params['segment'];
-        await this.filterDuas();
-      }
-    });
-
     // Subscribe to settings changes
     this.settingsSubscription = this.settingService.observableSettings.subscribe(settings => {
       if (settings) {
@@ -119,7 +109,6 @@ export class FolderPage implements OnInit, OnDestroy {
     this.networkSubscription?.unsubscribe();
     this.settingsSubscription?.unsubscribe();
     this.routeSubscription?.unsubscribe();
-    this.queryParamsSubscription?.unsubscribe();
   }
 
   private async initializeSubscriptions() {
@@ -187,31 +176,24 @@ export class FolderPage implements OnInit, OnDestroy {
     try {
       let filtered: any[] = [];
 
-      if (this.selectedCategory === 'search') {
-        if (this.searchText) {
-          filtered = await this.duaService.searchDuas(this.searchText);
-          this.duaGroupTitle = 'தேடல் முடிவுகள்';
-        } else {
-          filtered = [];
-          this.duaGroupTitle = 'தேடல் செய்ய உள்ளிடவும்';
-        }
-      } else if (this.selectedCategory === 'favorites') {
-        console.log('filterDuas - Favorites selected');
-        filtered = await this.duaService.getFavoriteDuas(this.favorites);
-        console.log('filterDuas - Favorites received');
-        this.duaGroupTitle = 'நெஞ்சில் நின்றவை';
+      if (this.showSearch && this.searchText) {
+        const query = this.searchText.toLowerCase().trim();
+        filtered = this.duaList.filter(dua => {
+          const title = dua.DuaTitle?.toLowerCase() ?? '';
+          const arabic = dua.DuaContent?.ArabicDua?.toLowerCase() ?? '';
+          const tamil = dua.DuaContent?.TamilDua?.toLowerCase() ?? '';
+          const translation = dua.DuaContent?.Translation?.toLowerCase() ?? '';
+
+          return title.includes(query) ||
+            arabic.includes(query) ||
+            tamil.includes(query) ||
+            translation.includes(query);
+        });
       } else {
         filtered = [...this.duaList];
-        console.log('filterDuas - All duas selected');
-        // Reset title to the original dua group title when showing all
-        const duaGroup = await this.duaService.getDuaGroupById(this.pageId!);
-        if (duaGroup) {
-          this.duaGroupTitle = duaGroup.PageTitle || 'முஸ்லீம்களின் அன்றாடப் பிரார்த்தனைகள்';
-        }
       }
 
       this.filteredDuas = filtered;
-      console.log('filterDuas - Filtered duas:', this.filteredDuas);
       this.cdr.detectChanges();
     } catch (error) {
       console.error('Error in filterDuas:', error);
@@ -224,28 +206,14 @@ export class FolderPage implements OnInit, OnDestroy {
     this.showSearch = !this.showSearch;
     if (!this.showSearch) {
       this.searchText = '';
-      await this.filterDuas();
     }
-  }
-
-  onCategoryChange() {
-    if (this.selectedCategory === 'search' && !this.showSearch) {
-      this.showSearch = true;
-    } else if (this.selectedCategory !== 'search' && this.showSearch) {
-      this.showSearch = false;
-      this.searchText = '';
-    }
-    this.filterDuas();
+    await this.filterDuas();
   }
 
   // Favorites Management
   async loadFavorites() {
     try {
       this.favorites = await this.settingService.getFavorites();
-      // If viewing favorites, refresh the filtered list
-      if (this.selectedCategory === 'favorites') {
-        this.filterDuas();
-      }
     } catch (error) {
       console.error('Error loading favorites:', error);
       this.favorites = [];
@@ -298,29 +266,34 @@ export class FolderPage implements OnInit, OnDestroy {
   // Action Sheet
   async presentActionSheet() {
     const actionSheet = await this.actionSheetCtrl.create({
-      header: 'மேலும் விருப்பங்கள்',
+      header: 'வழிசெலுத்தல் (Navigation)',
       buttons: [
         {
-          text: 'பிடித்தவைகளை காட்டு',
+          text: 'விருப்பமானவை (Favorites)',
           icon: 'heart',
-          handler: async () => {
-            this.selectedCategory = 'favorites';
-            await this.filterDuas();
+          handler: () => {
+            this.navController.navigateForward('/favorites');
           }
         },
         {
-          text: 'அனைத்தையும் காட்டு',
-          icon: 'list',
-          handler: async () => {
-            this.selectedCategory = 'all';
-            await this.filterDuas();
-          }
-        },
-        {
-          text: 'தேடல்',
+          text: 'இப்பக்கத்தில் தேடுக (Search in Page)',
           icon: 'search',
-          handler: async () => {
+          handler: () => {
             this.toggleSearchBar();
+          }
+        },
+        {
+          text: 'முகப்பு (Home)',
+          icon: 'home',
+          handler: () => {
+            this.navController.navigateRoot('/home');
+          }
+        },
+        {
+          text: 'அமைப்புகள் (Settings)',
+          icon: 'settings',
+          handler: () => {
+            this.navController.navigateForward('/settings');
           }
         },
         {
