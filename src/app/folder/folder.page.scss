@@ -406,13 +406,13 @@
   }
 }
 
-/* Transliteration & Translation Blocks (Apple Style vertical indicators) */
+/* Transliteration & Translation Blocks (Apple Style rounded cards) */
 .ios-translation-block {
   margin-bottom: 16px;
-  padding: 12px 14px;
-  background: transparent;
-  border: none;
-  border-left: 3px solid var(--ion-border-color); // Clean thin left bar
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 0.5px solid var(--ion-border-color);
+  background: rgba(var(--ion-color-secondary-rgb), 0.02);
 
   .ios-block-header {
     display: flex;
@@ -421,7 +421,7 @@
     font-family: var(--font-family-heading);
     font-size: 0.82rem;
     font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     line-height: var(--tamil-line-height);
 
     ion-icon {
@@ -438,7 +438,8 @@
   }
 
   &.read-block {
-    border-left-color: var(--ion-color-primary); // System gold left bar
+    border-color: rgba(var(--ion-color-primary-rgb), 0.18);
+    background: rgba(var(--ion-color-primary-rgb), 0.02);
 
     .read-header {
       color: var(--ion-color-primary);
@@ -446,7 +447,8 @@
   }
 
   &.meaning-block {
-    border-left-color: var(--ion-color-secondary); // Muted gray left bar
+    border-color: var(--ion-border-color);
+    background: rgba(var(--ion-color-secondary-rgb), 0.02);
 
     .meaning-header {
       color: var(--ion-color-secondary);
