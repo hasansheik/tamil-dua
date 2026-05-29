@@ -1,7 +1,7 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar class="ios-settings-toolbar">
     <ion-buttons slot="start">
-      <ion-menu-button class="ios-menu-btn"></ion-menu-button>
+      <ion-back-button defaultHref="/home" class="ios-back-btn" text="முகப்பு"></ion-back-button>
     </ion-buttons>
     <ion-title class="ios-settings-title">அமைப்புகள்</ion-title>
   </ion-toolbar>
@@ -11,19 +11,19 @@
   <div class="ios-settings-container">
     
     <!-- Section 1: Font Selection -->
-    <div class="ios-group-header">அரபி எழுத்துருவகை (Fonts)</div>
+    <div class="ios-group-header">அரபி எழுத்துருவகை (Arabic Fonts)</div>
     <div class="ios-group-list-box">
       <ion-radio-group [(ngModel)]="selectedArabicFont" (ionChange)="onArabicFontChange($event)" class="ios-font-radio-group">
-        <!-- Arabic Font Options as Clickable Inset Cells -->
-        <ion-item lines="none" class="ios-font-item ripple">
+        
+        <ion-item lines="none" class="ios-font-item ripple" button>
           <ion-radio slot="start" value="arabic" class="ios-radio-control"></ion-radio>
           <ion-label class="ios-font-label-wrap">
             <span class="ios-font-name">Scheherazade (Default)</span>
             <p class="ios-font-arabic font-scheherazade">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
           </ion-label>
         </ion-item>
-
-        <ion-item lines="none" class="ios-font-item ripple">
+ 
+        <ion-item lines="none" class="ios-font-item ripple" button>
           <ion-radio slot="start" value="ar" class="ios-radio-control"></ion-radio>
           <ion-label class="ios-font-label-wrap">
             <span class="ios-font-name">Katibeh</span>
@@ -31,7 +31,7 @@
           </ion-label>
         </ion-item>
 
-        <ion-item lines="none" class="ios-font-item ripple">
+        <ion-item lines="none" class="ios-font-item ripple" button>
           <ion-radio slot="start" value="arab" class="ios-radio-control"></ion-radio>
           <ion-label class="ios-font-label-wrap">
             <span class="ios-font-name">Qahiri</span>
@@ -39,7 +39,7 @@
           </ion-label>
         </ion-item>
 
-        <ion-item lines="none" class="ios-font-item ripple">
+        <ion-item lines="none" class="ios-font-item ripple" button>
           <ion-radio slot="start" value="arab2" class="ios-radio-control"></ion-radio>
           <ion-label class="ios-font-label-wrap">
             <span class="ios-font-name">Amiri Arabic</span>
@@ -47,19 +47,22 @@
           </ion-label>
         </ion-item>
 
-        <ion-item lines="none" class="ios-font-item ripple">
+        <ion-item lines="none" class="ios-font-item ripple" button>
           <ion-radio slot="start" value="arab3" class="ios-radio-control"></ion-radio>
           <ion-label class="ios-font-label-wrap">
             <span class="ios-font-name">Scheherazade OT</span>
             <p class="ios-font-arabic font-scheherazade-ot">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
           </ion-label>
         </ion-item>
+
       </ion-radio-group>
     </div>
 
     <!-- Section 2: Font Sizes -->
     <div class="ios-group-header">எழுத்துரு அளவு (Font Sizes)</div>
     <div class="ios-group-list-box padding-box">
+      
+      <!-- Arabic Slider -->
       <div class="ios-slider-item">
         <div class="ios-slider-label-row">
           <span class="ios-slider-title">அரபி எழுத்துரு அளவு</span>
@@ -82,6 +85,7 @@
         </ion-range>
       </div>
 
+      <!-- Tamil Slider -->
       <div class="ios-slider-item">
         <div class="ios-slider-label-row">
           <span class="ios-slider-title">தமிழ் எழுத்துரு அளவு</span>
@@ -103,6 +107,7 @@
           <ion-icon slot="end" name="text-outline" class="ios-range-icon-lg"></ion-icon>
         </ion-range>
       </div>
+
     </div>
 
     <!-- Section 3: Live Preview -->
@@ -126,9 +131,10 @@
     <!-- Section 4: Display Toggles -->
     <div class="ios-group-header">காட்சி அமைப்புகள் (Display Options)</div>
     <div class="ios-group-list-box">
+      
       <ion-item lines="none" class="ios-toggle-item">
         <ion-label class="ios-toggle-label">
-          <h3>தமிழ் துஆ காட்டு</h3>
+          <h3>தமிழ் துஆ காட்டு (Show Tamil Pronunciation)</h3>
           <p>துஆக்களின் தமிழ் ஒலிபெயர்ப்பைக் காட்டும்</p>
         </ion-label>
         <ion-toggle [(ngModel)]="showTamilDua" (ionChange)="onShowTamilDuaChange()" color="primary" class="ios-toggle-control" mode="ios"></ion-toggle>
@@ -136,11 +142,20 @@
 
       <ion-item lines="none" class="ios-toggle-item">
         <ion-label class="ios-toggle-label">
-          <h3>பொருள் / விளக்கம் காட்டு</h3>
+          <h3>பொருள் / விளக்கம் காட்டு (Show Translation)</h3>
           <p>துஆக்களின் தமிழ் அர்த்தம்/மொழிபெயர்ப்பைக் காட்டும்</p>
         </ion-label>
         <ion-toggle [(ngModel)]="showTranslation" (ionChange)="onShowTranslationChange()" color="primary" class="ios-toggle-control" mode="ios"></ion-toggle>
       </ion-item>
+
+      <ion-item lines="none" class="ios-toggle-item">
+        <ion-label class="ios-toggle-label">
+          <h3>ஹதீஸ் ஆதாரம் காட்டு (Show Hadith Evidence)</h3>
+          <p>துஆக்களின் ஹதீஸ் மற்றும் ஆதாரக் குறிப்புகளைக் காட்டும்</p>
+        </ion-label>
+        <ion-toggle [(ngModel)]="showHadees" (ionChange)="onShowHadeesChange()" color="primary" class="ios-toggle-control" mode="ios"></ion-toggle>
+      </ion-item>
+
     </div>
 
     <!-- Section 5: Favorites Backup & Restore -->
@@ -151,7 +166,7 @@
       <div class="backup-actions-container">
         <ion-button expand="block" (click)="generateBackup()" class="ios-premium-btn btn-gold">
           <ion-icon slot="start" name="cloud-download-outline"></ion-icon>
-          காப்புப்பிரதி எடுத்து நகலெடு
+          காப்புப்பிரதி எடுத்து நகலெடு (Backup & Copy)
         </ion-button>
         
         <div *ngIf="backupCode" class="backup-code-preview">
@@ -171,7 +186,7 @@
         
         <ion-button expand="block" (click)="restoreBackup()" class="ios-premium-btn btn-outline" [disabled]="!restoreCode">
           <ion-icon slot="start" name="cloud-upload-outline"></ion-icon>
-          மீட்டமைக்கவும்
+          மீட்டமைக்கவும் (Restore)
         </ion-button>
       </div>
     </div>

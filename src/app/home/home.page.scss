@@ -72,6 +72,7 @@
 
     .ios-hero-icon {
       font-size: 24px;
+      padding: 2px;
     }
   }
 }
@@ -114,6 +115,7 @@
       border-radius: 10px;
       font-size: 18px;
       position: relative;
+      padding: 4px;
 
       &.primary {
         background: rgba(var(--ion-color-primary-rgb), 0.1);
