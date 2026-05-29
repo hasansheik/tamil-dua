@@ -1,105 +1,155 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-header>
-        <ion-toolbar class="menu-header">
-          <ion-title>
-            <div class="app-title">Tamil Dua</div>
-            <ion-note>அன்றாடப் பிரார்த்தனைகள்</ion-note>
-          </ion-title>
-        </ion-toolbar>
-      </ion-header>
+    <ion-menu contentId="main-content" type="overlay" (ionDidOpen)="loadFavoritesCount()">
+      
+      <!-- Brand Header -->
+      <div class="ios-sidebar-brand">
+        <div class="ios-sidebar-logo-box">
+          <ion-icon name="book" class="ios-sidebar-logo-icon"></ion-icon>
+        </div>
+        <div class="ios-sidebar-brand-text">
+          <h2 class="ios-sidebar-app-name">பிரார்த்தனைகள்</h2>
+          <span class="ios-sidebar-app-sub">Tamil Dua App</span>
+        </div>
+      </div>
 
-      <ion-content>
-        <ion-list id="inbox-list" lines="none">
+      <!-- Real-time Chapter Search Bar -->
+      <div class="ios-sidebar-search-box">
+        <ion-searchbar 
+          [(ngModel)]="sidebarSearchQuery"
+          placeholder="அத்தியாயங்களைத் தேடு..."
+          animated="true"
+          class="ios-sidebar-searchbar"
+          mode="ios">
+        </ion-searchbar>
+      </div>
+
+      <ion-content class="ios-sidebar-content">
+        <!-- Quick Shortcuts Grid -->
+        <div class="ios-sidebar-section-title">விரைவு அணுகல்</div>
+        <div class="ios-sidebar-grid">
           
-          <!-- Home Link (Direct) -->
           <ion-menu-toggle auto-hide="false">
-            <ion-item 
-              class="menu-item"
-              routerDirection="root" 
-              routerLink="/home" 
-              lines="none" 
-              detail="false" 
-              routerLinkActive="selected">
-              <ion-icon class="menu-icon" slot="start" name="home-outline"></ion-icon>
-              <ion-label>முகப்பு (Home)</ion-label>
-            </ion-item>
+            <div routerLink="/home" routerDirection="root" routerLinkActive="active" class="ios-grid-card ripple">
+              <div class="ios-grid-card-icon-wrap primary">
+                <ion-icon name="grid-outline"></ion-icon>
+              </div>
+              <div class="ios-grid-card-details">
+                <span class="ios-grid-card-label">முகப்பு</span>
+                <span class="ios-grid-card-value">Home</span>
+              </div>
+            </div>
           </ion-menu-toggle>
 
-          <!-- Accordion Group for Chapters & Guidance (UX Collapsible list) -->
-          <ion-accordion-group expand="compact" class="menu-accordion-group">
-            
-            <!-- Accordion 1: Chapters -->
-            <ion-accordion value="chapters" class="menu-accordion">
-              <ion-item slot="header" class="menu-item accordion-header-item">
-                <ion-icon class="menu-icon" slot="start" name="book-outline"></ion-icon>
-                <ion-label>துஆக்களின் அத்தியாயங்கள்</ion-label>
-              </ion-item>
-              
-              <div slot="content" class="accordion-content-list">
-                <ion-menu-toggle auto-hide="false" *ngFor="let p of getChapters()">
-                  <ion-item 
-                    class="menu-subitem"
-                    routerDirection="root" 
-                    [routerLink]="[p.url]" 
-                    lines="none" 
-                    detail="false" 
-                    routerLinkActive="selected">
-                    <ion-label class="dua-nav-label">{{ p.title }}</ion-label>
-                  </ion-item>
-                </ion-menu-toggle>
-              </div>
-            </ion-accordion>
-
-            <!-- Accordion 2: Guidance / Info -->
-            <ion-accordion value="guidance" class="menu-accordion">
-              <ion-item slot="header" class="menu-item accordion-header-item">
-                <ion-icon class="menu-icon" slot="start" name="information-circle-outline"></ion-icon>
-                <ion-label>பிற வழிகாட்டல்கள்</ion-label>
-              </ion-item>
-              
-              <div slot="content" class="accordion-content-list">
-                <ion-menu-toggle auto-hide="false">
-                  <ion-item class="menu-subitem" routerDirection="root" [routerLink]="['/prayer-acceptance', 1]" lines="none" detail="false" routerLinkActive="selected">
-                    <ion-label>முன்னுரை</ion-label>
-                  </ion-item>
-                </ion-menu-toggle>
-                <ion-menu-toggle auto-hide="false">
-                  <ion-item class="menu-subitem" routerDirection="root" [routerLink]="['/prayer-acceptance', 2]" lines="none" detail="false" routerLinkActive="selected">
-                    <ion-label>பிரார்த்தனை ஏற்றுக்கொள்ளுதல்</ion-label>
-                  </ion-item>
-                </ion-menu-toggle>
-                <ion-menu-toggle auto-hide="false">
-                  <ion-item class="menu-subitem" routerDirection="root" [routerLink]="['/prayer-acceptance', 3]" lines="none" detail="false" routerLinkActive="selected">
-                    <ion-label>சத்தியத்தைத் தேடும் உள்ளங்களே!</ion-label>
-                  </ion-item>
-                </ion-menu-toggle>
-                <ion-menu-toggle auto-hide="false">
-                  <ion-item class="menu-subitem" routerDirection="root" [routerLink]="['/prayer-acceptance', 4]" lines="none" detail="false" routerLinkActive="selected">
-                    <ion-label>பதிப்புகளின் துஆக்கள் & திருத்தங்கள்</ion-label>
-                  </ion-item>
-                </ion-menu-toggle>
-              </div>
-            </ion-accordion>
-
-          </ion-accordion-group>
-
-          <!-- Settings Link (Direct) -->
           <ion-menu-toggle auto-hide="false">
-            <ion-item 
-              class="menu-item"
-              routerDirection="root" 
-              routerLink="/settings" 
-              lines="none" 
-              detail="false" 
-              routerLinkActive="selected">
-              <ion-icon class="menu-icon" slot="start" name="settings-outline"></ion-icon>
-              <ion-label>அமைப்புகள் (Settings)</ion-label>
-            </ion-item>
+            <div [routerLink]="[getFavoritesUrl()]" [queryParams]="{ segment: 'favorites' }" routerDirection="root" routerLinkActive="active" class="ios-grid-card ripple">
+              <div class="ios-grid-card-icon-wrap danger">
+                <ion-icon name="heart"></ion-icon>
+              </div>
+              <div class="ios-grid-card-details">
+                <span class="ios-grid-card-label">விருப்பம்</span>
+                <span class="ios-grid-card-value badge-count">{{ favoritesCount }}</span>
+              </div>
+            </div>
           </ion-menu-toggle>
 
-        </ion-list>
+          <ion-menu-toggle auto-hide="false">
+            <div routerLink="/settings" routerDirection="root" routerLinkActive="active" class="ios-grid-card ripple">
+              <div class="ios-grid-card-icon-wrap warning">
+                <ion-icon name="settings-outline"></ion-icon>
+              </div>
+              <div class="ios-grid-card-details">
+                <span class="ios-grid-card-label">அமைப்புகள்</span>
+                <span class="ios-grid-card-value">Settings</span>
+              </div>
+            </div>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <div [routerLink]="['/prayer-acceptance', 1]" routerDirection="root" routerLinkActive="active" class="ios-grid-card ripple">
+              <div class="ios-grid-card-icon-wrap success">
+                <ion-icon name="bookmark-outline"></ion-icon>
+              </div>
+              <div class="ios-grid-card-details">
+                <span class="ios-grid-card-label">முன்னுரை</span>
+                <span class="ios-grid-card-value">Intro</span>
+              </div>
+            </div>
+          </ion-menu-toggle>
+
+        </div>
+
+        <!-- Chapters List Section -->
+        <div class="ios-sidebar-section-title">அத்தியாயங்கள் (Chapters)</div>
+        <div class="ios-sidebar-list-card">
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of getChapters(); let i = index">
+            <div 
+              [routerLink]="[p.url]" 
+              routerDirection="root" 
+              routerLinkActive="active" 
+              class="ios-sidebar-list-item ripple">
+              <div class="ios-sidebar-item-inner">
+                <span class="ios-sidebar-item-num">{{ i + 1 }}</span>
+                <span class="ios-sidebar-item-text">{{ p.title }}</span>
+                <ion-icon name="chevron-forward" class="ios-sidebar-item-chevron"></ion-icon>
+              </div>
+            </div>
+          </ion-menu-toggle>
+          <div *ngIf="getChapters().length === 0" class="ios-sidebar-no-results">
+            தேடல் முடிவுகள் எதுவும் இல்லை.
+          </div>
+        </div>
+
+        <!-- Guidance List Section -->
+        <div class="ios-sidebar-section-title">பிற வழிகாட்டல்கள் (Guidance)</div>
+        <div class="ios-sidebar-list-card">
+          <ion-menu-toggle auto-hide="false">
+            <div [routerLink]="['/prayer-acceptance', 1]" routerDirection="root" routerLinkActive="active" class="ios-sidebar-list-item ripple">
+              <div class="ios-sidebar-item-inner">
+                <ion-icon name="bookmark-outline" class="ios-sidebar-item-icon"></ion-icon>
+                <span class="ios-sidebar-item-text">முன்னுரை</span>
+                <ion-icon name="chevron-forward" class="ios-sidebar-item-chevron"></ion-icon>
+              </div>
+            </div>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <div [routerLink]="['/prayer-acceptance', 2]" routerDirection="root" routerLinkActive="active" class="ios-sidebar-list-item ripple">
+              <div class="ios-sidebar-item-inner">
+                <ion-icon name="bookmark-outline" class="ios-sidebar-item-icon"></ion-icon>
+                <span class="ios-sidebar-item-text">பிரார்த்தனை ஏற்றுக்கொள்ளுதல்</span>
+                <ion-icon name="chevron-forward" class="ios-sidebar-item-chevron"></ion-icon>
+              </div>
+            </div>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <div [routerLink]="['/prayer-acceptance', 3]" routerDirection="root" routerLinkActive="active" class="ios-sidebar-list-item ripple">
+              <div class="ios-sidebar-item-inner">
+                <ion-icon name="bookmark-outline" class="ios-sidebar-item-icon"></ion-icon>
+                <span class="ios-sidebar-item-text">சத்தியத்தைத் தேடும் உள்ளங்களே!</span>
+                <ion-icon name="chevron-forward" class="ios-sidebar-item-chevron"></ion-icon>
+              </div>
+            </div>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <div [routerLink]="['/prayer-acceptance', 4]" routerDirection="root" routerLinkActive="active" class="ios-sidebar-list-item ripple">
+              <div class="ios-sidebar-item-inner">
+                <ion-icon name="bookmark-outline" class="ios-sidebar-item-icon"></ion-icon>
+                <span class="ios-sidebar-item-text">பதிப்புகளின் துஆக்கள் & திருத்தங்கள்</span>
+                <ion-icon name="chevron-forward" class="ios-sidebar-item-chevron"></ion-icon>
+              </div>
+            </div>
+          </ion-menu-toggle>
+        </div>
+
+        <!-- Sidebar Info Footer -->
+        <div class="ios-sidebar-footer">
+          <span class="ios-sidebar-footer-heading">ஜமாஅத்துல் முஸ்லிமீன்</span>
+          <span class="ios-sidebar-footer-sub">ஏத்தாலை, புத்தளம் - இலங்கை</span>
+        </div>
+
       </ion-content>
     </ion-menu>
     

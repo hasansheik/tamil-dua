@@ -38,6 +38,7 @@ export class FolderPage implements OnInit, OnDestroy {
   private networkSubscription: Subscription | null = null;
   private settingsSubscription: Subscription | null = null;
   private routeSubscription: Subscription | null = null;
+  private queryParamsSubscription: Subscription | null = null;
   private pageId: string | null = null;
 
   @ViewChild('duaContent', { static: false }) duaContent: IonContent;
@@ -87,6 +88,14 @@ export class FolderPage implements OnInit, OnDestroy {
       await this.updateLastVisitedPages(id!);
     });
 
+    // Subscribe to query params to set segment/category (e.g. favorites)
+    this.queryParamsSubscription = this.activatedRoute.queryParams.subscribe(async (params) => {
+      if (params && params['segment']) {
+        this.selectedCategory = params['segment'];
+        await this.filterDuas();
+      }
+    });
+
     // Subscribe to settings changes
     this.settingsSubscription = this.settingService.observableSettings.subscribe(settings => {
       if (settings) {
@@ -108,6 +117,7 @@ export class FolderPage implements OnInit, OnDestroy {
     this.networkSubscription?.unsubscribe();
     this.settingsSubscription?.unsubscribe();
     this.routeSubscription?.unsubscribe();
+    this.queryParamsSubscription?.unsubscribe();
   }
 
   private async initializeSubscriptions() {

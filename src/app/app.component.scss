@@ -1,148 +1,314 @@
-ion-menu ion-content {
-  --background: var(--ion-background-color) !important;
-}
-
 ion-menu {
-  --ion-background-color: var(--ion-background-color) !important;
-  background: var(--ion-background-color) !important;
-  
-  ion-header {
-    border-bottom: 0.5px solid var(--ion-border-color);
-    box-shadow: none;
-    
-    ion-toolbar.menu-header {
-      --background: var(--ion-background-color) !important; // Blend with container
-      --color: var(--ion-text-color);
-      padding: 24px 16px 12px 16px;
-      border: none;
-      
-      .app-title {
-        font-family: var(--font-family-heading);
-        font-size: 1.45rem;
-        font-weight: 700;
-        letter-spacing: -0.5px;
-        color: var(--ion-color-primary); // System gold color
-      }
+  --background: var(--ion-background-color) !important;
+  border-right: 0.5px solid var(--ion-border-color);
 
-      ion-note {
-        font-family: var(--font-family-sans);
-        font-size: 0.9rem;
-        color: var(--ion-color-medium);
-        margin-top: 2px;
-        font-weight: 400;
-      }
-    }
-  }
-
-  ion-content {
+  ion-content.ios-sidebar-content {
     --background: var(--ion-background-color) !important;
+    --padding-start: 0;
+    --padding-end: 0;
+    --padding-top: 0;
+    --padding-bottom: 30px;
+  }
+}
 
-    ion-list {
-      background: var(--ion-background-color) !important;
-      padding: 16px 12px;
+/* 1. Brand Header Area */
+.ios-sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 16px 14px 16px;
+  background: var(--ion-background-color);
 
-      ion-menu-toggle {
-        .menu-item {
-          --padding-start: 16px;
-          --padding-end: 16px;
-          --padding-top: 10px;
-          --padding-bottom: 10px;
-          --background: transparent; // Make transparent to blend in beautifully
-          --min-height: 48px;
-          margin-bottom: 4px;
-          border-bottom: none;
-          border-radius: 10px;
-          box-shadow: none; // Flat, clean Apple list cell look
-          transition: var(--premium-transition);
-          
-          &:hover {
-            --background: rgba(var(--ion-color-primary-rgb), 0.04);
-          }
+  .ios-sidebar-logo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(var(--ion-color-primary-rgb), 0.12);
+    color: var(--ion-color-primary);
+    box-shadow: var(--premium-shadow-sm);
 
-          &.selected {
-            --background: rgba(var(--ion-color-primary-rgb), 0.08);
-            
-            ion-label {
-              color: var(--ion-color-primary);
-              font-weight: 600;
-            }
+    .ios-sidebar-logo-icon {
+      font-size: 20px;
+    }
+  }
 
-            ion-icon {
-              color: var(--ion-color-primary);
-            }
-          }
+  .ios-sidebar-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
 
-          ion-icon {
-            font-size: 18px;
-            margin-right: 12px;
-            color: var(--ion-color-secondary);
-            transition: var(--premium-transition);
-          }
+    .ios-sidebar-app-name {
+      font-family: var(--font-family-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ion-text-color);
+      margin: 0;
+      line-height: var(--tamil-line-height);
+    }
 
-          ion-label {
-            font-family: var(--font-family-sans);
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--ion-text-color);
-          }
-        }
+    .ios-sidebar-app-sub {
+      font-family: var(--font-family-sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--ion-color-secondary);
+      letter-spacing: 0.2px;
+    }
+  }
+}
+
+/* 2. Real-time Search Box */
+.ios-sidebar-search-box {
+  padding: 0 16px 12px 16px;
+  background: var(--ion-background-color);
+  border-bottom: 0.5px solid var(--ion-border-color);
+
+  .ios-sidebar-searchbar {
+    --background: rgba(var(--ion-color-secondary-rgb), 0.12) !important;
+    --color: var(--ion-text-color) !important;
+    --placeholder-color: var(--ion-color-secondary) !important;
+    --border-radius: 10px !important;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+/* 3. Section Titles */
+.ios-sidebar-section-title {
+  font-family: var(--font-family-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ion-color-medium);
+  letter-spacing: 0.5px;
+  margin: 20px 20px 8px 20px;
+}
+
+/* 4. Shortcuts Grid (2x2) */
+.ios-sidebar-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 16px;
+
+  /* Force toggle link containers to act as grid cells */
+  ion-menu-toggle {
+    display: block;
+    width: 100%;
+  }
+
+  .ios-grid-card {
+    background: var(--ion-card-background);
+    border-radius: 12px;
+    padding: 12px;
+    border: 0.5px solid var(--ion-border-color);
+    box-shadow: var(--premium-shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    transition: var(--premium-transition);
+    height: 100%;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--premium-shadow-md);
+    }
+
+    &.active {
+      border-color: rgba(var(--ion-color-primary-rgb), 0.5);
+      background: rgba(var(--ion-color-primary-rgb), 0.04);
+
+      .ios-grid-card-label {
+        color: var(--ion-color-primary);
+      }
+    }
+
+    .ios-grid-card-icon-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-size: 15px;
+
+      &.primary {
+        background: rgba(var(--ion-color-primary-rgb), 0.1);
+        color: var(--ion-color-primary);
+      }
+      &.danger {
+        background: rgba(var(--ion-color-danger-rgb), 0.1);
+        color: var(--ion-color-danger);
+      }
+      &.warning {
+        background: rgba(var(--ion-color-warning-rgb), 0.1);
+        color: var(--ion-color-warning-shade);
+      }
+      &.success {
+        background: rgba(var(--ion-color-success-rgb), 0.1);
+        color: var(--ion-color-success-shade);
+      }
+    }
+
+    .ios-grid-card-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+
+      .ios-grid-card-label {
+        font-family: var(--font-family-heading);
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--ion-text-color);
+        line-height: var(--tamil-line-height);
       }
 
-      .menu-subitem {
-        --padding-start: 24px;
-        --padding-end: 16px;
-        --padding-top: 8px;
-        --padding-bottom: 8px;
-        --background: transparent;
-        --min-height: 38px;
-        border-bottom: 0.5px solid var(--ion-border-color);
-        transition: var(--premium-transition);
+      .ios-grid-card-value {
+        font-family: var(--font-family-sans);
+        font-size: 0.72rem;
+        color: var(--ion-color-secondary);
+        font-weight: 500;
 
-        &:last-child {
-          border-bottom: none;
-        }
-
-        &:hover {
-          --background: rgba(var(--ion-color-primary-rgb), 0.03);
-        }
-
-        &.selected {
-          --background: rgba(var(--ion-color-primary-rgb), 0.06);
-          
-          ion-label {
-            color: var(--ion-color-primary);
-            font-weight: 600;
-          }
-        }
-
-        ion-label {
-          font-family: var(--font-family-sans);
-          font-size: 0.85rem;
-          color: var(--ion-text-color);
-          line-height: var(--tamil-line-height); /* Set to 2.0 to prevent script clipping */
+        &.badge-count {
+          font-weight: 700;
+          color: var(--ion-color-danger);
         }
       }
     }
   }
 }
 
-// Strip out default Ionic layouts for modern iOS list
-ion-menu.md ion-content,
-ion-menu.ios ion-content {
-  --padding-start: 0px;
-  --padding-end: 0px;
-  --padding-top: 0px;
-  --padding-bottom: 0px;
+/* 5. Inset Grouped List Cards */
+.ios-sidebar-list-card {
+  background: var(--ion-card-background);
+  border-radius: 12px;
+  border: 0.5px solid var(--ion-border-color);
+  box-shadow: var(--premium-shadow-sm);
+  margin: 0 16px 20px 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .ios-sidebar-list-item {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: transparent;
+    border-bottom: 0.5px solid var(--ion-border-color);
+    cursor: pointer;
+    transition: var(--premium-transition);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background: rgba(var(--ion-color-primary-rgb), 0.02);
+    }
+
+    &.active {
+      background: rgba(var(--ion-color-primary-rgb), 0.05);
+
+      .ios-sidebar-item-text {
+        color: var(--ion-color-primary);
+        font-weight: 600;
+      }
+
+      .ios-sidebar-item-num {
+        background: var(--ion-color-primary);
+        color: var(--ion-color-primary-contrast);
+      }
+
+      .ios-sidebar-item-icon {
+        color: var(--ion-color-primary);
+      }
+    }
+
+    .ios-sidebar-item-inner {
+      display: flex;
+      align-items: center;
+      padding: 12px 14px;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .ios-sidebar-item-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(var(--ion-color-primary-rgb), 0.08);
+      color: var(--ion-color-primary);
+      font-family: var(--font-family-sans);
+      font-size: 0.72rem;
+      font-weight: 700;
+      transition: var(--premium-transition);
+    }
+
+    .ios-sidebar-item-icon {
+      font-size: 16px;
+      color: var(--ion-color-primary);
+      flex-shrink: 0;
+    }
+
+    .ios-sidebar-item-text {
+      font-family: var(--font-family-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ion-text-color);
+      flex: 1;
+      line-height: var(--tamil-line-height); /* Set to 2.0 to prevent clipping */
+      padding: 2px 0;
+    }
+
+    .ios-sidebar-item-chevron {
+      font-size: 12px;
+      color: var(--ion-color-secondary);
+      opacity: 0.6;
+    }
+  }
+
+  .ios-sidebar-no-results {
+    padding: 16px;
+    text-align: center;
+    font-family: var(--font-family-sans);
+    font-size: 0.8rem;
+    color: var(--ion-color-secondary);
+  }
 }
 
-ion-menu.md ion-list,
-ion-menu.ios ion-list {
-  padding: 16px 12px;
-  background: var(--ion-background-color) !important;
+/* 6. Sidebar Info Footer */
+.ios-sidebar-footer {
+  text-align: center;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0.85;
+
+  .ios-sidebar-footer-heading {
+    font-family: var(--font-family-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ion-color-primary);
+    line-height: var(--tamil-line-height);
+  }
+
+  .ios-sidebar-footer-sub {
+    font-family: var(--font-family-sans);
+    font-size: 0.7rem;
+    color: var(--ion-color-secondary);
+    line-height: var(--tamil-line-height);
+  }
 }
 
-ion-menu.md ion-item,
-ion-menu.ios ion-item {
-  --padding-start: 16px;
-  --padding-end: 16px;
+/* Touch feedback ripple */
+.ripple {
+  position: relative;
+  overflow: hidden;
 }
