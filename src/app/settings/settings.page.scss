@@ -1,4 +1,4 @@
-/* Redesigned Settings Page Styles from scratch */
+/* Redesigned Settings Page Styles Version 2 */
 
 .ios-settings-toolbar {
   --background: var(--ion-card-background);
@@ -30,202 +30,60 @@
   padding-bottom: 40px;
 }
 
-/* iOS Section Group Header */
-.ios-group-header {
+/* iOS Section Group Header Label */
+.ios-section-label {
   font-family: var(--font-family-heading);
   font-size: 0.82rem;
   font-weight: 600;
   text-transform: uppercase;
   color: var(--ion-color-medium);
   letter-spacing: 0.5px;
-  margin: 22px 6px 8px 6px;
+  margin: 24px 6px 8px 6px;
   line-height: var(--tamil-line-height);
 }
 
-/* iOS Grouped List Box (Rounded Inset Style) */
-.ios-group-list-box {
+/* 1. Glassmorphic Hero Preview Card */
+.ios-preview-hero-card {
+  margin-top: 10px;
+  margin-bottom: 8px;
   background: var(--ion-card-background);
   border-radius: var(--premium-border-radius);
-  box-shadow: var(--premium-shadow-sm);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  border: 0.5px solid var(--ion-border-color);
-
-  &.padding-box {
-    padding: 18px 20px;
-  }
-}
-
-/* Radio buttons list in Grouped card */
-.ios-font-radio-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.ios-font-item {
-  --background: transparent;
-  --min-height: auto;
-  border-bottom: 0.5px solid var(--ion-border-color);
-  transition: var(--premium-transition);
-
-  &::part(native) {
-    padding: 14px 18px;
-    align-items: center;
-  }
-
-  &:last-child {
-    border-bottom: none;
-  }
-
-  &:hover {
-    --background: rgba(var(--ion-color-primary-rgb), 0.02);
-  }
-
-  .ios-radio-control {
-    margin-right: 14px;
-    --color: var(--ion-color-secondary);
-    --color-checked: var(--ion-color-primary);
-  }
-
-  .ios-font-label-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin: 0;
-
-    .ios-font-name {
-      font-family: var(--font-family-heading);
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--ion-color-secondary-shade);
-    }
-
-    .ios-font-arabic {
-      margin: 4px 0 0 0;
-      font-size: 1.65rem;
-      line-height: var(--arabic-line-height);
-      color: var(--ion-text-color);
-      text-align: left;
-      direction: rtl;
-
-      &.font-scheherazade {
-        font-family: 'Scheherazade', serif !important;
-      }
-      &.font-katibeh {
-        font-family: 'Katibeh', cursive !important;
-        font-size: 1.8rem;
-      }
-      &.font-qahiri {
-        font-family: 'Qahiri', sans-serif !important;
-      }
-      &.font-amiri {
-        font-family: 'Amiri-Regular', serif !important;
-        font-size: 1.6rem;
-      }
-      &.font-scheherazade-ot {
-        font-family: 'ScheherazadeRegOT', serif !important;
-      }
-    }
-  }
-}
-
-/* Range Sliders styling */
-.ios-slider-item {
-  margin-bottom: 20px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  .ios-slider-label-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
-
-    .ios-slider-title {
-      font-family: var(--font-family-heading);
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--ion-text-color);
-      line-height: var(--tamil-line-height);
-    }
-
-    .ios-slider-value {
-      font-family: var(--font-family-sans);
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--ion-color-primary);
-      background: rgba(var(--ion-color-primary-rgb), 0.08);
-      padding: 2px 8px;
-      border-radius: 6px;
-    }
-  }
-
-  .ios-range-slider {
-    padding-top: 4px;
-    padding-bottom: 4px;
-    --bar-background: rgba(var(--ion-color-primary-rgb), 0.12);
-    --bar-background-active: var(--ion-color-primary);
-    --knob-background: var(--ion-color-primary);
-    --knob-size: 18px;
-    --pin-background: var(--ion-color-primary);
-    --pin-color: var(--ion-color-primary-contrast);
-
-    .ios-range-icon-sm {
-      font-size: 14px;
-      color: var(--ion-color-secondary);
-    }
-
-    .ios-range-icon-lg {
-      font-size: 20px;
-      color: var(--ion-color-primary);
-    }
-  }
-}
-
-/* iOS Preview Card */
-.ios-preview-card {
-  background: var(--ion-card-background);
-  border-radius: var(--premium-border-radius);
-  border: 0.5px solid var(--ion-border-color);
+  border: 0.5px solid rgba(var(--ion-color-primary-rgb), 0.25);
+  background: linear-gradient(135deg, var(--ion-card-background) 0%, rgba(var(--ion-color-primary-rgb), 0.02) 100%);
   box-shadow: var(--premium-shadow-sm);
   padding: 20px;
   display: flex;
   flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
 
-  .ios-preview-arabic-block, .ios-preview-tamil-block {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .ios-preview-badge {
-    display: inline-block;
+  .preview-hero-badge {
     align-self: flex-start;
-    font-family: var(--font-family-heading);
+    background: rgba(var(--ion-color-primary-rgb), 0.08);
+    color: var(--ion-color-primary);
+    font-family: var(--font-family-sans);
     font-size: 0.72rem;
     font-weight: 700;
     padding: 3px 8px;
     border-radius: 6px;
-    background: rgba(var(--ion-color-primary-rgb), 0.08);
-    color: var(--ion-color-primary);
     text-transform: uppercase;
-    letter-spacing: 0.3px;
-
-    &.gold {
-      background: rgba(var(--ion-color-secondary-rgb), 0.08);
-      color: var(--ion-color-secondary);
-    }
+    letter-spacing: 0.4px;
   }
 
-  .ios-preview-arabic-text {
-    margin: 6px 0;
+  .preview-hero-arabic-wrap {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .preview-hero-arabic-text {
+    margin: 4px 0;
     line-height: var(--arabic-line-height);
     color: var(--ion-text-color);
     text-align: right;
     direction: rtl;
+    width: 100%;
 
     &.arabic {
       font-family: 'Scheherazade', serif !important;
@@ -244,16 +102,32 @@
     }
   }
 
-  .ios-preview-divider {
-    font-size: 0.95rem;
-    color: var(--ion-color-primary);
-    text-align: center;
-    margin: 10px 0;
-    opacity: 0.4;
+  .preview-hero-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 4px 0;
+
+    .divider-line {
+      flex: 1;
+      height: 0.5px;
+      background: var(--ion-border-color);
+    }
+
+    .divider-icon {
+      font-size: 12px;
+      color: var(--ion-color-primary);
+      opacity: 0.7;
+    }
   }
 
-  .ios-preview-tamil-text {
-    margin: 6px 0;
+  .preview-hero-tamil-wrap {
+    width: 100%;
+  }
+
+  .preview-hero-tamil-text {
+    margin: 4px 0;
     line-height: var(--tamil-line-height);
     color: var(--ion-text-color);
     text-align: justify;
@@ -262,108 +136,265 @@
   }
 }
 
-/* iOS Grouped Toggle Switches */
-.ios-toggle-item {
-  --background: transparent;
-  border-bottom: 0.5px solid var(--ion-border-color);
-  transition: var(--premium-transition);
+/* 2. Font Selector Grid */
+.font-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
 
-  &::part(native) {
-    padding: 14px 18px;
+  .font-card {
+    background: var(--ion-card-background);
+    border-radius: 12px;
+    border: 0.5px solid var(--ion-border-color);
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: var(--premium-transition);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &:hover {
+      background: rgba(var(--ion-color-primary-rgb), 0.01);
+      border-color: rgba(var(--ion-color-primary-rgb), 0.2);
+    }
+
+    &.active {
+      border-color: var(--ion-color-primary);
+      background: rgba(var(--ion-color-primary-rgb), 0.02);
+      box-shadow: 0 0 8px rgba(var(--ion-color-primary-rgb), 0.1);
+    }
+
+    .font-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .font-card-name {
+      font-family: var(--font-family-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--ion-color-secondary-shade);
+    }
+
+    .font-card-check {
+      font-size: 14px;
+      color: var(--ion-color-primary);
+    }
+
+    .font-card-sample {
+      font-size: 1.45rem;
+      color: var(--ion-text-color);
+      text-align: left;
+      direction: rtl;
+
+      &.font-scheherazade {
+        font-family: 'Scheherazade', serif !important;
+      }
+      &.font-katibeh {
+        font-family: 'Katibeh', cursive !important;
+        font-size: 1.55rem;
+      }
+      &.font-qahiri {
+        font-family: 'Qahiri', sans-serif !important;
+      }
+      &.font-amiri {
+        font-family: 'Amiri-Regular', serif !important;
+        font-size: 1.4rem;
+      }
+      &.font-scheherazade-ot {
+        font-family: 'ScheherazadeRegOT', serif !important;
+      }
+    }
   }
+}
+
+/* 3. Custom Group Inset Containers */
+.custom-card-container {
+  background: var(--ion-card-background);
+  border-radius: var(--premium-border-radius);
+  border: 0.5px solid var(--ion-border-color);
+  box-shadow: var(--premium-shadow-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &.padding-box {
+    padding: 18px 20px;
+  }
+}
+
+/* 4. Custom Slider Control Rows */
+.custom-slider-row {
+  padding: 16px 18px;
+  border-bottom: 0.5px solid var(--ion-border-color);
 
   &:last-child {
     border-bottom: none;
   }
 
-  &:hover {
-    --background: rgba(var(--ion-color-primary-rgb), 0.01);
+  .slider-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
   }
 
-  .ios-toggle-label {
-    margin: 0;
+  .slider-name {
+    font-family: var(--font-family-heading);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--ion-text-color);
+    line-height: var(--tamil-line-height);
+  }
 
-    h3 {
-      font-family: var(--font-family-heading);
-      font-size: 0.94rem;
-      font-weight: 700;
-      color: var(--ion-text-color);
-      margin: 0 0 3px 0;
-      line-height: var(--tamil-line-height);
-    }
+  .slider-badge {
+    font-family: var(--font-family-sans);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ion-color-primary);
+    background: rgba(var(--ion-color-primary-rgb), 0.08);
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
 
-    p {
-      font-family: var(--font-family-sans);
-      font-size: 0.8rem;
+  .custom-range-gold {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    --bar-background: rgba(var(--ion-color-primary-rgb), 0.12);
+    --bar-background-active: var(--ion-color-primary);
+    --knob-background: var(--ion-color-primary);
+    --knob-size: 18px;
+    --pin-background: var(--ion-color-primary);
+    --pin-color: var(--ion-color-primary-contrast);
+
+    .range-icon-sm {
+      font-size: 13px;
       color: var(--ion-color-secondary);
-      margin: 0;
-      line-height: var(--tamil-line-height);
+    }
+
+    .range-icon-lg {
+      font-size: 18px;
+      color: var(--ion-color-primary);
     }
   }
+}
 
-  .ios-toggle-control {
+/* 5. Custom Toggle Control Rows */
+.custom-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  border-bottom: 0.5px solid var(--ion-border-color);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .toggle-text-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+  }
+
+  .toggle-title {
+    font-family: var(--font-family-heading);
+    font-size: 0.94rem;
+    font-weight: 700;
+    color: var(--ion-text-color);
+    line-height: var(--tamil-line-height);
+  }
+
+  .toggle-desc {
+    font-family: var(--font-family-sans);
+    font-size: 0.8rem;
+    color: var(--ion-color-secondary);
+    line-height: var(--tamil-line-height);
+  }
+
+  .custom-toggle-gold {
     --handle-background-checked: #ffffff;
     --background-checked: var(--ion-color-primary);
   }
 }
 
-/* Backup & Restore specific styles */
-.ios-settings-desc {
+/* 6. Vault Backup & Restore Styles */
+.vault-desc {
   font-family: var(--font-family-sans);
   font-size: 0.85rem;
   color: var(--ion-color-secondary);
   line-height: var(--tamil-line-height);
   margin-top: 0;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
-.backup-actions-container, .restore-actions-container {
+.vault-action-group {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
-.ios-premium-btn {
-  --border-radius: 10px;
-  --box-shadow: none;
+.vault-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  border-radius: 10px;
   font-family: var(--font-family-heading);
   font-size: 0.9rem;
   font-weight: 700;
-  margin: 0;
-  height: 46px;
-  
-  &.btn-gold {
-    --background: var(--ion-color-primary);
-    --color: var(--ion-color-primary-contrast);
-    
+  border: none;
+  cursor: pointer;
+  transition: var(--premium-transition);
+
+  .btn-icon {
+    font-size: 18px;
+  }
+
+  &.btn-primary {
+    background: var(--ion-color-primary);
+    color: var(--ion-color-primary-contrast);
+    box-shadow: var(--premium-shadow-sm);
+
     &:hover {
       opacity: 0.95;
     }
   }
 
-  &.btn-outline {
-    --border-color: var(--ion-color-primary);
-    --border-style: solid;
-    --border-width: 1px;
-    --color: var(--ion-color-primary);
-    --background: transparent;
+  &.btn-secondary {
+    border: 1px solid var(--ion-color-primary);
+    background: transparent;
+    color: var(--ion-color-primary);
 
     &:hover {
-      --background: rgba(var(--ion-color-primary-rgb), 0.04);
+      background: rgba(var(--ion-color-primary-rgb), 0.04);
+    }
+
+    &:disabled {
+      border-color: var(--ion-border-color);
+      color: var(--ion-color-medium);
+      cursor: not-allowed;
+      background: transparent;
+      opacity: 0.6;
     }
   }
 }
 
-.backup-code-preview {
-  margin-top: 10px;
+.vault-code-wrap {
+  margin-top: 8px;
 }
 
-.backup-textarea {
+.vault-textarea {
   width: 100%;
   border-radius: 10px;
   border: 0.5px solid var(--ion-border-color);
   background: rgba(var(--ion-color-secondary-rgb), 0.04);
-  padding: 12px;
+  padding: 10px 12px;
   font-family: monospace;
   font-size: 0.76rem;
   color: var(--ion-color-secondary);
@@ -372,64 +403,85 @@
   outline: none;
 }
 
-.ios-input-item {
-  --background: rgba(var(--ion-color-secondary-rgb), 0.02);
+.vault-input-wrap {
   border: 0.5px solid var(--ion-border-color);
   border-radius: 10px;
-  margin-bottom: 12px;
-  
-  &::part(native) {
-    padding-start: 12px;
-    padding-end: 12px;
-  }
+  background: rgba(var(--ion-color-secondary-rgb), 0.02);
+  padding: 6px 12px;
+  margin-bottom: 8px;
 }
 
-.ios-textarea-input {
+.vault-textarea-input {
+  width: 100%;
+  border: none;
+  background: transparent;
   font-family: monospace;
   font-size: 0.76rem;
-  --placeholder-color: var(--ion-color-placeholder);
-  --color: var(--ion-text-color);
+  color: var(--ion-text-color);
+  resize: none;
+  outline: none;
 }
 
-/* Reset settings styling */
-.ios-reset-item {
-  --background: transparent;
-  --min-height: auto;
+/* 7. Maintenance Row Styling */
+.danger-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  cursor: pointer;
+  background: transparent;
   transition: var(--premium-transition);
 
-  &::part(native) {
-    padding: 14px 18px;
-    align-items: center;
-  }
-
   &:hover {
-    --background: rgba(var(--ion-color-danger-rgb), 0.02);
+    background: rgba(var(--ion-color-danger-rgb), 0.02);
   }
 
-  .ios-reset-icon {
-    font-size: 24px;
-    margin-right: 14px;
+  .danger-row-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
   }
 
-  .ios-reset-label {
-    margin: 0;
+  .danger-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(var(--ion-color-danger-rgb), 0.08);
+    color: var(--ion-color-danger);
+  }
 
-    .danger-title {
-      font-family: var(--font-family-heading);
-      font-size: 0.94rem;
-      font-weight: 700;
-      color: var(--ion-color-danger);
-      margin: 0 0 3px 0;
-      line-height: var(--tamil-line-height);
-    }
+  .danger-icon {
+    font-size: 20px;
+  }
 
-    p {
-      font-family: var(--font-family-sans);
-      font-size: 0.8rem;
-      color: var(--ion-color-secondary);
-      margin: 0;
-      line-height: var(--tamil-line-height);
-    }
+  .danger-text-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .danger-title {
+    font-family: var(--font-family-heading);
+    font-size: 0.94rem;
+    font-weight: 700;
+    color: var(--ion-color-danger);
+    line-height: var(--tamil-line-height);
+  }
+
+  .danger-desc {
+    font-family: var(--font-family-sans);
+    font-size: 0.78rem;
+    color: var(--ion-color-secondary);
+    line-height: var(--tamil-line-height);
+  }
+
+  .danger-chevron {
+    font-size: 14px;
+    color: var(--ion-color-secondary);
   }
 }
 
@@ -439,11 +491,11 @@
   overflow: hidden;
 }
 
-/* Tablet/Desktop responsiveness */
+/* Responsive grid for tablets/desktop */
 @media (min-width: 768px) {
-  .ios-group-header,
-  .ios-group-list-box,
-  .ios-preview-card {
+  .ios-preview-hero-card,
+  .font-grid,
+  .custom-card-container {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
