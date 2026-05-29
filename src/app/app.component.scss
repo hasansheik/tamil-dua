@@ -126,8 +126,8 @@ ion-menu {
 
     &.active {
       border-color: rgba(var(--ion-color-primary-rgb), 0.4);
-      background: rgba(var(--ion-color-primary-rgb), 0.05);
-      box-shadow: inset 4px 0 0 var(--ion-color-primary), var(--premium-shadow-sm); /* Gold vertical selection line */
+      background: rgba(var(--ion-color-primary-rgb), 0.08);
+      box-shadow: var(--premium-shadow-sm);
 
       .ios-grid-card-label {
         color: var(--ion-color-primary);
@@ -218,8 +218,7 @@ ion-menu {
     }
 
     &.active {
-      background: rgba(var(--ion-color-primary-rgb), 0.05);
-      box-shadow: inset 4px 0 0 var(--ion-color-primary); /* Gold vertical selection line */
+      background: rgba(var(--ion-color-primary-rgb), 0.08);
 
       .ios-sidebar-item-text {
         color: var(--ion-color-primary);
