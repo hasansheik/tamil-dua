@@ -1,9 +1,11 @@
 /* Home Screen Styles from scratch */
 
 .ios-toolbar {
-  --background: var(--ion-card-background);
-  --color: var(--ion-text-color);
-  border-bottom: 0.5px solid var(--ion-border-color);
+  --background: rgba(var(--ion-card-background-rgb), 0.8) !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 0.5px solid rgba(var(--ion-border-color-rgb), 0.55);
+  --border-width: 0px !important;
   
   .ios-page-title {
     font-family: var(--font-family-heading);
