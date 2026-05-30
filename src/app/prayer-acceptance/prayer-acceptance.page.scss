@@ -1,144 +1,96 @@
-.ios-prayer-toolbar {
-  --background: rgba(var(--ion-card-background-rgb), 0.8) !important;
-  backdrop-filter: saturate(180%) blur(20px) !important;
-  -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
-  border-bottom: 1px solid rgba(var(--ion-color-primary-rgb), 0.2) !important;
-  --border-width: 0px !important;
-  box-shadow: none;
+/* Redesigned Premium Prayer Acceptance Stylesheet */
 
-  .ios-prayer-title {
-    font-family: 'Amiri-Regular', Georgia, "Times New Roman", serif !important;
-    font-weight: 700;
-    font-size: 1.15rem;
-    letter-spacing: -0.1px;
-    color: var(--ion-text-color);
-    line-height: var(--tamil-line-height);
-    padding: 6px 0;
-  }
-}
-
-.scholarly-header-title {
-  font-family: 'Amiri-Regular', Georgia, "Times New Roman", serif !important;
-  font-weight: 700;
-  letter-spacing: -0.1px;
-  color: var(--ion-text-color);
-}
-
-.scholarly-hdr-menu-btn {
-  --color: var(--ion-color-primary) !important;
-  --background-hover: rgba(var(--ion-color-primary-rgb), 0.08) !important;
-  border: 1px solid rgba(var(--ion-color-primary-rgb), 0.25) !important;
-  margin-left: 12px !important;
-}
-
-.scholarly-hdr-buttons {
-  gap: 8px;
-  padding-right: 12px;
-}
-
-.scholarly-hdr-btn {
-  --border-color: rgba(var(--ion-color-primary-rgb), 0.25) !important;
-  --color: var(--ion-color-primary) !important;
-  --background-hover: rgba(var(--ion-color-primary-rgb), 0.08) !important;
-}
-
-.ios-prayer-content-bg {
-  --background: var(--ion-background-color);
-}
-
-.ios-large-title-wrapper {
-  padding: 12px 4px 8px 4px;
-  
-  .ios-large-title {
-    font-family: var(--font-family-heading);
-    font-size: 1.8rem;
-    font-weight: 800;
-    letter-spacing: -0.6px;
-    color: var(--ion-text-color);
-    margin: 0;
-    line-height: var(--tamil-line-height); /* Prevent clipping */
-  }
-}
-
-.ios-prayer-card-container {
+/* Force consistent layout constraints */
+.ios-settings-container {
+  display: flex;
+  flex-direction: column;
   max-width: 650px;
   margin: 0 auto;
-  padding-bottom: 30px;
-}
-
-/* iOS Premium Text Card */
-.ios-prayer-card {
-  margin: 16px 0;
-  border-radius: var(--premium-border-radius);
-  background: var(--ion-card-background);
-  border: 0.5px solid var(--ion-border-color);
-  box-shadow: var(--premium-shadow-sm);
-  padding: 20px;
-  transition: var(--premium-transition);
-
-  &:hover {
-    box-shadow: var(--premium-shadow-md);
-  }
-
-  .ios-prayer-header {
-    background: transparent;
-    padding-bottom: 12px;
-    border-bottom: none;
-
-    .ios-prayer-card-title {
-      font-family: var(--font-family-heading);
-      font-size: 1.12rem;
-      font-weight: 700;
-      color: var(--ion-color-primary); // Apple gold/bronze title
-      line-height: var(--tamil-line-height);
-      padding: 4px 0;
-      margin: 0;
-    }
-
-    .ios-title-underline {
-      width: 32px;
-      height: 2.5px;
-      background: var(--ion-color-primary); // Apple gold indicator
-      margin-top: 6px;
-      border-radius: 1px;
-    }
-  }
-
-  .ios-prayer-content {
-    padding: 4px 0 0 0;
-  }
-}
-
-/* Paragraph styling with proper Tamil line-height & padding */
-.ios-prayer-paragraph {
-  font-family: var(--font-family-sans);
-  font-size: 0.92rem;
-  line-height: var(--tamil-line-height); /* Set to 2.0 to prevent script clipping */
-  color: var(--ion-text-color);
-  text-align: justify;
-  margin: 0 0 16px 0;
-  text-justify: inter-word;
-  padding: 4px 0; /* Add top/bottom padding to give scripts breathing space */
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-
-/* Premium Scroll Progress Bar */
-.ios-scroll-progress-container {
+  padding: 12px 12px 60px 12px;
+  box-sizing: border-box !important;
   width: 100%;
-  height: 4px;
-  background: rgba(var(--ion-color-primary-rgb), 0.1);
-  position: relative;
-  overflow: hidden;
+
+  * {
+    box-sizing: border-box !important;
+  }
 }
 
-.ios-scroll-progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, #bf9d6c, #a2845e);
-  width: 0%;
-  box-shadow: 0 0 8px rgba(var(--ion-color-primary-rgb), 0.5);
-  transition: width 0.15s ease-out;
+.ios-dua-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
 }
 
+/* Card Header */
+.premium-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: 0.5px solid var(--home-card-border);
+  width: 100%;
+  box-sizing: border-box;
+
+  .header-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .dua-card-title {
+    font-family: var(--font-family-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: var(--tamil-line-height, 1.4);
+    margin: 0;
+    word-wrap: break-word;
+  }
+}
+
+.premium-card-content {
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Paragraph spacing overrides */
+.ios-prayer-paragraph {
+  &:last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Animations */
+.animate-in {
+  animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive columns */
+@media (min-width: 768px) {
+  .ios-dua-list-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 16px;
+  }
+
+  .premium-settings-card {
+    margin: 0 !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}

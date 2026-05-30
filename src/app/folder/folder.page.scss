@@ -1,761 +1,319 @@
-/* Apple Premium Folder Page Styles (Clean & Minimalist) */
+/* Redesigned Premium Folder (Category Details) Stylesheet */
 
-:host {
-  /* Light Mode theme variables */
-  --folder-bg: #f2f2f7;
-  --folder-card-bg: #ffffff;
-  --folder-card-border: rgba(0, 0, 0, 0.05);
-  
-  --folder-text-main: #1c1c1e;
-  --folder-text-muted: #8e8e93;
-  --folder-accent: #007aff;
-  --folder-accent-rgb: 0, 122, 255;
-  
-  --folder-search-bg: rgba(0, 0, 0, 0.04);
-  --folder-badge-bg: rgba(0, 0, 0, 0.04);
-  --folder-list-item-hover: rgba(0, 0, 0, 0.02);
-  --folder-list-item-active: rgba(0, 122, 255, 0.08);
-}
-
-@media (prefers-color-scheme: dark) {
-  :host {
-    /* Dark Mode theme variables */
-    --folder-bg: #000000;
-    --folder-card-bg: #1c1c1e;
-    --folder-card-border: rgba(255, 255, 255, 0.06);
-    
-    --folder-text-main: #f5f5f7;
-    --folder-text-muted: #86868b;
-    --folder-accent: #0a84ff;
-    --folder-accent-rgb: 10, 132, 255;
-    
-    --folder-search-bg: rgba(255, 255, 255, 0.06);
-    --folder-badge-bg: rgba(255, 255, 255, 0.06);
-    --folder-list-item-hover: rgba(255, 255, 255, 0.03);
-    --folder-list-item-active: rgba(10, 132, 255, 0.12);
-  }
-}
-
-.apple-header {
-  --background: transparent !important;
-  background: transparent !important;
-}
-
-.apple-toolbar {
-  --background: transparent !important;
-  --border-width: 0 0 0.5px 0 !important;
-  --border-color: var(--folder-card-border) !important;
-  padding: 8px 12px 4px 12px !important;
-  box-shadow: none !important;
-}
-
-.apple-menu-btn {
-  border: 0.5px solid var(--folder-card-border) !important;
-  background: var(--folder-card-bg) !important;
-  border-radius: 50% !important;
-  width: 32px !important;
-  height: 32px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  --color: var(--folder-accent) !important;
-  margin-left: 0 !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.01);
-
-  &::part(button) {
-    padding: 0 !important;
-    width: 32px !important;
-    height: 32px !important;
-  }
-}
-
-.apple-detail-title {
-  font-family: var(--font-family-heading) !important;
-  font-size: 1.05rem !important;
-  font-weight: 700 !important;
-  color: var(--folder-text-main) !important;
-  letter-spacing: -0.2px !important;
-}
-
-.apple-condense-title {
-  font-family: var(--font-family-heading) !important;
-  font-weight: 700 !important;
-  color: var(--folder-text-main) !important;
-  letter-spacing: -0.4px !important;
-}
-
-.apple-hdr-buttons {
+/* Force consistent layout constraints */
+.ios-settings-container {
   display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.apple-hdr-btn {
-  border: 0.5px solid var(--folder-card-border) !important;
-  background: var(--folder-card-bg) !important;
-  border-radius: 50% !important;
-  width: 32px !important;
-  height: 32px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  --color: var(--folder-text-muted) !important;
-  margin: 0 !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.01);
-  --padding-start: 0px !important;
-  --padding-end: 0px !important;
-  transition: all 0.2s ease !important;
-
-  ion-icon {
-    font-size: 15px !important;
-  }
-
-  &.apple-active {
-    background: var(--folder-list-item-active) !important;
-    border-color: rgba(var(--folder-accent-rgb), 0.25) !important;
-    --color: var(--folder-accent) !important;
-  }
-}
-
-/* Spotlight Search Toolbar */
-.apple-search-toolbar {
-  --background: transparent !important;
-  --border-width: 0 0 0.5px 0 !important;
-  --border-color: var(--folder-card-border) !important;
-  padding: 4px 12px 10px 12px !important;
-}
-
-.apple-search-container {
-  display: flex;
-  align-items: center;
+  flex-direction: column;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 12px 12px 60px 12px;
+  box-sizing: border-box !important;
   width: 100%;
-  gap: 12px;
-}
 
-.apple-search-inner {
-  display: flex;
-  align-items: center;
-  position: relative;
-  height: 36px;
-  background: var(--folder-search-bg);
-  border-radius: 10px;
-  padding: 0 10px;
-  flex: 1;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-
-  &:focus-within {
-    background: var(--folder-card-bg);
-    box-shadow: 0 0 0 1.5px var(--folder-accent), 0 4px 12px rgba(0, 0, 0, 0.03);
-    
-    .apple-search-icon {
-      color: var(--folder-accent);
-    }
-  }
-
-  .apple-search-icon {
-    font-size: 18px;
-    color: var(--folder-text-muted);
-    margin-right: 8px;
-    flex-shrink: 0;
-    transition: color 0.25s ease;
-  }
-
-  .apple-search-input {
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: transparent;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--folder-text-main);
-    outline: none;
-    padding: 0;
-    line-height: var(--tamil-line-height);
-
-    &::placeholder {
-      color: var(--folder-text-muted);
-      opacity: 0.75;
-    }
-  }
-
-  .apple-search-clear-btn {
-    border: none;
-    background: transparent;
-    padding: 0;
-    margin: 0;
-    color: var(--folder-text-muted);
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    opacity: 0.7;
-    transition: opacity 0.2s ease;
-
-    &:hover {
-      opacity: 1;
-      color: var(--folder-accent);
-    }
+  * {
+    box-sizing: border-box !important;
   }
 }
 
-.apple-search-cancel-btn {
-  background: transparent;
-  border: none;
-  color: var(--folder-accent);
-  font-family: var(--font-family-sans);
-  font-size: 0.88rem;
-  font-weight: 600;
-  padding: 0 4px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-/* Reading Progress Indicator */
-.apple-progress-container {
-  width: 100%;
-  height: 2px;
-  background: rgba(var(--folder-accent-rgb), 0.06);
-  position: relative;
-  z-index: 10;
-}
-
-.apple-progress-bar {
-  height: 100%;
-  background: var(--folder-accent);
-  width: 0%;
-  transition: width 0.1s linear;
-  box-shadow: 0 0 4px var(--folder-accent);
-}
-
-.apple-detail-bg {
-  --background: var(--folder-bg) !important;
-}
-
-/* Collapsible Table Index Header */
-.apple-index-header-card {
-  margin: 16px 16px 4px 16px;
-  background: var(--folder-card-bg);
-  border-radius: 12px;
-  border: 0.5px solid var(--folder-card-border);
-  cursor: pointer;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background: var(--folder-list-item-hover);
-  }
-
-  .apple-index-header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
-  }
-
-  .apple-index-title-wrap {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    .apple-index-icon {
-      font-size: 1.1rem;
-      color: var(--folder-accent);
-    }
-
-    .apple-index-title {
-      font-family: var(--font-family-heading);
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--folder-text-main);
-      line-height: var(--tamil-line-height);
-    }
-
-    .apple-index-badge {
-      font-family: var(--font-family-sans);
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--folder-text-muted);
-      background: var(--folder-badge-bg);
-      padding: 2px 6px;
-      border-radius: 8px;
-    }
-  }
-
-  .apple-index-chevron {
-    font-size: 12px;
-    color: var(--folder-text-muted);
-    opacity: 0.7;
-  }
-}
-
-/* Collapsible Index List */
-.apple-index-list-grouped {
-  margin: 0 16px 16px 16px;
-  background: var(--folder-card-bg);
-  border-radius: 12px;
-  border: 0.5px solid var(--folder-card-border);
-  overflow: hidden;
-
-  .apple-index-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    max-height: 240px;
-    overflow-y: auto;
-    padding: 4px;
-
-    @media (min-width: 576px) {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  .apple-index-item {
-    background: transparent;
-    border-bottom: 0.5px solid var(--folder-card-border);
-    transition: all 0.2s ease;
-    cursor: pointer;
-
-    &:hover {
-      background: var(--folder-list-item-hover);
-    }
-
-    .apple-index-item-content {
-      display: flex;
-      align-items: center;
-      padding: 8px 12px;
-      gap: 10px;
-    }
-
-    .apple-index-number {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 18px;
-      height: 18px;
-      border-radius: 5px;
-      background: var(--folder-badge-bg);
-      color: var(--folder-text-muted);
-      font-family: var(--font-family-sans);
-      font-size: 0.68rem;
-      font-weight: 700;
-    }
-
-    .apple-index-label {
-      font-family: var(--font-family-sans);
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--folder-text-main);
-      white-space: normal;
-      line-height: var(--tamil-line-height);
-      padding: 1px 0;
-    }
-  }
-}
-
-/* Loading Skeleton */
 .skeleton-wrapper {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
 }
 
-.apple-skeleton-card {
-  background: var(--folder-card-bg);
-  border-radius: 14px;
-  border: 0.5px solid var(--folder-card-border);
-  padding: 16px;
-}
-
-/* Offline Banner */
-.apple-offline-banner {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 12px 16px;
-  padding: 10px 14px;
-  background: rgba(var(--ion-color-warning-rgb), 0.06);
-  border-radius: 10px;
-  border: 0.5px solid var(--ion-color-warning);
-
-  .apple-offline-icon {
-    font-size: 1.1rem;
-    color: var(--ion-color-warning-shade);
-  }
-
-  .apple-offline-text {
-    font-family: var(--font-family-sans);
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--ion-color-warning-shade);
-    line-height: var(--tamil-line-height);
-  }
-}
-
-/* Empty State */
-.apple-empty-state {
+.ios-dua-list-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 50px 20px;
-  text-align: center;
-
-  .apple-empty-icon {
-    font-size: 2.5rem;
-    color: var(--folder-text-muted);
-    margin-bottom: 10px;
-    opacity: 0.6;
-  }
-
-  h2 {
-    font-family: var(--font-family-heading);
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--folder-text-main);
-    margin: 0 0 6px 0;
-    line-height: var(--tamil-line-height);
-  }
-
-  p {
-    font-family: var(--font-family-sans);
-    font-size: 0.85rem;
-    color: var(--folder-text-muted);
-    margin: 0;
-    line-height: var(--tamil-line-height);
-  }
+  gap: 16px;
+  width: 100%;
 }
 
-/* Main Container & Dua Cards */
-.apple-dua-container {
+/* Card Header */
+.premium-card-header {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-bottom: 80px;
-}
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: 0.5px solid var(--home-card-border);
+  width: 100%;
+  box-sizing: border-box;
 
-.dua-item-anchor {
-  scroll-margin-top: 140px;
-}
-
-.apple-dua-card {
-  margin: 12px 16px;
-  border-radius: 16px;
-  background: var(--folder-card-bg);
-  border: 0.5px solid var(--folder-card-border);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
-  transition: all 0.25s ease;
-
-  .apple-dua-card-header {
+  .chapter-count-badge {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 14px 18px;
-    border-bottom: 0.5px solid var(--folder-card-border);
-
-    .apple-dua-num-badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: var(--folder-badge-bg);
-      color: var(--folder-accent);
-      font-family: var(--font-family-sans);
-      font-size: 0.75rem;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .apple-dua-card-title {
-      font-family: var(--font-family-heading);
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--folder-text-main);
-      line-height: var(--tamil-line-height);
-      margin: 0;
-      padding: 2px 0;
-    }
-  }
-
-  .apple-dua-card-content {
-    padding: 18px;
-  }
-}
-
-/* Explanation Inset Panel */
-.apple-note-box {
-  background: rgba(var(--folder-accent-rgb), 0.04);
-  border-left: 3px solid var(--folder-accent);
-  border-radius: 4px;
-  padding: 10px 14px;
-  margin-bottom: 16px;
-
-  .apple-note-header {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(var(--home-accent-rgb), 0.08);
+    color: var(--home-accent);
     font-family: var(--font-family-sans);
     font-size: 0.78rem;
     font-weight: 700;
-    color: var(--folder-accent);
-    margin-bottom: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.2px;
-
-    .apple-note-icon {
-      font-size: 13px;
-    }
+    flex-shrink: 0;
   }
 
-  .apple-note-content-text {
-    font-family: var(--font-family-sans);
-    font-size: 0.85rem;
-    line-height: var(--tamil-line-height);
-    color: var(--folder-text-main);
+  .header-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .dua-card-title {
+    font-family: var(--font-family-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--home-text-main);
+    line-height: var(--tamil-line-height, 1.4);
     margin: 0;
-    padding: 1px 0;
+    word-wrap: break-word;
   }
 }
 
-/* Framed Arabic Script block */
-.apple-arabic-frame {
-  background: rgba(0, 0, 0, 0.015);
-  border-radius: 10px;
-  border: 0.5px solid var(--folder-card-border);
-  padding: 16px;
+.premium-card-content {
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Notes Frame */
+.advisory-notes-box {
+  background: rgba(var(--home-accent-rgb), 0.04);
+  border-radius: 12px;
+  padding: 12px 16px;
   margin-bottom: 16px;
-  
-  body.dark-theme & {
-    background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(var(--home-accent-rgb), 0.12);
+
+  .notes-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-family-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--home-accent);
+    margin-bottom: 4px;
+
+    .notes-icon {
+      font-size: 14px;
+    }
   }
 
-  .apple-arabic-frame-header {
+  .notes-text {
+    font-family: var(--font-family-sans);
+    font-size: 0.84rem;
+    line-height: var(--tamil-line-height, 1.45);
+    color: var(--home-text-main);
+    margin: 0;
+  }
+}
+
+/* Quranic Arabic Frame */
+.arabic-display-frame {
+  background: var(--home-badge-bg);
+  border-radius: 14px;
+  border: 1px solid var(--home-card-border);
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.01);
+
+  .arabic-frame-tag {
     font-family: var(--font-family-heading);
-    font-size: 0.72rem;
-    font-weight: 600;
+    font-size: 0.7rem;
+    font-weight: 700;
     text-transform: uppercase;
-    color: var(--folder-text-muted);
-    letter-spacing: 0.3px;
+    color: var(--home-text-muted);
+    letter-spacing: 0.5px;
     margin-bottom: 8px;
-    border-bottom: 0.5px solid var(--folder-card-border);
+    border-bottom: 0.5px dashed var(--home-card-border);
     padding-bottom: 4px;
   }
 
-  .apple-arabic-text {
+  .arabic-frame-text {
     text-align: right;
     direction: rtl;
-    line-height: var(--arabic-line-height);
-    color: var(--folder-text-main);
-    padding: 6px 2px;
+    line-height: var(--arabic-line-height, 1.8);
+    color: var(--home-text-main);
+    padding: 6px 0;
     word-wrap: break-word;
-    word-break: normal;
 
     &.arabic {
       font-family: 'Scheherazade', serif !important;
     }
     &.ar {
       font-family: 'Katibeh', cursive !important;
-      font-size: 1.8rem;
+      line-height: 1.4;
     }
     &.arab {
       font-family: 'Qahiri', sans-serif !important;
     }
     &.arab2 {
-      font-family: 'Amiri-Regular', serif !important;
+      font-family: 'Amiri', serif !important;
     }
     &.arab3 {
       font-family: 'ScheherazadeRegOT', serif !important;
     }
   }
+
+  &.reader-mode {
+    background: transparent !important;
+    border-color: transparent !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+    box-shadow: none !important;
+
+    .arabic-frame-text {
+      text-align: center !important;
+    }
+  }
 }
 
-/* Transliteration & Translations */
-.apple-translation-block {
+/* Reading Blocks */
+.translation-display-block {
   margin-bottom: 14px;
-  padding: 10px 0;
-  border-bottom: 0.5px solid var(--folder-card-border);
-  background: transparent;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--home-card-border);
+  background: var(--home-card-bg);
 
-  .apple-block-header {
+  .block-label {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
     font-family: var(--font-family-heading);
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 700;
     margin-bottom: 6px;
-    line-height: var(--tamil-line-height);
 
     ion-icon {
-      font-size: 13px;
+      font-size: 14px;
     }
   }
 
-  .apple-block-text {
+  .block-text {
     font-family: var(--font-family-sans);
-    line-height: var(--tamil-line-height);
-    color: var(--folder-text-main);
+    line-height: var(--tamil-line-height, 1.45);
+    color: var(--home-text-main);
     text-align: justify;
-    padding: 2px 0;
   }
 
-  &.read-block {
-    .read-header {
-      color: var(--folder-accent);
+  &.read {
+    border-color: rgba(var(--home-accent-rgb), 0.2);
+    background: rgba(var(--home-accent-rgb), 0.02);
+
+    .read-label {
+      color: var(--home-accent);
     }
   }
 
-  &.meaning-block {
-    .meaning-header {
-      color: var(--folder-text-muted);
+  &.meaning {
+    border-color: var(--home-card-border);
+    background: var(--home-badge-bg);
+
+    .meaning-label {
+      color: var(--home-text-muted);
     }
   }
 }
 
-/* Hadith Reference block */
-.apple-hadees-card {
-  background: transparent;
-  padding-top: 10px;
-  margin-top: 16px;
+/* Hadith References */
+.references-display-card {
+  border-top: 1px solid var(--home-card-border);
+  padding-top: 14px;
+  margin-top: 18px;
 
-  .apple-hadees-header {
+  .references-header {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
     font-family: var(--font-family-heading);
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    color: var(--folder-text-muted);
-    margin-bottom: 4px;
-    line-height: var(--tamil-line-height);
+    color: var(--home-text-muted);
+    margin-bottom: 6px;
 
-    .apple-hadees-icon {
-      font-size: 13px;
+    .references-icon {
+      font-size: 14px;
     }
   }
 
-  .hadith-ref-item {
-    .hadith-ref-txt {
+  .ref-item {
+    .ref-text {
       font-family: var(--font-family-sans);
-      font-size: 0.78rem;
-      line-height: var(--tamil-line-height);
-      color: var(--folder-text-muted);
+      font-size: 0.82rem;
+      line-height: var(--tamil-line-height, 1.4);
+      color: var(--home-text-muted);
       margin: 0;
-      padding: 1px 0;
     }
   }
 }
 
 /* Card Action Bar */
-.apple-card-action-bar {
+.card-action-bar-new {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 12px;
-  border-top: 0.5px solid var(--folder-card-border);
-  margin-top: 14px;
-  padding-top: 10px;
+  border-top: 0.5px solid var(--home-card-border);
+  margin-top: 16px;
+  padding-top: 12px;
 
-  .apple-action-btn {
-    --padding-start: 0;
-    --padding-end: 0;
-    margin: 0;
-    width: 32px;
-    height: 32px;
-    --color: var(--folder-text-muted);
+  .action-btn-circle {
+    border: 1px solid var(--home-card-border) !important;
+    background: var(--home-card-bg) !important;
+    border-radius: 50% !important;
+    width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--home-text-main) !important;
+    cursor: pointer;
+    outline: none;
     transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
 
     &:hover {
-      --color: var(--folder-accent);
+      background: var(--home-search-bg) !important;
+      border-color: var(--home-accent) !important;
     }
 
-    &.fav.active {
-      --color: var(--ion-color-danger);
+    &:active {
+      transform: scale(0.9);
     }
 
     ion-icon {
-      font-size: 17px;
+      font-size: 15px;
     }
   }
 }
 
-/* Settings floating action button (FAB) */
-.apple-settings-fab {
-  margin-bottom: 16px;
-  margin-right: 16px;
-
-  .apple-fab-button {
-    --background: var(--folder-accent) !important;
-    --color: #ffffff !important;
-    --box-shadow: 0 4px 12px rgba(var(--folder-accent-rgb), 0.2) !important;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-
-    &:hover {
-      transform: scale(1.03);
-    }
-
-    .apple-gear-icon {
-      font-size: 20px;
-    }
-  }
-}
-
-/* Tablet/Desktop grid layouts */
-@media (min-width: 768px) {
-  .apple-dua-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-    gap: 16px;
-    padding: 16px;
-  }
-
-  .apple-dua-card {
-    margin: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-
-    .apple-dua-card-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-
-      .apple-card-action-bar {
-        margin-top: auto;
-      }
-    }
-  }
-}
-
-@media (min-width: 1200px) {
-  .apple-dua-container {
-    grid-template-columns: repeat(auto-fill, minmax(550px, 1fr));
-  }
-}
-
-/* Font Customizer Popover */
-.apple-customizer-popover {
-  --width: 270px;
+/* Popover Customizer overrides */
+.premium-popover-theme {
+  --width: 290px;
   --max-width: 90vw;
-  --border-radius: 12px;
-  --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --border-radius: 14px;
+  --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 
-  .popover-content {
-    --background: var(--folder-card-bg) !important;
-    --color: var(--folder-text-main) !important;
+  .popover-content-bg {
+    --background: var(--home-card-bg) !important;
+    --color: var(--home-text-main) !important;
   }
 
-  .popover-title {
+  .popover-heading {
     font-family: var(--font-family-heading);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 14px;
-    color: var(--folder-text-main);
-    border-bottom: 0.5px solid var(--folder-card-border);
-    padding-bottom: 8px;
+    margin: 0 0 14px 0;
+    color: var(--home-text-main);
+    border-bottom: 0.5px solid var(--home-card-border);
+    padding-bottom: 6px;
   }
 
-  .popover-control-group {
+  .popover-control-row {
     margin-bottom: 14px;
 
     &:last-child {
@@ -763,69 +321,59 @@
     }
   }
 
-  .popover-label-wrap {
+  .popover-info-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 4px;
   }
 
-  .popover-label {
-    font-family: var(--font-family-sans);
-    font-size: 0.78rem;
-    color: var(--folder-text-muted);
+  .popover-label-text {
+    font-family: var(--font-family-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--home-text-main);
   }
 
-  .popover-val {
+  .popover-badge {
     font-family: var(--font-family-sans);
     font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--folder-accent);
-  }
-
-  .apple-range {
-    padding-top: 0;
-    padding-bottom: 0;
-    --bar-background: var(--folder-search-bg);
-    --bar-background-active: var(--folder-accent);
-    --knob-background: var(--folder-accent);
-    --knob-size: 15px;
-    --pin-background: var(--folder-accent);
-    
-    ion-icon {
-      color: var(--folder-text-muted);
-    }
+    font-weight: 700;
+    color: var(--home-accent);
+    background: var(--home-badge-bg);
+    padding: 2px 8px;
+    border-radius: 50px;
   }
 }
 
-/* Reader Mode overrides */
-.apple-arabic-frame {
-  transition: all 0.25s ease;
+/* Index grid */
+.font-card-new {
+  background: var(--home-card-bg);
+  border: 1px solid var(--home-card-border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.2s ease;
 
-  &.reader-mode {
-    border-color: transparent;
-    background: transparent;
-    padding: 0;
-    margin-bottom: 0;
-    
-    .apple-arabic-text {
-      text-align: center;
-      padding: 12px 0;
-    }
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:hover {
+    background: var(--home-search-bg);
   }
 }
 
-/* Staggered entrance animations */
-.apple-index-header-card,
-.apple-index-list-grouped,
-.apple-dua-card {
+/* Animations */
+.animate-in {
   animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes slideUpFade {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -833,11 +381,28 @@
   }
 }
 
-.animate-fade {
-  animation: fadeIn 0.3s ease forwards;
-}
+/* Responsive columns */
+@media (min-width: 768px) {
+  .ios-dua-list-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 16px;
+  }
 
-.ripple-item {
-  position: relative;
-  overflow: hidden;
+  .premium-settings-card {
+    margin: 0 !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .premium-card-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      .card-action-bar-new {
+        margin-top: auto;
+      }
+    }
+  }
 }

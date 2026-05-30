@@ -1,165 +1,159 @@
-<ion-header [translucent]="true">
-  <ion-toolbar class="ios-toolbar fav-toolbar">
+<ion-header class="ion-no-border apple-header-glass">
+  <ion-toolbar class="apple-toolbar-glass">
     <ion-buttons slot="start">
-      <ion-menu-button class="premium-hdr-menu-btn fav-hdr-menu-btn"></ion-menu-button>
+      <ion-menu-button class="apple-nav-btn" style="--color: var(--home-text-main) !important;"></ion-menu-button>
     </ion-buttons>
-    <ion-title class="ios-detail-title fav-header-title">
-      விருப்பமானவை
-      <span class="fav-title-heart-wrap">
-        <ion-icon name="heart" class="fav-title-heart-icon"></ion-icon>
-      </span>
-    </ion-title>
-    <ion-buttons slot="end" class="premium-hdr-buttons fav-hdr-buttons">
-      <ion-button (click)="toggleReaderMode()" class="premium-hdr-btn fav-hdr-btn" [class.active]="isReaderMode">
-        <ion-icon slot="icon-only" [name]="isReaderMode ? 'book' : 'book-outline'"></ion-icon>
-      </ion-button>
-      <ion-button id="fav-font-customizer-trigger" class="premium-hdr-btn fav-hdr-btn">
-        <ion-icon slot="icon-only" name="text-outline"></ion-icon>
-      </ion-button>
-      <ion-button routerLink="/home" class="premium-hdr-btn fav-hdr-btn">
-        <ion-icon slot="icon-only" name="home-outline"></ion-icon>
-      </ion-button>
+    
+    <div class="apple-header-title">விருப்பங்கள்</div>
+
+    <ion-buttons slot="end">
+      <!-- Reader Mode Toggle -->
+      <button (click)="toggleReaderMode()" class="apple-nav-btn-action" [class.active]="isReaderMode" aria-label="Toggle reader mode">
+        <ion-icon [name]="isReaderMode ? 'book' : 'book-outline'"></ion-icon>
+      </button>
+      
+      <!-- Font Customizer Trigger -->
+      <button id="fav-font-customizer-trigger" class="apple-nav-btn-action" aria-label="Font settings">
+        <ion-icon name="text-outline"></ion-icon>
+      </button>
+
+      <!-- Home Shortcut -->
+      <button routerLink="/home" class="apple-nav-btn-action" aria-label="Go home">
+        <ion-icon name="home-outline"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ios-detail-bg">
-  
-  <!-- Premium Hero Header Banner -->
-  <div class="ios-hero-banner-premium animate-in" *ngIf="!isLoading && favoriteDuas.length > 0">
-    <div class="ios-hero-banner-premium-inner">
-      <div class="ios-hero-banner-premium-left">
-        <span class="ios-hero-banner-tag">விருப்பமானவை • Treasured Bookmarks</span>
-        <h1 class="ios-hero-banner-title">நெஞ்சில் நின்றவை</h1>
-        <p class="ios-hero-banner-desc">உங்கள் இதயத்திற்கு நெருக்கமான பிரார்த்தனைகள் மற்றும் இறை தியானங்கள்</p>
-      </div>
-      <div class="ios-hero-banner-premium-right">
-        <div class="ios-hero-badge-circle">
-          <ion-icon name="heart" class="ios-hero-badge-heart"></ion-icon>
-          <span class="ios-hero-badge-count">{{ favoriteDuas.length }}</span>
+<ion-content [fullscreen]="true" class="apple-content-bg ion-padding">
+  <div class="ios-settings-container">
+    
+    <!-- Premium Hero Header Banner -->
+    <div class="apple-hero-banner-new animate-in" *ngIf="!isLoading && favoriteDuas.length > 0">
+      <div class="apple-hero-gradient-overlay"></div>
+      <div class="apple-hero-content-new">
+        <div class="apple-hero-meta">
+          <span class="apple-date-tamil">Treasured Bookmarks</span>
+          <ion-icon name="heart" class="apple-greeting-icon-badge" style="color: #ff2d55 !important;"></ion-icon>
         </div>
+        <h1 class="apple-greeting-title">விருப்பமானவை</h1>
+        <span class="apple-app-tagline">நெஞ்சில் நின்ற {{ favoriteDuas.length }} பிரார்த்தனைகள்</span>
       </div>
     </div>
-  </div>
 
-  <!-- Loading State -->
-  <div *ngIf="isLoading" class="skeleton-wrapper ion-padding">
-    <div class="ios-skeleton-card" *ngFor="let i of [1,2]">
-      <ion-skeleton-text animated style="width: 40%; height: 18px; border-radius: 4px; margin-bottom: 12px;"></ion-skeleton-text>
-      <ion-skeleton-text animated style="width: 90%; height: 80px; border-radius: 6px; margin-bottom: 12px;"></ion-skeleton-text>
-      <ion-skeleton-text animated style="width: 80%; height: 16px; border-radius: 4px;"></ion-skeleton-text>
-    </div>
-  </div>
-
-  <!-- Empty Favorites State -->
-  <div *ngIf="!isLoading && favoriteDuas.length === 0" class="ios-empty-state">
-    <ion-icon name="heart-dislike-outline" class="ios-empty-icon danger-icon"></ion-icon>
-    <h2>விருப்பமான துஆக்கள் ஏதுமில்லை</h2>
-    <p>துஆக்களின் கீழ் உள்ள இதயக் குறியீட்டை அழுத்தி இங்கு சேர்க்கலாம்.</p>
-  </div>
-
-  <!-- Favorites Dua List -->
-  <div *ngIf="!isLoading && favoriteDuas.length > 0" class="ios-dua-container">
-    <div *ngFor="let dua of favoriteDuas; let i = index" class="ios-dua-card animate-in">
-      
-      <!-- Card Header -->
-      <div class="ios-dua-card-header">
-        <span class="ios-dua-num-badge">{{ i + 1 }}</span>
-        <div class="ios-dua-title-group">
-          <h2 class="ios-dua-card-title">{{ dua.DuaTitle }}</h2>
-          <span class="ios-dua-chapter-badge">{{ dua.PageTitle }}</span>
-        </div>
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="skeleton-wrapper">
+      <div class="premium-settings-card padding-box" *ngFor="let i of [1,2]" style="margin-bottom: 16px;">
+        <ion-skeleton-text animated style="width: 40%; height: 18px; border-radius: 4px; margin-bottom: 12px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 90%; height: 80px; border-radius: 6px; margin-bottom: 12px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 80%; height: 16px; border-radius: 4px;"></ion-skeleton-text>
       </div>
+    </div>
 
-      <!-- Card Content -->
-      <div class="ios-dua-card-content">
-        <!-- Advisory Explanation Box -->
-        <div *ngIf="dua.DuaContent?.Notes && !isReaderMode" class="ios-note-box">
-          <div class="ios-note-header">
-            <ion-icon name="chatbubble-ellipses-outline" class="ios-note-icon"></ion-icon>
-            <span>விளக்கம் / குறிப்பு :</span>
-          </div>
-          <p class="ios-note-content-text">{{ dua.DuaContent.Notes }}</p>
-        </div>
+    <!-- Empty Favorites State -->
+    <div *ngIf="!isLoading && favoriteDuas.length === 0" class="apple-empty-state animate-fade">
+      <ion-icon name="heart-dislike-outline" class="apple-empty-icon" style="color: #ff2d55 !important;"></ion-icon>
+      <h2>விருப்பமானவை ஏதுமில்லை</h2>
+      <p>துஆக்களின் கீழ் உள்ள இதயக் குறியீட்டை அழுத்தி இங்கு சேர்க்கலாம்.</p>
+    </div>
 
-        <!-- Arabic Typography Block -->
-        <div class="ios-arabic-frame" [class.reader-mode]="isReaderMode" *ngIf="dua.DuaContent?.ArabicDua">
-          <div class="ios-arabic-frame-header" *ngIf="!isReaderMode">அரபு வடிவம்</div>
-          <div class="ios-arabic-text" [style.font-size]="arabicFontSize" [style.font-family]="selectedArabicFont">
-            {{ dua.DuaContent.ArabicDua }}
-          </div>
-        </div>
-
-        <!-- Tamil Reading Section -->
-        <div class="ios-translation-block read-block" *ngIf="showTamilDua && !isReaderMode && dua.DuaContent?.TamilDua">
-          <div class="ios-block-header read-header">
-            <ion-icon name="text-outline"></ion-icon>
-            <span>தமிழ் உச்சரிப்பு :</span>
-          </div>
-          <div class="ios-block-text" [style.font-size]="tamilFontSize">
-            {{ dua.DuaContent.TamilDua }}
+    <!-- Favorites Dua List -->
+    <div *ngIf="!isLoading && favoriteDuas.length > 0" class="ios-dua-list-wrapper">
+      <div *ngFor="let dua of favoriteDuas; let i = index" class="premium-settings-card ion-margin-bottom animate-in" style="overflow: visible;">
+        
+        <!-- Card Header -->
+        <div class="premium-card-header">
+          <span class="chapter-count-badge">{{ i + 1 }}</span>
+          <div class="header-text-group">
+            <h2 class="dua-card-title">{{ dua.DuaTitle }}</h2>
+            <span class="dua-chapter-ref">{{ dua.PageTitle }}</span>
           </div>
         </div>
 
-        <!-- Translation / Meaning Section -->
-        <div class="ios-translation-block meaning-block" *ngIf="showTranslation && !isReaderMode && dua.DuaContent?.Translation">
-          <div class="ios-block-header meaning-header">
-            <ion-icon name="book-outline"></ion-icon>
-            <span>பொருள் / மொழிபெயர்ப்பு :</span>
+        <!-- Card Content -->
+        <div class="premium-card-content">
+          <!-- Advisory Explanation Box -->
+          <div *ngIf="dua.DuaContent?.Notes && !isReaderMode" class="advisory-notes-box">
+            <div class="notes-header">
+              <ion-icon name="chatbubble-ellipses-outline" class="notes-icon"></ion-icon>
+              <span>விளக்கம் / குறிப்பு :</span>
+            </div>
+            <p class="notes-text">{{ dua.DuaContent.Notes }}</p>
           </div>
-          <div class="ios-block-text" [style.font-size]="tamilFontSize">
-            {{ dua.DuaContent.Translation }}
-          </div>
-        </div>
 
-        <!-- Hadith References -->
-        <div class="ios-hadees-card" *ngIf="dua.DuaContent?.HadithReferences?.length && !isReaderMode && showHadees">
-          <div class="ios-hadees-header">
-            <ion-icon name="bookmark-outline" class="ios-hadees-icon"></ion-icon>
-            <span>ஆதாரம்:</span>
-          </div>
-          <div class="ios-hadees-content">
-            <div *ngFor="let hadith of dua.DuaContent.HadithReferences" class="hadith-ref-item">
-              <p class="hadith-ref-txt">{{ hadith.ReadableReference }}</p>
+          <!-- Arabic Typography Block -->
+          <div class="arabic-display-frame" [class.reader-mode]="isReaderMode" *ngIf="dua.DuaContent?.ArabicDua">
+            <div class="arabic-frame-tag" *ngIf="!isReaderMode">அரபு வடிவம்</div>
+            <div class="arabic-frame-text" [style.font-size.px]="arabicFontSize" [class]="selectedArabicFont">
+              {{ dua.DuaContent.ArabicDua }}
             </div>
           </div>
-        </div>
 
-        <!-- Action Bar -->
-        <div class="ios-card-action-bar" *ngIf="!isReaderMode">
-          <ion-button fill="clear" (click)="toggleFavorite(dua)" class="ios-action-btn fav active">
-            <ion-icon slot="icon-only" name="heart"></ion-icon>
-          </ion-button>
-          <ion-button fill="clear" (click)="copyToClipboard(dua)" class="ios-action-btn copy">
-            <ion-icon slot="icon-only" name="copy-outline"></ion-icon>
-          </ion-button>
-          <ion-button fill="clear" (click)="onShare(dua)" class="ios-action-btn share">
-            <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
-          </ion-button>
-        </div>
+          <!-- Tamil Reading Section -->
+          <div class="translation-display-block read" *ngIf="showTamilDua && !isReaderMode && dua.DuaContent?.TamilDua">
+            <div class="block-label read-label">
+              <ion-icon name="text-outline"></ion-icon>
+              <span>தமிழ் உச்சரிப்பு :</span>
+            </div>
+            <div class="block-text" [style.font-size.px]="tamilFontSize">
+              {{ dua.DuaContent.TamilDua }}
+            </div>
+          </div>
 
+          <!-- Translation / Meaning Section -->
+          <div class="translation-display-block meaning" *ngIf="showTranslation && !isReaderMode && dua.DuaContent?.Translation">
+            <div class="block-label meaning-label">
+              <ion-icon name="book-outline"></ion-icon>
+              <span>பொருள் / மொழிபெயர்ப்பு :</span>
+            </div>
+            <div class="block-text" [style.font-size.px]="tamilFontSize">
+              {{ dua.DuaContent.Translation }}
+            </div>
+          </div>
+
+          <!-- Hadith References -->
+          <div class="references-display-card" *ngIf="dua.DuaContent?.HadithReferences?.length && !isReaderMode && showHadees">
+            <div class="references-header">
+              <ion-icon name="bookmark-outline" class="references-icon"></ion-icon>
+              <span>ஆதாரம்:</span>
+            </div>
+            <div class="references-list">
+              <div *ngFor="let hadith of dua.DuaContent.HadithReferences" class="ref-item">
+                <p class="ref-text">{{ hadith.ReadableReference }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Bar -->
+          <div class="card-action-bar-new" *ngIf="!isReaderMode">
+            <button (click)="toggleFavorite(dua)" class="action-btn-circle active" aria-label="Remove from favorites">
+              <ion-icon name="heart" style="color: #ff2d55 !important;"></ion-icon>
+            </button>
+            <button (click)="copyToClipboard(dua)" class="action-btn-circle" aria-label="Copy to clipboard">
+              <ion-icon name="copy-outline"></ion-icon>
+            </button>
+            <button (click)="onShare(dua)" class="action-btn-circle" aria-label="Share">
+              <ion-icon name="share-social-outline"></ion-icon>
+            </button>
+          </div>
+
+        </div>
       </div>
     </div>
+
   </div>
 
-  <!-- Settings FAB -->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="ios-settings-fab">
-    <ion-fab-button (click)="goToSettingsPage()" class="ios-fab-button-gold">
-      <ion-icon name="settings-sharp" class="ios-gear-icon"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
   <!-- Inline Font Customizer Popover -->
-  <ion-popover trigger="fav-font-customizer-trigger" dismiss-on-select="false" mode="ios" class="font-customizer-popover">
+  <ion-popover trigger="fav-font-customizer-trigger" dismiss-on-select="false" mode="ios" class="premium-popover-theme">
     <ng-template>
-      <ion-content class="popover-content ion-padding">
-        <h3 class="popover-title">அளவுகள் & எழுத்துரு</h3>
+      <ion-content class="popover-content-bg ion-padding">
+        <h3 class="popover-heading">அளவுகள் & எழுத்துரு</h3>
         
         <!-- Arabic Font Size -->
-        <div class="popover-control-group">
-          <div class="popover-label-wrap">
-            <span class="popover-label">அரபு அளவு (Arabic Size)</span>
-            <span class="popover-val">{{ arabicFontSizeVal }}px</span>
+        <div class="popover-control-row">
+          <div class="popover-info-row">
+            <span class="popover-label-text">அரபி</span>
+            <span class="popover-badge">{{ arabicFontSizeVal }}px</span>
           </div>
           <ion-range 
             [min]="20" 
@@ -167,17 +161,17 @@
             [value]="arabicFontSizeVal" 
             (ionChange)="onArabicSizeChange($event)"
             mode="ios"
-            class="gold-range">
-            <ion-icon slot="start" size="small" name="text-outline"></ion-icon>
-            <ion-icon slot="end" size="large" name="text-outline"></ion-icon>
+            class="luxury-range-gold">
+            <ion-icon slot="start" size="small" name="text-outline" style="font-size: 14px; color: var(--home-text-muted);"></ion-icon>
+            <ion-icon slot="end" size="large" name="text-outline" style="font-size: 18px; color: var(--home-accent);"></ion-icon>
           </ion-range>
         </div>
 
         <!-- Tamil Font Size -->
-        <div class="popover-control-group">
-          <div class="popover-label-wrap">
-            <span class="popover-label">தமிழ் அளவு (Tamil Size)</span>
-            <span class="popover-val">{{ tamilFontSizeVal }}px</span>
+        <div class="popover-control-row">
+          <div class="popover-info-row">
+            <span class="popover-label-text">தமிழ்</span>
+            <span class="popover-badge">{{ tamilFontSizeVal }}px</span>
           </div>
           <ion-range 
             [min]="12" 
@@ -185,12 +179,13 @@
             [value]="tamilFontSizeVal" 
             (ionChange)="onTamilSizeChange($event)"
             mode="ios"
-            class="gold-range">
-            <ion-icon slot="start" size="small" name="text-outline"></ion-icon>
-            <ion-icon slot="end" size="large" name="text-outline"></ion-icon>
+            class="luxury-range-gold">
+            <ion-icon slot="start" size="small" name="text-outline" style="font-size: 14px; color: var(--home-text-muted);"></ion-icon>
+            <ion-icon slot="end" size="large" name="text-outline" style="font-size: 18px; color: var(--home-accent);"></ion-icon>
           </ion-range>
         </div>
       </ion-content>
     </ng-template>
   </ion-popover>
 </ion-content>
+

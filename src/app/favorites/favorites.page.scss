@@ -1,282 +1,367 @@
 /* Overhauled Premium Favorites Styling */
-/* Unique Favorites Header Styling */
-.fav-toolbar {
-  --background: linear-gradient(135deg, rgba(var(--ion-card-background-rgb), 0.78) 0%, rgba(var(--ion-color-danger-rgb), 0.03) 100%) !important;
-  backdrop-filter: saturate(180%) blur(25px) !important;
-  -webkit-backdrop-filter: saturate(180%) blur(25px) !important;
-  --border-width: 0px !important;
-  position: relative;
-  box-shadow: none;
 
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 1.5px;
-    background: linear-gradient(90deg, var(--ion-color-danger) 0%, var(--ion-color-primary) 50%, var(--ion-color-danger) 100%);
-    opacity: 0.65;
-    box-shadow: 0 1px 4px rgba(var(--ion-color-danger-rgb), 0.15);
+/* Force consistent layout constraints */
+.ios-settings-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 12px 12px 60px 12px;
+  box-sizing: border-box !important;
+  width: 100%;
+
+  * {
+    box-sizing: border-box !important;
   }
-}
-
-.fav-header-title {
-  display: flex !important;
-  align-items: center;
-  gap: 8px;
-  
-  .fav-title-heart-wrap {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    border: 1px solid rgba(var(--ion-color-primary-rgb), 0.35);
-    background: rgba(var(--ion-color-primary-rgb), 0.08);
-    box-shadow: 0 0 6px rgba(var(--ion-color-primary-rgb), 0.2);
-    margin-left: 2px;
-  }
-  
-  .fav-title-heart-icon {
-    font-size: 13px !important;
-    color: var(--ion-color-danger) !important;
-    animation: heartPulse 1.8s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-    filter: drop-shadow(0 0 3px rgba(var(--ion-color-danger-rgb), 0.5));
-  }
-}
-
-@keyframes heartPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.22); }
-}
-
-.fav-hdr-buttons {
-  gap: 8px;
-}
-
-.fav-hdr-btn {
-  --border-color: rgba(var(--ion-color-danger-rgb), 0.22) !important;
-  --color: var(--ion-color-danger) !important;
-  --background-hover: rgba(var(--ion-color-danger-rgb), 0.08) !important;
-  --background-focused: rgba(var(--ion-color-danger-rgb), 0.12) !important;
-  border: 1px solid rgba(var(--ion-color-primary-rgb), 0.2) !important;
-  box-shadow: 0 2px 6px rgba(var(--ion-color-danger-rgb), 0.05);
-  transition: var(--premium-transition) !important;
-
-  &:hover {
-    --border-color: var(--ion-color-danger) !important;
-    box-shadow: 0 4px 12px rgba(var(--ion-color-danger-rgb), 0.15);
-    transform: scale(1.05);
-  }
-
-  &.active {
-    --background: rgba(var(--ion-color-danger-rgb), 0.15) !important;
-    --border-color: var(--ion-color-danger) !important;
-    --color: var(--ion-color-danger) !important;
-    box-shadow: 0 0 10px rgba(var(--ion-color-danger-rgb), 0.25);
-  }
-}
-
-.fav-hdr-menu-btn {
-  --color: var(--ion-color-danger) !important;
-  --background-hover: rgba(var(--ion-color-danger-rgb), 0.08) !important;
-  border: 1px solid rgba(var(--ion-color-primary-rgb), 0.25) !important;
-  box-shadow: 0 2px 6px rgba(var(--ion-color-danger-rgb), 0.05);
-  transition: var(--premium-transition) !important;
-
-  &:hover {
-    border-color: var(--ion-color-danger) !important;
-    box-shadow: 0 4px 12px rgba(var(--ion-color-danger-rgb), 0.15);
-    transform: scale(1.05);
-  }
-}
-
-.ios-detail-bg {
-  --background: var(--ion-background-color);
-}
-
-.ios-condense-title {
-  font-family: var(--font-family-heading);
-  font-weight: 800;
-  color: var(--ion-text-color);
 }
 
 .skeleton-wrapper {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
 }
 
-.ios-skeleton-card {
-  background: var(--ion-card-background);
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: var(--premium-shadow-sm);
-  border: 1px solid var(--ion-border-color);
-}
-
-/* Premium Empty State Styling */
-.ios-empty-state {
+.ios-dua-list-wrapper {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Card Header */
+.premium-card-header {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 100px 24px;
-  text-align: center;
-  background: transparent;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: 0.5px solid var(--home-card-border);
+  width: 100%;
+  box-sizing: border-box;
 
-  .ios-empty-icon {
-    font-size: 4rem;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 4px 8px rgba(var(--ion-color-danger-rgb), 0.15));
+  .chapter-count-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(var(--home-accent-rgb), 0.08);
+    color: var(--home-accent);
+    font-family: var(--font-family-sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
 
-    &.danger-icon {
-      color: rgba(var(--ion-color-danger-rgb), 0.7);
+  .header-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .dua-card-title {
+    font-family: var(--font-family-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--home-text-main);
+    line-height: var(--tamil-line-height, 1.4);
+    margin: 0;
+    word-wrap: break-word;
+  }
+
+  .dua-chapter-ref {
+    font-family: var(--font-family-sans);
+    font-size: 0.72rem;
+    color: var(--home-text-muted);
+    font-weight: 600;
+  }
+}
+
+.premium-card-content {
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Notes Frame */
+.advisory-notes-box {
+  background: rgba(var(--home-accent-rgb), 0.04);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(var(--home-accent-rgb), 0.12);
+
+  .notes-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-family-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--home-accent);
+    margin-bottom: 4px;
+
+    .notes-icon {
+      font-size: 14px;
     }
   }
 
-  h2 {
-    font-family: var(--font-family-heading);
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--ion-text-color);
-    margin: 0 0 10px 0;
-    line-height: var(--tamil-line-height);
-  }
-
-  p {
+  .notes-text {
     font-family: var(--font-family-sans);
-    font-size: 0.92rem;
-    color: var(--ion-color-secondary);
+    font-size: 0.84rem;
+    line-height: var(--tamil-line-height, 1.45);
+    color: var(--home-text-main);
     margin: 0;
-    line-height: var(--tamil-line-height);
-    max-width: 280px;
   }
 }
 
-/* Premium Hero Header Banner */
-.ios-hero-banner-premium {
-  margin: 20px 16px 8px 16px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 50%, #3a3a3c 100%);
-  border: 1px solid rgba(var(--ion-color-primary-rgb), 0.3);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  color: #ffffff;
-  overflow: hidden;
-  position: relative;
+/* Quranic Arabic Frame */
+.arabic-display-frame {
+  background: var(--home-badge-bg);
+  border-radius: 14px;
+  border: 1px solid var(--home-card-border);
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.01);
 
-  /* Subtle background design element */
-  &::before {
-    content: '';
-    position: absolute;
-    top: -50px;
-    right: -50px;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(var(--ion-color-primary-rgb), 0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .ios-hero-banner-premium-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 20px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .ios-hero-banner-premium-left {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding-right: 12px;
-  }
-
-  .ios-hero-banner-tag {
-    font-family: var(--font-family-sans);
+  .arabic-frame-tag {
+    font-family: var(--font-family-heading);
     font-size: 0.7rem;
     font-weight: 700;
-    color: var(--ion-color-primary);
     text-transform: uppercase;
-    letter-spacing: 1.2px;
+    color: var(--home-text-muted);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    border-bottom: 0.5px dashed var(--home-card-border);
+    padding-bottom: 4px;
   }
 
-  .ios-hero-banner-title {
+  .arabic-frame-text {
+    text-align: right;
+    direction: rtl;
+    line-height: var(--arabic-line-height, 1.8);
+    color: var(--home-text-main);
+    padding: 6px 0;
+    word-wrap: break-word;
+
+    &.arabic {
+      font-family: 'Scheherazade', serif !important;
+    }
+    &.ar {
+      font-family: 'Katibeh', cursive !important;
+      line-height: 1.4;
+    }
+    &.arab {
+      font-family: 'Qahiri', sans-serif !important;
+    }
+    &.arab2 {
+      font-family: 'Amiri', serif !important;
+    }
+    &.arab3 {
+      font-family: 'ScheherazadeRegOT', serif !important;
+    }
+  }
+
+  &.reader-mode {
+    background: transparent !important;
+    border-color: transparent !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+    box-shadow: none !important;
+
+    .arabic-frame-text {
+      text-align: center !important;
+    }
+  }
+}
+
+/* Reading Blocks */
+.translation-display-block {
+  margin-bottom: 14px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--home-card-border);
+  background: var(--home-card-bg);
+
+  .block-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     font-family: var(--font-family-heading);
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: #ffffff;
-    margin: 6px 0 4px 0;
-    letter-spacing: -0.5px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+
+    ion-icon {
+      font-size: 14px;
+    }
   }
 
-  .ios-hero-banner-desc {
+  .block-text {
     font-family: var(--font-family-sans);
-    font-size: 0.82rem;
-    color: #aeaeb2;
-    margin: 0;
-    line-height: 1.4;
+    line-height: var(--tamil-line-height, 1.45);
+    color: var(--home-text-main);
+    text-align: justify;
   }
 
-  .ios-hero-banner-premium-right {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  &.read {
+    border-color: rgba(var(--home-accent-rgb), 0.2);
+    background: rgba(var(--home-accent-rgb), 0.02);
 
-  .ios-hero-badge-circle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(var(--ion-color-primary-rgb), 0.4);
-    background: rgba(var(--ion-color-primary-rgb), 0.15);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-
-    .ios-hero-badge-heart {
-      font-size: 20px;
-      color: var(--ion-color-primary);
-      margin-bottom: 2px;
-      animation: heartbeat 2s infinite ease-in-out;
+    .read-label {
+      color: var(--home-accent);
     }
+  }
 
-    .ios-hero-badge-count {
+  &.meaning {
+    border-color: var(--home-card-border);
+    background: var(--home-badge-bg);
+
+    .meaning-label {
+      color: var(--home-text-muted);
+    }
+  }
+}
+
+/* Hadith References */
+.references-display-card {
+  border-top: 1px solid var(--home-card-border);
+  padding-top: 14px;
+  margin-top: 18px;
+
+  .references-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-family-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--home-text-muted);
+    margin-bottom: 6px;
+
+    .references-icon {
+      font-size: 14px;
+    }
+  }
+
+  .ref-item {
+    .ref-text {
       font-family: var(--font-family-sans);
-      font-size: 0.88rem;
-      font-weight: 800;
-      color: #ffffff;
+      font-size: 0.82rem;
+      line-height: var(--tamil-line-height, 1.4);
+      color: var(--home-text-muted);
+      margin: 0;
     }
   }
 }
 
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.12); }
-}
-
-/* Cards Container */
-.ios-dua-container {
+/* Card Action Bar */
+.card-action-bar-new {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
   gap: 12px;
-  padding-bottom: 80px;
+  border-top: 0.5px solid var(--home-card-border);
+  margin-top: 16px;
+  padding-top: 12px;
+
+  .action-btn-circle {
+    border: 1px solid var(--home-card-border) !important;
+    background: var(--home-card-bg) !important;
+    border-radius: 50% !important;
+    width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--home-text-main) !important;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
+
+    &:hover {
+      background: var(--home-search-bg) !important;
+      border-color: var(--home-accent) !important;
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+
+    ion-icon {
+      font-size: 15px;
+    }
+  }
 }
 
+/* Popover Customizer overrides */
+.premium-popover-theme {
+  --width: 290px;
+  --max-width: 90vw;
+  --border-radius: 14px;
+  --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+
+  .popover-content-bg {
+    --background: var(--home-card-bg) !important;
+    --color: var(--home-text-main) !important;
+  }
+
+  .popover-heading {
+    font-family: var(--font-family-heading);
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin: 0 0 14px 0;
+    color: var(--home-text-main);
+    border-bottom: 0.5px solid var(--home-card-border);
+    padding-bottom: 6px;
+  }
+
+  .popover-control-row {
+    margin-bottom: 14px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .popover-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+
+  .popover-label-text {
+    font-family: var(--font-family-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--home-text-main);
+  }
+
+  .popover-badge {
+    font-family: var(--font-family-sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--home-accent);
+    background: var(--home-badge-bg);
+    padding: 2px 8px;
+    border-radius: 50px;
+  }
+}
+
+/* Animations */
 .animate-in {
-  animation: slideUpFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes slideUpFade {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -284,429 +369,28 @@
   }
 }
 
-/* Supplication Card Design */
-.ios-dua-card {
-  margin: 12px 16px;
-  border-radius: 16px;
-  background: rgba(var(--ion-card-background-rgb), 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: var(--premium-shadow-md);
-  border: 1px solid rgba(var(--ion-color-primary-rgb), 0.18);
-  transition: var(--premium-transition);
-
-  &:hover {
-    box-shadow: var(--premium-shadow-lg);
-    transform: translateY(-2px);
-    border-color: rgba(var(--ion-color-primary-rgb), 0.35);
-  }
-
-  .ios-dua-card-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 18px 20px;
-    border-bottom: 0.5px solid rgba(var(--ion-color-primary-rgb), 0.15);
-
-    .ios-dua-num-badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(var(--ion-color-primary-rgb), 0.15) 0%, rgba(var(--ion-color-primary-rgb), 0.05) 100%);
-      border: 1px solid rgba(var(--ion-color-primary-rgb), 0.3);
-      color: var(--ion-color-primary);
-      font-family: var(--font-family-sans);
-      font-size: 0.8rem;
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 2px;
-      box-shadow: var(--premium-shadow-sm);
-    }
-
-    .ios-dua-title-group {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      flex-grow: 1;
-    }
-
-    .ios-dua-card-title {
-      font-family: var(--font-family-heading);
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--ion-text-color);
-      line-height: var(--tamil-line-height);
-      margin: 0;
-    }
-
-    .ios-dua-chapter-badge {
-      align-self: flex-start;
-      font-family: var(--font-family-sans);
-      font-size: 0.68rem;
-      font-weight: 700;
-      color: var(--ion-color-primary);
-      background: linear-gradient(90deg, rgba(var(--ion-color-primary-rgb), 0.08) 0%, rgba(var(--ion-color-primary-rgb), 0.02) 100%);
-      padding: 2px 10px;
-      border-radius: 50px;
-      border: 1px solid rgba(var(--ion-color-primary-rgb), 0.2);
-      margin-top: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-    }
-  }
-
-  .ios-dua-card-content {
-    padding: 20px;
-  }
-}
-
-/* Notes Frame */
-.ios-note-box {
-  background: rgba(var(--ion-color-primary-rgb), 0.04);
-  border-radius: 12px;
-  padding: 14px 18px;
-  margin-bottom: 20px;
-  border: 1px solid rgba(var(--ion-color-primary-rgb), 0.12);
-
-  .ios-note-header {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-family-heading);
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--ion-color-primary);
-    margin-bottom: 6px;
-    line-height: var(--tamil-line-height);
-
-    .ios-note-icon {
-      font-size: 15px;
-    }
-  }
-
-  .ios-note-content-text {
-    font-family: var(--font-family-sans);
-    font-size: 0.88rem;
-    line-height: var(--tamil-line-height);
-    color: var(--ion-text-color);
-    margin: 0;
-  }
-}
-
-/* Quranic Arabic Block */
-.ios-arabic-frame {
-  background: rgba(var(--ion-color-secondary-rgb), 0.02);
-  border-radius: 14px;
-  border: 1.5px solid rgba(var(--ion-color-primary-rgb), 0.2);
-  padding: 18px;
-  margin-bottom: 20px;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.02);
-
-  .ios-arabic-frame-header {
-    font-family: var(--font-family-heading);
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--ion-color-secondary);
-    letter-spacing: 0.5px;
-    margin-bottom: 10px;
-    border-bottom: 0.5px dashed rgba(var(--ion-color-primary-rgb), 0.2);
-    padding-bottom: 6px;
-  }
-
-  .ios-arabic-text {
-    text-align: right;
-    direction: rtl;
-    line-height: var(--arabic-line-height);
-    color: var(--ion-text-color);
-    padding: 8px 4px;
-    word-wrap: break-word;
-    word-break: normal;
-
-    &.arabic {
-      font-family: 'Scheherazade', serif !important;
-    }
-    &.ar {
-      font-family: 'Katibeh', cursive !important;
-      font-size: 1.8rem;
-    }
-    &.arab {
-      font-family: 'Qahiri', sans-serif !important;
-    }
-    &.arab2 {
-      font-family: 'Amiri-Regular', serif !important;
-    }
-    &.arab3 {
-      font-family: 'ScheherazadeRegOT', serif !important;
-    }
-  }
-}
-
-/* Reading blocks */
-.ios-translation-block {
-  margin-bottom: 16px;
-  padding: 16px;
-  border-radius: 12px;
-  border: 1px solid var(--ion-border-color);
-  background: rgba(var(--ion-color-secondary-rgb), 0.01);
-  transition: var(--premium-transition);
-
-  .ios-block-header {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-family-heading);
-    font-size: 0.82rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    line-height: var(--tamil-line-height);
-
-    ion-icon {
-      font-size: 15px;
-    }
-  }
-
-  .ios-block-text {
-    font-family: var(--font-family-sans);
-    line-height: var(--tamil-line-height);
-    color: var(--ion-text-color);
-    text-align: justify;
-  }
-
-  &.read-block {
-    border-color: rgba(var(--ion-color-primary-rgb), 0.22);
-    background: rgba(var(--ion-color-primary-rgb), 0.02);
-
-    .read-header {
-      color: var(--ion-color-primary);
-    }
-  }
-
-  &.meaning-block {
-    border-color: rgba(var(--ion-border-color-rgb), 0.7);
-    background: rgba(var(--ion-color-secondary-rgb), 0.02);
-
-    .meaning-header {
-      color: var(--ion-color-secondary);
-    }
-  }
-}
-
-/* Reference card */
-.ios-hadees-card {
-  background: transparent;
-  border: none;
-  border-top: 1px solid rgba(var(--ion-color-primary-rgb), 0.12);
-  padding-top: 16px;
-  margin-top: 20px;
-
-  .ios-hadees-header {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-family-heading);
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--ion-color-secondary);
-    margin-bottom: 6px;
-    line-height: var(--tamil-line-height);
-
-    .ios-hadees-icon {
-      font-size: 15px;
-    }
-  }
-
-  .hadith-ref-item {
-    .hadith-ref-txt {
-      font-family: var(--font-family-sans);
-      font-size: 0.82rem;
-      line-height: var(--tamil-line-height);
-      color: var(--ion-color-secondary);
-      margin: 0;
-    }
-  }
-}
-
-/* Card Action Bar */
-.ios-card-action-bar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-  border-top: 0.5px solid rgba(var(--ion-color-primary-rgb), 0.15);
-  margin-top: 18px;
-  padding-top: 14px;
-
-  .ios-action-btn {
-    --background: transparent;
-    --background-hover: rgba(var(--ion-color-primary-rgb), 0.08);
-    --border-radius: 50%;
-    --border-style: solid;
-    --border-width: 1px;
-    --border-color: rgba(var(--ion-color-primary-rgb), 0.2);
-    --color: var(--ion-color-secondary);
-    margin: 0;
-    width: 38px;
-    height: 38px;
-    --padding-start: 0;
-    --padding-end: 0;
-    transition: var(--premium-transition);
-
-    &:hover {
-      --color: var(--ion-color-primary);
-      --border-color: rgba(var(--ion-color-primary-rgb), 0.45);
-    }
-
-    &.fav.active {
-      --color: var(--ion-color-danger);
-      --border-color: rgba(var(--ion-color-danger-rgb), 0.25);
-      --background-hover: rgba(var(--ion-color-danger-rgb), 0.08);
-    }
-
-    ion-icon {
-      font-size: 17px;
-    }
-  }
-}
-
-/* Settings FAB */
-.ios-settings-fab {
-  margin-bottom: 16px;
-  margin-right: 16px;
-
-  .ios-fab-button-gold {
-    --background: var(--ion-color-primary);
-    --color: var(--ion-color-primary-contrast);
-    --box-shadow: var(--premium-shadow-md);
-    transition: var(--premium-transition);
-
-    &:hover {
-      --box-shadow: var(--premium-shadow-lg);
-      transform: scale(1.05);
-    }
-
-    .ios-gear-icon {
-      font-size: 22px;
-    }
-  }
-}
-
-/* Premium Popover Customizer */
-.font-customizer-popover {
-  --width: 280px;
-  --max-width: 90vw;
-  --border-radius: 12px;
-  --box-shadow: var(--premium-shadow-lg);
-
-  .popover-content {
-    --background: var(--ion-card-background);
-    --color: var(--ion-text-color);
-  }
-
-  .popover-title {
-    font-family: var(--font-family-heading);
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 16px;
-    color: var(--ion-text-color);
-    border-bottom: 0.5px solid var(--ion-border-color);
-    padding-bottom: 8px;
-  }
-
-  .popover-control-group {
-    margin-bottom: 16px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  .popover-label-wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 4px;
-  }
-
-  .popover-label {
-    font-family: var(--font-family-sans);
-    font-size: 0.8rem;
-    color: var(--ion-color-secondary);
-  }
-
-  .popover-val {
-    font-family: var(--font-family-sans);
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--ion-color-primary);
-  }
-
-  .gold-range {
-    padding-top: 0;
-    padding-bottom: 0;
-    --bar-background: rgba(var(--ion-color-primary-rgb), 0.12);
-    --bar-background-active: var(--ion-color-primary);
-    --knob-background: var(--ion-color-primary);
-    --knob-size: 16px;
-    --pin-background: var(--ion-color-primary);
-    --pin-color: var(--ion-color-primary-contrast);
-    
-    ion-icon {
-      color: var(--ion-color-secondary);
-    }
-  }
-}
-
-/* Reader Mode overrides */
-.ios-arabic-frame {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-  &.reader-mode {
-    border-color: transparent;
-    background: transparent;
-    padding: 0;
-    margin-bottom: 0;
-    
-    .ios-arabic-text {
-      text-align: center;
-      padding: 12px 0;
-    }
-  }
-}
-
 /* Responsive columns */
 @media (min-width: 768px) {
-  .ios-dua-container {
+  .ios-dua-list-wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
     gap: 16px;
-    padding: 16px;
   }
 
-  .ios-dua-card {
-    margin: 0;
+  .premium-settings-card {
+    margin: 0 !important;
     height: 100%;
     display: flex;
     flex-direction: column;
 
-    .ios-dua-card-content {
+    .premium-card-content {
       flex: 1;
       display: flex;
       flex-direction: column;
 
-      .ios-card-action-bar {
+      .card-action-bar-new {
         margin-top: auto;
       }
     }
-  }
-}
-
-@media (min-width: 1200px) {
-  .ios-dua-container {
-    grid-template-columns: repeat(auto-fill, minmax(550px, 1fr));
   }
 }

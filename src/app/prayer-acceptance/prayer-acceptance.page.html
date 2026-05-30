@@ -1,38 +1,51 @@
-<ion-header [translucent]="true">
-  <ion-toolbar class="ios-prayer-toolbar">
+<ion-header class="ion-no-border apple-header-glass">
+  <ion-toolbar class="apple-toolbar-glass">
     <ion-buttons slot="start">
-      <ion-menu-button class="premium-hdr-menu-btn scholarly-hdr-menu-btn"></ion-menu-button>
+      <ion-menu-button class="apple-nav-btn" style="--color: var(--home-text-main) !important;"></ion-menu-button>
     </ion-buttons>
-    <ion-title class="ios-prayer-title scholarly-header-title ion-text-center">
-      {{PageTitle}}
-    </ion-title>
-    <ion-buttons slot="end" class="premium-hdr-buttons scholarly-hdr-buttons">
-      <ion-button routerLink="/home" class="premium-hdr-btn scholarly-hdr-btn">
-        <ion-icon slot="icon-only" name="home-outline"></ion-icon>
-      </ion-button>
+    
+    <div class="apple-header-title">வழிகாட்டல்</div>
+
+    <ion-buttons slot="end">
+      <!-- Home Shortcut -->
+      <button routerLink="/home" class="apple-nav-btn-action" aria-label="Go home">
+        <ion-icon name="home-outline"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-toolbar>
   
   <!-- Sleek Apple HIG style Scroll Progress Bar -->
-  <div class="ios-scroll-progress-container">
-    <div class="ios-scroll-progress-bar" [style.width.%]="scrollProgress"></div>
+  <div class="apple-progress-container" style="height: 2px; width: 100%; background: var(--home-card-border);">
+    <div class="apple-progress-bar" [style.width.%]="scrollProgress" style="height: 100%; background: var(--home-accent); transition: width 0.1s ease;"></div>
   </div>
 </ion-header>
 
-<ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="onScroll($event)" class="ios-prayer-content-bg ion-padding">
-  <div class="ios-large-title-wrapper" *ngIf="PageTitle">
-    <h1 class="ios-large-title">{{ PageTitle }}</h1>
-  </div>
+<ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="onScroll($event)" class="apple-content-bg ion-padding">
+  <div class="ios-settings-container">
 
-  <div class="ios-prayer-card-container">
-    <div *ngFor="let item of data" class="ios-prayer-card ios-card">
-      <div class="ios-prayer-header" *ngIf="item.SectionTitle">
-        <h2 class="ios-prayer-card-title">{{ item.SectionTitle }}</h2>
-        <div class="ios-title-underline"></div>
-      </div>
-      <div class="ios-prayer-content">
-        <p *ngFor="let paragraph of item.Paragraphs" class="ios-prayer-paragraph">{{ paragraph }}</p>
+    <!-- Condense Section Header Title -->
+    <div class="apple-section-header ion-margin-bottom animate-in" *ngIf="PageTitle">
+      <span class="apple-section-title">{{ PageTitle }}</span>
+    </div>
+
+    <!-- Content Narrative Cards -->
+    <div class="ios-dua-list-wrapper">
+      <div *ngFor="let item of data" class="premium-settings-card ion-margin-bottom animate-in">
+        <!-- Section Title Header if exists -->
+        <div class="premium-card-header" *ngIf="item.SectionTitle">
+          <div class="header-text-group" style="margin-left: 0;">
+            <h2 class="dua-card-title" style="color: var(--home-accent);">{{ item.SectionTitle }}</h2>
+          </div>
+        </div>
+
+        <!-- Section Content paragraphs -->
+        <div class="premium-card-content" style="padding: 16px 20px;">
+          <p *ngFor="let paragraph of item.Paragraphs" class="ios-prayer-paragraph" style="font-family: var(--font-family-sans); font-size: 0.88rem; line-height: var(--tamil-line-height, 1.5); color: var(--home-text-main); margin: 0 0 12px 0; text-align: justify;">
+            {{ paragraph }}
+          </p>
+        </div>
       </div>
     </div>
+
   </div>
 </ion-content>
