@@ -82,7 +82,7 @@
   --glass-border: rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Sticky Glassmorphic Header & Toolbar */
+/* Header & Toolbar Styles */
 .apple-header-glass {
   background: var(--glass-bg) !important;
   backdrop-filter: blur(20px) !important;
@@ -136,32 +136,8 @@
   }
 }
 
+/* Page Background & Layout Container */
 .apple-content-bg {
-  --background: var(--home-bg) !important;
-}
-
-.settings-hdr-back-btn {
-  margin-left: 8px !important;
-  --background: rgba(var(--ion-color-primary-rgb), 0.06) !important;
-  --color: var(--ion-color-primary) !important;
-  --border-width: 0px !important;
-  --box-shadow: none !important;
-  border-radius: 50% !important;
-  width: 34px !important;
-  height: 34px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  &::part(button) {
-    border-radius: 50% !important;
-    padding: 0 !important;
-    width: 34px !important;
-    height: 34px !important;
-  }
-}
-
-.ios-settings-bg {
   --background: var(--home-bg) !important;
 }
 
@@ -179,57 +155,22 @@
   }
 }
 
-/* 1. Intro Banner */
-.settings-intro-banner {
-  margin-bottom: 24px;
-  padding: 0 6px;
-
-  .settings-tag-gold {
-    font-family: var(--font-family-sans);
-    font-size: 0.72rem;
-    font-weight: 800;
-    color: var(--home-accent);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-  }
-
-  .settings-page-title {
-    font-family: var(--font-family-heading);
-    font-size: 2.1rem;
-    font-weight: 800;
-    color: var(--home-text-main);
-    margin: 6px 0 8px 0;
-    letter-spacing: -0.8px;
-    line-height: var(--tamil-line-height);
-  }
-
-  .settings-page-desc {
-    font-family: var(--font-family-sans);
-    font-size: 0.9rem;
-    color: var(--home-text-muted);
-    margin: 0;
-    line-height: var(--tamil-line-height);
-  }
-}
-
-/* 2. Luxury Parchment Preview Card */
-.luxury-parchment-frame {
+/* 1. iOS Preview Hero Card */
+.ios-preview-hero-card {
   background: var(--home-card-bg);
-  border-radius: var(--premium-border-radius);
+  border-radius: 16px;
   border: 1px solid var(--home-card-border);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
   padding: 22px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  position: relative;
-  overflow: hidden;
   margin-bottom: 24px;
-  transition: var(--premium-transition);
+  position: relative;
   width: 100%;
   box-sizing: border-box;
 
-  .preview-hero-badge-gold {
+  .preview-hero-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -237,25 +178,25 @@
     background: var(--home-badge-bg);
     color: var(--home-text-muted);
     font-family: var(--font-family-sans);
-    font-size: 0.72rem;
-    font-weight: 700;
+    font-size: 0.75rem;
+    font-weight: 600;
     padding: 4px 10px;
     border-radius: 50px;
-    z-index: 2;
 
     .badge-icon {
       font-size: 13px;
+      color: var(--home-accent);
     }
   }
 
   .preview-hero-arabic-wrap {
     width: 100%;
-    z-index: 2;
+    text-align: center;
   }
 
   .preview-hero-arabic-text {
     margin: 4px 0;
-    line-height: var(--arabic-line-height);
+    line-height: var(--arabic-line-height, 1.8);
     color: var(--home-text-main);
     text-align: center;
     direction: rtl;
@@ -266,110 +207,99 @@
     }
     &.ar {
       font-family: 'Katibeh', cursive !important;
+      line-height: 1.4;
     }
     &.arab {
       font-family: 'Qahiri', sans-serif !important;
     }
     &.arab2 {
-      font-family: 'Amiri-Regular', serif !important;
+      font-family: 'Amiri', serif !important;
     }
     &.arab3 {
       font-family: 'ScheherazadeRegOT', serif !important;
     }
   }
 
-  .preview-hero-divider-gold {
+  .preview-hero-divider {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 16px;
-    margin: 8px 0;
-    z-index: 2;
+    margin: 4px 0;
 
-    .divider-dot {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--home-accent);
-      opacity: 0.3;
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--home-card-border);
     }
 
-    .divider-gold-sparkle {
+    .divider-sparkle {
       font-size: 14px;
       color: var(--home-accent);
       opacity: 0.5;
-      animation: sparkleGlow 4s infinite ease-in-out;
     }
   }
 
   .preview-hero-tamil-wrap {
     width: 100%;
-    z-index: 2;
   }
 
   .preview-hero-tamil-text {
     margin: 0;
-    line-height: var(--tamil-line-height);
+    line-height: var(--tamil-line-height, 1.5);
     color: var(--home-text-main);
     text-align: center;
     font-family: var(--font-family-sans);
-    padding: 4px 0;
+    font-weight: 500;
   }
 }
 
-@keyframes sparkleGlow {
-  0%, 100% { transform: scale(1); opacity: 0.7; }
-  50% { transform: scale(1.2); opacity: 1; filter: drop-shadow(0 0 4px var(--home-accent)); }
-}
-
-/* 3. Section Labels */
-.ios-section-label-gold {
+/* 2. Section Labels */
+.ios-section-label {
   display: flex;
   align-items: center;
   gap: 8px;
   font-family: var(--font-family-heading);
-  font-size: 0.84rem;
+  font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--home-text-muted);
-  letter-spacing: 0.8px;
-  margin: 28px 6px 12px 6px;
-  line-height: var(--tamil-line-height);
+  letter-spacing: 0.6px;
+  margin: 20px 4px 10px 4px;
 
   .section-label-icon {
-    font-size: 15px;
+    font-size: 14px;
     color: var(--home-accent);
   }
 }
 
-/* 4. Luxury Font Grid Selection */
-.font-grid-luxury {
+/* 3. Responsive Font Selection Grid */
+.font-grid-new {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: 12px;
   width: 100%;
   box-sizing: border-box;
 
-  .font-card-luxury {
+  .font-card-new {
     background: var(--home-card-bg);
-    border-radius: var(--premium-border-radius);
+    border-radius: 14px;
     border: 1px solid var(--home-card-border);
     padding: 14px;
     cursor: pointer;
-    transition: var(--premium-transition);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 96px;
-    gap: 10px;
-    box-shadow: var(--premium-shadow-sm);
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
     width: 100%;
     min-width: 0;
-    box-sizing: border-box;
+    position: relative;
 
-    &:hover {
-      border-color: rgba(var(--home-accent-rgb), 0.2);
-      transform: translateY(-1px);
+    &:active {
+      transform: scale(0.97);
     }
 
     &.active {
@@ -377,21 +307,21 @@
       background: linear-gradient(135deg, #007aff 0%, #00c7ee 100%);
       box-shadow: 0 6px 20px rgba(0, 122, 255, 0.15);
 
-      .font-card-name-luxury {
+      .font-card-name {
         color: #ffffff !important;
       }
 
-      .font-card-check-luxury {
+      .font-card-check {
         background: #ffffff;
         color: #007aff;
       }
 
-      .font-card-sample-luxury {
+      .font-card-sample {
         color: #ffffff !important;
       }
     }
 
-    .font-card-meta-luxury {
+    .font-card-meta {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -399,14 +329,18 @@
       width: 100%;
     }
 
-    .font-card-name-luxury {
+    .font-card-name {
       font-family: var(--font-family-heading);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       color: var(--home-text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 80%;
     }
 
-    .font-card-check-luxury {
+    .font-card-check {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -416,27 +350,29 @@
       background: var(--home-accent);
       color: #ffffff;
       font-size: 10px;
+      flex-shrink: 0;
     }
 
-    .font-card-sample-luxury {
-      font-size: 1.55rem;
+    .font-card-sample {
+      font-size: 1.5rem;
       color: var(--home-text-main);
       text-align: center;
       direction: rtl;
+      width: 100%;
+      display: block;
 
       &.font-scheherazade {
         font-family: 'Scheherazade', serif !important;
       }
       &.font-katibeh {
         font-family: 'Katibeh', cursive !important;
-        font-size: 1.65rem;
+        font-size: 1.6rem;
       }
       &.font-qahiri {
         font-family: 'Qahiri', sans-serif !important;
       }
       &.font-amiri {
-        font-family: 'Amiri-Regular', serif !important;
-        font-size: 1.5rem;
+        font-family: 'Amiri', serif !important;
       }
       &.font-scheherazade-ot {
         font-family: 'ScheherazadeRegOT', serif !important;
@@ -445,32 +381,28 @@
   }
 }
 
-/* 5. Unified Luxury Card Panels */
+/* 4. Unified Premium Card Panels */
 .premium-settings-card {
   background: var(--home-card-bg);
-  border-radius: var(--premium-border-radius);
+  border-radius: 16px;
   border: 1px solid var(--home-card-border);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: var(--premium-border-radius);
-  border: 1px solid rgba(var(--ion-color-primary-rgb), 0.15);
-  box-shadow: var(--premium-shadow-md);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
 
   &.padding-box {
     padding: 20px;
   }
 }
 
-/* 6. Luxury Range Sliders */
+/* 5. Range Sliders */
 .luxury-slider-row {
-  padding: 18px 20px;
+  padding: 16px 20px;
   border-bottom: 0.5px solid var(--home-card-border);
+  width: 100%;
 
   &:last-child {
     border-bottom: none;
@@ -480,21 +412,33 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    width: 100%;
   }
 
   .slider-title-wrap {
     display: flex;
     flex-direction: column;
     gap: 2px;
+    flex: 1;
+    min-width: 0;
   }
 
   .slider-title-main {
     font-family: var(--font-family-heading);
     font-size: 0.95rem;
-    font-weight: 750;
+    font-weight: 700;
     color: var(--home-text-main);
-    line-height: var(--tamil-line-height);
+    line-height: var(--tamil-line-height, 1.4);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .slider-title-sub {
+    font-family: var(--font-family-sans);
+    font-size: 0.75rem;
+    color: var(--home-text-muted);
   }
 
   .slider-badge-gold {
@@ -505,11 +449,12 @@
     background: var(--home-badge-bg);
     padding: 3px 10px;
     border-radius: 50px;
+    margin-left: 10px;
+    flex-shrink: 0;
   }
 
   .luxury-range-gold {
-    padding-top: 6px;
-    padding-bottom: 6px;
+    padding: 0;
     --bar-background: var(--home-search-bg);
     --bar-background-active: var(--home-accent);
     --knob-background: #ffffff;
@@ -519,19 +464,19 @@
     --pin-background: var(--home-accent);
     --pin-color: #ffffff;
 
-    .range-icon-sm-gold {
-      font-size: 14px;
+    .range-icon-sm {
+      font-size: 15px;
       color: var(--home-text-muted);
     }
 
-    .range-icon-lg-gold {
-      font-size: 19px;
+    .range-icon-lg {
+      font-size: 20px;
       color: var(--home-accent);
     }
   }
 }
 
-/* 7. Luxury Switches/Toggles */
+/* 6. Switches & Toggles */
 .luxury-toggle-row {
   display: flex;
   align-items: center;
@@ -539,6 +484,7 @@
   gap: 16px;
   padding: 16px 20px;
   border-bottom: 0.5px solid var(--home-card-border);
+  width: 100%;
 
   &:last-child {
     border-bottom: none;
@@ -549,59 +495,55 @@
     flex-direction: column;
     gap: 2px;
     flex: 1;
+    min-width: 0;
   }
 
   .toggle-title-main {
     font-family: var(--font-family-heading);
-    font-size: 0.96rem;
-    font-weight: 750;
+    font-size: 0.95rem;
+    font-weight: 700;
     color: var(--home-text-main);
-    line-height: var(--tamil-line-height);
+    line-height: var(--tamil-line-height, 1.4);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .toggle-desc-sub {
+    font-family: var(--font-family-sans);
+    font-size: 0.75rem;
+    color: var(--home-text-muted);
   }
 
   .luxury-toggle-gold {
     --handle-background: #ffffff;
     --handle-background-checked: #ffffff;
-    --background: rgba(var(--ion-color-secondary-rgb), 0.08);
+    --background: var(--home-search-bg);
     --background-checked: #34c759;
     --handle-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    margin: 0;
+    flex-shrink: 0;
   }
 }
 
-/* 8. Digital Safe Vault Card */
-.luxury-vault-card {
-  .vault-header-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 20px;
-
-    .vault-shield-icon {
-      font-size: 32px;
-      color: var(--home-accent);
-      filter: drop-shadow(0 2px 6px rgba(0, 122, 255, 0.15));
-      flex-shrink: 0;
-    }
-
-    .vault-desc-premium {
-      font-family: var(--font-family-sans);
-      font-size: 0.88rem;
-      color: var(--home-text-main);
-      line-height: var(--tamil-line-height);
-      margin: 0;
-    }
-  }
+/* 7. Favorites Vault */
+.vault-desc-text {
+  font-family: var(--font-family-sans);
+  font-size: 0.85rem;
+  color: var(--home-text-muted);
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+  width: 100%;
 }
 
-.vault-action-group-premium {
+.vault-action-group {
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 100%;
-  box-sizing: border-box;
 }
 
-.vault-btn-premium {
+.vault-action-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -616,17 +558,12 @@
   cursor: pointer;
   transition: all 0.2s ease;
   width: 100%;
-  box-sizing: border-box;
 
   &:active {
     transform: scale(0.98);
   }
 
-  .btn-icon-premium {
-    font-size: 18px;
-  }
-
-  &.btn-backup {
+  &.gradient-blue-teal {
     background: linear-gradient(135deg, #007aff 0%, #00c7ee 100%);
     color: #ffffff;
     box-shadow: 0 4px 12px rgba(0, 122, 255, 0.15);
@@ -636,7 +573,7 @@
     }
   }
 
-  &.btn-restore {
+  &.gradient-green-emerald {
     background: linear-gradient(135deg, #34c759 0%, #00a86b 100%);
     color: #ffffff;
     box-shadow: 0 4px 12px rgba(52, 199, 89, 0.15);
@@ -653,90 +590,89 @@
       opacity: 0.6;
     }
   }
-}
 
-.vault-code-wrap-premium {
-  position: relative;
-  margin-top: 6px;
-
-  .vault-textarea-premium {
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid var(--home-card-border);
-    background: var(--home-search-bg);
-    padding: 12px;
-    font-family: monospace;
-    font-size: 0.78rem;
-    color: var(--home-text-main);
-    resize: none;
-    word-break: break-all;
-    outline: none;
-    line-height: 1.5;
-  }
-
-  .copied-indicator {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-family: var(--font-family-sans);
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: #34c759;
-    margin-top: 4px;
-    margin-left: 2px;
+  ion-icon {
+    font-size: 18px;
   }
 }
 
-.vault-divider {
+.vault-code-display {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.vault-textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--home-card-border);
+  background: var(--home-search-bg);
+  padding: 12px;
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--home-text-main);
+  resize: none;
+  word-break: break-all;
+  outline: none;
+  line-height: 1.4;
+}
+
+.copied-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-family-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #34c759;
+  margin-left: 2px;
+}
+
+.vault-or-divider {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin: 18px 0;
+  margin: 16px 0;
+  width: 100%;
 
   .divider-line {
     flex: 1;
-    height: 0.5px;
+    height: 1px;
     background: var(--home-card-border);
-    opacity: 0.65;
   }
 
   .divider-or {
     font-family: var(--font-family-sans);
-    font-size: 0.7rem;
-    font-weight: 800;
+    font-size: 0.75rem;
+    font-weight: 700;
     color: var(--home-text-muted);
-    letter-spacing: 1px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 }
 
-.vault-input-wrap-premium {
-  border: 1px solid var(--home-card-border);
+.vault-textarea-input {
+  width: 100%;
   border-radius: 12px;
+  border: 1px solid var(--home-card-border);
   background: var(--home-search-bg);
-  padding: 8px 14px;
-  transition: var(--premium-transition);
+  padding: 12px;
+  font-family: monospace;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--home-text-main);
+  resize: none;
+  outline: none;
 
-  &:focus-within {
+  &:focus {
     border-color: var(--home-accent);
-    box-shadow: 0 0 0 3px rgba(var(--home-accent-rgb), 0.12);
-  }
-
-  .vault-textarea-input-premium {
-    width: 100%;
-    min-height: 70px;
-    border: none;
-    background: transparent;
-    font-family: monospace;
-    font-size: 0.85rem;
-    line-height: 1.5;
-    color: var(--home-text-main);
-    resize: none;
-    outline: none;
   }
 }
 
-/* 9. Premium Danger Option Card */
+/* 8. App Maintenance Section */
 .luxury-danger-row {
   display: flex;
   align-items: center;
@@ -744,24 +680,22 @@
   padding: 16px 20px;
   cursor: pointer;
   background: transparent;
-  transition: var(--premium-transition);
+  transition: all 0.2s ease;
+  width: 100%;
 
-  &:hover {
-    background: rgba(255, 59, 48, 0.02);
-  }
-  
   &:active {
     background: rgba(255, 59, 48, 0.05);
   }
 
-  .danger-row-left-luxury {
+  .danger-row-left {
     display: flex;
     align-items: center;
     gap: 14px;
     flex: 1;
+    min-width: 0;
   }
 
-  .danger-icon-container-luxury {
+  .danger-icon-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -770,54 +704,64 @@
     border-radius: 10px;
     background: rgba(255, 59, 48, 0.1);
     color: #ff3b30;
-    box-shadow: var(--premium-shadow-sm);
+    flex-shrink: 0;
   }
 
-  .danger-icon-luxury {
+  .danger-icon {
     font-size: 20px;
   }
 
-  .danger-text-wrap-luxury {
+  .danger-text-wrap {
     display: flex;
     flex-direction: column;
     gap: 2px;
+    flex: 1;
+    min-width: 0;
   }
 
-  .danger-title-luxury {
+  .danger-title-text {
     font-family: var(--font-family-heading);
-    font-size: 0.98rem;
-    font-weight: 750;
+    font-size: 0.95rem;
+    font-weight: 700;
     color: #ff3b30;
-    line-height: var(--tamil-line-height);
+    line-height: var(--tamil-line-height, 1.4);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .danger-desc-sub {
+  .danger-desc-text {
     font-family: var(--font-family-sans);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     color: var(--home-text-muted);
-    line-height: var(--tamil-line-height);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .danger-chevron-luxury {
-    font-size: 15px;
+  .danger-chevron {
+    font-size: 16px;
     color: var(--home-text-muted);
-    opacity: 0.65;
+    opacity: 0.6;
+    margin-left: 10px;
+    flex-shrink: 0;
   }
 }
 
+/* Animations & Ripple */
 .ripple {
   position: relative;
   overflow: hidden;
 }
 
 .animate-in {
-  animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes slideUpFade {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -825,10 +769,10 @@
   }
 }
 
-/* Responsive columns */
+/* Responsive constraints */
 @media (min-width: 768px) {
   .ios-preview-hero-card,
-  .font-grid-luxury,
+  .font-grid-new,
   .premium-settings-card {
     max-width: 650px;
     margin-left: auto;
