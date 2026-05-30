@@ -383,14 +383,16 @@
   background: var(--home-card-bg);
   border: 0.5px solid var(--home-card-border);
   border-radius: 14px;
-  padding: 16px 14px;
+  padding: 10px 12px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0,0,0,0.01);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 60px; /* Equal small height for all shortcut cards */
+  box-sizing: border-box;
 
   &:hover {
     transform: translateY(-2px);
@@ -405,13 +407,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    font-size: 18px;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    font-size: 15px;
     position: relative;
     background: var(--home-search-bg);
     color: var(--widget-accent);
+    flex-shrink: 0;
 
     .widget-badge {
       position: absolute;
@@ -420,10 +423,10 @@
       background: var(--ion-color-danger);
       color: #ffffff;
       font-family: var(--font-family-sans);
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-weight: 700;
-      min-width: 15px;
-      height: 15px;
+      min-width: 14px;
+      height: 14px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -433,20 +436,25 @@
     }
   }
 
-  /* Color mapping rules with custom premium gradients and micro-borders */
+  /* Color mapping rules with premium gradients and micro-borders */
   &.purple { 
     --widget-accent: var(--ion-color-tertiary); 
     background: linear-gradient(135deg, rgba(88, 86, 214, 0.08) 0%, rgba(88, 86, 214, 0.01) 100%) !important;
     border: 0.5px solid rgba(88, 86, 214, 0.15) !important;
+
+    @media (prefers-color-scheme: dark) {
+      background: linear-gradient(135deg, rgba(94, 92, 230, 0.15) 0%, rgba(94, 92, 230, 0.04) 100%) !important;
+      border: 0.5px solid rgba(94, 92, 230, 0.25) !important;
+    }
 
     :host-context(body.dark) & {
       background: linear-gradient(135deg, rgba(94, 92, 230, 0.15) 0%, rgba(94, 92, 230, 0.04) 100%) !important;
       border: 0.5px solid rgba(94, 92, 230, 0.25) !important;
     }
 
-    @media (prefers-color-scheme: dark) {
-      background: linear-gradient(135deg, rgba(94, 92, 230, 0.15) 0%, rgba(94, 92, 230, 0.04) 100%) !important;
-      border: 0.5px solid rgba(94, 92, 230, 0.25) !important;
+    :host-context(body.light) & {
+      background: linear-gradient(135deg, rgba(88, 86, 214, 0.08) 0%, rgba(88, 86, 214, 0.01) 100%) !important;
+      border: 0.5px solid rgba(88, 86, 214, 0.15) !important;
     }
   }
 
@@ -455,14 +463,19 @@
     background: linear-gradient(135deg, rgba(255, 59, 48, 0.08) 0%, rgba(255, 59, 48, 0.01) 100%) !important;
     border: 0.5px solid rgba(255, 59, 48, 0.15) !important;
 
+    @media (prefers-color-scheme: dark) {
+      background: linear-gradient(135deg, rgba(255, 69, 58, 0.15) 0%, rgba(255, 69, 58, 0.04) 100%) !important;
+      border: 0.5px solid rgba(255, 69, 58, 0.25) !important;
+    }
+
     :host-context(body.dark) & {
       background: linear-gradient(135deg, rgba(255, 69, 58, 0.15) 0%, rgba(255, 69, 58, 0.04) 100%) !important;
       border: 0.5px solid rgba(255, 69, 58, 0.25) !important;
     }
 
-    @media (prefers-color-scheme: dark) {
-      background: linear-gradient(135deg, rgba(255, 69, 58, 0.15) 0%, rgba(255, 69, 58, 0.04) 100%) !important;
-      border: 0.5px solid rgba(255, 69, 58, 0.25) !important;
+    :host-context(body.light) & {
+      background: linear-gradient(135deg, rgba(255, 59, 48, 0.08) 0%, rgba(255, 59, 48, 0.01) 100%) !important;
+      border: 0.5px solid rgba(255, 59, 48, 0.15) !important;
     }
   }
 
@@ -471,52 +484,69 @@
     background: linear-gradient(135deg, rgba(0, 122, 255, 0.08) 0%, rgba(0, 122, 255, 0.01) 100%) !important;
     border: 0.5px solid rgba(0, 122, 255, 0.15) !important;
 
+    @media (prefers-color-scheme: dark) {
+      background: linear-gradient(135deg, rgba(10, 132, 255, 0.15) 0%, rgba(10, 132, 255, 0.04) 100%) !important;
+      border: 0.5px solid rgba(10, 132, 255, 0.25) !important;
+    }
+
     :host-context(body.dark) & {
       background: linear-gradient(135deg, rgba(10, 132, 255, 0.15) 0%, rgba(10, 132, 255, 0.04) 100%) !important;
       border: 0.5px solid rgba(10, 132, 255, 0.25) !important;
     }
 
-    @media (prefers-color-scheme: dark) {
-      background: linear-gradient(135deg, rgba(10, 132, 255, 0.15) 0%, rgba(10, 132, 255, 0.04) 100%) !important;
-      border: 0.5px solid rgba(10, 132, 255, 0.25) !important;
+    :host-context(body.light) & {
+      background: linear-gradient(135deg, rgba(0, 122, 255, 0.08) 0%, rgba(0, 122, 255, 0.01) 100%) !important;
+      border: 0.5px solid rgba(0, 122, 255, 0.15) !important;
     }
   }
 
-  &.orange { 
-    --widget-accent: var(--ion-color-warning); 
-    background: linear-gradient(135deg, rgba(255, 149, 0, 0.08) 0%, rgba(255, 149, 0, 0.01) 100%) !important;
-    border: 0.5px solid rgba(255, 149, 0, 0.15) !important;
-
-    :host-context(body.dark) & {
-      background: linear-gradient(135deg, rgba(255, 159, 10, 0.15) 0%, rgba(255, 159, 10, 0.04) 100%) !important;
-      border: 0.5px solid rgba(255, 159, 10, 0.25) !important;
-    }
+  &.gray { 
+    --widget-accent: var(--home-text-muted); 
+    background: linear-gradient(135deg, rgba(142, 142, 147, 0.08) 0%, rgba(142, 142, 147, 0.01) 100%) !important;
+    border: 0.5px solid rgba(142, 142, 147, 0.15) !important;
 
     @media (prefers-color-scheme: dark) {
-      background: linear-gradient(135deg, rgba(255, 159, 10, 0.15) 0%, rgba(255, 159, 10, 0.04) 100%) !important;
-      border: 0.5px solid rgba(255, 159, 10, 0.25) !important;
+      background: linear-gradient(135deg, rgba(142, 142, 147, 0.15) 0%, rgba(142, 142, 147, 0.04) 100%) !important;
+      border: 0.5px solid rgba(142, 142, 147, 0.25) !important;
+    }
+
+    :host-context(body.dark) & {
+      background: linear-gradient(135deg, rgba(142, 142, 147, 0.15) 0%, rgba(142, 142, 147, 0.04) 100%) !important;
+      border: 0.5px solid rgba(142, 142, 147, 0.25) !important;
+    }
+
+    :host-context(body.light) & {
+      background: linear-gradient(135deg, rgba(142, 142, 147, 0.08) 0%, rgba(142, 142, 147, 0.01) 100%) !important;
+      border: 0.5px solid rgba(142, 142, 147, 0.15) !important;
     }
   }
 
   .widget-meta {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 0px;
+    min-width: 0;
   }
 
   .widget-label {
     font-family: var(--font-family-heading);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: var(--home-text-main);
-    line-height: var(--tamil-line-height);
+    line-height: 1.35;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .widget-sub {
     font-family: var(--font-family-sans);
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     color: var(--home-text-muted);
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 

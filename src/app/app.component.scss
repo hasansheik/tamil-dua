@@ -20,6 +20,7 @@
   --sidebar-list-item-active: rgba(0, 122, 255, 0.08);
   
   --sidebar-badge-bg: rgba(0, 0, 0, 0.04);
+  --sidebar-active-gradient: linear-gradient(135deg, rgba(0, 122, 255, 0.09) 0%, rgba(88, 86, 214, 0.05) 100%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -43,6 +44,7 @@
     --sidebar-list-item-active: rgba(10, 132, 255, 0.12);
     
     --sidebar-badge-bg: rgba(255, 255, 255, 0.06);
+    --sidebar-active-gradient: linear-gradient(135deg, rgba(10, 132, 255, 0.16) 0%, rgba(94, 92, 230, 0.09) 100%);
   }
 }
 
@@ -91,26 +93,13 @@ ion-menu {
 /* Brand Header */
 .apple-sidebar-brand {
   position: relative;
-  padding: 36px 24px 24px 24px;
+  padding: 36px 24px 20px 24px;
   overflow: hidden;
-  background: linear-gradient(135deg, #2b5c8f 0%, #15305b 100%);
-  border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
-  color: #ffffff !important;
-
-  :host-context(body.dark) & {
-    background: linear-gradient(135deg, #1c2e4a 0%, #0d1624 100%);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    background: linear-gradient(135deg, #1c2e4a 0%, #0d1624 100%);
-  }
 
   .brand-header-flex {
     display: flex;
     align-items: center;
     gap: 14px;
-    position: relative;
-    z-index: 2;
   }
 
   .brand-logo-box {
@@ -122,10 +111,9 @@ ion-menu {
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 0.5px solid rgba(255, 255, 255, 0.25);
+    background: linear-gradient(135deg, var(--sidebar-accent) 0%, #5856d6 100%);
     color: #ffffff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(var(--sidebar-accent-rgb), 0.15);
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
     .brand-logo-icon {
@@ -146,15 +134,15 @@ ion-menu {
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: rgba(255, 255, 255, 0.7);
+      color: var(--sidebar-text-muted);
       margin-bottom: 2px;
       font-family: var(--font-family-sans);
     }
 
     .brand-app-name {
-      font-size: 1.12rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      color: #ffffff;
+      color: var(--sidebar-text-main);
       margin: 0;
       line-height: 1.2;
       font-family: var(--font-family-heading);
@@ -164,7 +152,7 @@ ion-menu {
     .brand-app-sub {
       font-size: 0.72rem;
       font-weight: 500;
-      color: rgba(255, 255, 255, 0.6);
+      color: var(--sidebar-text-muted);
       letter-spacing: 0.2px;
       margin-top: 1px;
     }
@@ -289,8 +277,8 @@ ion-menu {
     }
 
     &.active {
-      background: linear-gradient(135deg, rgba(var(--sidebar-accent-rgb), 0.12) 0%, rgba(var(--sidebar-accent-rgb), 0.02) 100%) !important;
-      border-color: rgba(var(--sidebar-accent-rgb), 0.25) !important;
+      background: var(--sidebar-active-gradient) !important;
+      border-color: var(--sidebar-card-active-border);
       box-shadow: 0 2px 8px rgba(var(--sidebar-accent-rgb), 0.04);
 
       .card-label {
@@ -299,7 +287,7 @@ ion-menu {
       }
       
       .card-icon-wrap {
-        background: rgba(var(--sidebar-accent-rgb), 0.15) !important;
+        background: rgba(var(--sidebar-accent-rgb), 0.12);
         color: var(--sidebar-accent);
       }
     }
@@ -379,9 +367,7 @@ ion-menu {
     }
 
     &.active {
-      background: linear-gradient(135deg, rgba(var(--sidebar-accent-rgb), 0.12) 0%, rgba(var(--sidebar-accent-rgb), 0.02) 100%) !important;
-      border-left: 3px solid var(--sidebar-accent) !important;
-      border-radius: 0 8px 8px 0 !important;
+      background: var(--sidebar-active-gradient) !important;
 
       .item-text {
         color: var(--sidebar-accent);
