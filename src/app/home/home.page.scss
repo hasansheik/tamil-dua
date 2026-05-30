@@ -391,7 +391,7 @@
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0,0,0,0.01);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  height: 60px; /* Equal small height for all shortcut cards */
+  min-height: 60px; /* Minimum height - CSS Grid stretches row items to remain equal */
   box-sizing: border-box;
   min-width: 0; /* Prevent the grid item from expanding past its 1fr track width */
 
@@ -531,13 +531,12 @@
 
   .widget-label {
     font-family: var(--font-family-heading);
-    font-size: 0.8rem;
+    font-size: 0.76rem; /* Slightly smaller to fit better on small screen width */
     font-weight: 700;
     color: var(--home-text-main);
-    line-height: 1.35;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    line-height: 1.25;
+    white-space: normal;
+    word-break: break-word; /* Wrap single long words if needed */
   }
 
   .widget-sub {
@@ -545,9 +544,8 @@
     font-size: 0.65rem;
     color: var(--home-text-muted);
     font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 1.2;
   }
 }
 
