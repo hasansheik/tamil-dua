@@ -10,8 +10,8 @@
           </div>
           <div class="brand-title-wrap">
             <div class="brand-greet">அஸ்ஸலாமு அலைக்கும்</div>
-            <h2 class="brand-app-name">பிரார்த்தனைகள்</h2>
-            <span class="brand-app-sub">Tamil Dua App</span>
+            <h2 class="brand-app-name">துஆக்கள்</h2>
+            <span class="brand-app-sub">Tamil Dua</span>
           </div>
         </div>
       </div>
@@ -23,7 +23,7 @@
           <input 
             type="text" 
             [(ngModel)]="sidebarSearchQuery" 
-            placeholder="அத்தியாயங்களைத் தேடு..." 
+            placeholder="தேடுக..." 
             class="apple-search-input"
           />
           <button 
@@ -40,13 +40,13 @@
       <ion-content class="apple-sidebar-content">
         <!-- Quick Shortcuts Grid -->
         <div class="apple-section-header">
-          <span class="apple-section-title">விரைவு அணுகல்</span>
+          <span class="apple-section-title">அணுகல்</span>
         </div>
         
         <div class="apple-grid">
           <ion-menu-toggle auto-hide="false">
-            <div routerLink="/home" routerDirection="root" routerLinkActive="active" class="apple-grid-card ripple-card">
-              <div class="card-icon-wrap primary">
+            <div routerLink="/home" routerDirection="root" routerLinkActive="active" class="apple-grid-card blue ripple-card">
+              <div class="card-icon-wrap">
                 <ion-icon name="grid"></ion-icon>
               </div>
               <div class="card-details">
@@ -57,20 +57,21 @@
           </ion-menu-toggle>
 
           <ion-menu-toggle auto-hide="false">
-            <div routerLink="/favorites" routerDirection="root" routerLinkActive="active" class="apple-grid-card ripple-card">
-              <div class="card-icon-wrap danger">
+            <div routerLink="/favorites" routerDirection="root" routerLinkActive="active" class="apple-grid-card red ripple-card">
+              <div class="card-icon-wrap">
                 <ion-icon name="heart"></ion-icon>
               </div>
               <div class="card-details">
                 <span class="card-label">விருப்பம்</span>
-                <span class="card-value badge-count">{{ favoritesCount }}</span>
+                <span class="card-value badge-count" *ngIf="favoritesCount > 0">{{ favoritesCount }}</span>
+                <span class="card-value" *ngIf="favoritesCount === 0">Favs</span>
               </div>
             </div>
           </ion-menu-toggle>
 
           <ion-menu-toggle auto-hide="false">
-            <div routerLink="/settings" routerDirection="root" routerLinkActive="active" class="apple-grid-card ripple-card">
-              <div class="card-icon-wrap warning">
+            <div routerLink="/settings" routerDirection="root" routerLinkActive="active" class="apple-grid-card gray ripple-card">
+              <div class="card-icon-wrap">
                 <ion-icon name="settings"></ion-icon>
               </div>
               <div class="card-details">
@@ -81,13 +82,13 @@
           </ion-menu-toggle>
 
           <ion-menu-toggle auto-hide="false">
-            <div [routerLink]="['/prayer-acceptance', 1]" routerDirection="root" routerLinkActive="active" class="apple-grid-card ripple-card">
-              <div class="card-icon-wrap success">
+            <div [routerLink]="['/prayer-acceptance', 1]" routerDirection="root" routerLinkActive="active" class="apple-grid-card purple ripple-card">
+              <div class="card-icon-wrap">
                 <ion-icon name="bookmark"></ion-icon>
               </div>
               <div class="card-details">
                 <span class="card-label">முன்னுரை</span>
-                <span class="card-value">Intro</span>
+                <span class="card-value">Preface</span>
               </div>
             </div>
           </ion-menu-toggle>
@@ -95,7 +96,7 @@
 
         <!-- Chapters List Section -->
         <div class="apple-section-header">
-          <span class="apple-section-title">அத்தியாயங்கள்</span>
+          <span class="apple-section-title">பிரிவுகள்</span>
         </div>
         
         <div class="apple-list">
@@ -118,20 +119,20 @@
           </ion-menu-toggle>
           <div *ngIf="getChapters().length === 0" class="apple-no-results animate-fade">
             <ion-icon name="alert-circle-outline" class="no-results-icon"></ion-icon>
-            <span>தேடல் முடிவுகள் எதுவும் இல்லை.</span>
+            <span>தேடல் முடிவுகள் ஏதுமில்லை.</span>
           </div>
         </div>
 
         <!-- Guidance List Section -->
         <div class="apple-section-header">
-          <span class="apple-section-title">பிற வழிகாட்டல்கள்</span>
+          <span class="apple-section-title">வழிகாட்டல்</span>
         </div>
         
         <div class="apple-list">
           <ion-menu-toggle auto-hide="false">
             <div [routerLink]="['/prayer-acceptance', 1]" routerDirection="root" routerLinkActive="active" class="apple-list-item ripple-item">
               <div class="item-inner">
-                <div class="item-icon-badge">
+                <div class="item-icon-badge icon-purple">
                   <ion-icon name="bookmark" class="item-icon"></ion-icon>
                 </div>
                 <span class="item-text">முன்னுரை</span>
@@ -145,10 +146,10 @@
           <ion-menu-toggle auto-hide="false">
             <div [routerLink]="['/prayer-acceptance', 2]" routerDirection="root" routerLinkActive="active" class="apple-list-item ripple-item">
               <div class="item-inner">
-                <div class="item-icon-badge">
-                  <ion-icon name="bookmark" class="item-icon"></ion-icon>
+                <div class="item-icon-badge icon-green">
+                  <ion-icon name="time-outline" class="item-icon"></ion-icon>
                 </div>
-                <span class="item-text">பிரார்த்தனை ஏற்றுக்கொள்ளுதல்</span>
+                <span class="item-text">ஏற்றுக்கொள்ளப்படும் நேரங்கள்</span>
                 <div class="item-arrow-wrap">
                   <ion-icon name="chevron-forward" class="item-chevron"></ion-icon>
                 </div>
@@ -159,10 +160,10 @@
           <ion-menu-toggle auto-hide="false">
             <div [routerLink]="['/prayer-acceptance', 3]" routerDirection="root" routerLinkActive="active" class="apple-list-item ripple-item">
               <div class="item-inner">
-                <div class="item-icon-badge">
-                  <ion-icon name="bookmark" class="item-icon"></ion-icon>
+                <div class="item-icon-badge icon-orange">
+                  <ion-icon name="sparkles-outline" class="item-icon"></ion-icon>
                 </div>
-                <span class="item-text">சத்தியத்தைத் தேடும் உள்ளங்களே!</span>
+                <span class="item-text">உள்ளத்தின் தூய்மை</span>
                 <div class="item-arrow-wrap">
                   <ion-icon name="chevron-forward" class="item-chevron"></ion-icon>
                 </div>
@@ -173,10 +174,10 @@
           <ion-menu-toggle auto-hide="false">
             <div [routerLink]="['/prayer-acceptance', 4]" routerDirection="root" routerLinkActive="active" class="apple-list-item ripple-item">
               <div class="item-inner">
-                <div class="item-icon-badge">
-                  <ion-icon name="bookmark" class="item-icon"></ion-icon>
+                <div class="item-icon-badge icon-red">
+                  <ion-icon name="build-outline" class="item-icon"></ion-icon>
                 </div>
-                <span class="item-text">பதிப்புகளின் துஆக்கள் & திருத்தங்கள்</span>
+                <span class="item-text">பதிப்புகளின் திருத்தங்கள்</span>
                 <div class="item-arrow-wrap">
                   <ion-icon name="chevron-forward" class="item-chevron"></ion-icon>
                 </div>

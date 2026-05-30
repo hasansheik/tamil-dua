@@ -234,6 +234,18 @@ export class HomePage implements OnInit {
     this.triggerHapticFeedback();
   }
 
+  getChapterGradientClass(index: number): string {
+    const classes = [
+      'gradient-purple-indigo',
+      'gradient-pink-red',
+      'gradient-blue-teal',
+      'gradient-orange-yellow',
+      'gradient-green-emerald',
+      'gradient-coral-pink'
+    ];
+    return classes[index % classes.length];
+  }
+
   async triggerHapticFeedback() {
     try {
       await Haptics.impact({ style: ImpactStyle.Light });

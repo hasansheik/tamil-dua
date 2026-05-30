@@ -1,31 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar class="ios-settings-toolbar">
+<ion-header class="ion-no-border apple-header-glass">
+  <ion-toolbar class="apple-toolbar-glass">
     <ion-buttons slot="start">
-      <ion-button routerLink="/home" routerDirection="back" class="premium-hdr-btn settings-hdr-back-btn">
-        <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
-      </ion-button>
+      <!-- iOS style back button -->
+      <button routerLink="/home" routerDirection="back" class="apple-nav-btn-action" aria-label="Go back">
+        <ion-icon name="chevron-back"></ion-icon>
+      </button>
     </ion-buttons>
-    <ion-title class="ios-settings-title settings-header-title">
-      அமைப்புகள் <ion-icon name="settings-sharp" class="settings-title-gear-icon"></ion-icon>
-    </ion-title>
+    
+    <div class="apple-header-title">அமைப்புகள்</div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ios-settings-bg ion-padding">
+<ion-content class="apple-content-bg ion-padding">
   <div class="ios-settings-container">
     
-    <!-- Premium Settings Intro Header -->
-    <div class="settings-intro-banner animate-in">
-      <span class="settings-tag-gold">தனிப்பயனாக்கம் • App Configuration</span>
-      <h1 class="settings-page-title">அமைப்புகள்</h1>
-      <p class="settings-page-desc">வாசிப்பு அனுபவத்தை மேம்படுத்த எழுத்துருக்கள், அளவுகள் மற்றும் காட்சி அமைப்புகளை இங்கே மாற்றியமைக்கலாம்.</p>
-    </div>
-    
-    <!-- Luxury Live Preview Card -->
-    <div class="ios-preview-hero-card luxury-parchment-frame animate-in">
-      <div class="preview-hero-badge-gold">
+    <!-- Live Preview Card -->
+    <div class="ios-preview-hero-card animate-in">
+      <div class="preview-hero-badge">
         <ion-icon name="eye-outline" class="badge-icon"></ion-icon>
-        <span>நேரடி முன்னோட்டம் • Live Preview</span>
+        <span>முன்னோட்டம் • Preview</span>
       </div>
       
       <div class="preview-hero-arabic-wrap">
@@ -34,10 +27,10 @@
         </p>
       </div>
       
-      <div class="preview-hero-divider-gold">
-        <span class="divider-dot"></span>
-        <ion-icon name="sparkles" class="divider-gold-sparkle"></ion-icon>
-        <span class="divider-dot"></span>
+      <div class="preview-hero-divider">
+        <span class="divider-line"></span>
+        <ion-icon name="sparkles" class="divider-sparkle"></ion-icon>
+        <span class="divider-line"></span>
       </div>
       
       <div class="preview-hero-tamil-wrap">
@@ -48,76 +41,75 @@
     </div>
 
     <!-- Section 1: Font Selector Grid -->
-    <div class="ios-section-label-gold">
+    <div class="ios-section-label">
       <ion-icon name="text-outline" class="section-label-icon"></ion-icon>
-      <span>அரபி எழுத்துரு (Arabic Fonts)</span>
+      <span>அரபி எழுத்துரு</span>
     </div>
-    <div class="font-grid-luxury ion-margin-bottom animate-in">
-      
-      <div class="font-card-luxury ripple" [class.active]="selectedArabicFont === 'arabic'" (click)="selectedArabicFont = 'arabic'; onArabicFontChange()">
-        <div class="font-card-meta-luxury">
-          <span class="font-card-name-luxury">Scheherazade</span>
-          <div class="font-card-check-luxury" *ngIf="selectedArabicFont === 'arabic'">
+    
+    <div class="font-grid-new ion-margin-bottom animate-in">
+      <div class="font-card-new ripple" [class.active]="selectedArabicFont === 'arabic'" (click)="selectedArabicFont = 'arabic'; onArabicFontChange()">
+        <div class="font-card-meta">
+          <span class="font-card-name">Scheherazade</span>
+          <div class="font-card-check" *ngIf="selectedArabicFont === 'arabic'">
             <ion-icon name="checkmark"></ion-icon>
           </div>
         </div>
-        <span class="font-card-sample-luxury font-scheherazade">بسم الله</span>
+        <span class="font-card-sample font-scheherazade">بسم الله</span>
       </div>
 
-      <div class="font-card-luxury ripple" [class.active]="selectedArabicFont === 'ar'" (click)="selectedArabicFont = 'ar'; onArabicFontChange()">
-        <div class="font-card-meta-luxury">
-          <span class="font-card-name-luxury">Katibeh</span>
-          <div class="font-card-check-luxury" *ngIf="selectedArabicFont === 'ar'">
+      <div class="font-card-new ripple" [class.active]="selectedArabicFont === 'ar'" (click)="selectedArabicFont = 'ar'; onArabicFontChange()">
+        <div class="font-card-meta">
+          <span class="font-card-name">Katibeh</span>
+          <div class="font-card-check" *ngIf="selectedArabicFont === 'ar'">
             <ion-icon name="checkmark"></ion-icon>
           </div>
         </div>
-        <span class="font-card-sample-luxury font-katibeh">بسم الله</span>
+        <span class="font-card-sample font-katibeh">بسم الله</span>
       </div>
 
-      <div class="font-card-luxury ripple" [class.active]="selectedArabicFont === 'arab'" (click)="selectedArabicFont = 'arab'; onArabicFontChange()">
-        <div class="font-card-meta-luxury">
-          <span class="font-card-name-luxury">Qahiri</span>
-          <div class="font-card-check-luxury" *ngIf="selectedArabicFont === 'arab'">
+      <div class="font-card-new ripple" [class.active]="selectedArabicFont === 'arab'" (click)="selectedArabicFont = 'arab'; onArabicFontChange()">
+        <div class="font-card-meta">
+          <span class="font-card-name">Qahiri</span>
+          <div class="font-card-check" *ngIf="selectedArabicFont === 'arab'">
             <ion-icon name="checkmark"></ion-icon>
           </div>
         </div>
-        <span class="font-card-sample-luxury font-qahiri">بسم الله</span>
+        <span class="font-card-sample font-qahiri">بسم الله</span>
       </div>
 
-      <div class="font-card-luxury ripple" [class.active]="selectedArabicFont === 'arab2'" (click)="selectedArabicFont = 'arab2'; onArabicFontChange()">
-        <div class="font-card-meta-luxury">
-          <span class="font-card-name-luxury">Amiri</span>
-          <div class="font-card-check-luxury" *ngIf="selectedArabicFont === 'arab2'">
+      <div class="font-card-new ripple" [class.active]="selectedArabicFont === 'arab2'" (click)="selectedArabicFont = 'arab2'; onArabicFontChange()">
+        <div class="font-card-meta">
+          <span class="font-card-name">Amiri</span>
+          <div class="font-card-check" *ngIf="selectedArabicFont === 'arab2'">
             <ion-icon name="checkmark"></ion-icon>
           </div>
         </div>
-        <span class="font-card-sample-luxury font-amiri">بسم الله</span>
+        <span class="font-card-sample font-amiri">بسم الله</span>
       </div>
 
-      <div class="font-card-luxury ripple" [class.active]="selectedArabicFont === 'arab3'" (click)="selectedArabicFont = 'arab3'; onArabicFontChange()">
-        <div class="font-card-meta-luxury">
-          <span class="font-card-name-luxury">Scheherazade OT</span>
-          <div class="font-card-check-luxury" *ngIf="selectedArabicFont === 'arab3'">
+      <div class="font-card-new ripple" [class.active]="selectedArabicFont === 'arab3'" (click)="selectedArabicFont = 'arab3'; onArabicFontChange()">
+        <div class="font-card-meta">
+          <span class="font-card-name">Scheherazade OT</span>
+          <div class="font-card-check" *ngIf="selectedArabicFont === 'arab3'">
             <ion-icon name="checkmark"></ion-icon>
           </div>
         </div>
-        <span class="font-card-sample-luxury font-scheherazade-ot">بسم الله</span>
+        <span class="font-card-sample font-scheherazade-ot">بسم الله</span>
       </div>
-
     </div>
 
     <!-- Section 2: Font Sizes -->
-    <div class="ios-section-label-gold">
+    <div class="ios-section-label">
       <ion-icon name="resize-outline" class="section-label-icon"></ion-icon>
-      <span>எழுத்துரு அளவு (Font Sizes)</span>
+      <span>எழுத்துரு அளவு</span>
     </div>
+    
     <div class="premium-settings-card ion-margin-bottom animate-in">
-      
       <div class="luxury-slider-row">
         <div class="slider-info-row">
           <div class="slider-title-wrap">
-            <span class="slider-title-main">அரபி அளவு (Arabic Size)</span>
-            <span class="slider-title-sub">அரபு வசனங்களின் அளவை மாற்றவும்</span>
+            <span class="slider-title-main">அரபி வசன அளவு</span>
+            <span class="slider-title-sub">Arabic font size</span>
           </div>
           <span class="slider-badge-gold">{{ arabicFontSize }}px</span>
         </div>
@@ -130,16 +122,16 @@
           snaps="true" 
           mode="ios" 
           class="luxury-range-gold">
-          <ion-icon slot="start" name="text-outline" class="range-icon-sm-gold"></ion-icon>
-          <ion-icon slot="end" name="text-outline" class="range-icon-lg-gold"></ion-icon>
+          <ion-icon slot="start" name="text-outline" class="range-icon-sm"></ion-icon>
+          <ion-icon slot="end" name="text-outline" class="range-icon-lg"></ion-icon>
         </ion-range>
       </div>
       
       <div class="luxury-slider-row">
         <div class="slider-info-row">
           <div class="slider-title-wrap">
-            <span class="slider-title-main">தமிழ் அளவு (Tamil Size)</span>
-            <span class="slider-title-sub">தமிழ் உச்சரிப்பு & மொழிபெயர்ப்பு அளவு</span>
+            <span class="slider-title-main">தமிழ் வசன அளவு</span>
+            <span class="slider-title-sub">Tamil font size</span>
           </div>
           <span class="slider-badge-gold">{{ tamilFontSize }}px</span>
         </div>
@@ -152,109 +144,104 @@
           snaps="true" 
           mode="ios" 
           class="luxury-range-gold">
-          <ion-icon slot="start" name="text-outline" class="range-icon-sm-gold"></ion-icon>
-          <ion-icon slot="end" name="text-outline" class="range-icon-lg-gold"></ion-icon>
+          <ion-icon slot="start" name="text-outline" class="range-icon-sm"></ion-icon>
+          <ion-icon slot="end" name="text-outline" class="range-icon-lg"></ion-icon>
         </ion-range>
       </div>
-
     </div>
 
     <!-- Section 3: Display Options -->
-    <div class="ios-section-label-gold">
+    <div class="ios-section-label">
       <ion-icon name="options-outline" class="section-label-icon"></ion-icon>
-      <span>காட்சி அமைப்புகள் (Display Options)</span>
+      <span>காட்சி அமைப்புகள்</span>
     </div>
+    
     <div class="premium-settings-card ion-margin-bottom animate-in">
-      
       <div class="luxury-toggle-row">
         <div class="toggle-info-wrap">
-          <span class="toggle-title-main">தமிழ் துஆ காட்டு</span>
-          <span class="toggle-desc-sub">துஆக்களின் தமிழ் உச்சரிப்பைக் காட்டும்</span>
+          <span class="toggle-title-main">தமிழ் துஆ</span>
+          <span class="toggle-desc-sub">Show Tamil transliteration</span>
         </div>
         <ion-toggle [(ngModel)]="showTamilDua" (ionChange)="onShowTamilDuaChange()" mode="ios" class="luxury-toggle-gold"></ion-toggle>
       </div>
 
       <div class="luxury-toggle-row">
         <div class="toggle-info-wrap">
-          <span class="toggle-title-main">பொருள் / விளக்கம் காட்டு</span>
-          <span class="toggle-desc-sub">துஆக்களின் தமிழ் அர்த்தம் மற்றும் மொழிபெயர்ப்பு</span>
+          <span class="toggle-title-main">தமிழ் மொழிபெயர்ப்பு</span>
+          <span class="toggle-desc-sub">Show translation</span>
         </div>
         <ion-toggle [(ngModel)]="showTranslation" (ionChange)="onShowTranslationChange()" mode="ios" class="luxury-toggle-gold"></ion-toggle>
       </div>
 
       <div class="luxury-toggle-row">
         <div class="toggle-info-wrap">
-          <span class="toggle-title-main">ஹதீஸ் ஆதாரம் காட்டு</span>
-          <span class="toggle-desc-sub">துஆக்களின் ஆதாரக் குறிப்புகளைக் காட்டும்</span>
+          <span class="toggle-title-main">ஹதீஸ் ஆதாரம்</span>
+          <span class="toggle-desc-sub">Show Hadees evidence</span>
         </div>
         <ion-toggle [(ngModel)]="showHadees" (ionChange)="onShowHadeesChange()" mode="ios" class="luxury-toggle-gold"></ion-toggle>
       </div>
-
     </div>
 
-    <!-- Section 4: Favorites Backup & Restore (Vault Card) -->
-    <div class="ios-section-label-gold">
-      <ion-icon name="key-outline" class="section-label-icon"></ion-icon>
-      <span>விருப்பங்கள் காப்புப்பிரதி (Favorites Vault)</span>
+    <!-- Section 4: Favorites Backup & Restore -->
+    <div class="ios-section-label">
+      <ion-icon name="cloud-outline" class="section-label-icon"></ion-icon>
+      <span>விருப்பங்கள் காப்புப்பிரதி</span>
     </div>
-    <div class="premium-settings-card luxury-vault-card padding-box ion-margin-bottom animate-in">
-      <div class="vault-header-row">
-        <ion-icon name="shield-checkmark" class="vault-shield-icon"></ion-icon>
-        <p class="vault-desc-premium">உங்கள் பிடித்தமான துஆக்களை காப்புப்பிரதி எடுத்து மற்றொரு சாதனத்தில் மீட்டமைக்கலாம்.</p>
-      </div>
+    
+    <div class="premium-settings-card padding-box ion-margin-bottom animate-in">
+      <p class="vault-desc-text">விருப்பமான துஆக்களை குறியீடாக மாற்றி காப்புப்பிரதி எடுக்கலாம்.</p>
       
-      <div class="vault-action-group-premium">
-        <button class="vault-btn-premium btn-backup ripple" (click)="generateBackup()">
-          <ion-icon name="cloud-download-outline" class="btn-icon-premium"></ion-icon>
-          <span>காப்புப்பிரதி குறியீட்டை உருவாக்கு</span>
+      <div class="vault-action-group">
+        <button class="vault-action-btn gradient-blue-teal ripple" (click)="generateBackup()">
+          <ion-icon name="cloud-download-outline"></ion-icon>
+          <span>காப்புப்பிரதி உருவாக்கு</span>
         </button>
         
-        <div *ngIf="backupCode" class="vault-code-wrap-premium animate-in">
-          <textarea readonly class="vault-textarea-premium" rows="2">{{ backupCode }}</textarea>
-          <span class="copied-indicator"><ion-icon name="copy"></ion-icon> தானாக நகலெடுக்கப்பட்டது</span>
+        <div *ngIf="backupCode" class="vault-code-display animate-in">
+          <textarea readonly class="vault-textarea" rows="2">{{ backupCode }}</textarea>
+          <span class="copied-label"><ion-icon name="checkmark-circle"></ion-icon> நகலெடுக்கப்பட்டது</span>
         </div>
       </div>
 
-      <div class="vault-divider">
+      <div class="vault-or-divider">
         <span class="divider-line"></span>
-        <span class="divider-or">OR</span>
+        <span class="divider-or">அல்லது</span>
         <span class="divider-line"></span>
       </div>
 
-      <div class="vault-action-group-premium">
-        <div class="vault-input-wrap-premium">
-          <textarea 
-            [(ngModel)]="restoreCode" 
-            placeholder="இங்கே காப்புப்பிரதி குறியீட்டை ஒட்டவும்..." 
-            class="vault-textarea-input-premium" 
-            rows="3">
-          </textarea>
-        </div>
+      <div class="vault-action-group">
+        <textarea 
+          [(ngModel)]="restoreCode" 
+          placeholder="காப்புப்பிரதி குறியீட்டை இங்கே ஒட்டவும்..." 
+          class="vault-textarea-input" 
+          rows="3">
+        </textarea>
         
-        <button class="vault-btn-premium btn-restore ripple" (click)="restoreBackup()" [disabled]="!restoreCode">
-          <ion-icon name="cloud-upload-outline" class="btn-icon-premium"></ion-icon>
-          <span>மீட்டமைக்கவும் (Restore)</span>
+        <button class="vault-action-btn gradient-green-emerald ripple" (click)="restoreBackup()" [disabled]="!restoreCode">
+          <ion-icon name="cloud-upload-outline"></ion-icon>
+          <span>மீட்டெடுக்கவும்</span>
         </button>
       </div>
     </div>
 
     <!-- Section 5: App Maintenance -->
-    <div class="ios-section-label-gold">
+    <div class="ios-section-label">
       <ion-icon name="settings-outline" class="section-label-icon"></ion-icon>
-      <span>பராமரிப்பு (Maintenance)</span>
+      <span>பராமரிப்பு</span>
     </div>
+    
     <div class="premium-settings-card animate-in">
       <div class="luxury-danger-row ripple" (click)="resetDefaults()">
-        <div class="danger-row-left-luxury">
-          <div class="danger-icon-container-luxury">
-            <ion-icon name="refresh-outline" class="danger-icon-luxury"></ion-icon>
+        <div class="danger-row-left">
+          <div class="danger-icon-container">
+            <ion-icon name="refresh-outline" class="danger-icon"></ion-icon>
           </div>
-          <div class="danger-text-wrap-luxury">
-            <span class="danger-title-luxury">அமைப்புகளை மீட்டமை</span>
-            <span class="danger-desc-sub">அமைப்புகளை இயல்புநிலைக்குக் கொண்டுவரும் (பிடித்தவை நீக்கப்படாது)</span>
+          <div class="danger-text-wrap">
+            <span class="danger-title-text">அமைப்புகளை மீட்டமை</span>
+            <span class="danger-desc-text">அமைப்புகளை இயல்புநிலைக்குக் கொண்டுவரும்</span>
           </div>
         </div>
-        <ion-icon name="chevron-forward" class="danger-chevron-luxury"></ion-icon>
+        <ion-icon name="chevron-forward" class="danger-chevron"></ion-icon>
       </div>
     </div>
 

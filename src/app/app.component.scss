@@ -259,11 +259,8 @@ ion-menu {
 
   .apple-grid-card {
     position: relative;
-    background: var(--sidebar-card-bg);
-    border: 0.5px solid var(--sidebar-card-border);
     border-radius: 12px;
     padding: 12px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -271,25 +268,83 @@ ion-menu {
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     overflow: hidden;
     height: 100%;
+    border: none;
 
-    &:hover {
-      background: var(--sidebar-list-item-hover);
+    &:active {
+      transform: scale(0.97);
+    }
+
+    &.blue {
+      background: linear-gradient(135deg, #007AFF 0%, #004099 100%) !important;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 0 4px 10px rgba(0, 122, 255, 0.15) !important;
+      
+      .card-icon-wrap {
+        background: rgba(255, 255, 255, 0.25) !important;
+        color: #ffffff !important;
+      }
+      .card-label {
+        color: #ffffff !important;
+      }
+      .card-value {
+        color: rgba(255, 255, 255, 0.75) !important;
+      }
+    }
+
+    &.red {
+      background: linear-gradient(135deg, #FF2D55 0%, #C2003B 100%) !important;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 0 4px 10px rgba(255, 45, 85, 0.15) !important;
+      
+      .card-icon-wrap {
+        background: rgba(255, 255, 255, 0.25) !important;
+        color: #ffffff !important;
+      }
+      .card-label {
+        color: #ffffff !important;
+      }
+      .card-value {
+        color: rgba(255, 255, 255, 0.75) !important;
+        
+        &.badge-count {
+          color: #ffffff !important;
+          background: rgba(255, 255, 255, 0.3) !important;
+        }
+      }
+    }
+
+    &.gray {
+      background: linear-gradient(135deg, #8E8E93 0%, #3A3A3C 100%) !important;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+      
+      .card-icon-wrap {
+        background: rgba(255, 255, 255, 0.2) !important;
+        color: #ffffff !important;
+      }
+      .card-label {
+        color: #ffffff !important;
+      }
+      .card-value {
+        color: rgba(255, 255, 255, 0.75) !important;
+      }
+    }
+
+    &.purple {
+      background: linear-gradient(135deg, #6200EE 0%, #3700B3 100%) !important;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 0 4px 10px rgba(98, 0, 238, 0.15) !important;
+      
+      .card-icon-wrap {
+        background: rgba(255, 255, 255, 0.25) !important;
+        color: #ffffff !important;
+      }
+      .card-label {
+        color: #ffffff !important;
+      }
+      .card-value {
+        color: rgba(255, 255, 255, 0.75) !important;
+      }
     }
 
     &.active {
-      background: var(--sidebar-active-gradient) !important;
-      border-color: var(--sidebar-card-active-border);
-      box-shadow: 0 2px 8px rgba(var(--sidebar-accent-rgb), 0.04);
-
-      .card-label {
-        color: var(--sidebar-accent);
-        font-weight: 700;
-      }
-      
-      .card-icon-wrap {
-        background: rgba(var(--sidebar-accent-rgb), 0.12);
-        color: var(--sidebar-accent);
-      }
+      box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.4), 0 0 0 2px var(--sidebar-accent), 0 4px 12px rgba(0, 0, 0, 0.15) !important;
     }
 
     .card-icon-wrap {
@@ -300,8 +355,6 @@ ion-menu {
       height: 28px;
       border-radius: 8px;
       font-size: 15px;
-      background: var(--sidebar-badge-bg);
-      color: var(--sidebar-accent);
       transition: all 0.25s ease;
     }
 
@@ -313,20 +366,16 @@ ion-menu {
       .card-label {
         font-size: 0.8rem;
         font-weight: 600;
-        color: var(--sidebar-text-main);
         line-height: var(--tamil-line-height);
         transition: color 0.25s ease;
       }
 
       .card-value {
         font-size: 0.68rem;
-        color: var(--sidebar-text-muted);
         font-weight: 500;
 
         &.badge-count {
           font-weight: 700;
-          color: var(--ion-color-danger);
-          background: rgba(var(--ion-color-danger-rgb), 0.08);
           padding: 0 5px;
           border-radius: 5px;
           width: fit-content;
@@ -424,6 +473,11 @@ ion-menu {
       color: var(--sidebar-accent);
       transition: all 0.2s ease;
       flex-shrink: 0;
+
+      &.icon-purple { color: #5856d6; background: rgba(88, 86, 214, 0.12); }
+      &.icon-green { color: #34c759; background: rgba(52, 199, 89, 0.12); }
+      &.icon-orange { color: #ff9500; background: rgba(255, 149, 0, 0.12); }
+      &.icon-red { color: #ff2d55; background: rgba(255, 45, 85, 0.12); }
 
       .item-icon {
         font-size: 13px;

@@ -70,7 +70,7 @@
         type="text" 
         [(ngModel)]="searchText" 
         (input)="onSearchInput()" 
-        placeholder="துஆக்களைத் தேடுங்கள்..." 
+        placeholder="தேடுக..." 
         class="apple-search-input"
       />
       <button 
@@ -232,24 +232,27 @@
     <!-- TAB 2: ALL CHAPTERS -->
     <div *ngIf="activeTab === 'chapters'" class="animate-fade">
       <div class="list-desc-info">
-        <h3>அத்தியாயங்கள்</h3>
-        <p>நூலிலுள்ள அனைத்து அத்தியாயங்களின் பட்டியல் ({{ duaPages.length }} அத்தியாயங்கள்)</p>
+        <h3>பிரிவுகள்</h3>
+        <p>தலைப்புகள் பட்டியல் ({{ duaPages.length }} பிரிவுகள்)</p>
       </div>
 
-      <div class="apple-grouped-list-new">
+      <div class="apple-chapters-grid-new">
         <div 
-          *ngFor="let page of duaPages" 
+          *ngFor="let page of duaPages; let i = index" 
           [routerLink]="['/folder', page.PageId]" 
-          class="chapter-item ripple-item"
+          class="chapter-grid-card ripple-item"
+          [ngClass]="getChapterGradientClass(i)"
         >
-          <div class="chapter-icon-box">
+          <div class="card-icon-wrap">
             <ion-icon name="folder-open"></ion-icon>
           </div>
-          <div class="chapter-details">
-            <span class="chapter-title">{{ page.PageTitle }}</span>
-            <span class="chapter-count">{{ page.Duas?.length || 0 }} பிரார்த்தனைகள்</span>
+          <div class="card-meta">
+            <span class="card-title">{{ page.PageTitle }}</span>
+            <span class="card-count">{{ page.Duas?.length || 0 }} துஆக்கள்</span>
           </div>
-          <ion-icon name="chevron-forward" class="chapter-chevron"></ion-icon>
+          <div class="card-chevron">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </div>
         </div>
       </div>
     </div>
@@ -257,53 +260,45 @@
     <!-- TAB 3: GUIDANCE -->
     <div *ngIf="activeTab === 'guidance'" class="animate-fade">
       <div class="list-desc-info">
-        <h3>பிரார்த்தனை ஒழுக்கங்கள்</h3>
-        <p>துஆக்கள் ஏற்றுக்கொள்ளப்படும் ஒழுக்கமுறைகள் மற்றும் முன்னுரைகள்</p>
+        <h3>நெறிகள்</h3>
+        <p>துஆ ஒழுக்கமுறைகள்</p>
       </div>
 
-      <div class="apple-grouped-list-new">
-        <a [routerLink]="['/prayer-acceptance', 1]" class="chapter-item ripple-item">
-          <div class="chapter-icon-box icon-purple">
-            <ion-icon name="book-outline"></ion-icon>
+      <div class="apple-guidance-grid-new">
+        <a [routerLink]="['/prayer-acceptance', 1]" class="guidance-banner-card gradient-purple-indigo ripple-item">
+          <div class="banner-icon-wrap"><ion-icon name="book-outline"></ion-icon></div>
+          <div class="banner-content">
+            <h4 class="banner-title">முன்னுரை</h4>
+            <p class="banner-desc">அறிமுகம்</p>
           </div>
-          <div class="chapter-details">
-            <span class="chapter-title">முன்னுரை (Preface)</span>
-            <span class="chapter-count">அறிமுகம் மற்றும் நோக்கம்</span>
-          </div>
-          <ion-icon name="chevron-forward" class="chapter-chevron"></ion-icon>
+          <ion-icon name="chevron-forward-outline" class="banner-chevron"></ion-icon>
         </a>
 
-        <a [routerLink]="['/prayer-acceptance', 2]" class="chapter-item ripple-item">
-          <div class="chapter-icon-box icon-green">
-            <ion-icon name="time-outline"></ion-icon>
+        <a [routerLink]="['/prayer-acceptance', 2]" class="guidance-banner-card gradient-green-emerald ripple-item">
+          <div class="banner-icon-wrap"><ion-icon name="time-outline"></ion-icon></div>
+          <div class="banner-content">
+            <h4 class="banner-title">ஏற்றுக்கொள்ளப்படும் நேரங்கள்</h4>
+            <p class="banner-desc">சிறப்பான நேரங்கள்</p>
           </div>
-          <div class="chapter-details">
-            <span class="chapter-title">பிரார்த்தனை ஏற்றுக்கொள்ளப்படும் நேரங்கள்</span>
-            <span class="chapter-count">சிறப்பான நேரங்கள் மற்றும் சந்தர்ப்பங்கள்</span>
-          </div>
-          <ion-icon name="chevron-forward" class="chapter-chevron"></ion-icon>
+          <ion-icon name="chevron-forward-outline" class="banner-chevron"></ion-icon>
         </a>
 
-        <a [routerLink]="['/prayer-acceptance', 3]" class="chapter-item ripple-item">
-          <div class="chapter-icon-box icon-orange">
-            <ion-icon name="sparkles-outline"></ion-icon>
+        <a [routerLink]="['/prayer-acceptance', 3]" class="guidance-banner-card gradient-orange-yellow ripple-item">
+          <div class="banner-icon-wrap"><ion-icon name="sparkles-outline"></ion-icon></div>
+          <div class="banner-content">
+            <h4 class="banner-title">சத்தியத்தைத் தேடும் உள்ளங்களே!</h4>
+            <p class="banner-desc">உள்ளத்தின் தூய்மை</p>
           </div>
-          <div class="chapter-details">
-            <span class="chapter-title">சத்தியத்தைத் தேடும் உள்ளங்களே!</span>
-            <span class="chapter-count">உள்ளத்தின் தூய்மை மற்றும் ஈமான்</span>
-          </div>
-          <ion-icon name="chevron-forward" class="chapter-chevron"></ion-icon>
+          <ion-icon name="chevron-forward-outline" class="banner-chevron"></ion-icon>
         </a>
 
-        <a [routerLink]="['/prayer-acceptance', 4]" class="chapter-item ripple-item">
-          <div class="chapter-icon-box icon-gray">
-            <ion-icon name="build-outline"></ion-icon>
+        <a [routerLink]="['/prayer-acceptance', 4]" class="guidance-banner-card gradient-pink-red ripple-item">
+          <div class="banner-icon-wrap"><ion-icon name="build-outline"></ion-icon></div>
+          <div class="banner-content">
+            <h4 class="banner-title">பதிப்புகளின் திருத்தங்கள்</h4>
+            <p class="banner-desc">பிழை திருத்தங்கள்</p>
           </div>
-          <div class="chapter-details">
-            <span class="chapter-title">முந்தைய பதிப்புகளின் திருத்தங்கள்</span>
-            <span class="chapter-count">பிழை திருத்தங்கள் மற்றும் ஆதாரங்கள்</span>
-          </div>
-          <ion-icon name="chevron-forward" class="chapter-chevron"></ion-icon>
+          <ion-icon name="chevron-forward-outline" class="banner-chevron"></ion-icon>
         </a>
       </div>
     </div>
@@ -311,31 +306,25 @@
     <!-- TAB 4: ABOUT -->
     <div *ngIf="activeTab === 'about'" class="animate-fade">
       <div class="list-desc-info">
-        <h3>தொடர்புகளுக்கு</h3>
-        <p>ஜமாஅத்துல் முஸ்லிமீன் ஏத்தாலை, புத்தளம் - இலங்கை</p>
+        <h3>தொடர்பு</h3>
+        <p>புத்தளம், இலங்கை</p>
       </div>
 
-      <div class="apple-grouped-list-new ion-margin-bottom">
-        <a href="https://www.jamaathulmuslimeen.com/" target="_blank" class="chapter-item ripple-item">
-          <div class="chapter-icon-box icon-blue">
-            <ion-icon name="globe-outline"></ion-icon>
+      <div class="apple-about-grid-new ion-margin-bottom">
+        <a href="https://www.jamaathulmuslimeen.com/" target="_blank" class="about-button-card gradient-blue-teal ripple-item">
+          <div class="about-icon-wrap"><ion-icon name="globe-outline"></ion-icon></div>
+          <div class="about-content">
+            <span class="about-title">இணையதளம்</span>
+            <span class="about-sub">வலைத்தளம் செல்ல</span>
           </div>
-          <div class="chapter-details">
-            <span class="chapter-title">இணையதளம் (Website)</span>
-            <span class="chapter-count">jamaathulmuslimeen.com</span>
-          </div>
-          <ion-icon name="share-outline" class="chapter-chevron"></ion-icon>
         </a>
 
-        <a href="mailto:jamaathulmuslimeen@gmail.com" class="chapter-item ripple-item">
-          <div class="chapter-icon-box icon-teal">
-            <ion-icon name="mail-outline"></ion-icon>
+        <a href="mailto:jamaathulmuslimeen@gmail.com" class="about-button-card gradient-coral-pink ripple-item">
+          <div class="about-icon-wrap"><ion-icon name="mail-outline"></ion-icon></div>
+          <div class="about-content">
+            <span class="about-title">மின்னஞ்சல்</span>
+            <span class="about-sub">மின்னஞ்சல் எழுத</span>
           </div>
-          <div class="chapter-details">
-            <span class="chapter-title">மின்னஞ்சல் முகவரி (Email)</span>
-            <span class="chapter-count">jamaathulmuslimeen@gmail.com</span>
-          </div>
-          <ion-icon name="chevron-forward" class="chapter-chevron"></ion-icon>
         </a>
       </div>
 
@@ -351,6 +340,5 @@
         </div>
       </div>
     </div>
-
   </div>
 </ion-content>
