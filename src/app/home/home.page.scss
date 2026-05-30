@@ -60,7 +60,7 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  --color: var(--home-accent) !important;
+  --color: var(--home-text-main) !important;
   margin-left: 0 !important;
   box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 
@@ -80,11 +80,11 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  background: rgba(var(--home-accent-rgb), 0.06);
-  border: 0.5px solid rgba(var(--home-accent-rgb), 0.15);
+  background: rgba(var(--home-accent-rgb), 0.1) !important;
+  border: 0.5px solid rgba(var(--home-accent-rgb), 0.25) !important;
   padding: 5px 12px;
   border-radius: 40px;
-  color: var(--home-accent);
+  color: var(--home-accent) !important;
   font-family: var(--font-family-sans);
   font-size: 0.7rem;
   font-weight: 700;
@@ -94,8 +94,13 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 
+  span {
+    color: var(--home-accent) !important;
+  }
+
   .apple-badge-icon {
     font-size: 12px;
+    color: var(--home-accent) !important;
   }
 }
 
