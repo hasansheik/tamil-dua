@@ -1,56 +1,48 @@
-/* Premium Redesigned Sidebar Styles */
+/* Apple Premium Sidebar Redesign (Clean & Minimalist) */
 
 :host {
-  /* Light Mode - Premium Layered Neutrals & Saturated Gold Theme */
-  --sidebar-bg: rgba(253, 251, 247, 0.85); /* Warm Ivory/Cream neutral */
-  --sidebar-border: rgba(162, 123, 59, 0.18); /* Saturated gold border */
-  --sidebar-card-bg: rgba(246, 242, 232, 0.72); /* Layered parchment oatmeal neutral */
-  --sidebar-card-border: rgba(162, 123, 59, 0.14);
-  --sidebar-card-active-bg: rgba(162, 123, 59, 0.08);
-  --sidebar-card-active-border: rgba(162, 123, 59, 0.42); /* Saturated gold highlight */
-  --sidebar-text-main: #27221b; /* Deep warm brown-black */
-  --sidebar-text-muted: #736b5e; /* Warm slate bronze-gray */
-  --sidebar-gold-primary: #a27b3b; /* Deepened saturated gold */
-  --sidebar-gold-secondary: #c9a054; /* Warm saturated champagne gold */
-  --sidebar-gold-glow: rgba(162, 123, 59, 0.22);
-  --sidebar-list-item-hover: rgba(162, 123, 59, 0.04);
-
-  /* Specific Saturated Color Families for Shortcuts */
-  --color-shortcut-home-bg: rgba(15, 82, 87, 0.12);
-  --color-shortcut-home-fg: #157f86; /* Deep Teal/Emerald */
-  --color-shortcut-fav-bg: rgba(139, 38, 62, 0.12);
-  --color-shortcut-fav-fg: #ac2f4d; /* Crimson Velvet */
-  --color-shortcut-settings-bg: rgba(217, 93, 57, 0.12);
-  --color-shortcut-settings-fg: #d95d39; /* Saturated Amber/Copper */
-  --color-shortcut-intro-bg: rgba(94, 48, 35, 0.12);
-  --color-shortcut-intro-fg: #8e4a37; /* Warm Terracotta */
+  /* Light Mode - iOS Silver & Blue theme */
+  --sidebar-bg: rgba(242, 242, 247, 0.85);
+  --sidebar-border: rgba(0, 0, 0, 0.06);
+  
+  --sidebar-card-bg: rgba(255, 255, 255, 0.65);
+  --sidebar-card-border: rgba(0, 0, 0, 0.03);
+  --sidebar-card-active-bg: rgba(0, 122, 255, 0.08);
+  --sidebar-card-active-border: rgba(0, 122, 255, 0.15);
+  
+  --sidebar-text-main: #1c1c1e;
+  --sidebar-text-muted: #8e8e93;
+  --sidebar-accent: #007aff;
+  --sidebar-accent-rgb: 0, 122, 255;
+  
+  --sidebar-search-bg: rgba(0, 0, 0, 0.04);
+  --sidebar-list-item-hover: rgba(0, 0, 0, 0.03);
+  --sidebar-list-item-active: rgba(0, 122, 255, 0.08);
+  
+  --sidebar-badge-bg: rgba(0, 0, 0, 0.04);
 }
 
 @media (prefers-color-scheme: dark) {
   :host {
-    /* Dark Mode - Premium Layered Obsidian Neutrals & Intense Gold Theme */
-    --sidebar-bg: rgba(13, 13, 12, 0.84); /* Deep warm obsidian neutral */
-    --sidebar-border: rgba(212, 175, 55, 0.22); /* Saturated radiant gold border */
-    --sidebar-card-bg: rgba(22, 22, 20, 0.7); /* Layered charcoal-bronze neutral */
-    --sidebar-card-border: rgba(212, 175, 55, 0.16);
-    --sidebar-card-active-bg: rgba(212, 175, 55, 0.12);
-    --sidebar-card-active-border: rgba(212, 175, 55, 0.5); /* Saturated gold highlight */
-    --sidebar-text-main: #fcfaf2; /* Elegant silk cream */
-    --sidebar-text-muted: #a69e90; /* Warm sand gray */
-    --sidebar-gold-primary: #d4af37; /* Metallic Gold */
-    --sidebar-gold-secondary: #f3e5ab; /* Soft shining gold */
-    --sidebar-gold-glow: rgba(212, 175, 55, 0.35);
-    --sidebar-list-item-hover: rgba(212, 175, 55, 0.06);
-
-    /* Specific Glowing Saturated Color Families for Shortcuts (Dark Mode) */
-    --color-shortcut-home-bg: rgba(38, 166, 154, 0.16);
-    --color-shortcut-home-fg: #4db6ac;
-    --color-shortcut-fav-bg: rgba(229, 57, 53, 0.16);
-    --color-shortcut-fav-fg: #f48fb1;
-    --color-shortcut-settings-bg: rgba(255, 143, 0, 0.16);
-    --color-shortcut-settings-fg: #ffb74d;
-    --color-shortcut-intro-bg: rgba(161, 136, 127, 0.16);
-    --color-shortcut-intro-fg: #d7ccc8;
+    /* Dark Mode - iOS Obsidian Black & Royal Blue theme */
+    --sidebar-bg: rgba(18, 18, 18, 0.82);
+    --sidebar-border: rgba(255, 255, 255, 0.08);
+    
+    --sidebar-card-bg: rgba(28, 28, 30, 0.65);
+    --sidebar-card-border: rgba(255, 255, 255, 0.04);
+    --sidebar-card-active-bg: rgba(10, 132, 255, 0.12);
+    --sidebar-card-active-border: rgba(10, 132, 255, 0.2);
+    
+    --sidebar-text-main: #f5f5f7;
+    --sidebar-text-muted: #86868b;
+    --sidebar-accent: #0a84ff;
+    --sidebar-accent-rgb: 10, 132, 255;
+    
+    --sidebar-search-bg: rgba(255, 255, 255, 0.06);
+    --sidebar-list-item-hover: rgba(255, 255, 255, 0.04);
+    --sidebar-list-item-active: rgba(10, 132, 255, 0.12);
+    
+    --sidebar-badge-bg: rgba(255, 255, 255, 0.06);
   }
 }
 
@@ -60,37 +52,36 @@ ion-menu {
   
   &::part(container) {
     background: var(--sidebar-bg) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border-right: 1px solid var(--sidebar-border) !important;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-right: 0.5px solid var(--sidebar-border) !important;
+    box-shadow: none !important;
   }
 
-  ion-content.premium-sidebar-content {
+  ion-content.apple-sidebar-content {
     --background: transparent !important;
     --padding-start: 0;
     --padding-end: 0;
     --padding-top: 0;
     --padding-bottom: 40px;
     
-    /* Scrollbar properties for Firefox and standards */
+    /* Scrollbar properties for standards */
     scrollbar-width: thin;
-    scrollbar-color: rgba(var(--ion-color-primary-rgb), 0.2) transparent;
+    scrollbar-color: rgba(var(--sidebar-accent-rgb), 0.15) transparent;
 
     &::part(scroll) {
-      /* Custom scrollbar for WebKit browsers */
       &::-webkit-scrollbar {
-        width: 6px;
+        width: 5px;
       }
       &::-webkit-scrollbar-track {
         background: transparent;
       }
       &::-webkit-scrollbar-thumb {
-        background: rgba(var(--ion-color-primary-rgb), 0.15);
+        background: rgba(var(--sidebar-accent-rgb), 0.12);
         border-radius: 10px;
         
         &:hover {
-          background: rgba(var(--ion-color-primary-rgb), 0.3);
+          background: rgba(var(--sidebar-accent-rgb), 0.25);
         }
       }
     }
@@ -98,73 +89,38 @@ ion-menu {
 }
 
 /* Brand Header */
-.premium-sidebar-brand {
+.apple-sidebar-brand {
   position: relative;
-  padding: 36px 20px 24px 20px;
+  padding: 36px 24px 20px 24px;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(var(--ion-color-primary-rgb), 0.05) 0%, rgba(var(--ion-color-primary-rgb), 0) 100%);
-  border-bottom: 1px solid rgba(var(--ion-color-primary-rgb), 0.08);
-
-  .brand-top-pattern {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--sidebar-gold-primary) 0%, var(--sidebar-gold-secondary) 50%, var(--sidebar-gold-primary) 100%);
-    opacity: 0.8;
-  }
 
   .brand-header-flex {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
   }
 
   .brand-logo-box {
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--sidebar-accent) 0%, #5856d6 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(var(--sidebar-accent-rgb), 0.15);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
-    .logo-inner {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--sidebar-gold-primary) 0%, var(--sidebar-gold-secondary) 100%);
-      color: #ffffff;
-      box-shadow: 0 4px 12px var(--sidebar-gold-glow);
-      z-index: 2;
-      transition: transform 0.3s ease;
-
-      .brand-logo-icon {
-        font-size: 26px;
-      }
-    }
-
-    .logo-glow {
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--sidebar-gold-secondary) 0%, var(--sidebar-gold-primary) 100%);
-      opacity: 0.5;
-      filter: blur(4px);
-      z-index: 1;
-      animation: logoGlowPulse 3s infinite ease-in-out;
+    .brand-logo-icon {
+      font-size: 22px;
     }
   }
 
-  &:hover .brand-logo-box .logo-inner {
-    transform: scale(1.04) rotate(3deg);
+  &:hover .brand-logo-box {
+    transform: scale(1.03);
   }
 
   .brand-title-wrap {
@@ -173,111 +129,72 @@ ion-menu {
 
     .brand-greet {
       font-size: 0.65rem;
-      font-weight: 700;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--sidebar-gold-primary);
+      letter-spacing: 1px;
+      color: var(--sidebar-text-muted);
       margin-bottom: 2px;
-      font-family: var(--font-family-heading);
+      font-family: var(--font-family-sans);
     }
 
     .brand-app-name {
-      font-size: 1.2rem;
-      font-weight: 800;
+      font-size: 1.15rem;
+      font-weight: 700;
       color: var(--sidebar-text-main);
       margin: 0;
       line-height: 1.2;
       font-family: var(--font-family-heading);
-      letter-spacing: -0.3px;
+      letter-spacing: -0.2px;
     }
 
     .brand-app-sub {
       font-size: 0.72rem;
-      font-weight: 600;
+      font-weight: 500;
       color: var(--sidebar-text-muted);
-      letter-spacing: 0.5px;
+      letter-spacing: 0.2px;
       margin-top: 1px;
     }
   }
-
-  .brand-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    position: relative;
-
-    &::before, &::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(var(--ion-color-primary-rgb), 0.15) 50%, transparent);
-    }
-
-    .divider-gem {
-      width: 6px;
-      height: 6px;
-      transform: rotate(45deg);
-      background: var(--sidebar-gold-primary);
-      margin: 0 10px;
-      box-shadow: 0 0 6px var(--sidebar-gold-primary);
-    }
-  }
 }
 
-@keyframes logoGlowPulse {
-  0%, 100% {
-    transform: scale(0.96);
-    opacity: 0.4;
-  }
-  50% {
-    transform: scale(1.04);
-    opacity: 0.7;
-  }
+/* Spotlight Search Bar Wrapper */
+.apple-search-wrapper {
+  padding: 0 20px 16px 20px;
 }
 
-/* Search Bar Wrapper */
-.premium-search-wrapper {
-  padding: 16px 20px 8px 20px;
-}
-
-.premium-search-container {
+.apple-search-container {
   display: flex;
   align-items: center;
   position: relative;
-  height: 44px;
-  background: var(--sidebar-card-bg);
-  border: 1px solid var(--sidebar-card-border);
-  border-radius: 12px;
-  padding: 0 14px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  height: 36px;
+  background: var(--sidebar-search-bg);
+  border-radius: 10px;
+  padding: 0 10px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
   &:focus-within {
-    border-color: var(--sidebar-gold-primary);
-    box-shadow: 0 0 0 3px var(--sidebar-gold-glow), 0 4px 12px rgba(0, 0, 0, 0.04);
-    transform: translateY(-1px);
-
-    .premium-search-icon {
-      color: var(--sidebar-gold-primary);
-      transform: scale(1.05);
+    background: var(--sidebar-card-bg);
+    box-shadow: 0 0 0 1.5px var(--sidebar-accent), 0 4px 12px rgba(0, 0, 0, 0.03);
+    
+    .apple-search-icon {
+      color: var(--sidebar-accent);
     }
   }
 
-  .premium-search-icon {
-    font-size: 20px;
+  .apple-search-icon {
+    font-size: 18px;
     color: var(--sidebar-text-muted);
-    margin-right: 10px;
+    margin-right: 8px;
     flex-shrink: 0;
-    transition: all 0.3s ease;
+    transition: color 0.25s ease;
   }
 
-  .premium-search-input {
+  .apple-search-input {
     width: 100%;
     height: 100%;
     border: none;
     background: transparent;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     font-weight: 500;
     color: var(--sidebar-text-main);
     outline: none;
@@ -290,59 +207,47 @@ ion-menu {
     }
   }
 
-  .premium-search-clear-btn {
+  .apple-search-clear-btn {
     border: none;
     background: transparent;
     padding: 0;
     margin: 0;
     color: var(--sidebar-text-muted);
-    font-size: 18px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     cursor: pointer;
     opacity: 0.7;
-    transition: all 0.2s ease;
+    transition: opacity 0.2s ease;
 
     &:hover {
       opacity: 1;
-      color: var(--sidebar-gold-primary);
-      transform: scale(1.1);
+      color: var(--sidebar-accent);
     }
   }
 }
 
 /* Section Title Headers */
-.premium-section-header {
+.apple-section-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 24px 20px 14px 20px;
+  margin: 20px 24px 10px 24px;
 
-  .premium-section-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(var(--ion-color-primary-rgb), 0.15), transparent);
-    
-    &:first-child {
-      background: linear-gradient(90deg, transparent, rgba(var(--ion-color-primary-rgb), 0.15));
-    }
-  }
-
-  .premium-section-title {
-    font-size: 0.72rem;
-    font-weight: 700;
+  .apple-section-title {
+    font-size: 0.7rem;
+    font-weight: 600;
     text-transform: uppercase;
-    color: var(--sidebar-gold-primary);
-    letter-spacing: 1px;
+    color: var(--sidebar-text-muted);
+    letter-spacing: 0.5px;
     font-family: var(--font-family-heading);
   }
 }
 
-/* Quick Shortcuts Grid */
-.premium-grid {
+/* Quick Shortcuts Grid (iOS Widget Style) */
+.apple-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
   padding: 0 20px;
 
   ion-menu-toggle {
@@ -350,59 +255,38 @@ ion-menu {
     width: 100%;
   }
 
-  .premium-grid-card {
+  .apple-grid-card {
     position: relative;
     background: var(--sidebar-card-bg);
-    border: 1px solid var(--sidebar-card-border);
-    border-radius: 14px;
-    padding: 14px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    border: 0.5px solid var(--sidebar-card-border);
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     overflow: hidden;
     height: 100%;
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(var(--ion-color-primary-rgb), 0.03) 0%, transparent 100%);
-      opacity: 1;
-      pointer-events: none;
-    }
-
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04), 0 0 12px rgba(var(--ion-color-primary-rgb), 0.05);
-      border-color: rgba(var(--ion-color-primary-rgb), 0.25);
-
-      .card-icon-wrap {
-        transform: scale(1.08);
-      }
+      background: var(--sidebar-list-item-hover);
     }
 
     &.active {
       background: var(--sidebar-card-active-bg);
       border-color: var(--sidebar-card-active-border);
-      box-shadow: 0 4px 12px rgba(var(--ion-color-primary-rgb), 0.06);
-
-      &::before {
-        background: linear-gradient(135deg, rgba(var(--ion-color-primary-rgb), 0.1) 0%, transparent 100%);
-      }
+      box-shadow: 0 2px 8px rgba(var(--sidebar-accent-rgb), 0.04);
 
       .card-label {
-        color: var(--sidebar-gold-primary);
+        color: var(--sidebar-accent);
         font-weight: 700;
       }
       
       .card-icon-wrap {
-        box-shadow: 0 4px 8px rgba(var(--ion-color-primary-rgb), 0.15);
+        background: rgba(var(--sidebar-accent-rgb), 0.12);
+        color: var(--sidebar-accent);
       }
     }
 
@@ -410,168 +294,105 @@ ion-menu {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
-      font-size: 16px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-      &.primary {
-        background: var(--color-shortcut-home-bg);
-        color: var(--color-shortcut-home-fg);
-      }
-      &.danger {
-        background: var(--color-shortcut-fav-bg);
-        color: var(--color-shortcut-fav-fg);
-      }
-      &.warning {
-        background: var(--color-shortcut-settings-bg);
-        color: var(--color-shortcut-settings-fg);
-      }
-      &.success {
-        background: var(--color-shortcut-intro-bg);
-        color: var(--color-shortcut-intro-fg);
-      }
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      background: var(--sidebar-badge-bg);
+      color: var(--sidebar-accent);
+      transition: all 0.25s ease;
     }
 
     .card-details {
       display: flex;
       flex-direction: column;
-      gap: 2px;
-      z-index: 1;
+      gap: 1px;
 
       .card-label {
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         font-weight: 600;
         color: var(--sidebar-text-main);
         line-height: var(--tamil-line-height);
-        transition: color 0.3s ease;
+        transition: color 0.25s ease;
       }
 
       .card-value {
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         color: var(--sidebar-text-muted);
         font-weight: 500;
 
         &.badge-count {
           font-weight: 700;
           color: var(--ion-color-danger);
-          background: rgba(var(--ion-color-danger-rgb), 0.1);
-          padding: 1px 6px;
-          border-radius: 6px;
+          background: rgba(var(--ion-color-danger-rgb), 0.08);
+          padding: 0 5px;
+          border-radius: 5px;
           width: fit-content;
         }
       }
     }
-
-    .card-hover-border {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--sidebar-gold-primary), var(--sidebar-gold-secondary));
-      opacity: 0;
-      transform: scaleX(0);
-      transition: all 0.3s ease;
-    }
-
-    &:hover .card-hover-border {
-      opacity: 1;
-      transform: scaleX(1);
-    }
-    
-    &.active .card-hover-border {
-      opacity: 1;
-      transform: scaleX(1);
-    }
   }
 }
 
-/* Chapters & Guidance Lists */
-.premium-list {
+/* Chapters & Guidance Lists (iPadOS Sidebar Style) */
+.apple-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 0 20px;
-  margin-bottom: 16px;
+  gap: 2px;
+  padding: 0 14px;
+  margin-bottom: 12px;
 
   ion-menu-toggle {
     display: block;
     width: 100%;
   }
 
-  .premium-list-item {
+  .apple-list-item {
     position: relative;
-    background: var(--sidebar-card-bg);
-    border: 1px solid var(--sidebar-card-border);
-    border-radius: 12px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background: transparent;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     overflow: hidden;
 
-    .item-border-left {
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: var(--sidebar-gold-primary);
-      opacity: 0;
-      transform: scaleY(0);
-      transition: all 0.3s ease;
-    }
-
     &:hover {
-      transform: translateX(2px);
-      border-color: rgba(var(--ion-color-primary-rgb), 0.25);
       background: var(--sidebar-list-item-hover);
-
+      
       .item-arrow-wrap {
-        transform: translateX(2px);
-        opacity: 1;
+        transform: translateX(1px);
+        opacity: 0.8;
       }
     }
 
     &.active {
-      background: var(--sidebar-card-active-bg);
-      border-color: var(--sidebar-card-active-border);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
-
-      .item-border-left {
-        opacity: 1;
-        transform: scaleY(1);
-      }
+      background: var(--sidebar-list-item-active) !important;
 
       .item-text {
-        color: var(--sidebar-gold-primary);
-        font-weight: 700;
+        color: var(--sidebar-accent);
+        font-weight: 600;
       }
 
       .item-num-badge {
-        background: linear-gradient(135deg, var(--sidebar-gold-primary) 0%, var(--sidebar-gold-secondary) 100%);
+        background: var(--sidebar-accent);
         color: #ffffff;
-        box-shadow: 0 2px 6px var(--sidebar-gold-glow);
       }
 
       .item-icon-badge {
-        background: linear-gradient(135deg, var(--sidebar-gold-primary) 0%, var(--sidebar-gold-secondary) 100%);
+        background: var(--sidebar-accent);
         color: #ffffff;
-        box-shadow: 0 2px 6px var(--sidebar-gold-glow);
       }
 
       .item-arrow-wrap {
-        color: var(--sidebar-gold-primary);
-        opacity: 1;
+        color: var(--sidebar-accent);
+        opacity: 0.8;
       }
     }
 
     .item-inner {
       display: flex;
       align-items: center;
-      padding: 12px 14px;
-      gap: 14px;
+      padding: 10px 10px;
+      gap: 12px;
       width: 100%;
     }
 
@@ -579,14 +400,14 @@ ion-menu {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 24px;
-      height: 24px;
-      border-radius: 8px;
-      background: rgba(var(--ion-color-primary-rgb), 0.08);
-      color: var(--sidebar-gold-primary);
-      font-size: 0.72rem;
-      font-weight: 700;
-      transition: all 0.3s ease;
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--sidebar-badge-bg);
+      color: var(--sidebar-text-muted);
+      font-size: 0.7rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
       flex-shrink: 0;
     }
 
@@ -594,27 +415,27 @@ ion-menu {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 24px;
-      height: 24px;
-      border-radius: 8px;
-      background: rgba(var(--ion-color-primary-rgb), 0.08);
-      color: var(--sidebar-gold-primary);
-      transition: all 0.3s ease;
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--sidebar-badge-bg);
+      color: var(--sidebar-accent);
+      transition: all 0.2s ease;
       flex-shrink: 0;
 
       .item-icon {
-        font-size: 14px;
+        font-size: 13px;
       }
     }
 
     .item-text {
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-size: 0.82rem;
+      font-weight: 500;
       color: var(--sidebar-text-main);
       flex: 1;
       line-height: var(--tamil-line-height);
-      padding: 2px 0;
-      transition: color 0.3s ease;
+      padding: 1px 0;
+      transition: color 0.2s ease;
     }
 
     .item-arrow-wrap {
@@ -622,33 +443,28 @@ ion-menu {
       align-items: center;
       justify-content: center;
       color: var(--sidebar-text-muted);
-      opacity: 0.5;
-      transition: all 0.3s ease;
+      opacity: 0.4;
+      transition: all 0.2s ease;
       flex-shrink: 0;
 
       .item-chevron {
-        font-size: 14px;
+        font-size: 12px;
       }
     }
   }
 
-  .premium-no-results {
+  .apple-no-results {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 32px 16px;
+    padding: 16px;
     background: var(--sidebar-card-bg);
-    border: 1px dashed var(--sidebar-card-border);
-    border-radius: 12px;
+    border-radius: 10px;
     color: var(--sidebar-text-muted);
-    text-align: center;
-    gap: 8px;
+    gap: 10px;
 
     .no-results-icon {
-      font-size: 28px;
-      color: var(--sidebar-gold-primary);
-      opacity: 0.8;
+      font-size: 20px;
+      color: var(--sidebar-text-muted);
     }
 
     span {
@@ -659,86 +475,55 @@ ion-menu {
 }
 
 /* Sidebar Info Footer */
-.premium-sidebar-footer {
-  text-align: center;
-  padding: 32px 20px 40px 20px;
+.apple-sidebar-footer {
+  padding: 32px 24px 44px 24px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 4px;
+  align-items: flex-start;
+  gap: 2px;
   margin-top: 10px;
 
-  .footer-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60%;
-    margin-bottom: 16px;
-
-    &::before, &::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(var(--ion-color-primary-rgb), 0.15) 50%, transparent);
-    }
-
-    .footer-gem {
-      width: 4px;
-      height: 4px;
-      transform: rotate(45deg);
-      background: var(--sidebar-gold-primary);
-      margin: 0 8px;
-      opacity: 0.7;
-    }
-  }
-
   .footer-heading {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--sidebar-gold-primary);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--sidebar-text-main);
     line-height: var(--tamil-line-height);
-    letter-spacing: 0.2px;
   }
 
   .footer-sub {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: var(--sidebar-text-muted);
     line-height: var(--tamil-line-height);
   }
 
   .footer-app-version {
-    font-size: 0.62rem;
-    font-weight: 700;
-    color: var(--sidebar-gold-primary);
-    background: rgba(var(--ion-color-primary-rgb), 0.06);
-    padding: 2px 8px;
-    border-radius: 8px;
-    margin-top: 8px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: var(--sidebar-text-muted);
+    margin-top: 4px;
   }
 }
 
 /* Entrance Animations */
-.premium-sidebar-brand,
-.premium-search-wrapper,
-.premium-section-header,
-.premium-grid,
-.premium-list,
-.premium-sidebar-footer {
-  animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+.apple-sidebar-brand,
+.apple-search-wrapper,
+.apple-section-header,
+.apple-grid,
+.apple-list,
+.apple-sidebar-footer {
+  animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.premium-sidebar-brand { animation-delay: 0.03s; }
-.premium-search-wrapper { animation-delay: 0.06s; }
-.premium-grid { animation-delay: 0.09s; }
-.premium-list { animation-delay: 0.12s; }
-.premium-sidebar-footer { animation-delay: 0.15s; }
+.apple-sidebar-brand { animation-delay: 0.02s; }
+.apple-search-wrapper { animation-delay: 0.04s; }
+.apple-grid { animation-delay: 0.06s; }
+.apple-list { animation-delay: 0.08s; }
+.apple-sidebar-footer { animation-delay: 0.1s; }
 
 @keyframes slideUpFade {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -747,7 +532,7 @@ ion-menu {
 }
 
 .animate-fade {
-  animation: fadeIn 0.4s ease forwards;
+  animation: fadeIn 0.3s ease forwards;
 }
 
 @keyframes fadeIn {
@@ -755,7 +540,7 @@ ion-menu {
   to { opacity: 1; }
 }
 
-/* Touch feedback ripples & utilities */
+/* Touch ripples */
 .ripple-card, .ripple-item {
   position: relative;
   overflow: hidden;
