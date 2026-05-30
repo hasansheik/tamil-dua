@@ -380,8 +380,8 @@
 }
 
 .dashboard-widget {
-  background: var(--widget-bg-light);
-  border: 0.5px solid var(--widget-border-light);
+  background: var(--home-card-bg);
+  border: 0.5px solid var(--home-card-border);
   border-radius: 14px;
   padding: 16px 14px;
   display: flex;
@@ -391,21 +391,6 @@
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0,0,0,0.01);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-
-  :host-context(body.dark) & {
-    background: var(--widget-bg-dark) !important;
-    border: 0.5px solid var(--widget-border-dark) !important;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    background: var(--widget-bg-dark);
-    border: 0.5px solid var(--widget-border-dark);
-  }
-
-  :host-context(body.light) & {
-    background: var(--widget-bg-light) !important;
-    border: 0.5px solid var(--widget-border-light) !important;
-  }
 
   &:hover {
     transform: translateY(-2px);
@@ -425,20 +410,8 @@
     border-radius: 10px;
     font-size: 18px;
     position: relative;
-    background: var(--widget-icon-bg-light);
+    background: var(--home-search-bg);
     color: var(--widget-accent);
-
-    :host-context(body.dark) & {
-      background: var(--widget-icon-bg-dark) !important;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      background: var(--widget-icon-bg-dark);
-    }
-
-    :host-context(body.light) & {
-      background: var(--widget-icon-bg-light) !important;
-    }
 
     .widget-badge {
       position: absolute;
@@ -460,45 +433,69 @@
     }
   }
 
-  /* Color mapping rules */
-  &.purple {
-    --widget-accent: var(--ion-color-tertiary);
-    --widget-bg-light: linear-gradient(135deg, rgba(88, 86, 214, 0.06) 0%, rgba(88, 86, 214, 0.01) 100%);
-    --widget-bg-dark: linear-gradient(135deg, rgba(94, 92, 230, 0.12) 0%, rgba(94, 92, 230, 0.03) 100%);
-    --widget-border-light: rgba(88, 86, 214, 0.15);
-    --widget-border-dark: rgba(94, 92, 230, 0.25);
-    --widget-icon-bg-light: rgba(88, 86, 214, 0.12);
-    --widget-icon-bg-dark: rgba(94, 92, 230, 0.22);
+  /* Color mapping rules with custom premium gradients and micro-borders */
+  &.purple { 
+    --widget-accent: var(--ion-color-tertiary); 
+    background: linear-gradient(135deg, rgba(88, 86, 214, 0.08) 0%, rgba(88, 86, 214, 0.01) 100%) !important;
+    border: 0.5px solid rgba(88, 86, 214, 0.15) !important;
+
+    :host-context(body.dark) & {
+      background: linear-gradient(135deg, rgba(94, 92, 230, 0.15) 0%, rgba(94, 92, 230, 0.04) 100%) !important;
+      border: 0.5px solid rgba(94, 92, 230, 0.25) !important;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      background: linear-gradient(135deg, rgba(94, 92, 230, 0.15) 0%, rgba(94, 92, 230, 0.04) 100%) !important;
+      border: 0.5px solid rgba(94, 92, 230, 0.25) !important;
+    }
   }
-  
-  &.red {
-    --widget-accent: var(--ion-color-danger);
-    --widget-bg-light: linear-gradient(135deg, rgba(255, 59, 48, 0.05) 0%, rgba(255, 59, 48, 0.01) 100%);
-    --widget-bg-dark: linear-gradient(135deg, rgba(255, 69, 58, 0.12) 0%, rgba(255, 69, 58, 0.03) 100%);
-    --widget-border-light: rgba(255, 59, 48, 0.15);
-    --widget-border-dark: rgba(255, 69, 58, 0.22);
-    --widget-icon-bg-light: rgba(255, 59, 48, 0.1);
-    --widget-icon-bg-dark: rgba(255, 69, 58, 0.2);
+
+  &.red { 
+    --widget-accent: var(--ion-color-danger); 
+    background: linear-gradient(135deg, rgba(255, 59, 48, 0.08) 0%, rgba(255, 59, 48, 0.01) 100%) !important;
+    border: 0.5px solid rgba(255, 59, 48, 0.15) !important;
+
+    :host-context(body.dark) & {
+      background: linear-gradient(135deg, rgba(255, 69, 58, 0.15) 0%, rgba(255, 69, 58, 0.04) 100%) !important;
+      border: 0.5px solid rgba(255, 69, 58, 0.25) !important;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      background: linear-gradient(135deg, rgba(255, 69, 58, 0.15) 0%, rgba(255, 69, 58, 0.04) 100%) !important;
+      border: 0.5px solid rgba(255, 69, 58, 0.25) !important;
+    }
   }
-  
-  &.blue {
-    --widget-accent: var(--home-accent);
-    --widget-bg-light: linear-gradient(135deg, rgba(0, 122, 255, 0.06) 0%, rgba(0, 122, 255, 0.01) 100%);
-    --widget-bg-dark: linear-gradient(135deg, rgba(10, 132, 255, 0.12) 0%, rgba(10, 132, 255, 0.03) 100%);
-    --widget-border-light: rgba(0, 122, 255, 0.15);
-    --widget-border-dark: rgba(10, 132, 255, 0.25);
-    --widget-icon-bg-light: rgba(0, 122, 255, 0.12);
-    --widget-icon-bg-dark: rgba(10, 132, 255, 0.22);
+
+  &.blue { 
+    --widget-accent: var(--home-accent); 
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.08) 0%, rgba(0, 122, 255, 0.01) 100%) !important;
+    border: 0.5px solid rgba(0, 122, 255, 0.15) !important;
+
+    :host-context(body.dark) & {
+      background: linear-gradient(135deg, rgba(10, 132, 255, 0.15) 0%, rgba(10, 132, 255, 0.04) 100%) !important;
+      border: 0.5px solid rgba(10, 132, 255, 0.25) !important;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      background: linear-gradient(135deg, rgba(10, 132, 255, 0.15) 0%, rgba(10, 132, 255, 0.04) 100%) !important;
+      border: 0.5px solid rgba(10, 132, 255, 0.25) !important;
+    }
   }
-  
-  &.gray {
-    --widget-accent: var(--home-text-muted);
-    --widget-bg-light: linear-gradient(135deg, rgba(142, 142, 147, 0.06) 0%, rgba(142, 142, 147, 0.01) 100%);
-    --widget-bg-dark: linear-gradient(135deg, rgba(142, 142, 147, 0.12) 0%, rgba(142, 142, 147, 0.03) 100%);
-    --widget-border-light: rgba(142, 142, 147, 0.15);
-    --widget-border-dark: rgba(142, 142, 147, 0.22);
-    --widget-icon-bg-light: rgba(142, 142, 147, 0.1);
-    --widget-icon-bg-dark: rgba(142, 142, 147, 0.2);
+
+  &.orange { 
+    --widget-accent: var(--ion-color-warning); 
+    background: linear-gradient(135deg, rgba(255, 149, 0, 0.08) 0%, rgba(255, 149, 0, 0.01) 100%) !important;
+    border: 0.5px solid rgba(255, 149, 0, 0.15) !important;
+
+    :host-context(body.dark) & {
+      background: linear-gradient(135deg, rgba(255, 159, 10, 0.15) 0%, rgba(255, 159, 10, 0.04) 100%) !important;
+      border: 0.5px solid rgba(255, 159, 10, 0.25) !important;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      background: linear-gradient(135deg, rgba(255, 159, 10, 0.15) 0%, rgba(255, 159, 10, 0.04) 100%) !important;
+      border: 0.5px solid rgba(255, 159, 10, 0.25) !important;
+    }
   }
 
   .widget-meta {
