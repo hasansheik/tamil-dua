@@ -1,17 +1,15 @@
-<ion-header [translucent]="true">
-  <ion-toolbar class="ios-settings-toolbar">
+<ion-header class="ion-no-border apple-header-glass">
+  <ion-toolbar class="apple-toolbar-glass">
     <ion-buttons slot="start">
-      <ion-button routerLink="/home" routerDirection="back" class="premium-hdr-btn settings-hdr-back-btn">
-        <ion-icon slot="icon-only" name="chevron-back"></ion-icon>
-      </ion-button>
+      <button routerLink="/home" routerDirection="back" class="apple-nav-btn-action" aria-label="Go back">
+        <ion-icon name="chevron-back"></ion-icon>
+      </button>
     </ion-buttons>
-    <ion-title class="ios-settings-title settings-header-title">
-      அமைப்புகள் <ion-icon name="settings-sharp" class="settings-title-gear-icon"></ion-icon>
-    </ion-title>
+    <div class="apple-header-title">அமைப்புகள்</div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ios-settings-bg ion-padding">
+<ion-content class="apple-content-bg ion-padding">
   <div class="ios-settings-container">
     
     <!-- Premium Settings Intro Header -->
