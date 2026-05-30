@@ -2,175 +2,222 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay" (ionDidOpen)="loadFavoritesCount()">
       
-      <!-- Minimalist Brand Header -->
-      <div class="scratch-brand-header">
-        <div class="scratch-header-accent"></div>
-        <div class="scratch-logo-container">
-          <ion-icon name="book" class="scratch-logo-icon"></ion-icon>
+      <!-- Brand Header -->
+      <div class="premium-sidebar-brand">
+        <div class="brand-top-pattern"></div>
+        <div class="brand-header-flex">
+          <div class="brand-logo-box">
+            <div class="logo-inner">
+              <ion-icon name="book" class="brand-logo-icon"></ion-icon>
+            </div>
+            <div class="logo-glow"></div>
+          </div>
+          <div class="brand-title-wrap">
+            <div class="brand-greet">அஸ்ஸலாமு அலைக்கும்</div>
+            <h2 class="brand-app-name">பிரார்த்தனைகள்</h2>
+            <span class="brand-app-sub">Tamil Dua App</span>
+          </div>
         </div>
-        <div class="scratch-brand-info">
-          <span class="scratch-greet">அஸ்ஸலாமு அலைக்கும்</span>
-          <h2 class="scratch-app-title">பிரார்த்தனைகள்</h2>
-          <span class="scratch-app-subtitle">TAMIL DUA</span>
+        <div class="brand-divider">
+          <span class="divider-gem"></span>
         </div>
       </div>
 
-      <!-- Real-time Search Input -->
-      <div class="scratch-search-wrapper">
-        <div class="scratch-search-inner">
-          <ion-icon name="search-outline" class="scratch-search-icon"></ion-icon>
+      <!-- Real-time Chapter Search Bar -->
+      <div class="premium-search-wrapper">
+        <div class="premium-search-container">
+          <ion-icon name="search-outline" class="premium-search-icon"></ion-icon>
           <input 
             type="text" 
             [(ngModel)]="sidebarSearchQuery" 
-            placeholder="தேடல்..." 
-            class="scratch-search-input"
+            placeholder="அத்தியாயங்களைத் தேடு..." 
+            class="premium-search-input"
           />
           <button 
             *ngIf="sidebarSearchQuery" 
             (click)="sidebarSearchQuery = ''" 
-            class="scratch-search-clear"
-            aria-label="Clear search">
-            <ion-icon name="close-circle-sharp"></ion-icon>
+            class="premium-search-clear-btn"
+            aria-label="Clear search"
+          >
+            <ion-icon name="close-circle"></ion-icon>
           </button>
         </div>
       </div>
 
-      <!-- Segmented Navigation Controls -->
-      <div class="scratch-segmented-control">
-        <button 
-          (click)="activeSegment = 'chapters'" 
-          [class.active]="activeSegment === 'chapters'" 
-          class="scratch-segment-btn ripple">
-          <ion-icon name="list-outline" class="segment-icon"></ion-icon>
-          <span>அத்தியாயங்கள்</span>
-        </button>
-        <button 
-          (click)="activeSegment = 'guidance'" 
-          [class.active]="activeSegment === 'guidance'" 
-          class="scratch-segment-btn ripple">
-          <ion-icon name="compass-outline" class="segment-icon"></ion-icon>
-          <span>வழிகாட்டல்கள்</span>
-        </button>
-      </div>
-
-      <ion-content class="scratch-sidebar-content">
+      <ion-content class="premium-sidebar-content">
+        <!-- Quick Shortcuts Grid -->
+        <div class="premium-section-header">
+          <span class="premium-section-line"></span>
+          <span class="premium-section-title">விரைவு அணுகல்</span>
+          <span class="premium-section-line"></span>
+        </div>
         
-        <!-- 1. Chapters List (Visible when activeSegment === 'chapters') -->
-        <div *ngIf="activeSegment === 'chapters'" class="scratch-list-container animate-fade-in">
+        <div class="premium-grid">
+          <ion-menu-toggle auto-hide="false">
+            <div routerLink="/home" routerDirection="root" routerLinkActive="active" class="premium-grid-card ripple-card">
+              <div class="card-icon-wrap primary">
+                <ion-icon name="grid-outline"></ion-icon>
+              </div>
+              <div class="card-details">
+                <span class="card-label">முகப்பு</span>
+                <span class="card-value">Home</span>
+              </div>
+              <div class="card-hover-border"></div>
+            </div>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <div routerLink="/favorites" routerDirection="root" routerLinkActive="active" class="premium-grid-card ripple-card">
+              <div class="card-icon-wrap danger">
+                <ion-icon name="heart"></ion-icon>
+              </div>
+              <div class="card-details">
+                <span class="card-label">விருப்பம்</span>
+                <span class="card-value badge-count">{{ favoritesCount }}</span>
+              </div>
+              <div class="card-hover-border"></div>
+            </div>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <div routerLink="/settings" routerDirection="root" routerLinkActive="active" class="premium-grid-card ripple-card">
+              <div class="card-icon-wrap warning">
+                <ion-icon name="settings-outline"></ion-icon>
+              </div>
+              <div class="card-details">
+                <span class="card-label">அமைப்புகள்</span>
+                <span class="card-value">Settings</span>
+              </div>
+              <div class="card-hover-border"></div>
+            </div>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle auto-hide="false">
+            <div [routerLink]="['/prayer-acceptance', 1]" routerDirection="root" routerLinkActive="active" class="premium-grid-card ripple-card">
+              <div class="card-icon-wrap success">
+                <ion-icon name="bookmark-outline"></ion-icon>
+              </div>
+              <div class="card-details">
+                <span class="card-label">முன்னுரை</span>
+                <span class="card-value">Intro</span>
+              </div>
+              <div class="card-hover-border"></div>
+            </div>
+          </ion-menu-toggle>
+        </div>
+
+        <!-- Chapters List Section -->
+        <div class="premium-section-header">
+          <span class="premium-section-line"></span>
+          <span class="premium-section-title">அத்தியாயங்கள்</span>
+          <span class="premium-section-line"></span>
+        </div>
+        
+        <div class="premium-list">
           <ion-menu-toggle auto-hide="false" *ngFor="let p of getChapters(); let i = index">
             <div 
               [routerLink]="[p.url]" 
               routerDirection="root" 
               routerLinkActive="active" 
-              class="scratch-list-item ripple">
-              <div class="scratch-item-content">
-                <div class="scratch-item-index-badge">
+              class="premium-list-item ripple-item">
+              <div class="item-border-left"></div>
+              <div class="item-inner">
+                <div class="item-num-badge">
                   <span>{{ i + 1 }}</span>
                 </div>
-                <span class="scratch-item-label">{{ p.title }}</span>
-                <ion-icon name="chevron-forward-outline" class="scratch-item-arrow"></ion-icon>
+                <span class="item-text">{{ p.title }}</span>
+                <div class="item-arrow-wrap">
+                  <ion-icon name="chevron-forward" class="item-chevron"></ion-icon>
+                </div>
               </div>
-              <div class="scratch-item-active-border"></div>
             </div>
           </ion-menu-toggle>
-          
-          <div *ngIf="getChapters().length === 0" class="scratch-no-results">
-            <ion-icon name="search-outline" class="no-results-icon"></ion-icon>
-            <span>அத்தியாயங்கள் எதுவும் இல்லை.</span>
+          <div *ngIf="getChapters().length === 0" class="premium-no-results animate-fade">
+            <ion-icon name="alert-circle-outline" class="no-results-icon"></ion-icon>
+            <span>தேடல் முடிவுகள் எதுவும் இல்லை.</span>
           </div>
         </div>
 
-        <!-- 2. Guidance List (Visible when activeSegment === 'guidance') -->
-        <div *ngIf="activeSegment === 'guidance'" class="scratch-list-container animate-fade-in">
+        <!-- Guidance List Section -->
+        <div class="premium-section-header">
+          <span class="premium-section-line"></span>
+          <span class="premium-section-title">பிற வழிகாட்டல்கள்</span>
+          <span class="premium-section-line"></span>
+        </div>
+        
+        <div class="premium-list">
           <ion-menu-toggle auto-hide="false">
-            <div [routerLink]="['/prayer-acceptance', 1]" routerDirection="root" routerLinkActive="active" class="scratch-list-item ripple">
-              <div class="scratch-item-content">
-                <div class="scratch-item-icon-badge">
-                  <ion-icon name="bookmark-outline"></ion-icon>
+            <div [routerLink]="['/prayer-acceptance', 1]" routerDirection="root" routerLinkActive="active" class="premium-list-item ripple-item">
+              <div class="item-border-left"></div>
+              <div class="item-inner">
+                <div class="item-icon-badge">
+                  <ion-icon name="bookmark-outline" class="item-icon"></ion-icon>
                 </div>
-                <span class="scratch-item-label">முன்னுரை</span>
-                <ion-icon name="chevron-forward-outline" class="scratch-item-arrow"></ion-icon>
+                <span class="item-text">முன்னுரை</span>
+                <div class="item-arrow-wrap">
+                  <ion-icon name="chevron-forward" class="item-chevron"></ion-icon>
+                </div>
               </div>
-              <div class="scratch-item-active-border"></div>
             </div>
           </ion-menu-toggle>
 
           <ion-menu-toggle auto-hide="false">
-            <div [routerLink]="['/prayer-acceptance', 2]" routerDirection="root" routerLinkActive="active" class="scratch-list-item ripple">
-              <div class="scratch-item-content">
-                <div class="scratch-item-icon-badge">
-                  <ion-icon name="checkbox-outline"></ion-icon>
+            <div [routerLink]="['/prayer-acceptance', 2]" routerDirection="root" routerLinkActive="active" class="premium-list-item ripple-item">
+              <div class="item-border-left"></div>
+              <div class="item-inner">
+                <div class="item-icon-badge">
+                  <ion-icon name="bookmark-outline" class="item-icon"></ion-icon>
                 </div>
-                <span class="scratch-item-label">பிரார்த்தனை ஏற்றுக்கொள்ளுதல்</span>
-                <ion-icon name="chevron-forward-outline" class="scratch-item-arrow"></ion-icon>
+                <span class="item-text">பிரார்த்தனை ஏற்றுக்கொள்ளுதல்</span>
+                <div class="item-arrow-wrap">
+                  <ion-icon name="chevron-forward" class="item-chevron"></ion-icon>
+                </div>
               </div>
-              <div class="scratch-item-active-border"></div>
             </div>
           </ion-menu-toggle>
 
           <ion-menu-toggle auto-hide="false">
-            <div [routerLink]="['/prayer-acceptance', 3]" routerDirection="root" routerLinkActive="active" class="scratch-list-item ripple">
-              <div class="scratch-item-content">
-                <div class="scratch-item-icon-badge">
-                  <ion-icon name="heart-outline"></ion-icon>
+            <div [routerLink]="['/prayer-acceptance', 3]" routerDirection="root" routerLinkActive="active" class="premium-list-item ripple-item">
+              <div class="item-border-left"></div>
+              <div class="item-inner">
+                <div class="item-icon-badge">
+                  <ion-icon name="bookmark-outline" class="item-icon"></ion-icon>
                 </div>
-                <span class="scratch-item-label">சத்தியத்தைத் தேடும் உள்ளங்களே!</span>
-                <ion-icon name="chevron-forward-outline" class="scratch-item-arrow"></ion-icon>
+                <span class="item-text">சத்தியத்தைத் தேடும் உள்ளங்களே!</span>
+                <div class="item-arrow-wrap">
+                  <ion-icon name="chevron-forward" class="item-chevron"></ion-icon>
+                </div>
               </div>
-              <div class="scratch-item-active-border"></div>
             </div>
           </ion-menu-toggle>
 
           <ion-menu-toggle auto-hide="false">
-            <div [routerLink]="['/prayer-acceptance', 4]" routerDirection="root" routerLinkActive="active" class="scratch-list-item ripple">
-              <div class="scratch-item-content">
-                <div class="scratch-item-icon-badge">
-                  <ion-icon name="create-outline"></ion-icon>
+            <div [routerLink]="['/prayer-acceptance', 4]" routerDirection="root" routerLinkActive="active" class="premium-list-item ripple-item">
+              <div class="item-border-left"></div>
+              <div class="item-inner">
+                <div class="item-icon-badge">
+                  <ion-icon name="bookmark-outline" class="item-icon"></ion-icon>
                 </div>
-                <span class="scratch-item-label">பதிப்புகளின் துஆக்கள் & திருத்தங்கள்</span>
-                <ion-icon name="chevron-forward-outline" class="scratch-item-arrow"></ion-icon>
+                <span class="item-text">பதிப்புகளின் துஆக்கள் & திருத்தங்கள்</span>
+                <div class="item-arrow-wrap">
+                  <ion-icon name="chevron-forward" class="item-chevron"></ion-icon>
+                </div>
               </div>
-              <div class="scratch-item-active-border"></div>
             </div>
           </ion-menu-toggle>
+        </div>
+
+        <!-- Sidebar Info Footer -->
+        <div class="premium-sidebar-footer">
+          <div class="footer-divider">
+            <span class="footer-gem"></span>
+          </div>
+          <span class="footer-heading">ஜமாஅத்துல் முஸ்லிமீன்</span>
+          <span class="footer-sub">ஏத்தாலை, புத்தளம் - இலங்கை</span>
+          <div class="footer-app-version">v1.2.0 • Premium Edition</div>
         </div>
 
       </ion-content>
-
-      <!-- Floating Bottom Navigation Dock -->
-      <div class="scratch-dock-container">
-        <div class="scratch-bottom-dock">
-          
-          <!-- Home button -->
-          <ion-menu-toggle auto-hide="false">
-            <div routerLink="/home" routerDirection="root" routerLinkActive="active" class="scratch-dock-btn ripple" title="Home">
-              <ion-icon name="home-outline" class="dock-icon"></ion-icon>
-            </div>
-          </ion-menu-toggle>
-
-          <!-- Favorites button -->
-          <ion-menu-toggle auto-hide="false">
-            <div routerLink="/favorites" routerDirection="root" routerLinkActive="active" class="scratch-dock-btn ripple" title="Favorites">
-              <ion-icon name="heart-outline" class="dock-icon"></ion-icon>
-              <span *ngIf="favoritesCount > 0" class="dock-badge">{{ favoritesCount }}</span>
-            </div>
-          </ion-menu-toggle>
-
-          <!-- Settings button -->
-          <ion-menu-toggle auto-hide="false">
-            <div routerLink="/settings" routerDirection="root" routerLinkActive="active" class="scratch-dock-btn ripple" title="Settings">
-              <ion-icon name="settings-outline" class="dock-icon"></ion-icon>
-            </div>
-          </ion-menu-toggle>
-
-        </div>
-      </div>
-
-      <!-- Minimal Signature Footer -->
-      <div class="scratch-sidebar-footer">
-        <span>ஜமாஅத்துல் முஸ்லிமீன் • ஏத்தாலை, புத்தளம்</span>
-      </div>
-
     </ion-menu>
     
     <!-- Main Content -->
