@@ -1,4 +1,4 @@
-/* Apple Premium Home Screen Styles (Clean & Minimalist) */
+/* Apple Premium Home Screen SCSS Styles (Clean, Premium, Minimalist) */
 
 :host {
   /* Light Mode theme variables */
@@ -16,6 +16,10 @@
   --home-search-bg: rgba(0, 0, 0, 0.04);
   --home-badge-bg: rgba(0, 0, 0, 0.04);
   --home-list-item-hover: rgba(0, 0, 0, 0.02);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --segment-active-bg: #ffffff;
+  --segment-active-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,23 +39,88 @@
     --home-search-bg: rgba(255, 255, 255, 0.06);
     --home-badge-bg: rgba(255, 255, 255, 0.06);
     --home-list-item-hover: rgba(255, 255, 255, 0.03);
+    --glass-bg: rgba(28, 28, 30, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --segment-active-bg: #2c2c2e;
+    --segment-active-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   }
 }
 
-.apple-home-header {
-  --background: transparent !important;
-  background: transparent !important;
+/* Force Light Theme Overrides */
+:host-context(body.light) {
+  --home-bg: #f2f2f7 !important;
+  --home-card-bg: #ffffff !important;
+  --home-card-border: rgba(0, 0, 0, 0.05) !important;
+  --home-card-active-bg: rgba(0, 122, 255, 0.08) !important;
+  --home-card-active-border: rgba(0, 122, 255, 0.15) !important;
+  
+  --home-text-main: #1c1c1e !important;
+  --home-text-muted: #8e8e93 !important;
+  --home-accent: #007aff !important;
+  --home-accent-rgb: 0, 122, 255 !important;
+  
+  --home-search-bg: rgba(0, 0, 0, 0.04) !important;
+  --home-badge-bg: rgba(0, 0, 0, 0.04) !important;
+  --home-list-item-hover: rgba(0, 0, 0, 0.02) !important;
+  --glass-bg: rgba(255, 255, 255, 0.7) !important;
+  --glass-border: rgba(0, 0, 0, 0.05) !important;
+  --segment-active-bg: #ffffff !important;
+  --segment-active-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
 }
 
-.apple-home-toolbar {
+/* Force Dark Theme Overrides */
+:host-context(body.dark) {
+  --home-bg: #000000 !important;
+  --home-card-bg: #1c1c1e !important;
+  --home-card-border: rgba(255, 255, 255, 0.06) !important;
+  --home-card-active-bg: rgba(10, 132, 255, 0.12) !important;
+  --home-card-active-border: rgba(10, 132, 255, 0.2) !important;
+  
+  --home-text-main: #f5f5f7 !important;
+  --home-text-muted: #86868b !important;
+  --home-accent: #0a84ff !important;
+  --home-accent-rgb: 10, 132, 255 !important;
+  
+  --home-search-bg: rgba(255, 255, 255, 0.06) !important;
+  --home-badge-bg: rgba(255, 255, 255, 0.06) !important;
+  --home-list-item-hover: rgba(255, 255, 255, 0.03) !important;
+  --glass-bg: rgba(28, 28, 30, 0.7) !important;
+  --glass-border: rgba(255, 255, 255, 0.05) !important;
+  --segment-active-bg: #2c2c2e !important;
+  --segment-active-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* 1. Sticky Glassmorphic Header & Toolbar */
+.apple-header-glass {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 0.5px solid var(--glass-border) !important;
+  position: sticky !important;
+  top: 0;
+  z-index: 100;
+}
+
+.apple-toolbar-glass {
   --background: transparent !important;
   --border-width: 0px !important;
   border: none !important;
-  padding: 8px 12px 0 12px !important;
+  padding: 8px 12px 4px 12px !important;
   box-shadow: none !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
-.apple-menu-btn {
+.apple-header-title {
+  font-family: var(--font-family-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--home-text-main);
+  margin-left: 10px;
+  flex: 1;
+}
+
+.apple-nav-btn {
   border: 0.5px solid var(--home-card-border) !important;
   background: var(--home-card-bg) !important;
   border-radius: 50% !important;
@@ -71,36 +140,79 @@
   }
 }
 
-.apple-header-logo-wrap {
-  display: flex;
-  align-items: center;
-}
+.apple-nav-btn-action {
+  border: none !important;
+  background: var(--home-search-bg) !important;
+  border-radius: 50% !important;
+  width: 34px !important;
+  height: 34px !important;
+  margin-left: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--home-text-main) !important;
+  position: relative !important;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
 
-.apple-header-badge {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(var(--home-accent-rgb), 0.1) !important;
-  border: 0.5px solid rgba(var(--home-accent-rgb), 0.25) !important;
-  padding: 5px 12px;
-  border-radius: 40px;
-  color: var(--home-accent) !important;
-  font-family: var(--font-family-sans);
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.01);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  span {
-    color: var(--home-accent) !important;
+  &:active {
+    transform: scale(0.9);
   }
 
-  .apple-badge-icon {
-    font-size: 12px;
-    color: var(--home-accent) !important;
+  ion-icon {
+    font-size: 18px;
+  }
+
+  .badge-count {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    background: var(--ion-color-danger);
+    color: #ffffff;
+    font-family: var(--font-family-sans);
+    font-size: 0.65rem;
+    font-weight: 700;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* 2. iOS Segmented Tab Controls */
+.apple-segment-wrapper {
+  padding: 6px 12px 10px 12px;
+}
+
+.apple-segment-control {
+  display: flex;
+  background: var(--home-search-bg);
+  border-radius: 9px;
+  padding: 2px;
+  width: 100%;
+}
+
+.apple-segment-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 6px 0;
+  font-family: var(--font-family-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--home-text-muted);
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+
+  &.active {
+    background: var(--segment-active-bg);
+    color: var(--home-text-main);
+    box-shadow: var(--segment-active-shadow);
   }
 }
 
@@ -108,64 +220,9 @@
   --background: var(--home-bg) !important;
 }
 
-/* 1. iOS Hero Header Banner */
-.apple-hero-banner {
-  padding: 20px 6px 14px 6px;
-  margin-bottom: 12px;
-
-  .apple-hero-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-  }
-
-  .apple-hero-text-group {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .apple-hero-subtitle {
-    font-family: var(--font-family-sans);
-    font-size: 0.72rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--home-text-muted);
-  }
-
-  .apple-hero-title {
-    font-family: var(--font-family-heading);
-    font-size: 1.6rem;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-    color: var(--home-text-main);
-    margin: 0;
-    line-height: var(--tamil-line-height);
-  }
-
-  .apple-hero-icon-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    background: var(--home-card-bg);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.01);
-    color: var(--home-accent);
-    border: 0.5px solid var(--home-card-border);
-
-    .apple-hero-icon {
-      font-size: 20px;
-    }
-  }
-}
-
-/* 2. Spotlight Search Box */
+/* 3. Spotlight Search container styling */
 .apple-search-wrapper {
-  padding: 4px 6px 16px 6px;
+  padding: 6px 6px 16px 6px;
 }
 
 .apple-search-container {
@@ -233,143 +290,258 @@
   }
 }
 
-/* 3. iOS Widget Shortcuts Grid */
-.apple-shortcuts-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 4px;
-  padding: 0 6px;
-
-  .apple-grid-card {
-    background: var(--home-card-bg);
-    border-radius: 14px;
-    border: 0.5px solid var(--home-card-border);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
-    padding: 14px;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    height: 100%;
-
-    &:hover {
-      background: var(--home-list-item-hover);
-    }
-
-    .grid-card-inner {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 6px;
-    }
-
-    .grid-icon-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      font-size: 16px;
-      position: relative;
-      background: var(--home-badge-bg);
-      color: var(--home-accent);
-
-      .grid-badge {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-        background: var(--ion-color-danger);
-        color: white;
-        font-family: var(--font-family-sans);
-        font-size: 0.62rem;
-        font-weight: 700;
-        min-width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-    }
-
-    .grid-card-label {
-      font-family: var(--font-family-heading);
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--home-text-main);
-      line-height: var(--tamil-line-height);
-    }
-
-    .grid-card-desc {
-      font-family: var(--font-family-sans);
-      font-size: 0.68rem;
-      color: var(--home-text-muted);
-      font-weight: 500;
-    }
-  }
-}
-
-/* 4. Daily Supplication (Featured Widget Card) */
-.apple-featured-daily-card {
-  background: var(--home-card-bg);
+/* 4. Home Screen Dynamic Greeting Card */
+.apple-hero-banner-new {
+  position: relative;
+  background: linear-gradient(135deg, #2b5c8f 0%, #15305b 100%);
   border-radius: 16px;
-  border: 0.5px solid var(--home-card-border);
-  padding: 18px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  overflow: hidden;
+  padding: 24px 20px;
   margin: 0 6px 16px 6px;
+  color: #ffffff;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
 
-  .featured-daily-header {
+  :host-context(body.dark) & {
+    background: linear-gradient(135deg, #1c2e4a 0%, #0d1624 100%);
+  }
+
+  .apple-hero-gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .apple-hero-content-new {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .apple-hero-meta {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
   }
 
-  .featured-badge {
-    background: rgba(var(--home-accent-rgb), 0.06);
+  .apple-date-tamil {
+    font-family: var(--font-family-sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .apple-greeting-icon-badge {
+    font-size: 20px;
+    color: #ff9f0a;
+  }
+
+  .apple-greeting-title {
+    font-family: var(--font-family-heading);
+    font-size: 1.45rem;
+    font-weight: 700;
+    margin: 4px 0 0 0;
+    line-height: var(--tamil-line-height);
+    color: #ffffff;
+  }
+
+  .apple-app-tagline {
+    font-family: var(--font-family-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: 2px;
+  }
+}
+
+/* 5. iOS Smart Shortcuts Grid */
+.apple-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 0 6px;
+}
+
+.dashboard-widget {
+  background: var(--home-card-bg);
+  border: 0.5px solid var(--home-card-border);
+  border-radius: 14px;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.01);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  .widget-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    font-size: 18px;
+    position: relative;
+    background: var(--home-search-bg);
+    color: var(--widget-accent);
+
+    .widget-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--ion-color-danger);
+      color: #ffffff;
+      font-family: var(--font-family-sans);
+      font-size: 0.65rem;
+      font-weight: 700;
+      min-width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+  }
+
+  /* Color mapping rules */
+  &.purple { --widget-accent: var(--ion-color-tertiary); }
+  &.red { --widget-accent: var(--ion-color-danger); }
+  &.blue { --widget-accent: var(--home-accent); }
+  &.gray { --widget-accent: var(--home-text-muted); }
+
+  .widget-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .widget-label {
+    font-family: var(--font-family-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--home-text-main);
+    line-height: var(--tamil-line-height);
+  }
+
+  .widget-sub {
+    font-family: var(--font-family-sans);
+    font-size: 0.68rem;
+    color: var(--home-text-muted);
+    font-weight: 500;
+  }
+}
+
+/* 6. Smart Daily Supplication Widget Card */
+.apple-featured-dua-widget {
+  background: var(--home-card-bg);
+  border: 0.5px solid var(--home-card-border);
+  border-radius: 16px;
+  padding: 18px;
+  margin: 0 6px 16px 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.01);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .widget-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .widget-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(var(--home-accent-rgb), 0.08);
+    border: 0.5px solid rgba(var(--home-accent-rgb), 0.15);
     color: var(--home-accent);
     font-family: var(--font-family-sans);
     font-size: 0.68rem;
     font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 6px;
-    letter-spacing: 0.3px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.2px;
     text-transform: uppercase;
+
+    .tag-glow-icon {
+      font-size: 11px;
+    }
   }
 
-  .featured-header-icon {
-    font-size: 15px;
-    color: var(--home-accent);
+  .favorite-toggle-btn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    color: var(--home-text-muted);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+
+    &:active {
+      transform: scale(0.85);
+    }
+
+    ion-icon.active-fav {
+      color: var(--ion-color-danger) !important;
+    }
   }
 
-  .featured-daily-title {
+  .widget-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .dua-title {
     font-family: var(--font-family-heading);
     font-size: 1.15rem;
     font-weight: 700;
     color: var(--home-text-main);
-    margin: 2px 0 0 0;
+    margin: 0;
     line-height: var(--tamil-line-height);
   }
 
-  .featured-daily-arabic {
+  .dua-arabic {
     font-family: 'Scheherazade', serif !important;
-    font-size: 1.5rem;
-    line-height: 1.7;
+    font-size: 1.55rem;
+    line-height: 1.75;
     color: var(--home-text-main);
     text-align: right;
     direction: rtl;
-    padding: 8px 0;
+    padding: 10px 0;
     border-bottom: 0.5px solid var(--home-card-border);
     margin-bottom: 2px;
     word-wrap: break-word;
   }
 
-  .featured-daily-tamil {
+  .dua-tamil {
     font-family: var(--font-family-sans);
     font-size: 0.85rem;
     line-height: var(--tamil-line-height);
@@ -378,22 +550,65 @@
     padding: 2px 0;
   }
 
-  .featured-daily-footer {
+  .dua-translation {
+    font-family: var(--font-family-sans);
+    font-size: 0.85rem;
+    line-height: var(--tamil-line-height);
+    color: var(--home-text-muted);
+    margin: 0;
+    padding: 2px 0;
+  }
+
+  .widget-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 6px;
-    padding-top: 10px;
+    padding-top: 12px;
     border-top: 0.5px solid var(--home-card-border);
+    margin-top: 4px;
 
-    .featured-daily-chapter {
+    .dua-chapter-ref {
       font-family: var(--font-family-sans);
       font-size: 0.72rem;
       color: var(--home-text-muted);
-      font-weight: 500;
+      font-weight: 600;
     }
 
-    .featured-daily-btn {
+    .action-buttons-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .action-icon-btn {
+      border: none;
+      background: var(--home-search-bg);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--home-text-main);
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: rgba(var(--home-accent-rgb), 0.1);
+        color: var(--home-accent);
+      }
+
+      &:active {
+        transform: scale(0.9);
+      }
+
+      ion-icon {
+        font-size: 14px;
+      }
+    }
+
+    .widget-action-btn {
       background: var(--home-accent);
       color: #ffffff;
       border: none;
@@ -414,6 +629,10 @@
         transform: translateY(-0.5px);
       }
 
+      &:active {
+        transform: scale(0.96);
+      }
+
       ion-icon {
         font-size: 11px;
       }
@@ -421,76 +640,90 @@
   }
 }
 
-/* 5. App Introduction Inset Panel */
-.apple-intro-inset-card {
+/* 7. App Inset Editorial Card */
+.apple-editorial-card {
   background: var(--home-card-bg);
-  border-radius: 12px;
   border: 0.5px solid var(--home-card-border);
-  padding: 12px 14px;
+  border-radius: 12px;
+  padding: 14px 16px;
   margin: 0 6px 16px 6px;
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: flex-start;
+  gap: 12px;
 
-  .apple-intro-header-row {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  .card-icon {
+    font-size: 20px;
     color: var(--home-accent);
-    font-family: var(--font-family-sans);
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.2px;
+    flex-shrink: 0;
+    margin-top: 2px;
   }
 
-  .apple-intro-info-icon {
-    font-size: 13px;
-  }
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 
-  .apple-intro-text {
-    font-family: var(--font-family-sans);
-    font-size: 0.82rem;
-    line-height: var(--tamil-line-height);
-    color: var(--home-text-main);
-    margin: 0;
-    padding: 1px 0;
+    h3 {
+      font-family: var(--font-family-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--home-text-main);
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+    }
+
+    p {
+      font-family: var(--font-family-sans);
+      font-size: 0.82rem;
+      line-height: var(--tamil-line-height);
+      color: var(--home-text-main);
+      margin: 0;
+    }
   }
 }
 
-/* 6. Section Labels */
-.apple-section-header {
-  display: flex;
-  align-items: center;
-  margin: 22px 12px 8px 12px;
+/* 8. Grouped Tables / List structures (Apple Books style) */
+.list-desc-info {
+  margin: 12px 10px 16px 10px;
 
-  .apple-section-title {
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: var(--home-text-muted);
-    letter-spacing: 0.5px;
+  h3 {
     font-family: var(--font-family-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--home-text-main);
+    margin: 0 0 2px 0;
+  }
+
+  p {
+    font-family: var(--font-family-sans);
+    font-size: 0.8rem;
+    color: var(--home-text-muted);
+    margin: 0;
   }
 }
 
-/* 7. Grouped Navigation Lists (Apple Style) */
-.apple-grouped-list {
+.apple-grouped-list-new {
   background: var(--home-card-bg);
-  border-radius: 14px;
   border: 0.5px solid var(--home-card-border);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.01);
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.01);
   overflow: hidden;
   margin: 0 6px 20px 6px;
   display: flex;
   flex-direction: column;
 
-  .apple-list-item {
+  .chapter-item {
     text-decoration: none;
     color: inherit;
     background: transparent;
     border-bottom: 0.5px solid var(--home-card-border);
-    transition: all 0.2s ease;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 
     &:last-child {
       border-bottom: none;
@@ -500,104 +733,123 @@
       background: var(--home-list-item-hover);
     }
 
-    .apple-item-content {
+    .chapter-icon-box {
       display: flex;
       align-items: center;
-      padding: 12px 16px;
-      gap: 12px;
-      width: 100%;
-    }
-
-    .apple-item-icon {
-      font-size: 18px;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--home-search-bg);
       color: var(--home-accent);
-      flex-shrink: 0;
-    }
-
-    .apple-item-title {
-      font-family: var(--font-family-sans);
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--home-text-main);
-      white-space: normal;
-      line-height: var(--tamil-line-height);
-      padding: 2px 0;
-      flex: 1;
-
-      &.accent {
-        color: var(--home-accent);
-        font-weight: 600;
-      }
-    }
-
-    .apple-item-end {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-left: auto;
+      font-size: 16px;
       flex-shrink: 0;
 
-      .apple-badge {
-        font-family: var(--font-family-sans);
-        font-size: 0.75rem;
-        font-weight: 500;
-        color: var(--home-text-muted);
-        background: var(--home-badge-bg);
-        padding: 2px 8px;
-        border-radius: 10px;
-      }
+      /* Accented icon backgrounds */
+      &.icon-purple { color: var(--ion-color-tertiary); background: rgba(var(--ion-color-tertiary-rgb), 0.08); }
+      &.icon-green { color: var(--ion-color-success); background: rgba(var(--ion-color-success-rgb), 0.08); }
+      &.icon-orange { color: var(--ion-color-warning); background: rgba(var(--ion-color-warning-rgb), 0.08); }
+      &.icon-gray { color: var(--home-text-muted); background: var(--home-search-bg); }
+      &.icon-blue { color: var(--home-accent); background: rgba(var(--home-accent-rgb), 0.08); }
+      &.icon-teal { color: #30b0c6; background: rgba(48, 176, 198, 0.08); }
     }
 
-    .apple-chevron {
-      font-size: 12px;
-      color: var(--home-text-muted);
-      opacity: 0.5;
-      flex-shrink: 0;
-
-      &.accent {
-        color: var(--home-accent);
-        opacity: 0.8;
-      }
-    }
-
-    /* Stacked item descriptions */
-    .apple-item-stacked {
+    .chapter-details {
       display: flex;
       flex-direction: column;
       gap: 1px;
       flex: 1;
+    }
 
-      .apple-item-stacked-title {
-        font-family: var(--font-family-sans);
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: var(--home-text-main);
-        line-height: var(--tamil-line-height);
-      }
+    .chapter-title {
+      font-family: var(--font-family-sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--home-text-main);
+      line-height: var(--tamil-line-height);
+    }
 
-      .apple-item-stacked-subtitle {
-        font-family: var(--font-family-sans);
-        font-size: 0.78rem;
-        color: var(--home-text-muted);
-        line-height: var(--tamil-line-height);
-      }
+    .chapter-count {
+      font-family: var(--font-family-sans);
+      font-size: 0.72rem;
+      color: var(--home-text-muted);
+      font-weight: 500;
+    }
+
+    .chapter-chevron {
+      font-size: 12px;
+      color: var(--home-text-muted);
+      opacity: 0.5;
+      flex-shrink: 0;
     }
   }
+}
 
-  .view-all-row {
-    cursor: pointer;
+/* 9. About Page Visual Cards */
+.apple-author-card {
+  background: var(--home-card-bg);
+  border: 0.5px solid var(--home-card-border);
+  border-radius: 14px;
+  padding: 16px;
+  margin: 0 6px 20px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  .about-note-paragraph {
+    font-family: var(--font-family-sans);
+    font-size: 0.82rem;
+    line-height: var(--tamil-line-height);
+    color: var(--home-text-muted);
+    margin: 0;
+  }
+
+  .author-signature {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-top: 0.5px solid var(--home-card-border);
+    padding-top: 12px;
+
+    .signature-tag {
+      font-family: var(--font-family-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--home-accent);
+    }
+
+    .author-name {
+      font-family: var(--font-family-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--home-text-main);
+      line-height: var(--tamil-line-height);
+    }
+
+    .author-email {
+      font-family: var(--font-family-sans);
+      font-size: 0.72rem;
+      color: var(--home-text-muted);
+    }
   }
 }
 
-/* 8. Search Results Area */
+/* 10. Search Results Area & Transitions */
 .search-results-wrapper {
   margin-top: 8px;
-  animation: fadeIn 0.25s ease-out;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
+.apple-section-header {
+  margin: 16px 10px 10px 10px;
+
+  .apple-section-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--home-text-muted);
+    letter-spacing: 0.5px;
+    font-family: var(--font-family-heading);
+  }
 }
 
 .apple-empty-state {
@@ -633,74 +885,15 @@
   }
 }
 
-/* 9. Editorial Footnote */
-.apple-footer-note {
-  margin-top: 32px;
-  padding: 0 12px;
-  text-align: left;
-
-  .apple-footer-paragraph {
-    font-family: var(--font-family-sans);
-    font-size: 0.8rem;
-    line-height: var(--tamil-line-height);
-    color: var(--home-text-muted);
-    text-align: left;
-    margin: 0 0 20px 0;
-  }
-
-  .apple-author-box {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2px;
-
-    .apple-author-heading {
-      font-family: var(--font-family-sans);
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--home-accent);
-      line-height: var(--tamil-line-height);
-    }
-
-    .apple-author-name {
-      font-family: var(--font-family-heading);
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--home-text-main);
-      line-height: var(--tamil-line-height);
-    }
-
-    .apple-author-email {
-      font-family: var(--font-family-sans);
-      font-size: 0.75rem;
-      color: var(--home-text-muted);
-    }
-  }
+/* Tab entrance animation */
+.animate-fade {
+  animation: tabFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Entrance Animations */
-.apple-hero-banner,
-.apple-search-wrapper,
-.apple-shortcuts-grid,
-.apple-featured-daily-card,
-.apple-intro-inset-card,
-.apple-grouped-list,
-.apple-footer-note {
-  animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.apple-hero-banner { animation-delay: 0.02s; }
-.apple-search-wrapper { animation-delay: 0.04s; }
-.apple-shortcuts-grid { animation-delay: 0.06s; }
-.apple-featured-daily-card { animation-delay: 0.08s; }
-.apple-intro-inset-card { animation-delay: 0.1s; }
-.apple-grouped-list { animation-delay: 0.12s; }
-.apple-footer-note { animation-delay: 0.14s; }
-
-@keyframes slideUpFade {
+@keyframes tabFadeIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -708,24 +901,17 @@
   }
 }
 
-.animate-fade {
-  animation: fadeIn 0.3s ease forwards;
-}
-
-.ripple-card, .ripple-item {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Tablet/Desktop centering */
+/* Tablet/Desktop spacing adjustment */
 @media (min-width: 768px) {
-  .apple-hero-banner,
   .apple-search-wrapper,
-  .apple-shortcuts-grid,
-  .apple-featured-daily-card,
-  .apple-intro-inset-card,
-  .apple-grouped-list,
-  .apple-footer-note {
+  .apple-hero-banner-new,
+  .apple-dashboard-grid,
+  .apple-featured-dua-widget,
+  .apple-editorial-card,
+  .apple-grouped-list-new,
+  .list-desc-info,
+  .apple-author-card,
+  .search-results-wrapper {
     max-width: 650px;
     margin-left: auto;
     margin-right: auto;
