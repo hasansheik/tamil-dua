@@ -15,6 +15,7 @@ export class AppComponent {
   selectedPage = 0;
   sidebarSearchQuery = '';
   favoritesCount = 0;
+  activeSegment = 'chapters';
 
   constructor(
     private platform: Platform,
