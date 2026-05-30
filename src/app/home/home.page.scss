@@ -393,6 +393,7 @@
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   height: 60px; /* Equal small height for all shortcut cards */
   box-sizing: border-box;
+  min-width: 0; /* Prevent the grid item from expanding past its 1fr track width */
 
   &:hover {
     transform: translateY(-2px);
