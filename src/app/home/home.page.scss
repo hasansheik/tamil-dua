@@ -98,7 +98,7 @@
   border-bottom: 0.5px solid var(--glass-border) !important;
   position: sticky !important;
   top: 0;
-  z-index: 100;
+  z-index: 10; /* Lower z-index so it doesn't float on top of open sidebar/menu backdrop */
 }
 
 .apple-toolbar-glass {
@@ -185,12 +185,12 @@
 /* 2. iOS Segmented Tab Controls */
 .apple-segment-wrapper {
   padding: 6px 12px 10px 12px;
-  overflow-x: auto;
-  display: flex;
+  overflow-x: auto; /* Allow horizontal scroll if items overflow screen */
   -webkit-overflow-scrolling: touch;
+  display: flex;
   
   &::-webkit-scrollbar {
-    display: none;
+    display: none; /* Hide scrollbar for a clean Apple UI */
   }
 }
 
@@ -199,26 +199,24 @@
   background: var(--home-search-bg);
   border-radius: 9px;
   padding: 2px;
+  width: max-content; /* Ensure container expands to fit content */
   min-width: 100%;
-  width: max-content;
-  gap: 2px;
 }
 
 .apple-segment-btn {
-  flex: 1;
-  flex-shrink: 0;
+  flex: 1 0 auto; /* Grow to fill space, but never shrink below content size */
   border: none;
   background: transparent;
-  padding: 6px 16px;
+  padding: 6px 16px; /* Horizontal padding so text has breathing room */
+  white-space: nowrap; /* Prevent text wrapping */
   font-family: var(--font-family-sans);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--home-text-muted);
   border-radius: 7px;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   outline: none;
-  white-space: nowrap;
 
   &.active {
     background: var(--segment-active-bg);
