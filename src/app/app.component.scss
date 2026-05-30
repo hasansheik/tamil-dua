@@ -1,49 +1,93 @@
 /* Apple Premium Sidebar Redesign (Clean & Minimalist) */
 
 :host {
-  /* Light Mode - iOS Silver & Blue theme */
-  --sidebar-bg: rgba(242, 242, 247, 0.85);
-  --sidebar-border: rgba(0, 0, 0, 0.06);
+  /* Light Mode - Dark Blue Gradient matching the Home Hero Banner */
+  --sidebar-bg: linear-gradient(135deg, #2b5c8f 0%, #15305b 100%);
+  --sidebar-border: rgba(255, 255, 255, 0.1);
   
-  --sidebar-card-bg: rgba(255, 255, 255, 0.65);
-  --sidebar-card-border: rgba(0, 0, 0, 0.03);
-  --sidebar-card-active-bg: rgba(0, 122, 255, 0.08);
-  --sidebar-card-active-border: rgba(0, 122, 255, 0.15);
+  --sidebar-card-bg: rgba(255, 255, 255, 0.08);
+  --sidebar-card-border: rgba(255, 255, 255, 0.06);
+  --sidebar-card-active-bg: rgba(255, 255, 255, 0.15);
+  --sidebar-card-active-border: rgba(255, 255, 255, 0.25);
   
-  --sidebar-text-main: #1c1c1e;
-  --sidebar-text-muted: #8e8e93;
-  --sidebar-accent: #007aff;
-  --sidebar-accent-rgb: 0, 122, 255;
+  --sidebar-text-main: #ffffff;
+  --sidebar-text-muted: rgba(255, 255, 255, 0.6);
+  --sidebar-accent: #ff9f0a; /* Premium Gold/Orange active highlight */
+  --sidebar-accent-rgb: 255, 159, 10;
   
-  --sidebar-search-bg: rgba(0, 0, 0, 0.04);
-  --sidebar-list-item-hover: rgba(0, 0, 0, 0.03);
-  --sidebar-list-item-active: rgba(0, 122, 255, 0.08);
+  --sidebar-search-bg: rgba(255, 255, 255, 0.1);
+  --sidebar-list-item-hover: rgba(255, 255, 255, 0.08);
+  --sidebar-list-item-active: rgba(255, 255, 255, 0.15);
   
-  --sidebar-badge-bg: rgba(0, 0, 0, 0.04);
+  --sidebar-badge-bg: rgba(255, 255, 255, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
   :host {
-    /* Dark Mode - iOS Obsidian Black & Royal Blue theme */
-    --sidebar-bg: rgba(18, 18, 18, 0.82);
+    /* Dark Mode - Midnight Gradient matching the Home Hero Banner in Dark mode */
+    --sidebar-bg: linear-gradient(135deg, #1c2e4a 0%, #0d1624 100%);
     --sidebar-border: rgba(255, 255, 255, 0.08);
     
-    --sidebar-card-bg: rgba(28, 28, 30, 0.65);
+    --sidebar-card-bg: rgba(255, 255, 255, 0.06);
     --sidebar-card-border: rgba(255, 255, 255, 0.04);
-    --sidebar-card-active-bg: rgba(10, 132, 255, 0.12);
-    --sidebar-card-active-border: rgba(10, 132, 255, 0.2);
+    --sidebar-card-active-bg: rgba(255, 255, 255, 0.12);
+    --sidebar-card-active-border: rgba(255, 255, 255, 0.2);
     
     --sidebar-text-main: #f5f5f7;
-    --sidebar-text-muted: #86868b;
-    --sidebar-accent: #0a84ff;
-    --sidebar-accent-rgb: 10, 132, 255;
+    --sidebar-text-muted: rgba(255, 255, 255, 0.55);
+    --sidebar-accent: #ff9f0a; /* Premium Gold/Orange active highlight */
+    --sidebar-accent-rgb: 255, 159, 10;
     
-    --sidebar-search-bg: rgba(255, 255, 255, 0.06);
-    --sidebar-list-item-hover: rgba(255, 255, 255, 0.04);
-    --sidebar-list-item-active: rgba(10, 132, 255, 0.12);
+    --sidebar-search-bg: rgba(255, 255, 255, 0.08);
+    --sidebar-list-item-hover: rgba(255, 255, 255, 0.06);
+    --sidebar-list-item-active: rgba(255, 255, 255, 0.12);
     
-    --sidebar-badge-bg: rgba(255, 255, 255, 0.06);
+    --sidebar-badge-bg: rgba(255, 255, 255, 0.08);
   }
+}
+
+/* Force Light Theme Overrides */
+:host-context(body.light) {
+  --sidebar-bg: linear-gradient(135deg, #2b5c8f 0%, #15305b 100%) !important;
+  --sidebar-border: rgba(255, 255, 255, 0.1) !important;
+  
+  --sidebar-card-bg: rgba(255, 255, 255, 0.08) !important;
+  --sidebar-card-border: rgba(255, 255, 255, 0.06) !important;
+  --sidebar-card-active-bg: rgba(255, 255, 255, 0.15) !important;
+  --sidebar-card-active-border: rgba(255, 255, 255, 0.25) !important;
+  
+  --sidebar-text-main: #ffffff !important;
+  --sidebar-text-muted: rgba(255, 255, 255, 0.6) !important;
+  --sidebar-accent: #ff9f0a !important;
+  --sidebar-accent-rgb: 255, 159, 10 !important;
+  
+  --sidebar-search-bg: rgba(255, 255, 255, 0.1) !important;
+  --sidebar-list-item-hover: rgba(255, 255, 255, 0.08) !important;
+  --sidebar-list-item-active: rgba(255, 255, 255, 0.15) !important;
+  
+  --sidebar-badge-bg: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Force Dark Theme Overrides */
+:host-context(body.dark) {
+  --sidebar-bg: linear-gradient(135deg, #1c2e4a 0%, #0d1624 100%) !important;
+  --sidebar-border: rgba(255, 255, 255, 0.08) !important;
+  
+  --sidebar-card-bg: rgba(255, 255, 255, 0.06) !important;
+  --sidebar-card-border: rgba(255, 255, 255, 0.04) !important;
+  --sidebar-card-active-bg: rgba(255, 255, 255, 0.12) !important;
+  --sidebar-card-active-border: rgba(255, 255, 255, 0.2) !important;
+  
+  --sidebar-text-main: #f5f5f7 !important;
+  --sidebar-text-muted: rgba(255, 255, 255, 0.55) !important;
+  --sidebar-accent: #ff9f0a !important;
+  --sidebar-accent-rgb: 255, 159, 10 !important;
+  
+  --sidebar-search-bg: rgba(255, 255, 255, 0.08) !important;
+  --sidebar-list-item-hover: rgba(255, 255, 255, 0.06) !important;
+  --sidebar-list-item-active: rgba(255, 255, 255, 0.12) !important;
+  
+  --sidebar-badge-bg: rgba(255, 255, 255, 0.08) !important;
 }
 
 /* Ionic Menu Container Overrides for Glassmorphism */
@@ -173,11 +217,11 @@ ion-menu {
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
   &:focus-within {
-    background: var(--sidebar-card-bg);
-    box-shadow: 0 0 0 1.5px var(--sidebar-accent), 0 4px 12px rgba(0, 0, 0, 0.03);
+    background: rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 0 0 1.5px var(--sidebar-accent), 0 4px 12px rgba(0, 0, 0, 0.15);
     
     .apple-search-icon {
-      color: var(--sidebar-accent);
+      color: var(--sidebar-accent) !important;
     }
   }
 
