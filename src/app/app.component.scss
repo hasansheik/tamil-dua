@@ -1,36 +1,56 @@
-/* Premium Redesigned Sidebar Styles - Balanced Neutrals Palette */
+/* Premium Redesigned Sidebar Styles */
 
 :host {
-  /* Light Mode (Default) Balanced Neutrals Premium Theme Variables */
-  --sidebar-bg: rgba(245, 243, 240, 0.88);
-  --sidebar-border: rgba(138, 129, 124, 0.18);
-  --sidebar-card-bg: rgba(255, 255, 255, 0.75);
-  --sidebar-card-border: rgba(138, 129, 124, 0.12);
-  --sidebar-card-active-bg: rgba(138, 129, 124, 0.08);
-  --sidebar-card-active-border: rgba(138, 129, 124, 0.35);
-  --sidebar-text-main: #32302e;
-  --sidebar-text-muted: #797672;
-  --sidebar-accent-primary: #8a817c;
-  --sidebar-accent-secondary: #bcb3a6;
-  --sidebar-accent-glow: rgba(138, 129, 124, 0.15);
-  --sidebar-list-item-hover: rgba(138, 129, 124, 0.03);
+  /* Light Mode - Premium Layered Neutrals & Saturated Gold Theme */
+  --sidebar-bg: rgba(253, 251, 247, 0.85); /* Warm Ivory/Cream neutral */
+  --sidebar-border: rgba(162, 123, 59, 0.18); /* Saturated gold border */
+  --sidebar-card-bg: rgba(246, 242, 232, 0.72); /* Layered parchment oatmeal neutral */
+  --sidebar-card-border: rgba(162, 123, 59, 0.14);
+  --sidebar-card-active-bg: rgba(162, 123, 59, 0.08);
+  --sidebar-card-active-border: rgba(162, 123, 59, 0.42); /* Saturated gold highlight */
+  --sidebar-text-main: #27221b; /* Deep warm brown-black */
+  --sidebar-text-muted: #736b5e; /* Warm slate bronze-gray */
+  --sidebar-gold-primary: #a27b3b; /* Deepened saturated gold */
+  --sidebar-gold-secondary: #c9a054; /* Warm saturated champagne gold */
+  --sidebar-gold-glow: rgba(162, 123, 59, 0.22);
+  --sidebar-list-item-hover: rgba(162, 123, 59, 0.04);
+
+  /* Specific Saturated Color Families for Shortcuts */
+  --color-shortcut-home-bg: rgba(15, 82, 87, 0.12);
+  --color-shortcut-home-fg: #157f86; /* Deep Teal/Emerald */
+  --color-shortcut-fav-bg: rgba(139, 38, 62, 0.12);
+  --color-shortcut-fav-fg: #ac2f4d; /* Crimson Velvet */
+  --color-shortcut-settings-bg: rgba(217, 93, 57, 0.12);
+  --color-shortcut-settings-fg: #d95d39; /* Saturated Amber/Copper */
+  --color-shortcut-intro-bg: rgba(94, 48, 35, 0.12);
+  --color-shortcut-intro-fg: #8e4a37; /* Warm Terracotta */
 }
 
 @media (prefers-color-scheme: dark) {
   :host {
-    /* Dark Mode Balanced Neutrals Premium Theme Variables */
-    --sidebar-bg: rgba(24, 23, 22, 0.85);
-    --sidebar-border: rgba(188, 179, 166, 0.2);
-    --sidebar-card-bg: rgba(35, 34, 32, 0.65);
-    --sidebar-card-border: rgba(188, 179, 166, 0.15);
-    --sidebar-card-active-bg: rgba(188, 179, 166, 0.12);
-    --sidebar-card-active-border: rgba(188, 179, 166, 0.4);
-    --sidebar-text-main: #f4f3f0;
-    --sidebar-text-muted: #a39c90;
-    --sidebar-accent-primary: #bcb3a6;
-    --sidebar-accent-secondary: #dfd5c6;
-    --sidebar-accent-glow: rgba(188, 179, 166, 0.25);
-    --sidebar-list-item-hover: rgba(188, 179, 166, 0.04);
+    /* Dark Mode - Premium Layered Obsidian Neutrals & Intense Gold Theme */
+    --sidebar-bg: rgba(13, 13, 12, 0.84); /* Deep warm obsidian neutral */
+    --sidebar-border: rgba(212, 175, 55, 0.22); /* Saturated radiant gold border */
+    --sidebar-card-bg: rgba(22, 22, 20, 0.7); /* Layered charcoal-bronze neutral */
+    --sidebar-card-border: rgba(212, 175, 55, 0.16);
+    --sidebar-card-active-bg: rgba(212, 175, 55, 0.12);
+    --sidebar-card-active-border: rgba(212, 175, 55, 0.5); /* Saturated gold highlight */
+    --sidebar-text-main: #fcfaf2; /* Elegant silk cream */
+    --sidebar-text-muted: #a69e90; /* Warm sand gray */
+    --sidebar-gold-primary: #d4af37; /* Metallic Gold */
+    --sidebar-gold-secondary: #f3e5ab; /* Soft shining gold */
+    --sidebar-gold-glow: rgba(212, 175, 55, 0.35);
+    --sidebar-list-item-hover: rgba(212, 175, 55, 0.06);
+
+    /* Specific Glowing Saturated Color Families for Shortcuts (Dark Mode) */
+    --color-shortcut-home-bg: rgba(38, 166, 154, 0.16);
+    --color-shortcut-home-fg: #4db6ac;
+    --color-shortcut-fav-bg: rgba(229, 57, 53, 0.16);
+    --color-shortcut-fav-fg: #f48fb1;
+    --color-shortcut-settings-bg: rgba(255, 143, 0, 0.16);
+    --color-shortcut-settings-fg: #ffb74d;
+    --color-shortcut-intro-bg: rgba(161, 136, 127, 0.16);
+    --color-shortcut-intro-fg: #d7ccc8;
   }
 }
 
@@ -43,7 +63,7 @@ ion-menu {
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
     border-right: 1px solid var(--sidebar-border) !important;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08) !important;
   }
 
   ion-content.premium-sidebar-content {
@@ -55,7 +75,7 @@ ion-menu {
     
     /* Scrollbar properties for Firefox and standards */
     scrollbar-width: thin;
-    scrollbar-color: var(--sidebar-accent-primary) transparent;
+    scrollbar-color: rgba(var(--ion-color-primary-rgb), 0.2) transparent;
 
     &::part(scroll) {
       /* Custom scrollbar for WebKit browsers */
@@ -66,11 +86,11 @@ ion-menu {
         background: transparent;
       }
       &::-webkit-scrollbar-thumb {
-        background: rgba(var(--sidebar-accent-primary), 0.15);
+        background: rgba(var(--ion-color-primary-rgb), 0.15);
         border-radius: 10px;
         
         &:hover {
-          background: rgba(var(--sidebar-accent-primary), 0.3);
+          background: rgba(var(--ion-color-primary-rgb), 0.3);
         }
       }
     }
@@ -82,8 +102,8 @@ ion-menu {
   position: relative;
   padding: 36px 20px 24px 20px;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(var(--sidebar-accent-primary), 0.05) 0%, rgba(var(--sidebar-accent-primary), 0) 100%);
-  border-bottom: 1px solid rgba(var(--sidebar-accent-primary), 0.08);
+  background: linear-gradient(135deg, rgba(var(--ion-color-primary-rgb), 0.05) 0%, rgba(var(--ion-color-primary-rgb), 0) 100%);
+  border-bottom: 1px solid rgba(var(--ion-color-primary-rgb), 0.08);
 
   .brand-top-pattern {
     position: absolute;
@@ -91,7 +111,7 @@ ion-menu {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--sidebar-accent-primary) 0%, var(--sidebar-accent-secondary) 50%, var(--sidebar-accent-primary) 100%);
+    background: linear-gradient(90deg, var(--sidebar-gold-primary) 0%, var(--sidebar-gold-secondary) 50%, var(--sidebar-gold-primary) 100%);
     opacity: 0.8;
   }
 
@@ -117,9 +137,9 @@ ion-menu {
       align-items: center;
       justify-content: center;
       border-radius: 14px;
-      background: linear-gradient(135deg, var(--sidebar-accent-primary) 0%, var(--sidebar-accent-secondary) 100%);
+      background: linear-gradient(135deg, var(--sidebar-gold-primary) 0%, var(--sidebar-gold-secondary) 100%);
       color: #ffffff;
-      box-shadow: 0 4px 12px var(--sidebar-accent-glow);
+      box-shadow: 0 4px 12px var(--sidebar-gold-glow);
       z-index: 2;
       transition: transform 0.3s ease;
 
@@ -135,7 +155,7 @@ ion-menu {
       right: -2px;
       bottom: -2px;
       border-radius: 16px;
-      background: linear-gradient(135deg, var(--sidebar-accent-secondary) 0%, var(--sidebar-accent-primary) 100%);
+      background: linear-gradient(135deg, var(--sidebar-gold-secondary) 0%, var(--sidebar-gold-primary) 100%);
       opacity: 0.5;
       filter: blur(4px);
       z-index: 1;
@@ -156,7 +176,7 @@ ion-menu {
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      color: var(--sidebar-accent-primary);
+      color: var(--sidebar-gold-primary);
       margin-bottom: 2px;
       font-family: var(--font-family-heading);
     }
@@ -191,16 +211,16 @@ ion-menu {
       content: '';
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(var(--sidebar-accent-primary), 0.15) 50%, transparent);
+      background: linear-gradient(90deg, transparent, rgba(var(--ion-color-primary-rgb), 0.15) 50%, transparent);
     }
 
     .divider-gem {
       width: 6px;
       height: 6px;
       transform: rotate(45deg);
-      background: var(--sidebar-accent-primary);
+      background: var(--sidebar-gold-primary);
       margin: 0 10px;
-      box-shadow: 0 0 6px var(--sidebar-accent-primary);
+      box-shadow: 0 0 6px var(--sidebar-gold-primary);
     }
   }
 }
@@ -234,12 +254,12 @@ ion-menu {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   &:focus-within {
-    border-color: var(--sidebar-accent-primary);
-    box-shadow: 0 0 0 3px var(--sidebar-accent-glow), 0 4px 12px rgba(0, 0, 0, 0.03);
+    border-color: var(--sidebar-gold-primary);
+    box-shadow: 0 0 0 3px var(--sidebar-gold-glow), 0 4px 12px rgba(0, 0, 0, 0.04);
     transform: translateY(-1px);
 
     .premium-search-icon {
-      color: var(--sidebar-accent-primary);
+      color: var(--sidebar-gold-primary);
       transform: scale(1.05);
     }
   }
@@ -285,7 +305,7 @@ ion-menu {
 
     &:hover {
       opacity: 1;
-      color: var(--sidebar-accent-primary);
+      color: var(--sidebar-gold-primary);
       transform: scale(1.1);
     }
   }
@@ -301,10 +321,10 @@ ion-menu {
   .premium-section-line {
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, rgba(var(--sidebar-accent-primary), 0.15), transparent);
+    background: linear-gradient(90deg, rgba(var(--ion-color-primary-rgb), 0.15), transparent);
     
     &:first-child {
-      background: linear-gradient(90deg, transparent, rgba(var(--sidebar-accent-primary), 0.15));
+      background: linear-gradient(90deg, transparent, rgba(var(--ion-color-primary-rgb), 0.15));
     }
   }
 
@@ -312,7 +332,7 @@ ion-menu {
     font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: var(--sidebar-accent-primary);
+    color: var(--sidebar-gold-primary);
     letter-spacing: 1px;
     font-family: var(--font-family-heading);
   }
@@ -352,15 +372,15 @@ ion-menu {
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(var(--sidebar-accent-primary), 0.03) 0%, transparent 100%);
+      background: linear-gradient(135deg, rgba(var(--ion-color-primary-rgb), 0.03) 0%, transparent 100%);
       opacity: 1;
       pointer-events: none;
     }
 
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03), 0 0 12px rgba(var(--sidebar-accent-primary), 0.05);
-      border-color: rgba(var(--sidebar-accent-primary), 0.25);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04), 0 0 12px rgba(var(--ion-color-primary-rgb), 0.05);
+      border-color: rgba(var(--ion-color-primary-rgb), 0.25);
 
       .card-icon-wrap {
         transform: scale(1.08);
@@ -370,19 +390,19 @@ ion-menu {
     &.active {
       background: var(--sidebar-card-active-bg);
       border-color: var(--sidebar-card-active-border);
-      box-shadow: 0 4px 12px rgba(var(--sidebar-accent-primary), 0.06);
+      box-shadow: 0 4px 12px rgba(var(--ion-color-primary-rgb), 0.06);
 
       &::before {
-        background: linear-gradient(135deg, rgba(var(--sidebar-accent-primary), 0.1) 0%, transparent 100%);
+        background: linear-gradient(135deg, rgba(var(--ion-color-primary-rgb), 0.1) 0%, transparent 100%);
       }
 
       .card-label {
-        color: var(--sidebar-accent-primary);
+        color: var(--sidebar-gold-primary);
         font-weight: 700;
       }
       
       .card-icon-wrap {
-        box-shadow: 0 4px 8px rgba(var(--sidebar-accent-primary), 0.15);
+        box-shadow: 0 4px 8px rgba(var(--ion-color-primary-rgb), 0.15);
       }
     }
 
@@ -398,20 +418,20 @@ ion-menu {
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
       &.primary {
-        background: rgba(var(--sidebar-accent-primary), 0.1);
-        color: var(--sidebar-accent-primary);
+        background: var(--color-shortcut-home-bg);
+        color: var(--color-shortcut-home-fg);
       }
       &.danger {
-        background: rgba(var(--ion-color-danger-rgb), 0.1);
-        color: var(--ion-color-danger);
+        background: var(--color-shortcut-fav-bg);
+        color: var(--color-shortcut-fav-fg);
       }
       &.warning {
-        background: rgba(var(--ion-color-warning-rgb), 0.1);
-        color: var(--ion-color-warning-shade);
+        background: var(--color-shortcut-settings-bg);
+        color: var(--color-shortcut-settings-fg);
       }
       &.success {
-        background: rgba(var(--ion-color-success-rgb), 0.1);
-        color: var(--ion-color-success-shade);
+        background: var(--color-shortcut-intro-bg);
+        color: var(--color-shortcut-intro-fg);
       }
     }
 
@@ -451,7 +471,7 @@ ion-menu {
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, var(--sidebar-accent-primary), var(--sidebar-accent-secondary));
+      background: linear-gradient(90deg, var(--sidebar-gold-primary), var(--sidebar-gold-secondary));
       opacity: 0;
       transform: scaleX(0);
       transition: all 0.3s ease;
@@ -497,7 +517,7 @@ ion-menu {
       top: 0;
       bottom: 0;
       width: 3px;
-      background: var(--sidebar-accent-primary);
+      background: var(--sidebar-gold-primary);
       opacity: 0;
       transform: scaleY(0);
       transition: all 0.3s ease;
@@ -505,7 +525,7 @@ ion-menu {
 
     &:hover {
       transform: translateX(2px);
-      border-color: rgba(var(--sidebar-accent-primary), 0.25);
+      border-color: rgba(var(--ion-color-primary-rgb), 0.25);
       background: var(--sidebar-list-item-hover);
 
       .item-arrow-wrap {
@@ -525,24 +545,24 @@ ion-menu {
       }
 
       .item-text {
-        color: var(--sidebar-accent-primary);
+        color: var(--sidebar-gold-primary);
         font-weight: 700;
       }
 
       .item-num-badge {
-        background: linear-gradient(135deg, var(--sidebar-accent-primary) 0%, var(--sidebar-accent-secondary) 100%);
+        background: linear-gradient(135deg, var(--sidebar-gold-primary) 0%, var(--sidebar-gold-secondary) 100%);
         color: #ffffff;
-        box-shadow: 0 2px 6px var(--sidebar-accent-glow);
+        box-shadow: 0 2px 6px var(--sidebar-gold-glow);
       }
 
       .item-icon-badge {
-        background: linear-gradient(135deg, var(--sidebar-accent-primary) 0%, var(--sidebar-accent-secondary) 100%);
+        background: linear-gradient(135deg, var(--sidebar-gold-primary) 0%, var(--sidebar-gold-secondary) 100%);
         color: #ffffff;
-        box-shadow: 0 2px 6px var(--sidebar-accent-glow);
+        box-shadow: 0 2px 6px var(--sidebar-gold-glow);
       }
 
       .item-arrow-wrap {
-        color: var(--sidebar-accent-primary);
+        color: var(--sidebar-gold-primary);
         opacity: 1;
       }
     }
@@ -562,8 +582,8 @@ ion-menu {
       width: 24px;
       height: 24px;
       border-radius: 8px;
-      background: rgba(var(--sidebar-accent-primary), 0.08);
-      color: var(--sidebar-accent-primary);
+      background: rgba(var(--ion-color-primary-rgb), 0.08);
+      color: var(--sidebar-gold-primary);
       font-size: 0.72rem;
       font-weight: 700;
       transition: all 0.3s ease;
@@ -577,8 +597,8 @@ ion-menu {
       width: 24px;
       height: 24px;
       border-radius: 8px;
-      background: rgba(var(--sidebar-accent-primary), 0.08);
-      color: var(--sidebar-accent-primary);
+      background: rgba(var(--ion-color-primary-rgb), 0.08);
+      color: var(--sidebar-gold-primary);
       transition: all 0.3s ease;
       flex-shrink: 0;
 
@@ -627,7 +647,7 @@ ion-menu {
 
     .no-results-icon {
       font-size: 28px;
-      color: var(--sidebar-accent-primary);
+      color: var(--sidebar-gold-primary);
       opacity: 0.8;
     }
 
@@ -659,14 +679,14 @@ ion-menu {
       content: '';
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(var(--sidebar-accent-primary), 0.15) 50%, transparent);
+      background: linear-gradient(90deg, transparent, rgba(var(--ion-color-primary-rgb), 0.15) 50%, transparent);
     }
 
     .footer-gem {
       width: 4px;
       height: 4px;
       transform: rotate(45deg);
-      background: var(--sidebar-accent-primary);
+      background: var(--sidebar-gold-primary);
       margin: 0 8px;
       opacity: 0.7;
     }
@@ -675,7 +695,7 @@ ion-menu {
   .footer-heading {
     font-size: 0.8rem;
     font-weight: 700;
-    color: var(--sidebar-accent-primary);
+    color: var(--sidebar-gold-primary);
     line-height: var(--tamil-line-height);
     letter-spacing: 0.2px;
   }
@@ -689,8 +709,8 @@ ion-menu {
   .footer-app-version {
     font-size: 0.62rem;
     font-weight: 700;
-    color: var(--sidebar-accent-primary);
-    background: rgba(var(--sidebar-accent-primary), 0.06);
+    color: var(--sidebar-gold-primary);
+    background: rgba(var(--ion-color-primary-rgb), 0.06);
     padding: 2px 8px;
     border-radius: 8px;
     margin-top: 8px;
