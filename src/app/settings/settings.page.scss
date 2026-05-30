@@ -3,8 +3,8 @@
 :host {
   /* Light Mode theme variables */
   --home-bg: #f2f2f7;
-  --home-card-bg: #ffffff;
-  --home-card-border: rgba(0, 0, 0, 0.05);
+  --home-card-bg: rgba(255, 255, 255, 0.65);
+  --home-card-border: rgba(0, 0, 0, 0.04);
   --home-card-active-bg: rgba(0, 122, 255, 0.08);
   --home-card-active-border: rgba(0, 122, 255, 0.15);
   
@@ -16,16 +16,16 @@
   --home-search-bg: rgba(0, 0, 0, 0.04);
   --home-badge-bg: rgba(0, 0, 0, 0.04);
   --home-list-item-hover: rgba(0, 0, 0, 0.02);
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(0, 0, 0, 0.05);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.06);
 }
 
 @media (prefers-color-scheme: dark) {
   :host {
     /* Dark Mode theme variables */
     --home-bg: #000000;
-    --home-card-bg: #1c1c1e;
-    --home-card-border: rgba(255, 255, 255, 0.06);
+    --home-card-bg: rgba(28, 28, 30, 0.65);
+    --home-card-border: rgba(255, 255, 255, 0.08);
     --home-card-active-bg: rgba(10, 132, 255, 0.12);
     --home-card-active-border: rgba(10, 132, 255, 0.2);
     
@@ -37,7 +37,7 @@
     --home-search-bg: rgba(255, 255, 255, 0.06);
     --home-badge-bg: rgba(255, 255, 255, 0.06);
     --home-list-item-hover: rgba(255, 255, 255, 0.03);
-    --glass-bg: rgba(28, 28, 30, 0.7);
+    --glass-bg: rgba(28, 28, 30, 0.85);
     --glass-border: rgba(255, 255, 255, 0.05);
   }
 }
@@ -45,8 +45,8 @@
 /* Force Light Theme Overrides */
 :host-context(body.light) {
   --home-bg: #f2f2f7 !important;
-  --home-card-bg: #ffffff !important;
-  --home-card-border: rgba(0, 0, 0, 0.05) !important;
+  --home-card-bg: rgba(255, 255, 255, 0.65) !important;
+  --home-card-border: rgba(0, 0, 0, 0.04) !important;
   --home-card-active-bg: rgba(0, 122, 255, 0.08) !important;
   --home-card-active-border: rgba(0, 122, 255, 0.15) !important;
   
@@ -58,15 +58,15 @@
   --home-search-bg: rgba(0, 0, 0, 0.04) !important;
   --home-badge-bg: rgba(0, 0, 0, 0.04) !important;
   --home-list-item-hover: rgba(0, 0, 0, 0.02) !important;
-  --glass-bg: rgba(255, 255, 255, 0.7) !important;
-  --glass-border: rgba(0, 0, 0, 0.05) !important;
+  --glass-bg: rgba(255, 255, 255, 0.85) !important;
+  --glass-border: rgba(0, 0, 0, 0.06) !important;
 }
 
 /* Force Dark Theme Overrides */
 :host-context(body.dark) {
   --home-bg: #000000 !important;
-  --home-card-bg: #1c1c1e !important;
-  --home-card-border: rgba(255, 255, 255, 0.06) !important;
+  --home-card-bg: rgba(28, 28, 30, 0.65) !important;
+  --home-card-border: rgba(255, 255, 255, 0.08) !important;
   --home-card-active-bg: rgba(10, 132, 255, 0.12) !important;
   --home-card-active-border: rgba(10, 132, 255, 0.2) !important;
   
@@ -78,7 +78,7 @@
   --home-search-bg: rgba(255, 255, 255, 0.06) !important;
   --home-badge-bg: rgba(255, 255, 255, 0.06) !important;
   --home-list-item-hover: rgba(255, 255, 255, 0.03) !important;
-  --glass-bg: rgba(28, 28, 30, 0.7) !important;
+  --glass-bg: rgba(28, 28, 30, 0.85) !important;
   --glass-border: rgba(255, 255, 255, 0.05) !important;
 }
 
@@ -158,6 +158,8 @@
 /* 1. iOS Preview Hero Card */
 .ios-preview-hero-card {
   background: var(--home-card-bg);
+  backdrop-filter: blur(25px) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
   border-radius: 16px;
   border: 1px solid var(--home-card-border);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
@@ -384,6 +386,8 @@
 /* 4. Unified Premium Card Panels */
 .premium-settings-card {
   background: var(--home-card-bg);
+  backdrop-filter: blur(25px) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
   border-radius: 16px;
   border: 1px solid var(--home-card-border);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
