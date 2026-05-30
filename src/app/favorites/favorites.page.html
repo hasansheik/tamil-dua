@@ -1,10 +1,13 @@
 <ion-header [translucent]="true">
-  <ion-toolbar class="ios-toolbar">
+  <ion-toolbar class="ios-toolbar fav-toolbar">
     <ion-buttons slot="start">
       <ion-menu-button class="premium-hdr-menu-btn fav-hdr-menu-btn"></ion-menu-button>
     </ion-buttons>
     <ion-title class="ios-detail-title fav-header-title">
-      விருப்பமானவை <ion-icon name="heart" class="fav-title-heart-icon"></ion-icon>
+      விருப்பமானவை
+      <span class="fav-title-heart-wrap">
+        <ion-icon name="heart" class="fav-title-heart-icon"></ion-icon>
+      </span>
     </ion-title>
     <ion-buttons slot="end" class="premium-hdr-buttons fav-hdr-buttons">
       <ion-button (click)="toggleReaderMode()" class="premium-hdr-btn fav-hdr-btn" [class.active]="isReaderMode">
