@@ -1,7 +1,9 @@
 <ion-header class="ion-no-border apple-header-glass">
   <ion-toolbar class="apple-toolbar-glass">
     <ion-buttons slot="start">
-      <ion-menu-button class="apple-nav-btn" style="--color: var(--home-text-main) !important;"></ion-menu-button>
+      <button routerLink="/home" routerDirection="back" class="apple-nav-btn-action" aria-label="Go back">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
     </ion-buttons>
     
     <div class="apple-header-title">{{ duaGroupTitle }}</div>
@@ -20,11 +22,6 @@
       <!-- Font Customizer Trigger -->
       <button id="font-customizer-trigger" class="apple-nav-btn-action" aria-label="Font settings">
         <ion-icon name="text-outline"></ion-icon>
-      </button>
-
-      <!-- Home Shortcut -->
-      <button routerLink="/home" class="apple-nav-btn-action" aria-label="Go home">
-        <ion-icon name="home-outline"></ion-icon>
       </button>
 
       <!-- Context Action Menu -->
@@ -58,7 +55,7 @@
     </div>
   </ion-toolbar>
 
-  <!-- Sleek Apple HIG style Scroll Progress Bar -->
+  <!-- Scroll Progress Bar -->
   <div class="apple-progress-container" style="height: 2px; width: 100%; background: var(--home-card-border);">
     <div class="apple-progress-bar" [style.width.%]="scrollProgress" style="height: 100%; background: var(--home-accent); transition: width 0.1s ease;"></div>
   </div>
@@ -82,7 +79,7 @@
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; width: 100%;">
         <div *ngFor="let dua of filteredDuas; let i = index" 
              (click)="scrollToDua(i)" 
-             class="font-card-new ripple" 
+             class="font-card-new ripple-item" 
              style="height: 72px; padding: 10px 12px; justify-content: center; gap: 4px; box-sizing: border-box;">
           <span style="font-family: var(--font-family-heading); font-size: 0.7rem; font-weight: 800; color: var(--home-accent);">துஆ {{ i + 1 }}</span>
           <span style="font-family: var(--font-family-sans); font-size: 0.74rem; font-weight: 600; color: var(--home-text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; display: block;">{{ dua.DuaTitle }}</span>
@@ -116,6 +113,7 @@
     <div *ngIf="!isLoading && filteredDuas.length > 0" class="ios-dua-list-wrapper">
       <div *ngFor="let dua of filteredDuas; let i = index" class="dua-item-anchor" [id]="'dua-' + i" style="width: 100%;">
         <div class="premium-settings-card ion-margin-bottom animate-in" style="overflow: visible;">
+          
           <!-- Card Header -->
           <div class="premium-card-header">
             <span class="chapter-count-badge">{{ i + 1 }}</span>
@@ -126,56 +124,32 @@
 
           <!-- Card Content -->
           <div class="premium-card-content">
-            <!-- Advisory Explanation Box -->
-            <div *ngIf="!hideNotes(dua.DuaContent) && !isReaderMode" class="advisory-notes-box">
-              <div class="notes-header">
-                <ion-icon name="chatbubble-ellipses-outline" class="notes-icon"></ion-icon>
-                <span>விளக்கம் / குறிப்பு :</span>
-              </div>
-              <p class="notes-text">{{ dua.DuaContent.Notes }}</p>
-            </div>
+            <!-- Minimal Notes -->
+            <p *ngIf="!hideNotes(dua.DuaContent) && !isReaderMode" class="dua-notes-minimal">
+              {{ dua.DuaContent.Notes }}
+            </p>
 
             <!-- Arabic Typography Block -->
-            <div class="arabic-display-frame" [class.reader-mode]="isReaderMode">
-              <div class="arabic-frame-tag" *ngIf="!isReaderMode">அரபு வடிவம்</div>
-              <div class="arabic-frame-text" [style.font-size.px]="arabicFontSize" [class]="selectedArabicFont">
-                {{ dua.DuaContent.ArabicDua }}
-              </div>
+            <div class="dua-arabic-minimal" [class.reader-mode]="isReaderMode" [style.font-size.px]="arabicFontSize" [class]="selectedArabicFont">
+              {{ dua.DuaContent.ArabicDua }}
             </div>
 
             <!-- Tamil Reading Section -->
-            <div class="translation-display-block read" *ngIf="showTamilDua && !isReaderMode">
-              <div class="block-label read-label">
-                <ion-icon name="text-outline"></ion-icon>
-                <span>தமிழ் உச்சரிப்பு :</span>
-              </div>
-              <div class="block-text" [style.font-size.px]="tamilFontSize">
-                {{ dua.DuaContent.TamilDua }}
-              </div>
-            </div>
+            <p class="dua-tamil-minimal" *ngIf="showTamilDua && !isReaderMode" [style.font-size.px]="tamilFontSize">
+              <span class="minimal-label">உச்சரிப்பு:</span> {{ dua.DuaContent.TamilDua }}
+            </p>
 
             <!-- Translation / Meaning Section -->
-            <div class="translation-display-block meaning" *ngIf="showTranslation && !isReaderMode">
-              <div class="block-label meaning-label">
-                <ion-icon name="book-outline"></ion-icon>
-                <span>பொருள் / மொழிபெயர்ப்பு :</span>
-              </div>
-              <div class="block-text" [style.font-size.px]="tamilFontSize">
-                {{ dua.DuaContent.Translation }}
-              </div>
-            </div>
+            <p class="dua-translation-minimal" *ngIf="showTranslation && !isReaderMode" [style.font-size.px]="tamilFontSize">
+              <span class="minimal-label">பொருள்:</span> {{ dua.DuaContent.Translation }}
+            </p>
 
             <!-- Hadith References -->
-            <div class="references-display-card" *ngIf="dua.DuaContent.HadithReferences?.length && !isReaderMode">
-              <div class="references-header">
-                <ion-icon name="bookmark-outline" class="references-icon"></ion-icon>
-                <span>ஆதாரம்:</span>
-              </div>
-              <div class="references-list">
-                <div *ngFor="let hadith of dua.DuaContent.HadithReferences" class="ref-item">
-                  <p class="ref-text">{{ hadith.ReadableReference }}</p>
-                </div>
-              </div>
+            <div class="dua-reference-minimal" *ngIf="dua.DuaContent.HadithReferences?.length && !isReaderMode">
+              <span class="ref-label">ஆதாரம்:</span>
+              <span *ngFor="let hadith of dua.DuaContent.HadithReferences" class="ref-item">
+                {{ hadith.ReadableReference }}
+              </span>
             </div>
 
             <!-- Card Action Bar -->

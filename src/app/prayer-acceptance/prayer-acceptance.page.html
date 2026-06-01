@@ -1,17 +1,12 @@
 <ion-header class="ion-no-border apple-header-glass">
   <ion-toolbar class="apple-toolbar-glass">
     <ion-buttons slot="start">
-      <ion-menu-button class="apple-nav-btn" style="--color: var(--home-text-main) !important;"></ion-menu-button>
+      <button routerLink="/home" routerDirection="back" class="apple-nav-btn-action" aria-label="Go back">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
     </ion-buttons>
     
     <div class="apple-header-title">வழிகாட்டல்</div>
-
-    <ion-buttons slot="end">
-      <!-- Home Shortcut -->
-      <button routerLink="/home" class="apple-nav-btn-action" aria-label="Go home">
-        <ion-icon name="home-outline"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-toolbar>
   
   <!-- Sleek Apple HIG style Scroll Progress Bar -->

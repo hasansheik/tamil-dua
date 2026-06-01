@@ -297,3 +297,82 @@ h1, h2, h3, h4, h5, h6, .ios-large-title, .ios-page-title, .ios-settings-title, 
     height: 36px !important;
   }
 }
+
+/* Premium Ionic Alert Custom Theme */
+.premium-alert-theme {
+  --background: var(--ion-card-background) !important;
+  
+  .alert-wrapper {
+    background: var(--ion-card-background) !important;
+    border-radius: 16px !important;
+    border: 1px solid var(--ion-border-color) !important;
+    box-shadow: var(--premium-shadow-lg) !important;
+    padding: 10px !important;
+    max-width: 290px !important;
+  }
+  
+  .alert-head {
+    padding-bottom: 8px !important;
+  }
+  
+  .alert-title {
+    font-family: var(--font-family-heading) !important;
+    font-weight: 700 !important;
+    color: var(--ion-text-color) !important;
+    font-size: 1.12rem !important;
+    text-align: center !important;
+  }
+  
+  .alert-message {
+    font-family: var(--font-family-sans) !important;
+    color: var(--ion-text-color) !important;
+    opacity: 0.8 !important;
+    font-size: 0.86rem !important;
+    line-height: 1.6 !important;
+    text-align: center !important;
+    padding: 0 10px !important;
+  }
+  
+  .alert-button-group {
+    padding-top: 14px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+  }
+  
+  .alert-button {
+    flex: 1 !important;
+    font-family: var(--font-family-sans) !important;
+    font-weight: 600 !important;
+    font-size: 0.86rem !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    border-radius: 8px !important;
+    height: 38px !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    &.alert-button-confirm {
+      background: #ff2d55 !important;
+      color: #ffffff !important;
+      border: none !important;
+      
+      .alert-button-inner {
+        color: #ffffff !important;
+      }
+    }
+    
+    &.alert-button-cancel {
+      background: var(--ion-color-light) !important;
+      color: var(--ion-text-color) !important;
+      border: 1px solid var(--ion-border-color) !important;
+      
+      .alert-button-inner {
+        color: var(--ion-text-color) !important;
+      }
+    }
+  }
+}

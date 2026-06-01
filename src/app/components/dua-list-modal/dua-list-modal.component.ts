@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -6,45 +6,74 @@ import { ModalController } from '@ionic/angular';
   template: `
     <ion-header class="ion-no-border apple-header-glass">
       <ion-toolbar class="apple-toolbar-glass">
-        <div class="apple-header-title">துஆக்கள்</div>
+        <div class="apple-header-title">அனைத்து பிரிவுகள்</div>
         <ion-buttons slot="end">
           <button (click)="dismiss()" class="apple-nav-btn-action" aria-label="Close">
             <ion-icon name="close"></ion-icon>
           </button>
         </ion-buttons>
       </ion-toolbar>
+
+      <!-- Spotlight search inside the header sub-toolbar -->
+      <ion-toolbar class="apple-search-toolbar">
+        <div class="modal-search-wrapper">
+          <div class="modal-search-container">
+            <ion-icon name="search-outline" class="modal-search-icon"></ion-icon>
+            <input 
+              type="text" 
+              [(ngModel)]="searchText" 
+              (input)="onSearchInput()" 
+              placeholder="தலைப்பைத் தேடுக..." 
+              class="modal-search-input"
+            />
+            <button 
+              *ngIf="searchText" 
+              (click)="clearSearch()" 
+              class="modal-search-clear-btn"
+              aria-label="Clear search"
+            >
+              <ion-icon name="close-circle"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </ion-toolbar>
     </ion-header>
 
     <ion-content class="modal-content-bg ion-padding">
       <div class="modal-layout-container">
         
-        <!-- Modal Section Title -->
-        <div class="apple-section-header ion-margin-bottom">
-          <span class="apple-section-title">அனைத்து பிரிவுகள்</span>
-        </div>
-
-        <!-- Premium Redesigned Grouped List -->
-        <div class="apple-grouped-list-modal">
+        <!-- Premium Cards List of Dua Pages -->
+        <div class="chapters-card-flow animate-in" *ngIf="filteredPages.length > 0">
           <div 
-            *ngFor="let page of duaPages; let i = index" 
+            *ngFor="let page of filteredPages; let i = index" 
             [routerLink]="['/folder', page.PageId]" 
             (click)="dismiss()"
-            class="modal-chapter-item ripple-item"
+            class="chapter-card ripple-item"
           >
-            <div class="chapter-icon-box" [class]="getIconColorClass(i)">
-              <ion-icon name="bookmark"></ion-icon>
+            <div class="card-left-wrap">
+              <div class="chapter-badge-wrapper" [class]="getIconColorClass(i)">
+                <ion-icon name="book"></ion-icon>
+              </div>
+              <div class="chapter-info">
+                <span class="chapter-title">{{ page.PageTitle }}</span>
+                <span class="chapter-subtitle">{{ page.Duas?.length || 0 }} பிரார்த்தனைகள்</span>
+              </div>
             </div>
-            
-            <div class="chapter-details">
-              <span class="chapter-title">{{ page.PageTitle }}</span>
-            </div>
-            
-            <div class="chapter-end-wrap">
-              <span class="chapter-count-badge">{{ page.Duas?.length || 0 }}</span>
-              <ion-icon name="chevron-forward" class="chapter-chevron"></ion-icon>
+            <div class="card-right-wrap">
+              <ion-icon name="chevron-forward-outline" class="chevron-arrow"></ion-icon>
             </div>
           </div>
         </div>
+
+        <!-- Spotlight search empty state -->
+        <div *ngIf="filteredPages.length === 0" class="modal-empty-state animate-fade">
+          <ion-icon name="alert-circle-outline" class="empty-icon"></ion-icon>
+          <h2>தலைப்புகள் ஏதுமில்லை</h2>
+          <p>வேறு வார்த்தைகளைத் தட்டச்சு செய்து தேடவும்</p>
+        </div>
+
+        <!-- Safe area spacer to prevent clipping under home indicator / drawer frame -->
+        <div class="bottom-spacer"></div>
 
       </div>
     </ion-content>
@@ -52,69 +81,43 @@ import { ModalController } from '@ionic/angular';
   styles: [`
     /* Force Light Mode variables */
     :host {
-      --modal-bg: #f2f2f7;
-      --modal-card-bg: #ffffff;
-      --modal-card-border: rgba(0, 0, 0, 0.05);
-      --modal-text-main: #1c1c1e;
-      --modal-text-muted: #8e8e93;
-      --modal-accent: #007aff;
-      --modal-accent-rgb: 0, 122, 255;
-      --modal-search-bg: rgba(0, 0, 0, 0.04);
-      --modal-badge-bg: rgba(0, 122, 255, 0.08);
-      --modal-list-item-hover: rgba(0, 0, 0, 0.02);
+      display: flex !important;
+      flex-direction: column !important;
+      height: 100% !important;
+      overflow: hidden !important;
       
-      --glass-bg: rgba(255, 255, 255, 0.85);
-      --glass-border: rgba(0, 0, 0, 0.06);
+      --modal-bg: #ece8df;
+      --modal-card-bg: #ffffff;
+      --modal-card-border: rgba(162, 132, 94, 0.25);
+      --modal-text-main: #2c251e;
+      --modal-text-muted: #706860;
+      --modal-accent: #a2845e;
+      --modal-accent-rgb: 162, 132, 94;
+      --modal-accent-tint: #d1a86a;
+      
+      --modal-search-bg: rgba(162, 132, 94, 0.09);
+      --modal-badge-bg: rgba(162, 132, 94, 0.12);
+      --modal-list-item-hover: rgba(162, 132, 94, 0.04);
+      --glass-bg: rgba(236, 232, 223, 0.85);
+      --glass-border: rgba(162, 132, 94, 0.25);
     }
 
-    /* Dark Mode variables override */
-    @media (prefers-color-scheme: dark) {
-      :host {
-        --modal-bg: #000000;
-        --modal-card-bg: #1c1c1e;
-        --modal-card-border: rgba(255, 255, 255, 0.06);
-        --modal-text-main: #f5f5f7;
-        --modal-text-muted: #86868b;
-        --modal-accent: #0a84ff;
-        --modal-accent-rgb: 10, 132, 255;
-        --modal-search-bg: rgba(255, 255, 255, 0.06);
-        --modal-badge-bg: rgba(10, 132, 255, 0.12);
-        --modal-list-item-hover: rgba(255, 255, 255, 0.03);
-        
-        --glass-bg: rgba(28, 28, 30, 0.85);
-        --glass-border: rgba(255, 255, 255, 0.05);
-      }
-    }
-
-    /* Active theme overrides from document body class */
-    :host-context(body.light) {
-      --modal-bg: #f2f2f7 !important;
-      --modal-card-bg: #ffffff !important;
-      --modal-card-border: rgba(0, 0, 0, 0.05) !important;
-      --modal-text-main: #1c1c1e !important;
-      --modal-text-muted: #8e8e93 !important;
-      --modal-accent: #007aff !important;
-      --modal-accent-rgb: 0, 122, 255 !important;
-      --modal-search-bg: rgba(0, 0, 0, 0.04) !important;
-      --modal-badge-bg: rgba(0, 122, 255, 0.08) !important;
-      --modal-list-item-hover: rgba(0, 0, 0, 0.02) !important;
-      --glass-bg: rgba(255, 255, 255, 0.85) !important;
-      --glass-border: rgba(0, 0, 0, 0.06) !important;
-    }
-
+    /* Force Dark Theme Overrides */
     :host-context(body.dark) {
-      --modal-bg: #000000 !important;
-      --modal-card-bg: #1c1c1e !important;
-      --modal-card-border: rgba(255, 255, 255, 0.06) !important;
-      --modal-text-main: #f5f5f7 !important;
-      --modal-text-muted: #86868b !important;
-      --modal-accent: #0a84ff !important;
-      --modal-accent-rgb: 10, 132, 255 !important;
-      --modal-search-bg: rgba(255, 255, 255, 0.06) !important;
-      --modal-badge-bg: rgba(10, 132, 255, 0.12) !important;
-      --modal-list-item-hover: rgba(255, 255, 255, 0.03) !important;
-      --glass-bg: rgba(28, 28, 30, 0.85) !important;
-      --glass-border: rgba(255, 255, 255, 0.05) !important;
+      --modal-bg: #10100f !important;
+      --modal-card-bg: #161615 !important;
+      --modal-card-border: rgba(191, 157, 108, 0.08) !important;
+      --modal-text-main: #f4efeb !important;
+      --modal-text-muted: #9c948c !important;
+      --modal-accent: #bf9d6c !important;
+      --modal-accent-rgb: 191, 157, 108 !important;
+      --modal-accent-tint: #d8c2a3 !important;
+      
+      --modal-search-bg: rgba(255, 255, 255, 0.05) !important;
+      --modal-badge-bg: rgba(255, 255, 255, 0.05) !important;
+      --modal-list-item-hover: rgba(255, 255, 255, 0.02) !important;
+      --glass-bg: rgba(16, 16, 15, 0.88) !important;
+      --glass-border: rgba(191, 157, 108, 0.1) !important;
     }
 
     /* Toolbar & Glass Headers */
@@ -123,15 +126,26 @@ import { ModalController } from '@ionic/angular';
       backdrop-filter: blur(20px) !important;
       -webkit-backdrop-filter: blur(20px) !important;
       border-bottom: 0.5px solid var(--glass-border) !important;
+      flex-shrink: 0;
     }
 
     .apple-toolbar-glass {
       --background: transparent !important;
       --border-width: 0px !important;
       border: none !important;
-      padding: 8px 12px !important;
+      padding: 8px 12px 0 12px !important;
       display: flex !important;
       align-items: center !important;
+      box-shadow: none !important;
+    }
+
+    .apple-search-toolbar {
+      --background: transparent !important;
+      --border-width: 0px !important;
+      border: none !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+      min-height: 48px !important;
     }
 
     .apple-header-title {
@@ -166,9 +180,76 @@ import { ModalController } from '@ionic/angular';
       }
     }
 
+    /* Spotlight Search inside the header */
+    .modal-search-wrapper {
+      padding: 0 16px 12px 16px;
+      background: transparent;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .modal-search-container {
+      display: flex;
+      align-items: center;
+      background: var(--modal-search-bg);
+      border: 1px solid var(--modal-card-border);
+      border-radius: 10px;
+      padding: 0 10px;
+      height: 36px;
+      width: 100%;
+      box-sizing: border-box;
+      transition: all 0.2s ease;
+
+      &:focus-within {
+        border-color: var(--modal-accent);
+        box-shadow: 0 0 0 1px rgba(var(--modal-accent-rgb), 0.2);
+      }
+    }
+
+    .modal-search-icon {
+      font-size: 16px;
+      color: var(--modal-text-muted);
+      margin-right: 8px;
+    }
+
+    .modal-search-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: var(--font-family-sans);
+      font-size: 0.88rem;
+      color: var(--modal-text-main);
+      padding: 0;
+      width: 100%;
+
+      &::placeholder {
+        color: var(--modal-text-muted);
+        opacity: 0.65;
+      }
+    }
+
+    .modal-search-clear-btn {
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 0;
+      color: var(--modal-text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      ion-icon {
+        font-size: 16px;
+      }
+    }
+
     /* Content & Layout Container */
     .modal-content-bg {
       --background: var(--modal-bg) !important;
+      flex: 1 1 0% !important;
+      min-height: 0 !important;
     }
 
     .modal-layout-container {
@@ -176,72 +257,68 @@ import { ModalController } from '@ionic/angular';
       flex-direction: column;
       max-width: 600px;
       margin: 0 auto;
-      padding: 4px 4px 40px 4px;
+      padding: 4px 2px 20px 2px;
       box-sizing: border-box !important;
       width: 100%;
+      flex-grow: 1;
     }
 
-    /* Section Header */
-    .apple-section-header {
-      margin: 4px 6px 12px 6px;
-    }
-
-    .apple-section-title {
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--modal-text-muted);
-      letter-spacing: 0.5px;
-      font-family: var(--font-family-heading);
-    }
-
-    /* Redesigned Apple Grouped List */
-    .apple-grouped-list-modal {
-      background: var(--modal-card-bg);
-      border: 0.5px solid var(--modal-card-border);
-      border-radius: 14px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
-      overflow: hidden;
+    /* Chapters Card Flow list */
+    .chapters-card-flow {
       display: flex;
       flex-direction: column;
+      gap: 10px;
       width: 100%;
       box-sizing: border-box;
     }
 
-    .modal-chapter-item {
+    .chapter-card {
       text-decoration: none;
       color: inherit;
-      background: transparent;
-      border-bottom: 0.5px solid var(--modal-card-border);
+      background: var(--modal-card-bg);
+      border: 1px solid var(--modal-card-border);
+      border-radius: 14px;
       padding: 14px 16px;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 14px;
       cursor: pointer;
-      transition: background-color 0.2s ease;
+      box-shadow: 0 4px 12px rgba(162, 132, 94, 0.03);
       width: 100%;
       box-sizing: border-box;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
-      &:last-child {
-        border-bottom: none;
+      :host-context(body.dark) & {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
       }
 
-      &:hover {
-        background: var(--modal-list-item-hover);
+      .card-left-wrap {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex: 1;
+        min-width: 0;
       }
 
-      /* Premium Chapter Icon Container */
-      .chapter-icon-box {
+      .card-right-wrap {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+      }
+
+      /* Premium Icon Badges using matching sidebar colors */
+      .chapter-badge-wrapper {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 32px;
-        height: 32px;
-        border-radius: 8px;
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
         font-size: 16px;
         flex-shrink: 0;
+        border: 0.5px solid rgba(var(--modal-accent-rgb), 0.1);
 
-        /* Accented icon backgrounds */
         &.icon-purple { color: #5e5ce6; background: rgba(94, 92, 230, 0.1); }
         &.icon-green { color: #34c759; background: rgba(52, 199, 89, 0.1); }
         &.icon-orange { color: #ff9500; background: rgba(255, 149, 0, 0.1); }
@@ -251,69 +328,151 @@ import { ModalController } from '@ionic/angular';
         &.icon-pink { color: #ff2d55; background: rgba(255, 45, 85, 0.1); }
       }
 
-      .chapter-details {
+      .chapter-info {
         display: flex;
         flex-direction: column;
-        gap: 1px;
+        gap: 2px;
         flex: 1;
-        min-width: 0; /* Important for flex truncation prevention */
+        min-width: 0;
       }
 
       .chapter-title {
-        font-family: var(--font-family-sans);
-        font-size: 0.88rem;
+        font-family: var(--font-family-heading);
+        font-size: 0.94rem;
         font-weight: 600;
         color: var(--modal-text-main);
-        line-height: var(--tamil-line-height, 1.4);
-        /* Secure word fitting */
+        line-height: 1.4;
         word-wrap: break-word;
         white-space: normal;
       }
 
-      .chapter-end-wrap {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-shrink: 0;
-      }
-
-      .chapter-count-badge {
+      .chapter-subtitle {
         font-family: var(--font-family-sans);
-        font-size: 0.72rem;
-        font-weight: 700;
-        color: var(--modal-accent);
-        background: var(--modal-badge-bg);
-        padding: 3px 8px;
-        border-radius: 50px;
+        font-size: 0.76rem;
+        color: var(--modal-text-muted);
+        font-weight: 500;
       }
 
-      .chapter-chevron {
-        font-size: 13px;
+      .chevron-arrow {
+        font-size: 16px;
         color: var(--modal-text-muted);
-        opacity: 0.5;
+        opacity: 0.65;
+        transition: transform 0.2s ease;
+      }
+
+      &:active {
+        transform: scale(0.985);
+        background: var(--modal-list-item-hover);
+
+        .chevron-arrow {
+          transform: translateX(3px);
+          color: var(--modal-accent);
+        }
       }
     }
 
-    /* Micro Animations */
+    /* Spotlight Empty State */
+    .modal-empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      width: 100%;
+      box-sizing: border-box;
+
+      .empty-icon {
+        font-size: 40px;
+        color: var(--modal-text-muted);
+        opacity: 0.6;
+        margin-bottom: 12px;
+      }
+
+      h2 {
+        font-family: var(--font-family-heading);
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--modal-text-main);
+        margin: 0 0 6px 0;
+      }
+
+      p {
+        font-family: var(--font-family-sans);
+        font-size: 0.82rem;
+        color: var(--modal-text-muted);
+        margin: 0;
+      }
+    }
+
+    /* Entrance Animations */
+    .animate-in {
+      animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .animate-fade {
+      animation: fadeIn 0.2s ease both;
+    }
+
+    @keyframes slideUpFade {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     .ripple-item {
       position: relative;
       overflow: hidden;
-      transition: background-color 0.15s ease, transform 0.15s ease;
+    }
 
-      &:active {
-        transform: scale(0.99);
-        background-color: var(--modal-list-item-hover);
-      }
+    .bottom-spacer {
+      height: calc(90px + env(safe-area-inset-bottom, 0px));
+      width: 100%;
+      pointer-events: none;
+      background: transparent;
+      flex-shrink: 0;
     }
   `]
 })
-export class DuaListModalComponent {
+export class DuaListModalComponent implements OnInit {
   @Input() duaPages: any[] = [];
+  searchText = '';
+  filteredPages: any[] = [];
 
   constructor(private modalCtrl: ModalController) {}
 
+  ngOnInit() {
+    this.filteredPages = [...this.duaPages];
+  }
+
   dismiss() {
     this.modalCtrl.dismiss();
+  }
+
+  clearSearch() {
+    this.searchText = '';
+    this.filteredPages = [...this.duaPages];
+  }
+
+  onSearchInput() {
+    if (!this.searchText || this.searchText.trim() === '') {
+      this.filteredPages = [...this.duaPages];
+      return;
+    }
+    const query = this.searchText.toLowerCase().trim();
+    this.filteredPages = this.duaPages.filter(page => 
+      page.PageTitle.toLowerCase().includes(query)
+    );
   }
 
   getIconColorClass(index: number): string {

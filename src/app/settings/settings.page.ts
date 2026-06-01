@@ -1,4 +1,3 @@
-/* eslint-disable eqeqeq */
 import { Component, OnInit } from '@angular/core';
 import { SettingService } from '../shared/service/setting.service';
 import { RangeCustomEvent, AlertController, ToastController } from '@ionic/angular';
@@ -16,6 +15,7 @@ export class SettingsPage implements OnInit {
   tamilFontSize: number = 17;
   selectedArabicFont: string = 'arabic';
   arabicFont: string = 'defaultFont';
+  showFontOptions: boolean = false;
 
   // Visibility settings
   showTamilDua: boolean = true;
@@ -25,6 +25,8 @@ export class SettingsPage implements OnInit {
   // Backup / Restore data properties
   backupCode: string = '';
   restoreCode: string = '';
+
+
 
   constructor(
     private settingService: SettingService,
@@ -46,6 +48,9 @@ export class SettingsPage implements OnInit {
         this.showTamilDua = settings.ShowTamilDua;
         this.showTranslation = settings.ShowTranslation;
         this.showHadees = settings.ShowHadees;
+
+
+
         this.duaService.clear_cache();
       }
     });
@@ -186,13 +191,16 @@ export class SettingsPage implements OnInit {
     const alert = await this.alertCtrl.create({
       header: 'அமைப்புகளை மீட்டமை',
       message: 'அனைத்து அமைப்புகளையும் இயல்புநிலைக்கு மீட்டமைக்க வேண்டுமா?',
+      cssClass: 'premium-alert-theme',
       buttons: [
         {
           text: 'ரத்து செய்',
-          role: 'cancel'
+          role: 'cancel',
+          cssClass: 'alert-button-cancel'
         },
         {
           text: 'ஆம், மீட்டமை',
+          cssClass: 'alert-button-confirm',
           handler: async () => {
             await this.settingService.setArabicFontSize(32);
             await this.settingService.setTamilFontSize(17);
@@ -214,5 +222,7 @@ export class SettingsPage implements OnInit {
     });
     await alert.present();
   }
+
+
 }
 

@@ -21,6 +21,7 @@ export class HomePage implements OnInit {
   // Premium properties
   greetingText = 'அஸ்ஸலாமு அலைக்கும்';
   greetingIcon = 'sunny-outline';
+  greetingTime: 'morning' | 'afternoon' | 'evening' | 'night' = 'morning';
   dailyDua: any = null;
   favoritesCount = 0;
   searchText = '';
@@ -50,6 +51,7 @@ export class HomePage implements OnInit {
 
   async ionViewWillEnter() {
     await this.loadFavorites();
+    this.setGreeting();
   }
 
   async initTheme() {
@@ -106,17 +108,31 @@ export class HomePage implements OnInit {
 
   setGreeting() {
     const hours = new Date().getHours();
-    if (hours < 12 && hours >= 5) {
-      this.greetingText = 'காலை வணக்கம் (Good Morning)';
-      this.greetingIcon = 'sunny-outline';
+    let activeTime: 'morning' | 'afternoon' | 'evening' | 'night' = 'morning';
+    
+    if (hours >= 5 && hours < 12) {
+      activeTime = 'morning';
     } else if (hours >= 12 && hours < 17) {
-      this.greetingText = 'மதிய வணக்கம் (Good Afternoon)';
-      this.greetingIcon = 'partly-sunny-outline';
+      activeTime = 'afternoon';
     } else if (hours >= 17 && hours < 21) {
-      this.greetingText = 'மாலை வணக்கம் (Good Evening)';
-      this.greetingIcon = 'sunset-outline';
+      activeTime = 'evening';
     } else {
-      this.greetingText = 'இரவு வணக்கம் (Peaceful Night)';
+      activeTime = 'night';
+    }
+    
+    this.greetingTime = activeTime;
+
+    if (activeTime === 'morning') {
+      this.greetingText = 'காலை வணக்கம்';
+      this.greetingIcon = 'sunny-outline';
+    } else if (activeTime === 'afternoon') {
+      this.greetingText = 'மதிய வணக்கம்';
+      this.greetingIcon = 'partly-sunny-outline';
+    } else if (activeTime === 'evening') {
+      this.greetingText = 'மாலை வணக்கம்';
+      this.greetingIcon = 'cloudy-night-outline';
+    } else {
+      this.greetingText = 'இரவு வணக்கம்';
       this.greetingIcon = 'moon-outline';
     }
   }
@@ -223,6 +239,7 @@ export class HomePage implements OnInit {
       },
       breakpoints: [0, 0.5, 0.8],
       initialBreakpoint: 0.8,
+      handle: true,
       cssClass: 'dua-list-modal'
     });
 

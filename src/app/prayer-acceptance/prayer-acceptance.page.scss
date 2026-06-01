@@ -1,5 +1,95 @@
 /* Redesigned Premium Prayer Acceptance Stylesheet */
 
+:host {
+  /* Inherited system variables - Champagne & Warm Gold */
+  --home-bg: #ece8df;
+  --home-card-bg: #ffffff;
+  --home-card-border: rgba(162, 132, 94, 0.25);
+  
+  --home-text-main: #2c251e;
+  --home-text-muted: #706860;
+  --home-accent: #a2845e;
+  --home-accent-rgb: 162, 132, 94;
+  --home-accent-tint: #d1a86a;
+  
+  --home-search-bg: rgba(162, 132, 94, 0.09);
+  --home-badge-bg: rgba(162, 132, 94, 0.12);
+  --glass-bg: rgba(236, 232, 223, 0.85);
+  --glass-border: rgba(162, 132, 94, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    /* Dark Mode variables - Obsidian & Warm Gold */
+    --home-bg: #10100f;
+    --home-card-bg: #161615;
+    --home-card-border: rgba(191, 157, 108, 0.08);
+    
+    --home-text-main: #f4efeb;
+    --home-text-muted: #9c948c;
+    --home-accent: #bf9d6c;
+    --home-accent-rgb: 191, 157, 108;
+    --home-accent-tint: #d8c2a3;
+    
+    --home-search-bg: rgba(255, 255, 255, 0.05);
+    --home-badge-bg: rgba(255, 255, 255, 0.05);
+    --glass-bg: rgba(16, 16, 15, 0.88);
+    --glass-border: rgba(191, 157, 108, 0.1);
+  }
+}
+
+/* Force Light Theme Overrides */
+:host-context(body.light) {
+  --home-bg: #ece8df !important;
+  --home-card-bg: #ffffff !important;
+  --home-card-border: rgba(162, 132, 94, 0.25) !important;
+  --home-text-main: #2c251e !important;
+  --home-text-muted: #706860 !important;
+  --home-accent: #a2845e !important;
+  --home-accent-rgb: 162, 132, 94 !important;
+  --home-accent-tint: #d1a86a !important;
+  --home-search-bg: rgba(162, 132, 94, 0.09) !important;
+  --home-badge-bg: rgba(162, 132, 94, 0.12) !important;
+  --glass-bg: rgba(236, 232, 223, 0.85) !important;
+  --glass-border: rgba(162, 132, 94, 0.25) !important;
+}
+
+/* Force Dark Theme Overrides */
+:host-context(body.dark) {
+  --home-bg: #10100f !important;
+  --home-card-bg: #161615 !important;
+  --home-card-border: rgba(191, 157, 108, 0.08) !important;
+  --home-text-main: #f4efeb !important;
+  --home-text-muted: #9c948c !important;
+  --home-accent: #bf9d6c !important;
+  --home-accent-rgb: 191, 157, 108 !important;
+  --home-accent-tint: #d8c2a3 !important;
+  --home-search-bg: rgba(255, 255, 255, 0.05) !important;
+  --home-badge-bg: rgba(255, 255, 255, 0.05) !important;
+  --glass-bg: rgba(16, 16, 15, 0.88) !important;
+  --glass-border: rgba(191, 157, 108, 0.1) !important;
+}
+
+.apple-content-bg {
+  --background: var(--home-bg) !important;
+}
+
+.premium-settings-card {
+  background: var(--home-card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--home-card-border);
+  box-shadow: 0 3px 12px rgba(162, 132, 94, 0.06), 0 1px 2px rgba(162, 132, 94, 0.04);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+
+  :host-context(body.dark) & {
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  }
+}
+
 /* Force consistent layout constraints */
 .ios-settings-container {
   display: flex;

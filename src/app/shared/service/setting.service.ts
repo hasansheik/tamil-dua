@@ -183,6 +183,8 @@ export class SettingService {
     this.settingsSubject.next({...this.settingsData});
   }
 
+
+
    updateSettings() {
    // this.nativeStore.setItem('settingData', this.settingsData);
   }

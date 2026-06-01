@@ -1,46 +1,42 @@
-/* Apple Premium Home Screen SCSS Styles (Clean, Premium, Minimalist) */
+/* iOS-Style Minimalist & Spacious Home Page SCSS */
 
 :host {
-  /* Light Mode theme variables */
-  --home-bg: #f2f2f7;
+  /* Light Mode theme variables - Champagne & Warm Gold */
+  --home-bg: #ece8df;
   --home-card-bg: #ffffff;
-  --home-card-border: rgba(0, 0, 0, 0.05);
-  --home-card-active-bg: rgba(0, 122, 255, 0.08);
-  --home-card-active-border: rgba(0, 122, 255, 0.15);
+  --home-card-border: rgba(162, 132, 94, 0.25);
   
-  --home-text-main: #1c1c1e;
-  --home-text-muted: #8e8e93;
-  --home-accent: #007aff;
-  --home-accent-rgb: 0, 122, 255;
+  --home-text-main: #2c251e;
+  --home-text-muted: #706860;
+  --home-accent: #a2845e;
+  --home-accent-rgb: 162, 132, 94;
+  --home-accent-tint: #d1a86a;
   
-  --home-search-bg: rgba(0, 0, 0, 0.04);
-  --home-badge-bg: rgba(0, 0, 0, 0.04);
-  --home-list-item-hover: rgba(0, 0, 0, 0.02);
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(0, 0, 0, 0.05);
+  --home-search-bg: rgba(162, 132, 94, 0.09);
+  --home-badge-bg: rgba(162, 132, 94, 0.12);
+  --glass-bg: rgba(236, 232, 223, 0.85);
+  --glass-border: rgba(162, 132, 94, 0.25);
   --segment-active-bg: #ffffff;
-  --segment-active-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --segment-active-shadow: 0 1px 3px rgba(162, 132, 94, 0.25);
 }
 
 @media (prefers-color-scheme: dark) {
   :host {
-    /* Dark Mode theme variables */
-    --home-bg: #000000;
-    --home-card-bg: #1c1c1e;
-    --home-card-border: rgba(255, 255, 255, 0.06);
-    --home-card-active-bg: rgba(10, 132, 255, 0.12);
-    --home-card-active-border: rgba(10, 132, 255, 0.2);
+    /* Dark Mode theme variables - Obsidian & Warm Gold */
+    --home-bg: #10100f;
+    --home-card-bg: #161615;
+    --home-card-border: rgba(191, 157, 108, 0.08);
     
-    --home-text-main: #f5f5f7;
-    --home-text-muted: #86868b;
-    --home-accent: #0a84ff;
-    --home-accent-rgb: 10, 132, 255;
+    --home-text-main: #f4efeb;
+    --home-text-muted: #9c948c;
+    --home-accent: #bf9d6c;
+    --home-accent-rgb: 191, 157, 108;
+    --home-accent-tint: #d8c2a3;
     
-    --home-search-bg: rgba(255, 255, 255, 0.06);
-    --home-badge-bg: rgba(255, 255, 255, 0.06);
-    --home-list-item-hover: rgba(255, 255, 255, 0.03);
-    --glass-bg: rgba(28, 28, 30, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.05);
+    --home-search-bg: rgba(255, 255, 255, 0.05);
+    --home-badge-bg: rgba(255, 255, 255, 0.05);
+    --glass-bg: rgba(16, 16, 15, 0.88);
+    --glass-border: rgba(191, 157, 108, 0.1);
     --segment-active-bg: #2c2c2e;
     --segment-active-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   }
@@ -48,49 +44,41 @@
 
 /* Force Light Theme Overrides */
 :host-context(body.light) {
-  --home-bg: #f2f2f7 !important;
+  --home-bg: #ece8df !important;
   --home-card-bg: #ffffff !important;
-  --home-card-border: rgba(0, 0, 0, 0.05) !important;
-  --home-card-active-bg: rgba(0, 122, 255, 0.08) !important;
-  --home-card-active-border: rgba(0, 122, 255, 0.15) !important;
-  
-  --home-text-main: #1c1c1e !important;
-  --home-text-muted: #8e8e93 !important;
-  --home-accent: #007aff !important;
-  --home-accent-rgb: 0, 122, 255 !important;
-  
-  --home-search-bg: rgba(0, 0, 0, 0.04) !important;
-  --home-badge-bg: rgba(0, 0, 0, 0.04) !important;
-  --home-list-item-hover: rgba(0, 0, 0, 0.02) !important;
-  --glass-bg: rgba(255, 255, 255, 0.7) !important;
-  --glass-border: rgba(0, 0, 0, 0.05) !important;
+  --home-card-border: rgba(162, 132, 94, 0.25) !important;
+  --home-text-main: #2c251e !important;
+  --home-text-muted: #706860 !important;
+  --home-accent: #a2845e !important;
+  --home-accent-rgb: 162, 132, 94 !important;
+  --home-accent-tint: #d1a86a !important;
+  --home-search-bg: rgba(162, 132, 94, 0.09) !important;
+  --home-badge-bg: rgba(162, 132, 94, 0.12) !important;
+  --glass-bg: rgba(236, 232, 223, 0.85) !important;
+  --glass-border: rgba(162, 132, 94, 0.25) !important;
   --segment-active-bg: #ffffff !important;
-  --segment-active-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+  --segment-active-shadow: 0 1px 3px rgba(162, 132, 94, 0.25) !important;
 }
 
 /* Force Dark Theme Overrides */
 :host-context(body.dark) {
-  --home-bg: #000000 !important;
-  --home-card-bg: #1c1c1e !important;
-  --home-card-border: rgba(255, 255, 255, 0.06) !important;
-  --home-card-active-bg: rgba(10, 132, 255, 0.12) !important;
-  --home-card-active-border: rgba(10, 132, 255, 0.2) !important;
-  
-  --home-text-main: #f5f5f7 !important;
-  --home-text-muted: #86868b !important;
-  --home-accent: #0a84ff !important;
-  --home-accent-rgb: 10, 132, 255 !important;
-  
-  --home-search-bg: rgba(255, 255, 255, 0.06) !important;
-  --home-badge-bg: rgba(255, 255, 255, 0.06) !important;
-  --home-list-item-hover: rgba(255, 255, 255, 0.03) !important;
-  --glass-bg: rgba(28, 28, 30, 0.7) !important;
-  --glass-border: rgba(255, 255, 255, 0.05) !important;
+  --home-bg: #10100f !important;
+  --home-card-bg: #161615 !important;
+  --home-card-border: rgba(191, 157, 108, 0.08) !important;
+  --home-text-main: #f4efeb !important;
+  --home-text-muted: #9c948c !important;
+  --home-accent: #bf9d6c !important;
+  --home-accent-rgb: 191, 157, 108 !important;
+  --home-accent-tint: #d8c2a3 !important;
+  --home-search-bg: rgba(255, 255, 255, 0.05) !important;
+  --home-badge-bg: rgba(255, 255, 255, 0.05) !important;
+  --glass-bg: rgba(16, 16, 15, 0.88) !important;
+  --glass-border: rgba(191, 157, 108, 0.1) !important;
   --segment-active-bg: #2c2c2e !important;
   --segment-active-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* 1. Sticky Glassmorphic Header & Toolbar */
+/* 1. Header & Toolbars */
 .apple-header-glass {
   background: var(--glass-bg) !important;
   backdrop-filter: blur(20px) !important;
@@ -98,7 +86,7 @@
   border-bottom: 0.5px solid var(--glass-border) !important;
   position: sticky !important;
   top: 0;
-  z-index: 10; /* Lower z-index so it doesn't float on top of open sidebar/menu backdrop */
+  z-index: 10;
 }
 
 .apple-toolbar-glass {
@@ -107,8 +95,6 @@
   border: none !important;
   padding: 8px 12px 4px 12px !important;
   box-shadow: none !important;
-  display: flex !important;
-  align-items: center !important;
 }
 
 .apple-header-title {
@@ -131,7 +117,7 @@
   justify-content: center !important;
   --color: var(--home-text-main) !important;
   margin-left: 0 !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 
   &::part(button) {
     padding: 0 !important;
@@ -146,12 +132,10 @@
   border-radius: 50% !important;
   width: 34px !important;
   height: 34px !important;
-  margin-left: 8px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   color: var(--home-text-main) !important;
-  position: relative !important;
   cursor: pointer;
   outline: none;
   transition: all 0.2s ease;
@@ -163,26 +147,9 @@
   ion-icon {
     font-size: 18px;
   }
-
-  .badge-count {
-    position: absolute;
-    top: -3px;
-    right: -3px;
-    background: var(--ion-color-danger);
-    color: #ffffff;
-    font-family: var(--font-family-sans);
-    font-size: 0.65rem;
-    font-weight: 700;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 }
 
-/* 2. iOS Segmented Tab Controls */
+/* 2. iOS Segment Tab Controls */
 .apple-segment-wrapper {
   padding: 6px 12px 10px 12px;
 }
@@ -196,14 +163,13 @@
 }
 
 .apple-segment-btn {
-  flex: 1; /* Stretch all tabs evenly to occupy full width */
+  flex: 1;
   border: none;
   background: transparent;
   padding: 6px 2px;
-  white-space: nowrap;
   font-family: var(--font-family-sans);
-  font-size: 0.72rem; /* Guaranteed fit on narrow screens */
-  letter-spacing: -0.2px;
+  font-size: 0.76rem;
+  letter-spacing: -0.1px;
   font-weight: 600;
   color: var(--home-text-muted);
   border-radius: 7px;
@@ -223,7 +189,7 @@
   --background: var(--home-bg) !important;
 }
 
-/* 3. Spotlight Search container styling */
+/* 3. Search Widget */
 .apple-search-wrapper {
   padding: 6px 6px 16px 6px;
 }
@@ -252,7 +218,6 @@
     color: var(--home-text-muted);
     margin-right: 8px;
     flex-shrink: 0;
-    transition: color 0.25s ease;
   }
 
   .apple-search-input {
@@ -265,7 +230,6 @@
     color: var(--home-text-main);
     outline: none;
     padding: 0;
-    line-height: var(--tamil-line-height);
 
     &::placeholder {
       color: var(--home-text-muted);
@@ -277,14 +241,12 @@
     border: none;
     background: transparent;
     padding: 0;
-    margin: 0;
     color: var(--home-text-muted);
     font-size: 16px;
     display: flex;
     align-items: center;
     cursor: pointer;
     opacity: 0.7;
-    transition: opacity 0.2s ease;
 
     &:hover {
       opacity: 1;
@@ -293,19 +255,61 @@
   }
 }
 
-/* 4. Home Screen Dynamic Greeting Card */
+/* 4. Hero Banner */
 .apple-hero-banner-new {
   position: relative;
-  background: linear-gradient(135deg, #2b5c8f 0%, #15305b 100%);
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: hidden;
   padding: 24px 20px;
   margin: 0 6px 16px 6px;
   color: #ffffff;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 18px rgba(162, 132, 94, 0.15), 0 2px 4px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(162, 132, 94, 0.35);
+  transition: all 0.5s ease-in-out;
+
+  /* Morning - Golden Dawn Amber */
+  &.morning {
+    background: radial-gradient(circle at top right, rgba(255, 230, 180, 0.35) 0%, transparent 65%), linear-gradient(135deg, #dca869 0%, #a2845e 60%, #765a39 100%);
+    border-color: rgba(255, 230, 180, 0.25);
+  }
+
+  /* Afternoon - High Sunshine Copper */
+  &.afternoon {
+    background: radial-gradient(circle at top right, rgba(255, 200, 120, 0.35) 0%, transparent 65%), linear-gradient(135deg, #c5975d 0%, #8e6d42 60%, #634b2b 100%);
+    border-color: rgba(255, 200, 120, 0.25);
+  }
+
+  /* Evening - Twilight Sunset Rose Gold */
+  &.evening {
+    background: radial-gradient(circle at top right, rgba(245, 185, 185, 0.35) 0%, transparent 65%), linear-gradient(135deg, #b3786f 0%, #854f46 60%, #542b24 100%);
+    border-color: rgba(245, 185, 185, 0.25);
+  }
+
+  /* Night - Obsidian Midnight Violet Gold */
+  &.night {
+    background: radial-gradient(circle at top right, rgba(162, 132, 94, 0.3) 0%, transparent 65%), linear-gradient(135deg, #2d2638 0%, #15111d 60%, #08070b 100%);
+    border-color: rgba(162, 132, 94, 0.2);
+  }
 
   :host-context(body.dark) & {
-    background: linear-gradient(135deg, #1c2e4a 0%, #0d1624 100%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+
+    &.morning {
+      background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.2) 0%, transparent 60%), linear-gradient(135deg, #3d301f 0%, #15120d 100%);
+      border-color: rgba(212, 175, 55, 0.15);
+    }
+    &.afternoon {
+      background: radial-gradient(circle at top right, rgba(230, 150, 60, 0.2) 0%, transparent 60%), linear-gradient(135deg, #382512 0%, #120e0a 100%);
+      border-color: rgba(230, 150, 60, 0.15);
+    }
+    &.evening {
+      background: radial-gradient(circle at top right, rgba(219, 112, 147, 0.15) 0%, transparent 60%), linear-gradient(135deg, #33201c 0%, #120d0c 100%);
+      border-color: rgba(219, 112, 147, 0.15);
+    }
+    &.night {
+      background: radial-gradient(circle at top right, rgba(191, 157, 108, 0.2) 0%, transparent 60%), linear-gradient(135deg, #1f1a14 0%, #080807 100%);
+      border-color: rgba(191, 157, 108, 0.15);
+    }
   }
 
   .apple-hero-gradient-overlay {
@@ -314,8 +318,29 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
     pointer-events: none;
+  }
+
+  .apple-greeting-icon-badge {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 0.5px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+
+    ion-icon {
+      font-size: 20px;
+      color: #ffffff;
+      display: block;
+    }
   }
 
   .apple-hero-content-new {
@@ -335,37 +360,28 @@
 
   .apple-date-tamil {
     font-family: var(--font-family-sans);
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
     color: rgba(255, 255, 255, 0.75);
   }
 
-  .apple-greeting-icon-badge {
-    font-size: 20px;
-    color: #ff9f0a;
-  }
 
   .apple-greeting-title {
     font-family: var(--font-family-heading);
-    font-size: 1.45rem;
+    font-size: 1.4rem;
     font-weight: 700;
     margin: 4px 0 0 0;
-    line-height: var(--tamil-line-height);
     color: #ffffff;
-  }
-
-  .apple-app-tagline {
-    font-family: var(--font-family-sans);
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.65);
-    margin-top: 2px;
+    overflow: visible !important;
+    line-height: 1.6 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
   }
 }
 
-/* 5. iOS Smart Shortcuts Grid */
+/* 5. Shortcuts Grid */
 .apple-dashboard-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -375,23 +391,23 @@
 
 .dashboard-widget {
   background: var(--home-card-bg);
-  border: 0.5px solid var(--home-card-border);
-  border-radius: 14px;
-  padding: 12px;
+  border: 1px solid var(--home-card-border);
+  border-radius: 12px;
+  padding: 14px 12px;
   display: flex;
-  flex-direction: column; /* Vertical layout to give label maximum card width space */
+  flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
   cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.01);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  min-height: 94px; /* Equal height - CSS Grid stretches row items to remain equal */
+  min-height: 96px;
   box-sizing: border-box;
-  min-width: 0; /* Prevent the grid item from expanding past its 1fr track width */
+  min-width: 0;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
   }
 
   &:active {
@@ -405,20 +421,18 @@
     width: 32px;
     height: 32px;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: 16px;
     position: relative;
-    background: var(--home-search-bg);
-    color: var(--widget-accent);
     flex-shrink: 0;
 
     .widget-badge {
       position: absolute;
-      top: -5px;
-      right: -5px;
+      top: -4px;
+      right: -4px;
       background: var(--ion-color-danger);
       color: #ffffff;
       font-family: var(--font-family-sans);
-      font-size: 0.62rem;
+      font-size: 0.65rem;
       font-weight: 700;
       min-width: 14px;
       height: 14px;
@@ -429,93 +443,43 @@
       padding: 2px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.15);
     }
-  }
 
-  /* Color mapping rules with premium gradients and micro-borders */
-  &.purple { 
-    background: linear-gradient(135deg, #5e5ce6 0%, #3634a3 100%) !important;
-    border: none !important;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05) !important;
-
-    .widget-icon-wrap {
-      background: rgba(255, 255, 255, 0.2) !important;
+    &.bg-gold-tint {
+      background: linear-gradient(135deg, var(--home-accent-tint) 0%, var(--home-accent) 100%);
       color: #ffffff !important;
     }
-    .widget-label {
+    &.bg-rose {
+      background: #ff2d55;
       color: #ffffff !important;
     }
-    .widget-sub {
-      color: rgba(255, 255, 255, 0.7) !important;
-    }
-  }
-
-  &.red { 
-    background: linear-gradient(135deg, #ff453a 0%, #b32e25 100%) !important;
-    border: none !important;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05) !important;
-
-    .widget-icon-wrap {
-      background: rgba(255, 255, 255, 0.2) !important;
+    &.bg-sage {
+      background: #8fa89b;
       color: #ffffff !important;
     }
-    .widget-label {
+    &.bg-steel {
+      background: #a3a6ad;
       color: #ffffff !important;
-    }
-    .widget-sub {
-      color: rgba(255, 255, 255, 0.7) !important;
-    }
-  }
-
-  &.blue { 
-    background: linear-gradient(135deg, #0a84ff 0%, #005bb5 100%) !important;
-    border: none !important;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05) !important;
-
-    .widget-icon-wrap {
-      background: rgba(255, 255, 255, 0.2) !important;
-      color: #ffffff !important;
-    }
-    .widget-label {
-      color: #ffffff !important;
-    }
-    .widget-sub {
-      color: rgba(255, 255, 255, 0.7) !important;
-    }
-  }
-
-  &.gray { 
-    background: linear-gradient(135deg, #8e8e93 0%, #48484a 100%) !important;
-    border: none !important;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.04) !important;
-
-    .widget-icon-wrap {
-      background: rgba(255, 255, 255, 0.2) !important;
-      color: #ffffff !important;
-    }
-    .widget-label {
-      color: #ffffff !important;
-    }
-    .widget-sub {
-      color: rgba(255, 255, 255, 0.7) !important;
     }
   }
 
   .widget-meta {
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 2px;
     min-width: 0;
     width: 100%;
   }
 
   .widget-label {
     font-family: var(--font-family-heading);
-    font-size: 0.82rem; /* Comfortable readable size */
+    font-size: 0.84rem;
     font-weight: 700;
     color: var(--home-text-main);
-    line-height: 1.3;
-    white-space: nowrap; /* Full card width allows single line fit without fighting */
-    overflow: hidden;
+    overflow: visible !important;
+    line-height: 1.6 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    white-space: nowrap;
     text-overflow: ellipsis;
   }
 
@@ -530,17 +494,23 @@
   }
 }
 
-/* 6. Smart Daily Supplication Widget Card */
+/* 6. Featured Daily Supplication */
 .apple-featured-dua-widget {
-  background: var(--home-card-bg);
-  border: 0.5px solid var(--home-card-border);
-  border-radius: 16px;
+  background: linear-gradient(135deg, #ffffff 0%, #f7f4ed 100%);
+  border: 1px solid rgba(var(--home-accent-rgb), 0.28) !important;
+  border-radius: 14px;
   padding: 18px;
   margin: 0 6px 16px 6px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.01);
+  box-shadow: 0 4px 16px rgba(162, 132, 94, 0.08), 0 1px 2px rgba(162, 132, 94, 0.04) !important;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
+
+  :host-context(body.dark) & {
+    background: linear-gradient(135deg, #161615 0%, #121211 100%) !important;
+    border-color: rgba(var(--home-accent-rgb), 0.12) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+  }
 
   .widget-header {
     display: flex;
@@ -553,27 +523,22 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    background: rgba(var(--home-accent-rgb), 0.08);
-    border: 0.5px solid rgba(var(--home-accent-rgb), 0.15);
+    background: rgba(var(--home-accent-rgb), 0.06);
+    border: 0.5px solid rgba(var(--home-accent-rgb), 0.12);
     color: var(--home-accent);
     font-family: var(--font-family-sans);
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     font-weight: 700;
     padding: 4px 10px;
     border-radius: 20px;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.1px;
     text-transform: uppercase;
-
-    .tag-glow-icon {
-      font-size: 11px;
-    }
   }
 
   .favorite-toggle-btn {
     border: none;
     background: transparent;
     padding: 0;
-    margin: 0;
     font-size: 20px;
     color: var(--home-text-muted);
     display: flex;
@@ -599,11 +564,14 @@
 
   .dua-title {
     font-family: var(--font-family-heading);
-    font-size: 1.15rem;
+    font-size: 1.12rem;
     font-weight: 700;
     color: var(--home-text-main);
     margin: 0;
-    line-height: var(--tamil-line-height);
+    overflow: visible !important;
+    line-height: 1.6 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
   }
 
   .dua-arabic {
@@ -613,28 +581,27 @@
     color: var(--home-text-main);
     text-align: right;
     direction: rtl;
-    padding: 10px 0;
+    padding: 12px 0;
     border-bottom: 0.5px solid var(--home-card-border);
-    margin-bottom: 2px;
+    margin-bottom: 4px;
     word-wrap: break-word;
   }
 
-  .dua-tamil {
+  .dua-tamil, .dua-translation {
     font-family: var(--font-family-sans);
     font-size: 0.85rem;
-    line-height: var(--tamil-line-height);
-    color: var(--home-text-main);
     margin: 0;
     padding: 2px 0;
+    overflow: visible !important;
+    line-height: 1.6 !important;
+  }
+
+  .dua-tamil {
+    color: var(--home-text-main);
   }
 
   .dua-translation {
-    font-family: var(--font-family-sans);
-    font-size: 0.85rem;
-    line-height: var(--tamil-line-height);
     color: var(--home-text-muted);
-    margin: 0;
-    padding: 2px 0;
   }
 
   .widget-footer {
@@ -643,7 +610,6 @@
     justify-content: space-between;
     padding-top: 12px;
     border-top: 0.5px solid var(--home-card-border);
-    margin-top: 4px;
 
     .dua-chapter-ref {
       font-family: var(--font-family-sans);
@@ -672,17 +638,8 @@
       outline: none;
       transition: all 0.2s ease;
 
-      &:hover {
-        background: rgba(var(--home-accent-rgb), 0.1);
-        color: var(--home-accent);
-      }
-
       &:active {
         transform: scale(0.9);
-      }
-
-      ion-icon {
-        font-size: 14px;
       }
     }
 
@@ -690,574 +647,260 @@
       background: var(--home-accent);
       color: #ffffff;
       border: none;
-      padding: 6px 14px;
+      padding: 6px 12px;
       border-radius: 30px;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       font-family: var(--font-family-sans);
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 2px 6px rgba(var(--home-accent-rgb), 0.15);
       transition: all 0.2s ease;
-
-      &:hover {
-        opacity: 0.9;
-        transform: translateY(-0.5px);
-      }
 
       &:active {
         transform: scale(0.96);
       }
-
-      ion-icon {
-        font-size: 11px;
-      }
     }
   }
 }
 
-/* 7. App Inset Editorial Card */
-.apple-editorial-card {
-  background: var(--home-card-bg);
-  border: 0.5px solid var(--home-card-border);
-  border-radius: 12px;
-  padding: 14px 16px;
-  margin: 0 6px 16px 6px;
+/* 7. iOS Inset Grouped lists */
+.ios-section-label {
+  font-family: var(--font-family-heading);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #8c7355; /* Rich gold/bronze header */
+  letter-spacing: 0.5px;
+  margin: 22px 8px 8px 8px;
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  align-items: center;
+  gap: 6px;
 
-  .card-icon {
-    font-size: 20px;
-    color: var(--home-accent);
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-
-    h3 {
-      font-family: var(--font-family-heading);
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--home-text-main);
-      margin: 0;
-      text-transform: uppercase;
-      letter-spacing: 0.2px;
-    }
-
-    p {
-      font-family: var(--font-family-sans);
-      font-size: 0.82rem;
-      line-height: var(--tamil-line-height);
-      color: var(--home-text-main);
-      margin: 0;
-    }
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 12px;
+    background: var(--home-accent);
+    border-radius: 2px;
   }
 }
 
-/* 8. Grouped Tables / List structures (Apple Books style) */
-.list-desc-info {
-  margin: 12px 10px 16px 10px;
-
-  h3 {
-    font-family: var(--font-family-heading);
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--home-text-main);
-    margin: 0 0 2px 0;
-  }
-
-  p {
-    font-family: var(--font-family-sans);
-    font-size: 0.8rem;
-    color: var(--home-text-muted);
-    margin: 0;
-  }
-}
-
-.apple-grouped-list-new {
+.ios-grouped-list {
   background: var(--home-card-bg);
-  border: 0.5px solid var(--home-card-border);
-  border-radius: 14px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.01);
-  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--home-card-border);
+  box-shadow: 0 3px 12px rgba(162, 132, 94, 0.06), 0 1px 2px rgba(162, 132, 94, 0.04);
   margin: 0 6px 20px 6px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  width: calc(100% - 12px);
+  box-sizing: border-box;
 
-  .chapter-item {
-    text-decoration: none;
-    color: inherit;
-    background: transparent;
-    border-bottom: 0.5px solid var(--home-card-border);
-    padding: 12px 14px;
+  :host-context(body.dark) & {
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  }
+
+  .ios-list-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 0.5px solid var(--home-card-border);
+    text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.15s ease;
+    width: 100%;
+    box-sizing: border-box;
 
     &:last-child {
       border-bottom: none;
     }
 
-    &:hover {
-      background: var(--home-list-item-hover);
-    }
-
-    .chapter-icon-box {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: var(--home-search-bg);
-      color: var(--home-accent);
-      font-size: 16px;
-      flex-shrink: 0;
-
-      /* Accented icon backgrounds */
-      &.icon-purple { color: var(--ion-color-tertiary); background: rgba(var(--ion-color-tertiary-rgb), 0.08); }
-      &.icon-green { color: var(--ion-color-success); background: rgba(var(--ion-color-success-rgb), 0.08); }
-      &.icon-orange { color: var(--ion-color-warning); background: rgba(var(--ion-color-warning-rgb), 0.08); }
-      &.icon-gray { color: var(--home-text-muted); background: var(--home-search-bg); }
-      &.icon-blue { color: var(--home-accent); background: rgba(var(--home-accent-rgb), 0.08); }
-      &.icon-teal { color: #30b0c6; background: rgba(48, 176, 198, 0.08); }
-    }
-
-    .chapter-details {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      flex: 1;
-    }
-
-    .chapter-title {
-      font-family: var(--font-family-sans);
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--home-text-main);
-      line-height: var(--tamil-line-height);
-    }
-
-    .chapter-count {
-      font-family: var(--font-family-sans);
-      font-size: 0.72rem;
-      color: var(--home-text-muted);
-      font-weight: 500;
-    }
-
-    .chapter-chevron {
-      font-size: 12px;
-      color: var(--home-text-muted);
-      opacity: 0.5;
-      flex-shrink: 0;
+    &:active {
+      background-color: var(--home-search-bg);
     }
   }
-}
 
-/* 9. About Page Visual Cards */
-.apple-author-card {
-  background: var(--home-card-bg);
-  border: 0.5px solid var(--home-card-border);
-  border-radius: 14px;
-  padding: 16px;
-  margin: 0 6px 20px 6px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  .ios-row-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+    flex: 1;
+  }
 
-  .about-note-paragraph {
-    font-family: var(--font-family-sans);
-    font-size: 0.82rem;
-    line-height: var(--tamil-line-height);
+  .ios-row-index {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 22px !important;
+    height: 22px !important;
+    border-radius: 50% !important;
+    background: var(--home-badge-bg);
+    border: 0.5px solid rgba(var(--home-accent-rgb), 0.1);
     color: var(--home-text-muted);
-    margin: 0;
+    font-size: 0.68rem;
+    font-weight: 600;
+    margin-right: 10px;
+    flex-shrink: 0;
+    font-family: var(--font-family-heading);
+    transition: all 0.25s ease;
+    line-height: 1 !important;
   }
 
-  .author-signature {
+  .ios-row-details {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    border-top: 0.5px solid var(--home-card-border);
-    padding-top: 12px;
-
-    .signature-tag {
-      font-family: var(--font-family-sans);
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--home-accent);
-    }
-
-    .author-name {
-      font-family: var(--font-family-heading);
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--home-text-main);
-      line-height: var(--tamil-line-height);
-    }
-
-    .author-email {
-      font-family: var(--font-family-sans);
-      font-size: 0.72rem;
-      color: var(--home-text-muted);
-    }
+    min-width: 0;
+    flex: 1;
   }
-}
 
-/* 10. Search Results Area & Transitions */
-.search-results-wrapper {
-  margin-top: 8px;
-}
+  .ios-row-title {
+    font-family: var(--font-family-sans);
+    font-size: 0.94rem;
+    font-weight: 600;
+    color: var(--home-text-main);
+    overflow: visible !important;
+    line-height: 1.6 !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    white-space: normal;
+  }
 
-.apple-section-header {
-  margin: 16px 10px 10px 10px;
-
-  .apple-section-title {
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
+  .ios-row-subtitle {
+    font-family: var(--font-family-sans);
+    font-size: 0.74rem;
     color: var(--home-text-muted);
-    letter-spacing: 0.5px;
-    font-family: var(--font-family-heading);
+    font-weight: 500;
+  }
+
+  .ios-row-chevron {
+    font-size: 14px;
+    color: var(--home-text-muted);
+    opacity: 0.6;
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+
+  .ios-icon-badge {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 15px;
+    flex-shrink: 0;
+
+    &.purple { background: #5e5ce6; }
+    &.green { background: #34c759; }
+    &.orange { background: #ff9500; }
+    &.red { background: #ff3b30; }
+    &.blue { background: #007aff; }
+    &.coral { background: #ff453a; }
   }
 }
 
+/* 8. Empty States */
 .apple-empty-state {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 50px 20px;
+  padding: 40px 20px;
   text-align: center;
 
   .apple-empty-icon {
-    font-size: 2.5rem;
+    font-size: 48px;
     color: var(--home-text-muted);
-    margin-bottom: 10px;
-    opacity: 0.6;
+    margin-bottom: 12px;
+    opacity: 0.5;
   }
 
   h2 {
     font-family: var(--font-family-heading);
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--home-text-main);
     margin: 0 0 6px 0;
-    line-height: var(--tamil-line-height);
   }
 
   p {
     font-family: var(--font-family-sans);
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     color: var(--home-text-muted);
     margin: 0;
-    line-height: var(--tamil-line-height);
   }
 }
 
-/* Tab entrance animation */
+/* 9. Footnote Signature Card & Layouts */
+.apple-author-card {
+  background: var(--home-card-bg);
+  border: 1px solid var(--home-card-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 0 6px 20px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01);
+}
+
+.about-note-paragraph {
+  font-family: var(--font-family-sans);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--home-text-main);
+  margin: 0;
+  text-align: justify;
+}
+
+.author-signature {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 10px;
+  border-top: 0.5px solid var(--home-card-border);
+
+  .signature-tag {
+    font-family: var(--font-family-sans);
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--home-accent);
+  }
+
+  .author-name {
+    font-family: var(--font-family-heading);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--home-text-main);
+    margin-top: 2px;
+  }
+
+  .author-email {
+    font-family: var(--font-family-sans);
+    font-size: 0.74rem;
+    color: var(--home-text-muted);
+  }
+}
+
+/* Entrance Animations */
 .animate-fade {
-  animation: tabFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: fadeIn 0.25s ease-out both;
 }
 
-@keyframes tabFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Premium Gradients */
-.gradient-purple-indigo {
-  background: linear-gradient(135deg, #6200EE 0%, #3700B3 100%) !important;
-}
-.gradient-pink-red {
-  background: linear-gradient(135deg, #FF2D55 0%, #C2003B 100%) !important;
-}
-.gradient-blue-teal {
-  background: linear-gradient(135deg, #007AFF 0%, #004099 100%) !important;
-}
-.gradient-orange-yellow {
-  background: linear-gradient(135deg, #FF9500 0%, #C76B00 100%) !important;
-}
-.gradient-green-emerald {
-  background: linear-gradient(135deg, #34C759 0%, #177C31 100%) !important;
-}
-.gradient-coral-pink {
-  background: linear-gradient(135deg, #FF5E3A 0%, #D02B0F 100%) !important;
-}
-.gradient-gray-slate {
-  background: linear-gradient(135deg, #8E8E93 0%, #3A3A3C 100%) !important;
-}
-
-/* Redesigned Chapters Grid */
-.apple-chapters-grid-new {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  padding: 0 6px 20px 6px;
-}
-
-.chapter-grid-card {
-  border-radius: 16px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  min-height: 120px;
+.ripple-item {
   position: relative;
   overflow: hidden;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-sizing: border-box !important;
-  min-width: 0 !important;
-  width: 100% !important;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 8px 18px rgba(0, 0, 0, 0.1);
-  }
-
-  &:active {
-    transform: scale(0.97);
-  }
-
-  .card-icon-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    font-size: 18px;
-    margin-bottom: 12px;
-  }
-
-  .card-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    width: 100%;
-    margin-bottom: 4px;
-  }
-
-  .card-title {
-    font-family: var(--font-family-heading);
-    font-size: 0.84rem;
-    font-weight: 700;
-    color: #ffffff;
-    line-height: var(--tamil-line-height);
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .card-count {
-    font-family: var(--font-family-sans);
-    font-size: 0.72rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.85);
-  }
-
-  .card-chevron {
-    position: absolute;
-    bottom: 16px;
-    right: 16px;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 16px;
-  }
-}
-
-/* Redesigned Guidance Grid */
-.apple-guidance-grid-new {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 0 6px 20px 6px;
-}
-
-.guidance-banner-card {
-  text-decoration: none;
-  border-radius: 16px;
-  padding: 18px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-sizing: border-box !important;
-  min-width: 0 !important;
-  width: 100% !important;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 8px 18px rgba(0, 0, 0, 0.1);
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
-
-  .banner-icon-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    font-size: 22px;
-    flex-shrink: 0;
-  }
-
-  .banner-content {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    flex: 1;
-    min-width: 0;
-  }
-
-  .banner-title {
-    font-family: var(--font-family-heading);
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0;
-    line-height: var(--tamil-line-height);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .banner-desc {
-    font-family: var(--font-family-sans);
-    font-size: 0.76rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.85);
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .banner-chevron {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-}
-
-/* Redesigned About Grid & pill buttons */
-.apple-about-grid-new {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  padding: 0 6px 12px 6px;
-}
-
-.about-button-card {
-  text-decoration: none;
-  border-radius: 14px;
-  padding: 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-sizing: border-box !important;
-  min-width: 0 !important;
-  width: 100% !important;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 8px 16px rgba(0, 0, 0, 0.08);
-  }
-
-  &:active {
-    transform: scale(0.97);
-  }
-
-  .about-icon-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.25);
-    color: #ffffff;
-    font-size: 16px;
-    flex-shrink: 0;
-  }
-
-  .about-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-  }
-
-  .about-title {
-    font-family: var(--font-family-heading);
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: #ffffff;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .about-sub {
-    font-family: var(--font-family-sans);
-    font-size: 0.72rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.85);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-
-/* Tablet/Desktop spacing adjustment */
-@media (min-width: 768px) {
-  .apple-search-wrapper,
-  .apple-hero-banner-new,
-  .apple-dashboard-grid,
-  .apple-featured-dua-widget,
-  .apple-editorial-card,
-  .apple-grouped-list-new,
-  .list-desc-info,
-  .apple-author-card,
-  .search-results-wrapper,
-  .apple-chapters-grid-new,
-  .apple-guidance-grid-new,
-  .apple-about-grid-new {
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
-  }
 }

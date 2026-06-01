@@ -1,7 +1,9 @@
 <ion-header class="ion-no-border apple-header-glass">
   <ion-toolbar class="apple-toolbar-glass">
     <ion-buttons slot="start">
-      <ion-menu-button class="apple-nav-btn" style="--color: var(--home-text-main) !important;"></ion-menu-button>
+      <button routerLink="/home" routerDirection="back" class="apple-nav-btn-action" aria-label="Go back">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
     </ion-buttons>
     
     <div class="apple-header-title">விருப்பங்கள்</div>
@@ -16,11 +18,6 @@
       <button id="fav-font-customizer-trigger" class="apple-nav-btn-action" aria-label="Font settings">
         <ion-icon name="text-outline"></ion-icon>
       </button>
-
-      <!-- Home Shortcut -->
-      <button routerLink="/home" class="apple-nav-btn-action" aria-label="Go home">
-        <ion-icon name="home-outline"></ion-icon>
-      </button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -33,11 +30,10 @@
       <div class="apple-hero-gradient-overlay"></div>
       <div class="apple-hero-content-new">
         <div class="apple-hero-meta">
-          <span class="apple-date-tamil">Treasured Bookmarks</span>
+          <span class="apple-date-tamil">Bookmarks</span>
           <ion-icon name="heart" class="apple-greeting-icon-badge" style="color: #ff2d55 !important;"></ion-icon>
         </div>
-        <h1 class="apple-greeting-title">விருப்பமானவை</h1>
-        <span class="apple-app-tagline">நெஞ்சில் நின்ற {{ favoriteDuas.length }} பிரார்த்தனைகள்</span>
+        <h1 class="apple-greeting-title">விருப்பங்கள்</h1>
       </div>
     </div>
 
@@ -72,56 +68,32 @@
 
         <!-- Card Content -->
         <div class="premium-card-content">
-          <!-- Advisory Explanation Box -->
-          <div *ngIf="dua.DuaContent?.Notes && !isReaderMode" class="advisory-notes-box">
-            <div class="notes-header">
-              <ion-icon name="chatbubble-ellipses-outline" class="notes-icon"></ion-icon>
-              <span>விளக்கம் / குறிப்பு :</span>
-            </div>
-            <p class="notes-text">{{ dua.DuaContent.Notes }}</p>
-          </div>
+          <!-- Minimal Notes -->
+          <p *ngIf="dua.DuaContent?.Notes && !isReaderMode" class="dua-notes-minimal">
+            {{ dua.DuaContent.Notes }}
+          </p>
 
           <!-- Arabic Typography Block -->
-          <div class="arabic-display-frame" [class.reader-mode]="isReaderMode" *ngIf="dua.DuaContent?.ArabicDua">
-            <div class="arabic-frame-tag" *ngIf="!isReaderMode">அரபு வடிவம்</div>
-            <div class="arabic-frame-text" [style.font-size.px]="arabicFontSize" [class]="selectedArabicFont">
-              {{ dua.DuaContent.ArabicDua }}
-            </div>
+          <div class="dua-arabic-minimal" [class.reader-mode]="isReaderMode" [style.font-size.px]="arabicFontSize" [class]="selectedArabicFont" *ngIf="dua.DuaContent?.ArabicDua">
+            {{ dua.DuaContent.ArabicDua }}
           </div>
 
           <!-- Tamil Reading Section -->
-          <div class="translation-display-block read" *ngIf="showTamilDua && !isReaderMode && dua.DuaContent?.TamilDua">
-            <div class="block-label read-label">
-              <ion-icon name="text-outline"></ion-icon>
-              <span>தமிழ் உச்சரிப்பு :</span>
-            </div>
-            <div class="block-text" [style.font-size.px]="tamilFontSize">
-              {{ dua.DuaContent.TamilDua }}
-            </div>
-          </div>
+          <p class="dua-tamil-minimal" *ngIf="showTamilDua && !isReaderMode && dua.DuaContent?.TamilDua" [style.font-size.px]="tamilFontSize">
+            <span class="minimal-label">உச்சரிப்பு:</span> {{ dua.DuaContent.TamilDua }}
+          </p>
 
           <!-- Translation / Meaning Section -->
-          <div class="translation-display-block meaning" *ngIf="showTranslation && !isReaderMode && dua.DuaContent?.Translation">
-            <div class="block-label meaning-label">
-              <ion-icon name="book-outline"></ion-icon>
-              <span>பொருள் / மொழிபெயர்ப்பு :</span>
-            </div>
-            <div class="block-text" [style.font-size.px]="tamilFontSize">
-              {{ dua.DuaContent.Translation }}
-            </div>
-          </div>
+          <p class="dua-translation-minimal" *ngIf="showTranslation && !isReaderMode && dua.DuaContent?.Translation" [style.font-size.px]="tamilFontSize">
+            <span class="minimal-label">பொருள்:</span> {{ dua.DuaContent.Translation }}
+          </p>
 
           <!-- Hadith References -->
-          <div class="references-display-card" *ngIf="dua.DuaContent?.HadithReferences?.length && !isReaderMode && showHadees">
-            <div class="references-header">
-              <ion-icon name="bookmark-outline" class="references-icon"></ion-icon>
-              <span>ஆதாரம்:</span>
-            </div>
-            <div class="references-list">
-              <div *ngFor="let hadith of dua.DuaContent.HadithReferences" class="ref-item">
-                <p class="ref-text">{{ hadith.ReadableReference }}</p>
-              </div>
-            </div>
+          <div class="dua-reference-minimal" *ngIf="dua.DuaContent?.HadithReferences?.length && !isReaderMode && showHadees">
+            <span class="ref-label">ஆதாரம்:</span>
+            <span *ngFor="let hadith of dua.DuaContent.HadithReferences" class="ref-item">
+              {{ hadith.ReadableReference }}
+            </span>
           </div>
 
           <!-- Action Bar -->
@@ -188,4 +160,3 @@
     </ng-template>
   </ion-popover>
 </ion-content>
-
