@@ -10,23 +10,19 @@ import { Clipboard } from '@capacitor/clipboard';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
-  // Font settings
-  arabicFontSize: number = 32;
-  tamilFontSize: number = 17;
-  selectedArabicFont: string = 'arabic';
-  arabicFont: string = 'defaultFont';
-  showFontOptions: boolean = false;
+  // Active settings configuration states
+  arabicFontSize = 32;
+  tamilFontSize = 17;
+  selectedArabicFont = 'arabic';
 
-  // Visibility settings
-  showTamilDua: boolean = true;
-  showTranslation: boolean = true;
-  showHadees: boolean = true;
+  // Visibility toggle states
+  showTamilDua = true;
+  showTranslation = true;
+  showHadees = true;
 
-  // Backup / Restore data properties
-  backupCode: string = '';
-  restoreCode: string = '';
-
-
+  // Data Vault properties
+  backupCode = '';
+  restoreCode = '';
 
   constructor(
     private settingService: SettingService,
@@ -36,71 +32,39 @@ export class SettingsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Subscribe to settings changes
+    // Synchronize component states with active setting values
     this.settingService.observableSettings.subscribe(settings => {
       if (settings) {
-        // Update font settings
         this.arabicFontSize = parseInt(settings.ArabicFontSize, 10);
         this.tamilFontSize = parseInt(settings.TamilFontSize, 10);
         this.selectedArabicFont = settings.ArabicFont;
 
-        // Update visibility settings
         this.showTamilDua = settings.ShowTamilDua;
         this.showTranslation = settings.ShowTranslation;
         this.showHadees = settings.ShowHadees;
-
-
 
         this.duaService.clear_cache();
       }
     });
   }
 
-  // Font size handlers
-  increaseArabicFontSize() {
-    this.arabicFontSize += 2;
-    this.settingService.setArabicFontSize(this.arabicFontSize);
-  }
-
-  decreaseArabicFontSize() {
-    if (this.arabicFontSize > 16) {
-      this.arabicFontSize -= 2;
-      this.settingService.setArabicFontSize(this.arabicFontSize);
-    }
-  }
-
-  increaseTamilFontSize() {
-    this.tamilFontSize += 2;
-    this.settingService.setTamilFontSize(this.tamilFontSize);
-  }
-
-  decreaseTamilFontSize() {
-    if (this.tamilFontSize > 12) {
-      this.tamilFontSize -= 2;
-      this.settingService.setTamilFontSize(this.tamilFontSize);
-    }
-  }
-
-  // Font size change handlers
+  // Size adjustment handlers (Sliders)
   onArabicFontSizeChange(event: any) {
-    var fontSize = (event as RangeCustomEvent).detail.value;
-    console.log('ionChange emitted value:', fontSize);
+    const fontSize = (event as RangeCustomEvent).detail.value;
     this.settingService.setArabicFontSize(fontSize);
   }
 
   onTamilFontSizeChange(event: any) {
-    var fontSize = (event as RangeCustomEvent).detail.value;
-    console.log('ionChange emitted value:', fontSize);
+    const fontSize = (event as RangeCustomEvent).detail.value;
     this.settingService.setTamilFontSize(fontSize);
   }
 
-  // Font style handler
-  onArabicFontChange(event?: any) {
+  // Font family selector handler
+  onArabicFontChange() {
     this.settingService.setArabicFont(this.selectedArabicFont);
-    console.log('Arabic font changed', event);
   }
 
-  // Visibility toggle handlers
+  // Visibility option updates
   async onShowTamilDuaChange() {
     await this.settingService.setShowTamilDua(this.showTamilDua);
   }
@@ -113,7 +77,7 @@ export class SettingsPage implements OnInit {
     await this.settingService.setShowHadees(this.showHadees);
   }
 
-  // Backup / Restore Favorites Methods
+  // Backup Favorites data to standard base64 string
   async generateBackup() {
     try {
       const favorites = await this.settingService.getFavorites();
@@ -148,6 +112,7 @@ export class SettingsPage implements OnInit {
     }
   }
 
+  // Restore favorites list from inputted base64 string
   async restoreBackup() {
     if (!this.restoreCode || !this.restoreCode.trim()) {
       const toast = await this.toastCtrl.create({
@@ -187,6 +152,7 @@ export class SettingsPage implements OnInit {
     }
   }
 
+  // Reset all configured settings back to system defaults
   async resetDefaults() {
     const alert = await this.alertCtrl.create({
       header: 'அமைப்புகளை மீட்டமை',
@@ -222,7 +188,4 @@ export class SettingsPage implements OnInit {
     });
     await alert.present();
   }
-
-
 }
-
