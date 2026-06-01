@@ -1,34 +1,38 @@
 <ion-header class="ion-no-border apple-header-glass">
   <ion-toolbar class="apple-toolbar-glass">
-    <ion-buttons slot="start">
-      <button routerLink="/home" routerDirection="back" class="apple-nav-btn-action" aria-label="Go back">
-        <ion-icon name="chevron-back-outline"></ion-icon>
-      </button>
-    </ion-buttons>
-    
-    <div class="apple-header-title">{{ duaGroupTitle }}</div>
-
-    <ion-buttons slot="end">
-      <!-- Search Mode Toggle -->
-      <button (click)="toggleSearchBar()" class="apple-nav-btn-action" [class.active]="showSearch" aria-label="Search page">
-        <ion-icon name="search-outline"></ion-icon>
-      </button>
-
-      <!-- Reader Mode Toggle -->
-      <button (click)="toggleReaderMode()" class="apple-nav-btn-action" [class.active]="isReaderMode" aria-label="Toggle reader mode">
-        <ion-icon [name]="isReaderMode ? 'book' : 'book-outline'"></ion-icon>
-      </button>
+    <div class="custom-header-grid">
+      <div class="header-left-col">
+        <button routerLink="/home" routerDirection="back" class="apple-header-btn-circular" aria-label="Go back">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </button>
+      </div>
       
-      <!-- Font Customizer Trigger -->
-      <button id="font-customizer-trigger" class="apple-nav-btn-action" aria-label="Font settings">
-        <ion-icon name="text-outline"></ion-icon>
-      </button>
+      <div class="header-center-col">
+        <span class="header-center-title">{{ duaGroupTitle }}</span>
+      </div>
 
-      <!-- Context Action Menu -->
-      <button (click)="presentActionSheet()" class="apple-nav-btn-action" aria-label="More actions">
-        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-      </button>
-    </ion-buttons>
+      <div class="header-right-col">
+        <!-- Search Mode Toggle -->
+        <button (click)="toggleSearchBar()" class="apple-header-btn-circular" [class.active]="showSearch" aria-label="Search page">
+          <ion-icon name="search-outline"></ion-icon>
+        </button>
+
+        <!-- Reader Mode Toggle -->
+        <button (click)="toggleReaderMode()" class="apple-header-btn-circular" [class.active]="isReaderMode" aria-label="Toggle reader mode">
+          <ion-icon [name]="isReaderMode ? 'book' : 'book-outline'"></ion-icon>
+        </button>
+        
+        <!-- Font Customizer Trigger -->
+        <button id="font-customizer-trigger" class="apple-header-btn-circular" aria-label="Font settings">
+          <ion-icon name="text-outline"></ion-icon>
+        </button>
+
+        <!-- Context Action Menu -->
+        <button (click)="presentActionSheet()" class="apple-header-btn-circular" aria-label="More actions">
+          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+        </button>
+      </div>
+    </div>
   </ion-toolbar>
 
   <!-- Spotlight Search Bar -->
