@@ -1,21 +1,17 @@
 <ion-header class="ion-no-border apple-header-glass">
   <ion-toolbar class="apple-toolbar-glass">
-    <div class="custom-header-grid">
-      <div class="header-left-col">
-        <ion-menu-button class="apple-header-btn-circular"></ion-menu-button>
-      </div>
-      
-      <div class="header-center-col">
-        <span class="header-center-title">தமிழ் துஆ</span>
-      </div>
+    <ion-buttons slot="start">
+      <ion-menu-button class="apple-header-btn-circular"></ion-menu-button>
+    </ion-buttons>
+    
+    <ion-title class="apple-header-title-centered">தமிழ் துஆ</ion-title>
 
-      <div class="header-right-col">
-        <!-- Dark/Light Theme Switcher -->
-        <button (click)="toggleTheme()" class="apple-header-btn-circular" aria-label="Toggle theme">
-          <ion-icon [name]="isDark ? 'sunny' : 'moon'"></ion-icon>
-        </button>
-      </div>
-    </div>
+    <ion-buttons slot="end">
+      <!-- Dark/Light Theme Switcher -->
+      <button (click)="toggleTheme()" class="apple-header-btn-circular" aria-label="Toggle theme">
+        <ion-icon [name]="isDark ? 'sunny' : 'moon'"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 
   <!-- iOS-Style Category Segment Controls -->

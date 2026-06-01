@@ -1,20 +1,16 @@
 <ion-header class="ion-no-border apple-header-glass">
   <ion-toolbar class="apple-toolbar-glass">
-    <div class="custom-header-grid">
-      <div class="header-left-col">
-        <button routerLink="/home" routerDirection="back" class="apple-header-btn-circular" aria-label="Go back">
-          <ion-icon name="chevron-back-outline"></ion-icon>
-        </button>
-      </div>
-      
-      <div class="header-center-col">
-        <span class="header-center-title">அமைப்புகள்</span>
-      </div>
+    <ion-buttons slot="start">
+      <button routerLink="/home" routerDirection="back" class="apple-header-btn-circular" aria-label="Go back">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+    
+    <ion-title class="apple-header-title-centered">அமைப்புகள்</ion-title>
 
-      <div class="header-right-col">
-        <div class="header-col-spacer"></div>
-      </div>
-    </div>
+    <ion-buttons slot="end" style="visibility: hidden;">
+      <div style="width: 36px; height: 36px;"></div>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

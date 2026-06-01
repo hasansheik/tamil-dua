@@ -1,28 +1,24 @@
 <ion-header class="ion-no-border apple-header-glass">
   <ion-toolbar class="apple-toolbar-glass">
-    <div class="custom-header-grid">
-      <div class="header-left-col">
-        <button routerLink="/home" routerDirection="back" class="apple-header-btn-circular" aria-label="Go back">
-          <ion-icon name="chevron-back-outline"></ion-icon>
-        </button>
-      </div>
-      
-      <div class="header-center-col">
-        <span class="header-center-title">விருப்பங்கள்</span>
-      </div>
+    <ion-buttons slot="start">
+      <button routerLink="/home" routerDirection="back" class="apple-header-btn-circular" aria-label="Go back">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+    
+    <ion-title class="apple-header-title-centered">விருப்பங்கள்</ion-title>
 
-      <div class="header-right-col">
-        <!-- Reader Mode Toggle -->
-        <button (click)="toggleReaderMode()" class="apple-header-btn-circular" [class.active]="isReaderMode" aria-label="Toggle reader mode">
-          <ion-icon [name]="isReaderMode ? 'book' : 'book-outline'"></ion-icon>
-        </button>
-        
-        <!-- Font Customizer Trigger -->
-        <button id="fav-font-customizer-trigger" class="apple-header-btn-circular" aria-label="Font settings">
-          <ion-icon name="text-outline"></ion-icon>
-        </button>
-      </div>
-    </div>
+    <ion-buttons slot="end">
+      <!-- Reader Mode Toggle -->
+      <button (click)="toggleReaderMode()" class="apple-header-btn-circular" [class.active]="isReaderMode" aria-label="Toggle reader mode">
+        <ion-icon [name]="isReaderMode ? 'book' : 'book-outline'"></ion-icon>
+      </button>
+      
+      <!-- Font Customizer Trigger -->
+      <button id="fav-font-customizer-trigger" class="apple-header-btn-circular" aria-label="Font settings">
+        <ion-icon name="text-outline"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

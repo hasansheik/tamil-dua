@@ -377,51 +377,31 @@ h1, h2, h3, h4, h5, h6, .ios-large-title, .ios-page-title, .ios-settings-title, 
   }
 }
 
-/* Redesigned Premium Centered Header Grid Layout */
-.custom-header-grid {
-  display: grid !important;
-  grid-template-columns: 1fr auto 1fr !important;
-  align-items: center !important;
-  width: 100% !important;
-  height: 48px !important;
-  box-sizing: border-box !important;
-}
+/* Centered iOS-Style Header Top Bar (Native slots compatibility) */
+.apple-header-title-centered {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  text-align: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-family-heading) !important;
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  color: var(--home-text-main, #2c251e) !important;
+  width: auto !important;
+  max-width: 60% !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  letter-spacing: -0.2px !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
 
-.header-left-col {
-  display: flex !important;
-  justify-content: flex-start !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
-
-.header-center-col {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  
-  .header-center-title {
-    font-family: var(--font-family-heading) !important;
-    font-size: 1.15rem !important;
-    font-weight: 800 !important;
-    color: var(--home-text-main, #2c251e) !important;
-    text-align: center !important;
-    letter-spacing: -0.2px !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    max-width: 180px !important;
-
-    :host-context(body.dark) & {
-      color: var(--home-text-main, #f4efeb) !important;
-    }
+  :host-context(body.dark) & {
+    color: var(--home-text-main, #f4efeb) !important;
   }
-}
-
-.header-right-col {
-  display: flex !important;
-  justify-content: flex-end !important;
-  align-items: center !important;
-  gap: 8px !important;
 }
 
 .apple-header-btn-circular {
@@ -457,11 +437,20 @@ h1, h2, h3, h4, h5, h6, .ios-large-title, .ios-page-title, .ios-settings-title, 
   }
 }
 
-/* Equal balance spacer for layout symmetry when columns are empty */
-.header-col-spacer {
-  width: 36px !important;
-  height: 36px !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
+/* Specific styling for ion-menu-button inside standard slot */
+ion-menu-button.apple-header-btn-circular {
+  --color: var(--home-text-main, #2c251e) !important;
+
+  &::part(button) {
+    padding: 0 !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+  }
+
+  :host-context(body.dark) & {
+    --color: var(--home-text-main, #f4efeb) !important;
+  }
 }
+
 
