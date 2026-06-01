@@ -387,8 +387,8 @@
   .custom-toggle {
     --handle-background: #ffffff;
     --handle-background-checked: #ffffff;
-    --background: var(--home-search-bg);
-    --background-checked: var(--home-accent);
+    --track-background: var(--home-search-bg) !important;
+    --track-background-checked: var(--home-accent) !important;
     --handle-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     margin: 0;
     flex-shrink: 0;
