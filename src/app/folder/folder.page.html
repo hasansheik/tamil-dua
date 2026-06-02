@@ -6,7 +6,7 @@
       </button>
     </ion-buttons>
     
-    <ion-title class="apple-header-title-centered">{{ duaGroupTitle }}</ion-title>
+    <ion-title class="apple-header-title-centered">துஆக்கள்</ion-title>
 
     <ion-buttons slot="end">
       <!-- Search Mode Toggle -->
@@ -22,11 +22,6 @@
       <!-- Font Customizer Trigger -->
       <button id="font-customizer-trigger" class="apple-header-btn-circular" aria-label="Font settings">
         <ion-icon name="text-outline"></ion-icon>
-      </button>
-
-      <!-- Context Action Menu -->
-      <button (click)="presentActionSheet()" class="apple-header-btn-circular" aria-label="More actions">
-        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
@@ -61,111 +56,135 @@
   </div>
 </ion-header>
 
-<ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="onScroll($event)" #duaContent class="apple-content-bg ion-padding">
-  <div class="ios-settings-container">
+<ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="onScroll($event)" #duaContent class="apple-content-bg">
+  <div class="fav-container">
+
+    <!-- Category Large Title -->
+    <div class="apple-category-title-card animate-in" *ngIf="duaGroupTitle">
+      <h1 class="apple-category-title">{{ duaGroupTitle }}</h1>
+    </div>
 
     <!-- Collapsible Index Header -->
-    <div class="premium-settings-card ion-margin-bottom animate-in" (click)="toggleNavigationMenu($event)" style="cursor: pointer; padding: 14px 20px; flex-direction: row; align-items: center; justify-content: space-between; gap: 14px; width: 100%;">
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <ion-icon name="list-outline" style="font-size: 18px; color: var(--home-accent);"></ion-icon>
-        <span style="font-family: var(--font-family-heading); font-size: 0.95rem; font-weight: 700; color: var(--home-text-main);">துஆக்கள் அட்டவணை</span>
-        <span class="chapter-count-badge" style="margin-left: 2px;">{{ filteredDuas.length }}</span>
+    <div class="index-trigger-card animate-in" (click)="toggleNavigationMenu($event)">
+      <div class="index-trigger-left">
+        <ion-icon name="list-outline" class="index-icon"></ion-icon>
+        <span class="index-title-text">துஆக்கள் அட்டவணை</span>
+        <span class="index-count-badge">{{ filteredDuas.length }}</span>
       </div>
-      <ion-icon [name]="showNavigationMenu ? 'chevron-up-outline' : 'chevron-down-outline'" style="font-size: 16px; color: var(--home-text-muted); opacity: 0.7;"></ion-icon>
+      <ion-icon [name]="showNavigationMenu ? 'chevron-up-outline' : 'chevron-down-outline'" class="index-arrow-icon"></ion-icon>
     </div>
 
     <!-- Collapsible Index List -->
-    <div *ngIf="showNavigationMenu && !isLoading && filteredDuas.length > 0" class="premium-settings-card padding-box ion-margin-bottom animate-in">
-      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; width: 100%;">
+    <div *ngIf="showNavigationMenu && !isLoading && filteredDuas.length > 0" class="index-list-card animate-in">
+      <div class="index-grid">
         <div *ngFor="let dua of filteredDuas; let i = index" 
              (click)="scrollToDua(i)" 
-             class="font-card-new ripple-item" 
-             style="height: 72px; padding: 10px 12px; justify-content: center; gap: 4px; box-sizing: border-box;">
-          <span style="font-family: var(--font-family-heading); font-size: 0.7rem; font-weight: 800; color: var(--home-accent);">துஆ {{ i + 1 }}</span>
-          <span style="font-family: var(--font-family-sans); font-size: 0.74rem; font-weight: 600; color: var(--home-text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; display: block;">{{ dua.DuaTitle }}</span>
+             class="index-item-btn ripple-item">
+          <span class="index-item-label">துஆ {{ i + 1 }}</span>
+          <span class="index-item-title">{{ dua.DuaTitle }}</span>
         </div>
       </div>
     </div>
 
     <!-- Loading Skeleton -->
-    <div *ngIf="isLoading" class="skeleton-wrapper">
-      <div class="premium-settings-card padding-box" *ngFor="let i of [1,2,3]" style="margin-bottom: 16px;">
-        <ion-skeleton-text animated style="width: 40%; height: 18px; border-radius: 4px; margin-bottom: 12px;"></ion-skeleton-text>
-        <ion-skeleton-text animated style="width: 95%; height: 80px; border-radius: 6px; margin-bottom: 12px;"></ion-skeleton-text>
-        <ion-skeleton-text animated style="width: 80%; height: 16px; border-radius: 4px;"></ion-skeleton-text>
+    <div *ngIf="isLoading" class="fav-skeleton-list">
+      <div class="fav-card" *ngFor="let i of [1, 2, 3]">
+        <div class="fav-card-header">
+          <ion-skeleton-text animated style="width: 28px; height: 28px; border-radius: 50%;"></ion-skeleton-text>
+          <div style="flex: 1;">
+            <ion-skeleton-text animated style="width: 55%; height: 16px; border-radius: 4px; margin-bottom: 6px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 35%; height: 12px; border-radius: 4px;"></ion-skeleton-text>
+          </div>
+        </div>
+        <div class="fav-card-body">
+          <ion-skeleton-text animated style="width: 100%; height: 70px; border-radius: 8px; margin-bottom: 14px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 85%; height: 14px; border-radius: 4px; margin-bottom: 8px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 70%; height: 14px; border-radius: 4px;"></ion-skeleton-text>
+        </div>
       </div>
     </div>
 
     <!-- Offline Message Banner -->
-    <div *ngIf="isOffline" class="premium-settings-card padding-box ion-margin-bottom animate-in" style="background: rgba(255, 149, 0, 0.08); border-color: rgba(255, 149, 0, 0.2); flex-direction: row; align-items: center; gap: 10px;">
-      <ion-icon name="cloud-offline-outline" style="font-size: 18px; color: #ff9500;"></ion-icon>
-      <span style="font-family: var(--font-family-sans); font-size: 0.8rem; color: var(--home-text-main); font-weight: 500;">நீங்கள் ஆஃப்லைனில் உள்ளீர்கள். சில உள்ளடக்கங்கள் கிடைக்காமல் போகலாம்.</span>
+    <div *ngIf="isOffline" class="offline-banner-card animate-in">
+      <ion-icon name="cloud-offline-outline" class="offline-icon"></ion-icon>
+      <span class="offline-text">நீங்கள் ஆஃப்லைனில் உள்ளீர்கள். சில உள்ளடக்கங்கள் கிடைக்காமல் போகலாம்.</span>
     </div>
 
     <!-- Empty Search State -->
-    <div *ngIf="!isLoading && filteredDuas.length === 0" class="apple-empty-state animate-fade">
-      <ion-icon name="alert-circle-outline" class="apple-empty-icon"></ion-icon>
-      <h2>துஆக்கள் எதுவும் கிடைக்கவில்லை</h2>
-      <p>வேறு சில சொற்களைத் தட்டச்சு செய்து தேடவும்</p>
+    <div *ngIf="!isLoading && filteredDuas.length === 0" class="fav-empty-state">
+      <ion-icon name="alert-circle-outline" class="fav-empty-icon"></ion-icon>
+      <h2 class="fav-empty-title">துஆக்கள் எதுவும் கிடைக்கவில்லை</h2>
+      <p class="fav-empty-subtitle">வேறு சில சொற்களைத் தட்டச்சு செய்து தேடவும்</p>
     </div>
 
     <!-- Main Dua List -->
-    <div *ngIf="!isLoading && filteredDuas.length > 0" class="ios-dua-list-wrapper">
-      <div *ngFor="let dua of filteredDuas; let i = index" class="dua-item-anchor" [id]="'dua-' + i" style="width: 100%;">
-        <div class="premium-settings-card ion-margin-bottom animate-in" style="overflow: visible;">
+    <div *ngIf="!isLoading && filteredDuas.length > 0" class="fav-card-list">
+      <div *ngFor="let dua of filteredDuas; let i = index" class="dua-item-anchor" [id]="'dua-' + i">
+        <div class="fav-card animate-in" [style.animation-delay.ms]="i * 50">
           
           <!-- Card Header -->
-          <div class="premium-card-header">
-            <span class="chapter-count-badge">{{ i + 1 }}</span>
-            <div class="header-text-group">
-              <h2 class="dua-card-title">{{ dua.DuaTitle }}</h2>
+          <div class="fav-card-header">
+            <span class="fav-number-badge">{{ i + 1 }}</span>
+            <div class="fav-header-text">
+              <h3 class="fav-dua-title">{{ dua.DuaTitle }}</h3>
+              <span class="fav-chapter-ref">{{ duaGroupTitle }}</span>
             </div>
           </div>
 
-          <!-- Card Content -->
-          <div class="premium-card-content">
-            <!-- Minimal Notes -->
-            <p *ngIf="!hideNotes(dua.DuaContent) && !isReaderMode" class="dua-notes-minimal">
+          <!-- Card Body -->
+          <div class="fav-card-body">
+            <!-- Notes -->
+            <p *ngIf="!hideNotes(dua.DuaContent) && !isReaderMode" class="fav-notes">
               {{ dua.DuaContent.Notes }}
             </p>
 
             <!-- Arabic Typography Block -->
-            <div class="dua-arabic-minimal" [class.reader-mode]="isReaderMode" [style.font-size.px]="arabicFontSize" [class]="selectedArabicFont">
+            <div class="fav-arabic" 
+                 [class.reader-mode]="isReaderMode" 
+                 [style.font-size.px]="arabicFontSizeVal" 
+                 [class]="selectedArabicFont">
               {{ dua.DuaContent.ArabicDua }}
             </div>
 
             <!-- Tamil Reading Section -->
-            <p class="dua-tamil-minimal" *ngIf="showTamilDua && !isReaderMode" [style.font-size.px]="tamilFontSize">
-              <span class="minimal-label">உச்சரிப்பு:</span> {{ dua.DuaContent.TamilDua }}
-            </p>
+            <div class="fav-section" *ngIf="showTamilDua && !isReaderMode">
+              <span class="fav-section-label">உச்சரிப்பு</span>
+              <p class="fav-tamil-text" [style.font-size.px]="tamilFontSizeVal">
+                {{ dua.DuaContent.TamilDua }}
+              </p>
+            </div>
 
             <!-- Translation / Meaning Section -->
-            <p class="dua-translation-minimal" *ngIf="showTranslation && !isReaderMode" [style.font-size.px]="tamilFontSize">
-              <span class="minimal-label">பொருள்:</span> {{ dua.DuaContent.Translation }}
-            </p>
+            <div class="fav-section" *ngIf="showTranslation && !isReaderMode">
+              <span class="fav-section-label muted">பொருள்</span>
+              <p class="fav-translation-text" [style.font-size.px]="tamilFontSizeVal">
+                {{ dua.DuaContent.Translation }}
+              </p>
+            </div>
 
             <!-- Hadith References -->
-            <div class="dua-reference-minimal" *ngIf="dua.DuaContent.HadithReferences?.length && !isReaderMode">
-              <span class="ref-label">ஆதாரம்:</span>
-              <span *ngFor="let hadith of dua.DuaContent.HadithReferences" class="ref-item">
+            <div class="fav-references" *ngIf="dua.DuaContent.HadithReferences?.length && !isReaderMode">
+              <span class="fav-ref-label">ஆதாரம்</span>
+              <span *ngFor="let hadith of dua.DuaContent.HadithReferences" class="fav-ref-item">
                 {{ hadith.ReadableReference }}
               </span>
             </div>
 
-            <!-- Card Action Bar -->
-            <div class="card-action-bar-new" *ngIf="!isReaderMode">
-              <button (click)="toggleFavorite(dua)" [class.active]="isFavorite(dua)" class="action-btn-circle" aria-label="Toggle favorite">
-                <ion-icon [name]="isFavorite(dua) ? 'heart' : 'heart-outline'" [style.color]="isFavorite(dua) ? '#ff2d55' : ''"></ion-icon>
-              </button>
-              <button (click)="copyToClipboard(dua)" class="action-btn-circle" aria-label="Copy to clipboard">
-                <ion-icon name="copy-outline"></ion-icon>
-              </button>
-              <button (click)="onShare(dua.Id)" class="action-btn-circle" aria-label="Share">
-                <ion-icon name="share-social-outline"></ion-icon>
-              </button>
-            </div>
-
           </div>
+
+          <!-- Card Action Bar -->
+          <div class="fav-action-bar" *ngIf="!isReaderMode">
+            <button (click)="toggleFavorite(dua)" class="fav-action-btn" [class.active]="isFavorite(dua)" aria-label="Toggle favorite">
+              <ion-icon [name]="isFavorite(dua) ? 'heart' : 'heart-outline'" [style.color]="isFavorite(dua) ? '#ff2d55' : ''"></ion-icon>
+            </button>
+            <button (click)="copyToClipboard(dua)" class="fav-action-btn" aria-label="Copy to clipboard">
+              <ion-icon name="copy-outline"></ion-icon>
+            </button>
+            <button (click)="onShare(dua.Id)" class="fav-action-btn" aria-label="Share">
+              <ion-icon name="share-social-outline"></ion-icon>
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
@@ -175,13 +194,21 @@
   <!-- Font Customizer Popover -->
   <ion-popover trigger="font-customizer-trigger" dismiss-on-select="false" mode="ios" class="premium-popover-theme">
     <ng-template>
-      <ion-content class="popover-content-bg ion-padding">
-        <h3 class="popover-heading">அளவுகள் & எழுத்துரு</h3>
+      <div class="popover-container-padding popover-content-bg">
+        <div class="popover-header-row">
+          <h3 class="popover-heading">அளவுகள் & எழுத்துரு</h3>
+          <button (click)="resetFontSizes()" class="popover-reset-icon-btn" aria-label="Reset sizes">
+            <ion-icon name="reload-outline"></ion-icon>
+          </button>
+        </div>
         
         <!-- Arabic Font Size -->
         <div class="popover-control-row">
           <div class="popover-info-row">
-            <span class="popover-label-text">அரபி</span>
+            <div class="popover-label-wrapper">
+              <ion-icon name="text-outline" class="popover-row-icon"></ion-icon>
+              <span class="popover-label-text">அரபி</span>
+            </div>
             <span class="popover-badge">{{ arabicFontSizeVal }}px</span>
           </div>
           <ion-range 
@@ -191,15 +218,18 @@
             (ionChange)="onArabicSizeChange($event)"
             mode="ios"
             class="luxury-range-gold">
-            <ion-icon slot="start" size="small" name="text-outline" style="font-size: 14px; color: var(--home-text-muted);"></ion-icon>
-            <ion-icon slot="end" size="large" name="text-outline" style="font-size: 18px; color: var(--home-accent);"></ion-icon>
+            <span slot="start" class="popover-range-cap sm">A</span>
+            <span slot="end" class="popover-range-cap lg">A</span>
           </ion-range>
         </div>
 
         <!-- Tamil Font Size -->
         <div class="popover-control-row">
           <div class="popover-info-row">
-            <span class="popover-label-text">தமிழ்</span>
+            <div class="popover-label-wrapper">
+              <ion-icon name="text-outline" class="popover-row-icon"></ion-icon>
+              <span class="popover-label-text">தமிழ்</span>
+            </div>
             <span class="popover-badge">{{ tamilFontSizeVal }}px</span>
           </div>
           <ion-range 
@@ -209,11 +239,11 @@
             (ionChange)="onTamilSizeChange($event)"
             mode="ios"
             class="luxury-range-gold">
-            <ion-icon slot="start" size="small" name="text-outline" style="font-size: 14px; color: var(--home-text-muted);"></ion-icon>
-            <ion-icon slot="end" size="large" name="text-outline" style="font-size: 18px; color: var(--home-accent);"></ion-icon>
+            <span slot="start" class="popover-range-cap sm">A</span>
+            <span slot="end" class="popover-range-cap lg">A</span>
           </ion-range>
         </div>
-      </ion-content>
+      </div>
     </ng-template>
   </ion-popover>
 </ion-content>

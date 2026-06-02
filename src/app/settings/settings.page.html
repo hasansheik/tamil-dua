@@ -7,10 +7,6 @@
     </ion-buttons>
     
     <ion-title class="apple-header-title-centered">அமைப்புகள்</ion-title>
-
-    <ion-buttons slot="end" style="visibility: hidden;">
-      <div style="width: 36px; height: 36px;"></div>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -116,7 +112,33 @@
 
     </div>
 
-    <!-- Section 3: Clean Display Toggles without colorful icons -->
+    <!-- Section 3: Theme Accent Color selection -->
+    <div class="ios-section-label">வண்ண வடிவமைப்பு (Premium Theme)</div>
+    <div class="glass-settings-card animate-in">
+      <div class="settings-inner-padding">
+        <span class="sub-section-title">பயன்பாட்டின் முதன்மை நிறம்</span>
+        <div class="theme-selection-grid">
+          <button 
+            *ngFor="let theme of themesList"
+            [class.active]="selectedTheme === theme.id"
+            (click)="selectTheme(theme.id)"
+            class="theme-grid-btn ripple"
+            [attr.aria-label]="theme.nameEn + ' theme'"
+          >
+            <div class="theme-color-preview-circle" [style.background-color]="theme.color"></div>
+            <div class="theme-meta">
+              <span class="theme-name">{{ theme.name }}</span>
+              <span class="theme-name-en">{{ theme.nameEn }}</span>
+            </div>
+            <div class="theme-selected-indicator" *ngIf="selectedTheme === theme.id">
+              <ion-icon name="checkmark-circle"></ion-icon>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Clean Display Toggles without colorful icons -->
     <div class="ios-section-label">காட்சி அமைப்புகள்</div>
     <div class="glass-settings-card animate-in">
       

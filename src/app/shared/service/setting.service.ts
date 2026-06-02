@@ -8,17 +8,18 @@ import { Preferences } from '@capacitor/preferences';
 })
 export class SettingService {
   fontSizeIncrease = 3;
-  arabicFontSize = 32;
-  tamilFontSize = 17;
+  arabicFontSize = 28;
+  tamilFontSize = 15;
   arabicfont = 'arabic';
   
   private settingsData = {
-    ArabicFontSize: '32px',
-    TamilFontSize: '17px',
+    ArabicFontSize: '28px',
+    TamilFontSize: '15px',
     ArabicFont: 'arabic',
     ShowTamilDua: true,
     ShowTranslation: true,
-    ShowHadees: true
+    ShowHadees: true,
+    ThemeAccent: 'gold'
   };
 
   private settingsSubject = new BehaviorSubject(this.settingsData);
@@ -35,6 +36,7 @@ export class SettingService {
     const showTamilDua = await Preferences.get({ key: 'ShowTamilDua' });
     const showTranslation = await Preferences.get({ key: 'ShowTranslation' });
     const showHadees = await Preferences.get({ key: 'ShowHadees' });
+    const themeAccent = await Preferences.get({ key: 'ThemeAccent' });
 
     if (showTamilDua.value === null) {
       await Preferences.set({ key: 'ShowTamilDua', value: 'true' });
@@ -45,31 +47,45 @@ export class SettingService {
     if (showHadees.value === null) {
       await Preferences.set({ key: 'ShowHadees', value: 'true' });
     }
+    if (themeAccent.value === null) {
+      await Preferences.set({ key: 'ThemeAccent', value: 'gold' });
+    }
 
     await this.readSettingsData();
   }
 
   async readSettingsData() {
     try {
-      const [arabicFontSize, tamilFontSize, arabicFont, showTamilDua, showTranslation, showHadees] = 
+      const [arabicFontSize, tamilFontSize, arabicFont, showTamilDua, showTranslation, showHadees, themeAccent] = 
         await Promise.all([
           Preferences.get({ key: 'ArabicFontSize' }),
           Preferences.get({ key: 'TamilFontSize' }),
           Preferences.get({ key: 'ArabicFont' }),
           Preferences.get({ key: 'ShowTamilDua' }),
           Preferences.get({ key: 'ShowTranslation' }),
-          Preferences.get({ key: 'ShowHadees' })
+          Preferences.get({ key: 'ShowHadees' }),
+          Preferences.get({ key: 'ThemeAccent' })
         ]);
 
-      // Update font settings
-      if (arabicFontSize.value) {
-        this.arabicFontSize = Number(arabicFontSize.value);
-        this.settingsData.ArabicFontSize = this.arabicFontSize + 'px';
+      // Migrate old defaults or initialize if null
+      let rawArabic = arabicFontSize.value;
+      let rawTamil = tamilFontSize.value;
+
+      if (rawArabic === null || rawArabic === '32') {
+        rawArabic = '28';
+        await Preferences.set({ key: 'ArabicFontSize', value: '28' });
       }
-      if (tamilFontSize.value) {
-        this.tamilFontSize = Number(tamilFontSize.value);
-        this.settingsData.TamilFontSize = this.tamilFontSize + 'px';
+      if (rawTamil === null || rawTamil === '17') {
+        rawTamil = '15';
+        await Preferences.set({ key: 'TamilFontSize', value: '15' });
       }
+
+      this.arabicFontSize = Number(rawArabic);
+      this.settingsData.ArabicFontSize = this.arabicFontSize + 'px';
+
+      this.tamilFontSize = Number(rawTamil);
+      this.settingsData.TamilFontSize = this.tamilFontSize + 'px';
+
       if (arabicFont.value) {
         this.arabicfont = arabicFont.value;
         this.settingsData.ArabicFont = this.arabicfont;
@@ -79,6 +95,14 @@ export class SettingService {
       this.settingsData.ShowTamilDua = showTamilDua.value !== 'false';
       this.settingsData.ShowTranslation = showTranslation.value !== 'false';
       this.settingsData.ShowHadees = showHadees.value !== 'false';
+
+      if (themeAccent.value) {
+        this.settingsData.ThemeAccent = themeAccent.value;
+        this.applyThemeAccent(themeAccent.value);
+      } else {
+        this.settingsData.ThemeAccent = 'gold';
+        this.applyThemeAccent('gold');
+      }
 
       // Notify subscribers of the updated settings
       this.settingsSubject.next({...this.settingsData});
@@ -122,6 +146,19 @@ export class SettingService {
    refreshSettingData(){
     this.settingsSubject.next(Object.assign({}, this.settingsData));
    }
+
+    async resetToDefaults() {
+      try {
+        await Promise.all([
+          Preferences.set({ key: 'ArabicFontSize', value: '28' }),
+          Preferences.set({ key: 'TamilFontSize', value: '15' }),
+          Preferences.set({ key: 'ThemeAccent', value: 'gold' })
+        ]);
+        await this.readSettingsData();
+      } catch (e) {
+        console.error('Error resetting settings to defaults:', e);
+      }
+    }
 
   setArabicFontSize(arabicFontSize){
     this.settingsData.ArabicFontSize = arabicFontSize + 'px';
@@ -180,6 +217,22 @@ export class SettingService {
       key: 'ShowHadees',
       value: show.toString()
     });
+    this.settingsSubject.next({...this.settingsData});
+  }
+
+  applyThemeAccent(accent: string) {
+    const themes = ['theme-gold', 'theme-emerald', 'theme-crimson', 'theme-sapphire', 'theme-rosegold', 'theme-amethyst'];
+    themes.forEach(t => document.body.classList.remove(t));
+    document.body.classList.add(`theme-${accent}`);
+  }
+
+  async setThemeAccent(accent: string) {
+    this.settingsData.ThemeAccent = accent;
+    await Preferences.set({
+      key: 'ThemeAccent',
+      value: accent
+    });
+    this.applyThemeAccent(accent);
     this.settingsSubject.next({...this.settingsData});
   }
 

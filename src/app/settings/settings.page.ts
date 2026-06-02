@@ -20,6 +20,17 @@ export class SettingsPage implements OnInit {
   showTranslation = true;
   showHadees = true;
 
+  // Theme configuration states
+  selectedTheme = 'gold';
+  themesList = [
+    { id: 'gold', name: 'தங்க நிறம்', nameEn: 'Champagne Gold', color: '#a2845e' },
+    { id: 'emerald', name: 'மரகதப் பச்சை', nameEn: 'Royal Emerald', color: '#1b4d3e' },
+    { id: 'crimson', name: 'செந்நிறம்', nameEn: 'Deep Crimson', color: '#800020' },
+    { id: 'sapphire', name: 'நீலக்கல் நிறம்', nameEn: 'Sapphire Blue', color: '#0f4c81' },
+    { id: 'rosegold', name: 'செம்பொன் நிறம்', nameEn: 'Rose Gold', color: '#b76e79' },
+    { id: 'amethyst', name: 'ஊதா நிறம்', nameEn: 'Amethyst Purple', color: '#5d3fd3' }
+  ];
+
   // Data Vault properties
   backupCode = '';
   restoreCode = '';
@@ -42,6 +53,8 @@ export class SettingsPage implements OnInit {
         this.showTamilDua = settings.ShowTamilDua;
         this.showTranslation = settings.ShowTranslation;
         this.showHadees = settings.ShowHadees;
+        
+        this.selectedTheme = settings.ThemeAccent || 'gold';
 
         this.duaService.clear_cache();
       }
@@ -75,6 +88,11 @@ export class SettingsPage implements OnInit {
 
   async onShowHadeesChange() {
     await this.settingService.setShowHadees(this.showHadees);
+  }
+
+  async selectTheme(themeId: string) {
+    this.selectedTheme = themeId;
+    await this.settingService.setThemeAccent(themeId);
   }
 
   // Backup Favorites data to standard base64 string
@@ -174,6 +192,7 @@ export class SettingsPage implements OnInit {
             await this.settingService.setShowTamilDua(true);
             await this.settingService.setShowTranslation(true);
             await this.settingService.setShowHadees(true);
+            await this.settingService.setThemeAccent('gold');
 
             const toast = await this.toastCtrl.create({
               message: 'அமைப்புகள் மீட்டமைக்கப்பட்டன!',

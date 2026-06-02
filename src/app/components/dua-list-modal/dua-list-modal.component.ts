@@ -79,45 +79,27 @@ import { ModalController } from '@ionic/angular';
     </ion-content>
   `,
   styles: [`
-    /* Force Light Mode variables */
+    /* Dynamic Theme Variables mapping to body variables */
     :host {
       display: flex !important;
       flex-direction: column !important;
       height: 100% !important;
       overflow: hidden !important;
       
-      --modal-bg: #ece8df;
-      --modal-card-bg: #ffffff;
-      --modal-card-border: rgba(162, 132, 94, 0.25);
-      --modal-text-main: #2c251e;
-      --modal-text-muted: #706860;
-      --modal-accent: #a2845e;
-      --modal-accent-rgb: 162, 132, 94;
-      --modal-accent-tint: #d1a86a;
+      --modal-bg: var(--home-bg);
+      --modal-card-bg: var(--home-card-bg);
+      --modal-card-border: var(--home-card-border);
+      --modal-text-main: var(--home-text-main);
+      --modal-text-muted: var(--home-text-muted);
+      --modal-accent: var(--home-accent);
+      --modal-accent-rgb: var(--home-accent-rgb);
+      --modal-accent-tint: var(--home-accent-tint);
       
-      --modal-search-bg: rgba(162, 132, 94, 0.09);
-      --modal-badge-bg: rgba(162, 132, 94, 0.12);
-      --modal-list-item-hover: rgba(162, 132, 94, 0.04);
-      --glass-bg: rgba(236, 232, 223, 0.85);
-      --glass-border: rgba(162, 132, 94, 0.25);
-    }
-
-    /* Force Dark Theme Overrides */
-    :host-context(body.dark) {
-      --modal-bg: #10100f !important;
-      --modal-card-bg: #161615 !important;
-      --modal-card-border: rgba(191, 157, 108, 0.08) !important;
-      --modal-text-main: #f4efeb !important;
-      --modal-text-muted: #9c948c !important;
-      --modal-accent: #bf9d6c !important;
-      --modal-accent-rgb: 191, 157, 108 !important;
-      --modal-accent-tint: #d8c2a3 !important;
-      
-      --modal-search-bg: rgba(255, 255, 255, 0.05) !important;
-      --modal-badge-bg: rgba(255, 255, 255, 0.05) !important;
-      --modal-list-item-hover: rgba(255, 255, 255, 0.02) !important;
-      --glass-bg: rgba(16, 16, 15, 0.88) !important;
-      --glass-border: rgba(191, 157, 108, 0.1) !important;
+      --modal-search-bg: var(--home-search-bg);
+      --modal-badge-bg: var(--home-badge-bg);
+      --modal-list-item-hover: rgba(var(--home-accent-rgb), 0.04);
+      --glass-bg: var(--glass-bg);
+      --glass-border: var(--glass-border);
     }
 
     /* Toolbar & Glass Headers */
@@ -136,7 +118,7 @@ import { ModalController } from '@ionic/angular';
       --background: transparent !important;
       --border-width: 0px !important;
       border: none !important;
-      padding: 8px 12px 0 12px !important;
+      padding: 18px 12px 4px 12px !important;
       display: flex !important;
       align-items: center !important;
       box-shadow: none !important;
@@ -251,6 +233,7 @@ import { ModalController } from '@ionic/angular';
     /* Content & Layout Container */
     .modal-content-bg {
       --background: var(--modal-bg) !important;
+      --padding-bottom: 120px !important;
       flex: 1 1 0% !important;
       min-height: 0 !important;
     }

@@ -20,8 +20,8 @@ export class FolderPage implements OnInit, OnDestroy {
   duaList = [];
   filteredDuas = [];
   selectedArabicFont = 'arabic';
-  arabicFontSize = 32;
-  tamilFontSize = 17;
+  arabicFontSize = '32px';
+  tamilFontSize = '17px';
   duaGroupTitle = 'முஸ்லீம்களின் அன்றாடப் பிரார்தனைகள்';
   shareTemplate = ' *@title* \n\n\r@notes \n\r\n\r @arabic  \n\r\n\r *தமிழ்:* @tamilDua-  \n\r\n\r *பொருள்:* @translation \n\n\r *ஆதாரம்:* \n\n\r @evidence';
   isLoading = false;
@@ -93,8 +93,8 @@ export class FolderPage implements OnInit, OnDestroy {
     this.settingsSubscription = this.settingService.observableSettings.subscribe(settings => {
       if (settings) {
         // Update font settings
-        this.arabicFontSize = parseInt(settings.ArabicFontSize, 10) || 32;
-        this.tamilFontSize = parseInt(settings.TamilFontSize, 10) || 17;
+        this.arabicFontSize = settings.ArabicFontSize;
+        this.tamilFontSize = settings.TamilFontSize;
         this.selectedArabicFont = settings.ArabicFont;
 
         // Update visibility settings
@@ -120,6 +120,15 @@ export class FolderPage implements OnInit, OnDestroy {
       // Only refresh if we're coming back online
       if (isOnline && wasOffline) {
         await this.refreshData();
+      }
+    });
+
+    // Initialize settings subscription
+    this.settingsSubscription = this.settingService.observableSettings.subscribe((data) => {
+      if (data) {
+        this.arabicFontSize = data.ArabicFontSize;
+        this.tamilFontSize = data.TamilFontSize;
+        this.selectedArabicFont = data.ArabicFont;
       }
     });
   }
@@ -430,11 +439,11 @@ export class FolderPage implements OnInit, OnDestroy {
   }
 
   get arabicFontSizeVal(): number {
-    return this.arabicFontSize;
+    return parseInt(this.arabicFontSize) || 32;
   }
 
   get tamilFontSizeVal(): number {
-    return this.tamilFontSize;
+    return parseInt(this.tamilFontSize) || 17;
   }
 
   onArabicSizeChange(event: any) {
@@ -445,6 +454,11 @@ export class FolderPage implements OnInit, OnDestroy {
   onTamilSizeChange(event: any) {
     const val = event.detail.value;
     this.settingService.setTamilFontSize(val);
+  }
+
+  async resetFontSizes() {
+    await this.settingService.resetToDefaults();
+    await this.triggerHapticFeedback();
   }
 
   toggleReaderMode() {

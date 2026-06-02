@@ -380,18 +380,18 @@ h1, h2, h3, h4, h5, h6, .ios-large-title, .ios-page-title, .ios-settings-title, 
 /* Centered iOS-Style Header Top Bar (Native slots compatibility) */
 .apple-header-title-centered {
   position: absolute !important;
-  left: 50% !important;
+  left: 0 !important;
+  right: 0 !important;
   top: 50% !important;
-  transform: translate(-50%, -50%) !important;
+  transform: translateY(-50%) !important;
   text-align: center !important;
   margin: 0 !important;
-  padding: 0 !important;
+  padding-left: var(--title-padding-start, 60px) !important;
+  padding-right: var(--title-padding-end, 60px) !important;
   font-family: var(--font-family-heading) !important;
   font-size: 1.15rem !important;
   font-weight: 800 !important;
   color: var(--home-text-main, #2c251e) !important;
-  width: auto !important;
-  max-width: 60% !important;
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
@@ -452,5 +452,613 @@ ion-menu-button.apple-header-btn-circular {
     --color: var(--home-text-main, #f4efeb) !important;
   }
 }
+
+/* Premium Toolbar buttons gap to keep them spaced and elegant */
+ion-toolbar ion-buttons[slot="end"] {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important; /* Premium space between header icon buttons */
+}
+
+/* Premium Popover Theme (Global) */
+.premium-popover-theme {
+  --width: 300px !important;
+  --max-width: 90vw !important;
+  --border-radius: 14px !important;
+  --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15) !important;
+
+  /* Target Popover Content Shadow Part to follow the app's exact card theme style */
+  &::part(content) {
+    background: var(--ion-card-background) !important;
+    border: 1px solid var(--ion-border-color) !important;
+    border-radius: 14px !important;
+    color: var(--ion-text-color) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  .popover-container-padding {
+    padding: 16px 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+
+  .popover-content-bg {
+    --background: transparent !important;
+    --color: var(--ion-text-color) !important;
+    background: transparent !important;
+    color: var(--ion-text-color) !important;
+  }
+
+  .popover-header-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    border-bottom: 0.5px solid var(--ion-border-color) !important;
+    padding-bottom: 10px !important;
+    margin-bottom: 4px !important;
+    width: 100% !important;
+  }
+
+  .popover-heading {
+    font-family: var(--font-family-heading) !important;
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.8px !important;
+    margin: 0 !important;
+    color: var(--ion-color-primary) !important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+
+  .popover-reset-icon-btn {
+    background: transparent !important;
+    border: none !important;
+    padding: 6px !important;
+    margin: -6px !important;
+    color: var(--ion-color-primary) !important;
+    cursor: pointer !important;
+    outline: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: transform 0.3s ease, opacity 0.2s ease !important;
+
+    ion-icon {
+      font-size: 1.15rem !important;
+    }
+
+    &:active {
+      transform: rotate(-180deg) scale(0.85) !important;
+      opacity: 0.6 !important;
+    }
+  }
+
+  .popover-label-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .popover-row-icon {
+    font-size: 1rem !important;
+    color: var(--ion-color-primary) !important;
+    opacity: 0.8 !important;
+  }
+
+  .popover-control-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    width: 100% !important;
+  }
+
+  .popover-info-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .popover-label-text {
+    font-family: var(--font-family-heading) !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    color: var(--ion-text-color) !important;
+  }
+
+  .popover-badge {
+    font-family: var(--font-family-sans) !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    color: var(--ion-color-primary) !important;
+    background: rgba(162, 132, 94, 0.1) !important;
+    padding: 2px 8px !important;
+    border-radius: 6px !important;
+    border: 0.5px solid rgba(162, 132, 94, 0.2) !important;
+    transition: all 0.2s ease !important;
+  }
+
+  /* Luxury Range Slider inside Popover */
+  .luxury-range-gold {
+    padding: 0 !important;
+    --bar-background: rgba(162, 132, 94, 0.12) !important;
+    --bar-background-active: var(--ion-color-primary) !important;
+    --knob-background: #ffffff !important;
+    --knob-size: 20px !important;
+    --knob-border-radius: 50% !important;
+    --knob-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    margin: 4px 0 !important;
+    min-height: 38px !important;
+  }
+
+  /* Premium Typographic Scale Caps */
+  .popover-range-cap {
+    font-family: var(--font-family-sans) !important;
+    font-weight: 600 !important;
+    color: var(--ion-color-medium) !important;
+    display: inline-block !important;
+
+    &.sm {
+      font-size: 11px !important;
+      margin-right: 14px !important;
+    }
+
+    &.lg {
+      font-size: 15px !important;
+      margin-left: 14px !important;
+      color: var(--ion-color-primary) !important;
+    }
+  }
+}
+
+/* Explicit Dark Mode Overrides for Popovers */
+body.dark .premium-popover-theme {
+  --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
+
+  &::part(content) {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .popover-badge {
+    background: rgba(191, 157, 108, 0.12) !important;
+    border-color: rgba(191, 157, 108, 0.2) !important;
+  }
+
+  .luxury-range-gold {
+    --bar-background: rgba(191, 157, 108, 0.15) !important;
+  }
+}
+
+/* Base Light/Dark variables for all themes */
+html body.light, html body.light * {
+  --home-text-main: #2c251e !important;
+  --home-text-muted: #706860 !important;
+}
+html body.dark, html body.dark * {
+  --home-text-main: #f4efeb !important;
+  --home-text-muted: #9c948c !important;
+}
+
+/* ==========================================================================
+   Premium Accent Themes System
+   ========================================================================== */
+
+/* Gold (Default) */
+html body.light.theme-gold, html body.light.theme-gold * {
+  --home-accent: #a2845e !important;
+  --home-accent-rgb: 162, 132, 94 !important;
+  --home-accent-tint: #d1a86a !important;
+  --ion-color-primary: #a2845e !important;
+  --ion-color-primary-rgb: 162, 132, 94 !important;
+  --ion-color-primary-tint: #ab906e !important;
+  --ion-color-primary-shade: #8f7453 !important;
+  
+  --home-bg: #ece8df !important;
+  --home-card-bg: rgba(255, 255, 255, 0.7) !important;
+  --home-card-border: rgba(162, 132, 94, 0.16) !important;
+  --glass-bg: rgba(236, 232, 223, 0.85) !important;
+  --glass-border: rgba(162, 132, 94, 0.25) !important;
+  --ion-border-color: rgba(162, 132, 94, 0.28) !important;
+  --home-search-bg: rgba(162, 132, 94, 0.08) !important;
+  --home-badge-bg: rgba(162, 132, 94, 0.12) !important;
+  --glass-shadow: 0 8px 32px rgba(162, 132, 94, 0.04) !important;
+
+  --theme-gradient-start: #dca869;
+  --theme-gradient-mid: #a2845e;
+  --theme-gradient-end: #765a39;
+
+  /* Sidebar - Always Dark Console */
+  --theme-sidebar-bg: rgba(16, 16, 15, 0.88) !important;
+  --theme-sidebar-card-bg: rgba(28, 28, 30, 0.5) !important;
+  --theme-sidebar-card-border: rgba(191, 157, 108, 0.08) !important;
+  --theme-sidebar-text-main: #f4efeb !important;
+  --theme-sidebar-text-muted: #9c948c !important;
+  --theme-sidebar-border: rgba(191, 157, 108, 0.1) !important;
+  --theme-sidebar-list-item-hover: rgba(255, 255, 255, 0.04) !important;
+  --theme-sidebar-list-item-active: rgba(191, 157, 108, 0.12) !important;
+  --theme-sidebar-badge-bg: rgba(255, 255, 255, 0.05) !important;
+}
+html body.dark.theme-gold, html body.dark.theme-gold * {
+  --home-accent: #bf9d6c !important;
+  --home-accent-rgb: 191, 157, 108 !important;
+  --home-accent-tint: #d8c2a3 !important;
+  --ion-color-primary: #bf9d6c !important;
+  --ion-color-primary-rgb: 191, 157, 108 !important;
+  --ion-color-primary-tint: #c5a77b !important;
+  --ion-color-primary-shade: #a88a5f !important;
+
+  --home-bg: #10100f !important;
+  --home-card-bg: rgba(22, 22, 21, 0.75) !important;
+  --home-card-border: rgba(191, 157, 108, 0.12) !important;
+  --glass-bg: rgba(16, 16, 15, 0.88) !important;
+  --glass-border: rgba(191, 157, 108, 0.15) !important;
+  --ion-border-color: rgba(191, 157, 108, 0.15) !important;
+  --home-search-bg: rgba(255, 255, 255, 0.04) !important;
+  --home-badge-bg: rgba(255, 255, 255, 0.05) !important;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+
+  --theme-gradient-dark-start: #3d301f;
+  --theme-gradient-dark-mid: #15120d;
+
+  /* Sidebar - Always Dark Console */
+  --theme-sidebar-bg: rgba(16, 16, 15, 0.88) !important;
+  --theme-sidebar-card-bg: rgba(28, 28, 30, 0.5) !important;
+  --theme-sidebar-card-border: rgba(191, 157, 108, 0.08) !important;
+  --theme-sidebar-text-main: #f4efeb !important;
+  --theme-sidebar-text-muted: #9c948c !important;
+  --theme-sidebar-border: rgba(191, 157, 108, 0.1) !important;
+  --theme-sidebar-list-item-hover: rgba(255, 255, 255, 0.04) !important;
+  --theme-sidebar-list-item-active: rgba(191, 157, 108, 0.12) !important;
+  --theme-sidebar-badge-bg: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Emerald */
+html body.light.theme-emerald, html body.light.theme-emerald * {
+  --home-accent: #1b4d3e !important;
+  --home-accent-rgb: 27, 77, 62 !important;
+  --home-accent-tint: #286b57 !important;
+  --ion-color-primary: #1b4d3e !important;
+  --ion-color-primary-rgb: 27, 77, 62 !important;
+  --ion-color-primary-tint: #286b57 !important;
+  --ion-color-primary-shade: #123329 !important;
+
+  --home-bg: #eaf1ed !important;
+  --home-card-bg: rgba(255, 255, 255, 0.75) !important;
+  --home-card-border: rgba(27, 77, 62, 0.14) !important;
+  --glass-bg: rgba(234, 241, 237, 0.85) !important;
+  --glass-border: rgba(27, 77, 62, 0.22) !important;
+  --ion-border-color: rgba(27, 77, 62, 0.28) !important;
+  --home-search-bg: rgba(27, 77, 62, 0.08) !important;
+  --home-badge-bg: rgba(27, 77, 62, 0.12) !important;
+  --glass-shadow: 0 8px 32px rgba(27, 77, 62, 0.04) !important;
+
+  --theme-gradient-start: #52c49a;
+  --theme-gradient-mid: #1b4d3e;
+  --theme-gradient-end: #0f3026;
+
+  /* Sidebar - Always Dark Console */
+  --theme-sidebar-bg: rgba(9, 14, 12, 0.9) !important;
+  --theme-sidebar-card-bg: rgba(15, 22, 19, 0.5) !important;
+  --theme-sidebar-card-border: rgba(52, 168, 126, 0.08) !important;
+  --theme-sidebar-text-main: #e8f5f0 !important;
+  --theme-sidebar-text-muted: #8fa89e !important;
+  --theme-sidebar-border: rgba(52, 168, 126, 0.1) !important;
+  --theme-sidebar-list-item-hover: rgba(255, 255, 255, 0.04) !important;
+  --theme-sidebar-list-item-active: rgba(52, 168, 126, 0.12) !important;
+  --theme-sidebar-badge-bg: rgba(255, 255, 255, 0.05) !important;
+}
+html body.dark.theme-emerald, html body.dark.theme-emerald * {
+  --home-accent: #34a87e !important;
+  --home-accent-rgb: 52, 168, 126 !important;
+  --home-accent-tint: #4ac395 !important;
+  --ion-color-primary: #34a87e !important;
+  --ion-color-primary-rgb: 52, 168, 126 !important;
+  --ion-color-primary-tint: #4ac395 !important;
+  --ion-color-primary-shade: #227c5b !important;
+
+  --home-bg: #090e0c !important;
+  --home-card-bg: rgba(15, 22, 19, 0.75) !important;
+  --home-card-border: rgba(52, 168, 126, 0.12) !important;
+  --glass-bg: rgba(9, 14, 12, 0.88) !important;
+  --glass-border: rgba(52, 168, 126, 0.15) !important;
+  --ion-border-color: rgba(52, 168, 126, 0.15) !important;
+  --home-search-bg: rgba(255, 255, 255, 0.04) !important;
+  --home-badge-bg: rgba(255, 255, 255, 0.05) !important;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+
+  --theme-gradient-dark-start: #113327;
+  --theme-gradient-dark-mid: #05120e;
+
+  /* Sidebar - Always Dark Console */
+  --theme-sidebar-bg: rgba(9, 14, 12, 0.9) !important;
+  --theme-sidebar-card-bg: rgba(15, 22, 19, 0.5) !important;
+  --theme-sidebar-card-border: rgba(52, 168, 126, 0.08) !important;
+  --theme-sidebar-text-main: #e8f5f0 !important;
+  --theme-sidebar-text-muted: #8fa89e !important;
+  --theme-sidebar-border: rgba(52, 168, 126, 0.1) !important;
+  --theme-sidebar-list-item-hover: rgba(255, 255, 255, 0.04) !important;
+  --theme-sidebar-list-item-active: rgba(52, 168, 126, 0.12) !important;
+  --theme-sidebar-badge-bg: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Crimson */
+html body.light.theme-crimson, html body.light.theme-crimson * {
+  --home-accent: #800020 !important;
+  --home-accent-rgb: 128, 0, 32 !important;
+  --home-accent-tint: #9c1033 !important;
+  --ion-color-primary: #800020 !important;
+  --ion-color-primary-rgb: 128, 0, 32 !important;
+  --ion-color-primary-tint: #9c1033 !important;
+  --ion-color-primary-shade: #5c0014 !important;
+
+  --home-bg: #f5eaec !important;
+  --home-card-bg: rgba(255, 255, 255, 0.75) !important;
+  --home-card-border: rgba(128, 0, 32, 0.12) !important;
+  --glass-bg: rgba(245, 234, 236, 0.85) !important;
+  --glass-border: rgba(128, 0, 32, 0.2) !important;
+  --ion-border-color: rgba(128, 0, 32, 0.28) !important;
+  --home-search-bg: rgba(128, 0, 32, 0.08) !important;
+  --home-badge-bg: rgba(128, 0, 32, 0.12) !important;
+  --glass-shadow: 0 8px 32px rgba(128, 0, 32, 0.04) !important;
+
+  --theme-gradient-start: #cf3d5e;
+  --theme-gradient-mid: #800020;
+  --theme-gradient-end: #4a0010;
+
+  /* Sidebar - Always Dark Console */
+  --theme-sidebar-bg: rgba(14, 8, 9, 0.9) !important;
+  --theme-sidebar-card-bg: rgba(22, 15, 16, 0.5) !important;
+  --theme-sidebar-card-border: rgba(217, 75, 104, 0.08) !important;
+  --theme-sidebar-text-main: #f9eaed !important;
+  --theme-sidebar-text-muted: #b08d93 !important;
+  --theme-sidebar-border: rgba(217, 75, 104, 0.1) !important;
+  --theme-sidebar-list-item-hover: rgba(255, 255, 255, 0.04) !important;
+  --theme-sidebar-list-item-active: rgba(217, 75, 104, 0.12) !important;
+  --theme-sidebar-badge-bg: rgba(255, 255, 255, 0.05) !important;
+}
+html body.dark.theme-crimson, html body.dark.theme-crimson * {
+  --home-accent: #d94b68 !important;
+  --home-accent-rgb: 217, 75, 104 !important;
+  --home-accent-tint: #e86b83 !important;
+  --ion-color-primary: #d94b68 !important;
+  --ion-color-primary-rgb: 217, 75, 104 !important;
+  --ion-color-primary-tint: #e86b83 !important;
+  --ion-color-primary-shade: #b3324d !important;
+
+  --home-bg: #0e0809 !important;
+  --home-card-bg: rgba(22, 15, 16, 0.75) !important;
+  --home-card-border: rgba(217, 75, 104, 0.12) !important;
+  --glass-bg: rgba(14, 8, 9, 0.88) !important;
+  --glass-border: rgba(217, 75, 104, 0.15) !important;
+  --ion-border-color: rgba(217, 75, 104, 0.15) !important;
+  --home-search-bg: rgba(255, 255, 255, 0.04) !important;
+  --home-badge-bg: rgba(255, 255, 255, 0.05) !important;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+
+  --theme-gradient-dark-start: #3a0d17;
+  --theme-gradient-dark-mid: #140408;
+
+  /* Sidebar - Always Dark Console */
+  --theme-sidebar-bg: rgba(14, 8, 9, 0.9) !important;
+  --theme-sidebar-card-bg: rgba(22, 15, 16, 0.5) !important;
+  --theme-sidebar-card-border: rgba(217, 75, 104, 0.08) !important;
+  --theme-sidebar-text-main: #f9eaed !important;
+  --theme-sidebar-text-muted: #b08d93 !important;
+  --theme-sidebar-border: rgba(217, 75, 104, 0.1) !important;
+  --theme-sidebar-list-item-hover: rgba(255, 255, 255, 0.04) !important;
+  --theme-sidebar-list-item-active: rgba(217, 75, 104, 0.12) !important;
+  --theme-sidebar-badge-bg: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Sapphire */
+html body.light.theme-sapphire, html body.light.theme-sapphire * {
+  --home-accent: #0f4c81 !important;
+  --home-accent-rgb: 15, 76, 129 !important;
+  --home-accent-tint: #1b64a3 !important;
+  --ion-color-primary: #0f4c81 !important;
+  --ion-color-primary-rgb: 15, 76, 129 !important;
+  --ion-color-primary-tint: #1b64a3 !important;
+  --ion-color-primary-shade: #0a3459 !important;
+
+  --home-bg: #eaf1f6 !important;
+  --home-card-bg: rgba(255, 255, 255, 0.75) !important;
+  --home-card-border: rgba(15, 76, 129, 0.12) !important;
+  --glass-bg: rgba(234, 241, 246, 0.85) !important;
+  --glass-border: rgba(15, 76, 129, 0.2) !important;
+  --ion-border-color: rgba(15, 76, 129, 0.28) !important;
+  --home-search-bg: rgba(15, 76, 129, 0.08) !important;
+  --home-badge-bg: rgba(15, 76, 129, 0.12) !important;
+  --glass-shadow: 0 8px 32px rgba(15, 76, 129, 0.04) !important;
+
+  --theme-gradient-start: #579ad4;
+  --theme-gradient-mid: #0f4c81;
+  --theme-gradient-end: #072540;
+
+  /* Sidebar - Always Dark Console */
+  --theme-sidebar-bg: rgba(8, 12, 16, 0.9) !important;
+  --theme-sidebar-card-bg: rgba(13, 19, 26, 0.5) !important;
+  --theme-sidebar-card-border: rgba(82, 154, 214, 0.08) !important;
+  --theme-sidebar-text-main: #ebf3f9 !important;
+  --theme-sidebar-text-muted: #8eaac2 !important;
+  --theme-sidebar-border: rgba(82, 154, 214, 0.1) !important;
+  --theme-sidebar-list-item-hover: rgba(255, 255, 255, 0.04) !important;
+  --theme-sidebar-list-item-active: rgba(82, 154, 214, 0.12) !important;
+  --theme-sidebar-badge-bg: rgba(255, 255, 255, 0.05) !important;
+}
+html body.dark.theme-sapphire, html body.dark.theme-sapphire * {
+  --home-accent: #529ad6 !important;
+  --home-accent-rgb: 82, 154, 214 !important;
+  --home-accent-tint: #71adde !important;
+  --ion-color-primary: #529ad6 !important;
+  --ion-color-primary-rgb: 82, 154, 214 !important;
+  --ion-color-primary-tint: #71adde !important;
+  --ion-color-primary-shade: #3779b3 !important;
+
+  --home-bg: #080c10 !important;
+  --home-card-bg: rgba(13, 19, 26, 0.75) !important;
+  --home-card-border: rgba(82, 154, 214, 0.12) !important;
+  --glass-bg: rgba(8, 12, 16, 0.88) !important;
+  --glass-border: rgba(82, 154, 214, 0.15) !important;
+  --ion-border-color: rgba(82, 154, 214, 0.15) !important;
+  --home-search-bg: rgba(255, 255, 255, 0.04) !important;
+  --home-badge-bg: rgba(255, 255, 255, 0.05) !important;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+
+  --theme-gradient-dark-start: #102638;
+  --theme-gradient-dark-mid: #050d14;
+
+  /* Sidebar - Always Dark Console */
+  --theme-sidebar-bg: rgba(8, 12, 16, 0.9) !important;
+  --theme-sidebar-card-bg: rgba(13, 19, 26, 0.5) !important;
+  --theme-sidebar-card-border: rgba(82, 154, 214, 0.08) !important;
+  --theme-sidebar-text-main: #ebf3f9 !important;
+  --theme-sidebar-text-muted: #8eaac2 !important;
+  --theme-sidebar-border: rgba(82, 154, 214, 0.1) !important;
+  --theme-sidebar-list-item-hover: rgba(255, 255, 255, 0.04) !important;
+  --theme-sidebar-list-item-active: rgba(82, 154, 214, 0.12) !important;
+  --theme-sidebar-badge-bg: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Rose Gold */
+html body.light.theme-rosegold, html body.light.theme-rosegold * {
+  --home-accent: #b76e79 !important;
+  --home-accent-rgb: 183, 110, 121 !important;
+  --home-accent-tint: #c5838d !important;
+  --ion-color-primary: #b76e79 !important;
+  --ion-color-primary-rgb: 183, 110, 121 !important;
+  --ion-color-primary-tint: #c5838d !important;
+  --ion-color-primary-shade: #96545f !important;
+
+  --home-bg: #f4ecec !important;
+  --home-card-bg: rgba(255, 255, 255, 0.75) !important;
+  --home-card-border: rgba(183, 110, 121, 0.15) !important;
+  --glass-bg: rgba(244, 236, 236, 0.85) !important;
+  --glass-border: rgba(183, 110, 121, 0.22) !important;
+  --ion-border-color: rgba(183, 110, 121, 0.28) !important;
+  --home-search-bg: rgba(183, 110, 121, 0.08) !important;
+  --home-badge-bg: rgba(183, 110, 121, 0.12) !important;
+  --glass-shadow: 0 8px 32px rgba(183, 110, 121, 0.04) !important;
+
+  --theme-gradient-start: #d89fa7;
+  --theme-gradient-mid: #b76e79;
+  --theme-gradient-end: #7c434c;
+
+  /* Sidebar - Always Dark Console */
+  --theme-sidebar-bg: rgba(18, 14, 14, 0.9) !important;
+  --theme-sidebar-card-bg: rgba(24, 18, 18, 0.5) !important;
+  --theme-sidebar-card-border: rgba(216, 162, 169, 0.08) !important;
+  --theme-sidebar-text-main: #f9f0f1 !important;
+  --theme-sidebar-text-muted: #ba9fa2 !important;
+  --theme-sidebar-border: rgba(216, 162, 169, 0.1) !important;
+  --theme-sidebar-list-item-hover: rgba(255, 255, 255, 0.04) !important;
+  --theme-sidebar-list-item-active: rgba(216, 162, 169, 0.12) !important;
+  --theme-sidebar-badge-bg: rgba(255, 255, 255, 0.05) !important;
+}
+html body.dark.theme-rosegold, html body.dark.theme-rosegold * {
+  --home-accent: #d8a2a9 !important;
+  --home-accent-rgb: 216, 162, 169 !important;
+  --home-accent-tint: #e2b4bb !important;
+  --ion-color-primary: #d8a2a9 !important;
+  --ion-color-primary-rgb: 216, 162, 169 !important;
+  --ion-color-primary-tint: #e2b4bb !important;
+  --ion-color-primary-shade: #ba868d !important;
+
+  --home-bg: #120e0e !important;
+  --home-card-bg: rgba(24, 18, 18, 0.75) !important;
+  --home-card-border: rgba(216, 162, 169, 0.12) !important;
+  --glass-bg: rgba(18, 14, 14, 0.88) !important;
+  --glass-border: rgba(216, 162, 169, 0.15) !important;
+  --ion-border-color: rgba(216, 162, 169, 0.15) !important;
+  --home-search-bg: rgba(255, 255, 255, 0.04) !important;
+  --home-badge-bg: rgba(255, 255, 255, 0.05) !important;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+
+  --theme-gradient-dark-start: #3c2427;
+  --theme-gradient-dark-mid: #150c0d;
+
+  /* Sidebar - Always Dark Console */
+  --theme-sidebar-bg: rgba(18, 14, 14, 0.9) !important;
+  --theme-sidebar-card-bg: rgba(24, 18, 18, 0.5) !important;
+  --theme-sidebar-card-border: rgba(216, 162, 169, 0.08) !important;
+  --theme-sidebar-text-main: #f9f0f1 !important;
+  --theme-sidebar-text-muted: #ba9fa2 !important;
+  --theme-sidebar-border: rgba(216, 162, 169, 0.1) !important;
+  --theme-sidebar-list-item-hover: rgba(255, 255, 255, 0.04) !important;
+  --theme-sidebar-list-item-active: rgba(216, 162, 169, 0.12) !important;
+  --theme-sidebar-badge-bg: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Amethyst */
+html body.light.theme-amethyst, html body.light.theme-amethyst * {
+  --home-accent: #5d3fd3 !important;
+  --home-accent-rgb: 93, 63, 211 !important;
+  --home-accent-tint: #7c63db !important;
+  --ion-color-primary: #5d3fd3 !important;
+  --ion-color-primary-rgb: 93, 63, 211 !important;
+  --ion-color-primary-tint: #7c63db !important;
+  --ion-color-primary-shade: #4326b5 !important;
+
+  --home-bg: #eceaf6 !important;
+  --home-card-bg: rgba(255, 255, 255, 0.75) !important;
+  --home-card-border: rgba(93, 63, 211, 0.12) !important;
+  --glass-bg: rgba(236, 234, 246, 0.85) !important;
+  --glass-border: rgba(93, 63, 211, 0.2) !important;
+  --ion-border-color: rgba(93, 63, 211, 0.28) !important;
+  --home-search-bg: rgba(93, 63, 211, 0.08) !important;
+  --home-badge-bg: rgba(93, 63, 211, 0.12) !important;
+  --glass-shadow: 0 8px 32px rgba(93, 63, 211, 0.04) !important;
+
+  --theme-gradient-start: #957fee;
+  --theme-gradient-mid: #5d3fd3;
+  --theme-gradient-end: #36228f;
+
+  /* Sidebar - Always Dark Console */
+  --theme-sidebar-bg: rgba(11, 9, 18, 0.9) !important;
+  --theme-sidebar-card-bg: rgba(18, 15, 26, 0.5) !important;
+  --theme-sidebar-card-border: rgba(163, 144, 240, 0.08) !important;
+  --theme-sidebar-text-main: #f0ecfa !important;
+  --theme-sidebar-text-muted: #a39bb8 !important;
+  --theme-sidebar-border: rgba(163, 144, 240, 0.1) !important;
+  --theme-sidebar-list-item-hover: rgba(255, 255, 255, 0.04) !important;
+  --theme-sidebar-list-item-active: rgba(163, 144, 240, 0.12) !important;
+  --theme-sidebar-badge-bg: rgba(255, 255, 255, 0.05) !important;
+}
+html body.dark.theme-amethyst, html body.dark.theme-amethyst * {
+  --home-accent: #a390f0 !important;
+  --home-accent-rgb: 163, 144, 240 !important;
+  --home-accent-tint: #b8a8f4 !important;
+  --ion-color-primary: #a390f0 !important;
+  --ion-color-primary-rgb: 163, 144, 240 !important;
+  --ion-color-primary-tint: #b8a8f4 !important;
+  --ion-color-primary-shade: #8268db !important;
+
+  --home-bg: #0b0912 !important;
+  --home-card-bg: rgba(18, 15, 26, 0.75) !important;
+  --home-card-border: rgba(163, 144, 240, 0.12) !important;
+  --glass-bg: rgba(11, 9, 18, 0.88) !important;
+  --glass-border: rgba(163, 144, 240, 0.15) !important;
+  --ion-border-color: rgba(163, 144, 240, 0.15) !important;
+  --home-search-bg: rgba(255, 255, 255, 0.04) !important;
+  --home-badge-bg: rgba(255, 255, 255, 0.05) !important;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+
+  --theme-gradient-dark-start: #231b40;
+  --theme-gradient-dark-mid: #0c0917;
+
+  /* Sidebar - Always Dark Console */
+  --theme-sidebar-bg: rgba(11, 9, 18, 0.9) !important;
+  --theme-sidebar-card-bg: rgba(18, 15, 26, 0.5) !important;
+  --theme-sidebar-card-border: rgba(163, 144, 240, 0.08) !important;
+  --theme-sidebar-text-main: #f0ecfa !important;
+  --theme-sidebar-text-muted: #a39bb8 !important;
+  --theme-sidebar-border: rgba(163, 144, 240, 0.1) !important;
+  --theme-sidebar-list-item-hover: rgba(255, 255, 255, 0.04) !important;
+  --theme-sidebar-list-item-active: rgba(163, 144, 240, 0.12) !important;
+  --theme-sidebar-badge-bg: rgba(255, 255, 255, 0.05) !important;
+}
+
+
 
 

@@ -16,8 +16,8 @@ export class FavoritesPage implements OnInit, OnDestroy {
   favoriteDuas: any[] = [];
   favorites: string[] = [];
   selectedArabicFont = 'arabic';
-  arabicFontSize = 32;
-  tamilFontSize = 17;
+  arabicFontSize = '32px';
+  tamilFontSize = '17px';
   showTamilDua: boolean = true;
   showTranslation: boolean = true;
   showHadees: boolean = true;
@@ -40,8 +40,8 @@ export class FavoritesPage implements OnInit, OnDestroy {
     // Subscribe to settings changes
     this.settingsSubscription = this.settingService.observableSettings.subscribe(settings => {
       if (settings) {
-        this.arabicFontSize = parseInt(settings.ArabicFontSize, 10) || 32;
-        this.tamilFontSize = parseInt(settings.TamilFontSize, 10) || 17;
+        this.arabicFontSize = settings.ArabicFontSize;
+        this.tamilFontSize = settings.TamilFontSize;
         this.selectedArabicFont = settings.ArabicFont;
         this.showTamilDua = settings.ShowTamilDua;
         this.showTranslation = settings.ShowTranslation;
@@ -147,21 +147,17 @@ export class FavoritesPage implements OnInit, OnDestroy {
     }
   }
 
-  goToSettingsPage() {
-    this.navController.navigateForward('/settings');
-  }
-
   toggleReaderMode() {
     this.isReaderMode = !this.isReaderMode;
     this.triggerHapticFeedback();
   }
 
   get arabicFontSizeVal(): number {
-    return this.arabicFontSize;
+    return parseInt(this.arabicFontSize) || 32;
   }
 
   get tamilFontSizeVal(): number {
-    return this.tamilFontSize;
+    return parseInt(this.tamilFontSize) || 17;
   }
 
   onArabicSizeChange(event: any) {
@@ -172,5 +168,10 @@ export class FavoritesPage implements OnInit, OnDestroy {
   onTamilSizeChange(event: any) {
     const val = event.detail.value;
     this.settingService.setTamilFontSize(val);
+  }
+
+  async resetFontSizes() {
+    await this.settingService.resetToDefaults();
+    await this.triggerHapticFeedback();
   }
 }
