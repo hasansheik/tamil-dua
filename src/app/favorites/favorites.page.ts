@@ -16,8 +16,8 @@ export class FavoritesPage implements OnInit, OnDestroy {
   favoriteDuas: any[] = [];
   favorites: string[] = [];
   selectedArabicFont = 'arabic';
-  arabicFontSize = '32px';
-  tamilFontSize = '17px';
+  arabicFontSize = 32;
+  tamilFontSize = 17;
   showTamilDua: boolean = true;
   showTranslation: boolean = true;
   showHadees: boolean = true;
@@ -40,8 +40,8 @@ export class FavoritesPage implements OnInit, OnDestroy {
     // Subscribe to settings changes
     this.settingsSubscription = this.settingService.observableSettings.subscribe(settings => {
       if (settings) {
-        this.arabicFontSize = settings.ArabicFontSize;
-        this.tamilFontSize = settings.TamilFontSize;
+        this.arabicFontSize = parseInt(settings.ArabicFontSize, 10) || 32;
+        this.tamilFontSize = parseInt(settings.TamilFontSize, 10) || 17;
         this.selectedArabicFont = settings.ArabicFont;
         this.showTamilDua = settings.ShowTamilDua;
         this.showTranslation = settings.ShowTranslation;
@@ -157,11 +157,11 @@ export class FavoritesPage implements OnInit, OnDestroy {
   }
 
   get arabicFontSizeVal(): number {
-    return parseInt(this.arabicFontSize) || 32;
+    return this.arabicFontSize;
   }
 
   get tamilFontSizeVal(): number {
-    return parseInt(this.tamilFontSize) || 17;
+    return this.tamilFontSize;
   }
 
   onArabicSizeChange(event: any) {

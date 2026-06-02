@@ -11,6 +11,7 @@ import { DuaService } from './shared/service/dua.service';
 import { SettingService } from './shared/service/setting.service';
 import { StorageService } from './shared/service/storage.service';
 import { NetworkService } from './shared/service/network.service';
+import { customPageTransition } from './shared/animations/page-transition';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,8 @@ import { NetworkService } from './shared/service/network.service';
     BrowserModule,
     IonicModule.forRoot({
       mode: 'ios',
-      animated: true
+      animated: true,
+      navAnimation: customPageTransition
     }),
     AppRoutingModule,
     HttpClientModule

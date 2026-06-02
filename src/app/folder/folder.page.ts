@@ -20,8 +20,8 @@ export class FolderPage implements OnInit, OnDestroy {
   duaList = [];
   filteredDuas = [];
   selectedArabicFont = 'arabic';
-  arabicFontSize = '32px';
-  tamilFontSize = '17px';
+  arabicFontSize = 32;
+  tamilFontSize = 17;
   duaGroupTitle = 'முஸ்லீம்களின் அன்றாடப் பிரார்தனைகள்';
   shareTemplate = ' *@title* \n\n\r@notes \n\r\n\r @arabic  \n\r\n\r *தமிழ்:* @tamilDua-  \n\r\n\r *பொருள்:* @translation \n\n\r *ஆதாரம்:* \n\n\r @evidence';
   isLoading = false;
@@ -93,8 +93,8 @@ export class FolderPage implements OnInit, OnDestroy {
     this.settingsSubscription = this.settingService.observableSettings.subscribe(settings => {
       if (settings) {
         // Update font settings
-        this.arabicFontSize = settings.ArabicFontSize;
-        this.tamilFontSize = settings.TamilFontSize;
+        this.arabicFontSize = parseInt(settings.ArabicFontSize, 10) || 32;
+        this.tamilFontSize = parseInt(settings.TamilFontSize, 10) || 17;
         this.selectedArabicFont = settings.ArabicFont;
 
         // Update visibility settings
@@ -120,15 +120,6 @@ export class FolderPage implements OnInit, OnDestroy {
       // Only refresh if we're coming back online
       if (isOnline && wasOffline) {
         await this.refreshData();
-      }
-    });
-
-    // Initialize settings subscription
-    this.settingsSubscription = this.settingService.observableSettings.subscribe((data) => {
-      if (data) {
-        this.arabicFontSize = data.ArabicFontSize;
-        this.tamilFontSize = data.TamilFontSize;
-        this.selectedArabicFont = data.ArabicFont;
       }
     });
   }
@@ -439,11 +430,11 @@ export class FolderPage implements OnInit, OnDestroy {
   }
 
   get arabicFontSizeVal(): number {
-    return parseInt(this.arabicFontSize) || 32;
+    return this.arabicFontSize;
   }
 
   get tamilFontSizeVal(): number {
-    return parseInt(this.tamilFontSize) || 17;
+    return this.tamilFontSize;
   }
 
   onArabicSizeChange(event: any) {

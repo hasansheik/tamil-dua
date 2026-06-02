@@ -123,10 +123,13 @@ import { ModalController } from '@ionic/angular';
     /* Toolbar & Glass Headers */
     .apple-header-glass {
       background: var(--glass-bg) !important;
-      backdrop-filter: blur(20px) !important;
-      -webkit-backdrop-filter: blur(20px) !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
       border-bottom: 0.5px solid var(--glass-border) !important;
       flex-shrink: 0;
+      will-change: transform;
+      contain: layout style;
+      transform: translateZ(0);
     }
 
     .apple-toolbar-glass {
