@@ -211,39 +211,36 @@
   margin: 0 6px 16px 6px;
   color: #ffffff;
   box-shadow: 0 4px 18px rgba(var(--home-accent-rgb), 0.15), 0 2px 4px rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(var(--home-accent-rgb), 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background-clip: padding-box;
   transition: all 0.5s ease-in-out;
 
   /* Morning - Golden Dawn Amber */
   &.morning {
     background: radial-gradient(circle at top right, rgba(var(--home-accent-rgb), 0.3) 0%, transparent 65%), linear-gradient(135deg, var(--theme-gradient-start, #dca869) 0%, var(--theme-gradient-mid, #a2845e) 60%, var(--theme-gradient-end, #765a39) 100%);
-    border-color: rgba(var(--home-accent-rgb), 0.25);
   }
 
   /* Afternoon - High Sunshine Copper */
   &.afternoon {
     background: radial-gradient(circle at top right, rgba(var(--home-accent-rgb), 0.3) 0%, transparent 65%), linear-gradient(135deg, var(--theme-gradient-start, #c5975d) 0%, var(--theme-gradient-mid, #8e6d42) 60%, var(--theme-gradient-end, #634b2b) 100%);
-    border-color: rgba(var(--home-accent-rgb), 0.25);
   }
 
   /* Evening - Twilight Sunset Rose Gold */
   &.evening {
     background: radial-gradient(circle at top right, rgba(var(--home-accent-rgb), 0.3) 0%, transparent 65%), linear-gradient(135deg, var(--theme-gradient-start, #b3786f) 0%, var(--theme-gradient-mid, #854f46) 60%, var(--theme-gradient-end, #542b24) 100%);
-    border-color: rgba(var(--home-accent-rgb), 0.25);
   }
 
   /* Night - Obsidian Midnight Violet Gold */
   &.night {
     background: radial-gradient(circle at top right, rgba(var(--home-accent-rgb), 0.3) 0%, transparent 65%), linear-gradient(135deg, var(--theme-gradient-start, #2d2638) 0%, var(--theme-gradient-mid, #15111d) 60%, var(--theme-gradient-end, #08070b) 100%);
-    border-color: rgba(var(--home-accent-rgb), 0.2);
   }
 
   :host-context(body.dark) & {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    border-color: rgba(255, 255, 255, 0.12) !important;
 
     &.morning, &.afternoon, &.evening, &.night {
       background: radial-gradient(circle at top right, rgba(var(--home-accent-rgb), 0.2) 0%, transparent 60%), linear-gradient(135deg, var(--theme-gradient-dark-start, #3d301f) 0%, var(--theme-gradient-dark-mid, #15120d) 100%);
-      border-color: rgba(var(--home-accent-rgb), 0.15);
     }
   }
 
