@@ -9,6 +9,7 @@ import { Share } from '@capacitor/share';
 import { Clipboard } from '@capacitor/clipboard';
 import { Subscription } from 'rxjs';
 import { StorageService } from '../shared/service/storage.service';
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
 
 @Component({
   selector: 'app-folder',
@@ -27,13 +28,14 @@ export class FolderPage implements OnInit, OnDestroy {
   isOffline = false;
   showSearch = false;
   searchText = '';
-  selectedCategory = 'all';
   favorites: string[] = [];
   currentlyPlaying: string | null = null;
   showTamilDua: boolean = true;
   showTranslation: boolean = true;
   showHadees: boolean = true;
   showNavigationMenu: boolean = true; // Controls visibility of the navigation menu
+  isReaderMode: boolean = false; // New: distraction-free reader mode toggle
+  scrollProgress: number = 0;
 
   private networkSubscription: Subscription | null = null;
   private settingsSubscription: Subscription | null = null;
@@ -175,31 +177,24 @@ export class FolderPage implements OnInit, OnDestroy {
     try {
       let filtered: any[] = [];
 
-      if (this.selectedCategory === 'search') {
-        if (this.searchText) {
-          filtered = await this.duaService.searchDuas(this.searchText);
-          this.duaGroupTitle = 'தேடல் முடிவுகள்';
-        } else {
-          filtered = [];
-          this.duaGroupTitle = 'தேடல் செய்ய உள்ளிடவும்';
-        }
-      } else if (this.selectedCategory === 'favorites') {
-        console.log('filterDuas - Favorites selected');
-        filtered = await this.duaService.getFavoriteDuas(this.favorites);
-        console.log('filterDuas - Favorites received');
-        this.duaGroupTitle = 'நெஞ்சில் நின்றவை';
+      if (this.showSearch && this.searchText) {
+        const query = this.searchText.toLowerCase().trim();
+        filtered = this.duaList.filter(dua => {
+          const title = dua.DuaTitle?.toLowerCase() ?? '';
+          const arabic = dua.DuaContent?.ArabicDua?.toLowerCase() ?? '';
+          const tamil = dua.DuaContent?.TamilDua?.toLowerCase() ?? '';
+          const translation = dua.DuaContent?.Translation?.toLowerCase() ?? '';
+
+          return title.includes(query) ||
+            arabic.includes(query) ||
+            tamil.includes(query) ||
+            translation.includes(query);
+        });
       } else {
         filtered = [...this.duaList];
-        console.log('filterDuas - All duas selected');
-        // Reset title to the original dua group title when showing all
-        const duaGroup = await this.duaService.getDuaGroupById(this.pageId!);
-        if (duaGroup) {
-          this.duaGroupTitle = duaGroup.PageTitle || 'முஸ்லீம்களின் அன்றாடப் பிரார்த்தனைகள்';
-        }
       }
 
       this.filteredDuas = filtered;
-      console.log('filterDuas - Filtered duas:', this.filteredDuas);
       this.cdr.detectChanges();
     } catch (error) {
       console.error('Error in filterDuas:', error);
@@ -212,28 +207,14 @@ export class FolderPage implements OnInit, OnDestroy {
     this.showSearch = !this.showSearch;
     if (!this.showSearch) {
       this.searchText = '';
-      await this.filterDuas();
     }
-  }
-
-  onCategoryChange() {
-    if (this.selectedCategory === 'search' && !this.showSearch) {
-      this.showSearch = true;
-    } else if (this.selectedCategory !== 'search' && this.showSearch) {
-      this.showSearch = false;
-      this.searchText = '';
-    }
-    this.filterDuas();
+    await this.filterDuas();
   }
 
   // Favorites Management
   async loadFavorites() {
     try {
       this.favorites = await this.settingService.getFavorites();
-      // If viewing favorites, refresh the filtered list
-      if (this.selectedCategory === 'favorites') {
-        this.filterDuas();
-      }
     } catch (error) {
       console.error('Error loading favorites:', error);
       this.favorites = [];
@@ -248,7 +229,8 @@ export class FolderPage implements OnInit, OnDestroy {
       this.favorites.splice(index, 1);
     }
     await this.settingService.setFavorites(this.favorites);
-
+    await this.triggerHapticFeedback();
+    this.cdr.detectChanges();
     const message = index === -1 ? 'பிடித்தவைகளில் சேர்க்கப்பட்டது' : 'பிடித்தவைகளிலிருந்து நீக்கப்பட்டது';
     const toast = await this.toastCtrl.create({
       message,
@@ -272,6 +254,7 @@ export class FolderPage implements OnInit, OnDestroy {
     const text = `${dua.DuaTitle}\n\n${dua.DuaContent.ArabicDua}\n\nதமிழ்: ${dua.DuaContent.TamilDua}\n\nபொருள்: ${dua.DuaContent.Translation}`;
 
     await Clipboard.write({ string: text });
+    await this.triggerHapticFeedback();
 
     const toast = await this.toastCtrl.create({
       message: 'நகலெடுக்கப்பட்டது',
@@ -284,29 +267,34 @@ export class FolderPage implements OnInit, OnDestroy {
   // Action Sheet
   async presentActionSheet() {
     const actionSheet = await this.actionSheetCtrl.create({
-      header: 'மேலும் விருப்பங்கள்',
+      header: 'வழிசெலுத்தல் (Navigation)',
       buttons: [
         {
-          text: 'பிடித்தவைகளை காட்டு',
+          text: 'விருப்பமானவை (Favorites)',
           icon: 'heart',
-          handler: async () => {
-            this.selectedCategory = 'favorites';
-            await this.filterDuas();
+          handler: () => {
+            this.navController.navigateForward('/favorites');
           }
         },
         {
-          text: 'அனைத்தையும் காட்டு',
-          icon: 'list',
-          handler: async () => {
-            this.selectedCategory = 'all';
-            await this.filterDuas();
-          }
-        },
-        {
-          text: 'தேடல்',
+          text: 'இப்பக்கத்தில் தேடுக (Search in Page)',
           icon: 'search',
-          handler: async () => {
+          handler: () => {
             this.toggleSearchBar();
+          }
+        },
+        {
+          text: 'முகப்பு (Home)',
+          icon: 'home',
+          handler: () => {
+            this.navController.navigateRoot('/home');
+          }
+        },
+        {
+          text: 'அமைப்புகள் (Settings)',
+          icon: 'settings',
+          handler: () => {
+            this.navController.navigateForward('/settings');
           }
         },
         {
@@ -375,6 +363,7 @@ export class FolderPage implements OnInit, OnDestroy {
         text: shareText,
         dialogTitle: 'அன்றாடப் பிரார்த்தனைகள்',
       });
+      await this.triggerHapticFeedback();
     } catch (error) {
       console.error('Error sharing:', error);
     }
@@ -424,10 +413,70 @@ export class FolderPage implements OnInit, OnDestroy {
     if (targetElement) {
       // Scroll to the selected dua with smooth behavior
       await this.duaContent.scrollToPoint(0, targetElement.offsetTop, 500);
+
+      // Find the card element inside and highlight it
+      const card = targetElement.querySelector('.ios-dua-card');
+      if (card) {
+        card.classList.add('highlight-glow');
+        setTimeout(() => {
+          card.classList.remove('highlight-glow');
+        }, 2500); // Remove after animation completes
+      }
     }
   }
 
   scrollToTop() {
     this.duaContent.scrollToTop(500);
+  }
+
+  // Premium Customizer & Helpers
+  async triggerHapticFeedback() {
+    try {
+      await Haptics.impact({ style: ImpactStyle.Light });
+    } catch (e) {
+      console.log('Haptics failed/unsupported', e);
+    }
+  }
+
+  get arabicFontSizeVal(): number {
+    return parseInt(this.arabicFontSize) || 32;
+  }
+
+  get tamilFontSizeVal(): number {
+    return parseInt(this.tamilFontSize) || 17;
+  }
+
+  onArabicSizeChange(event: any) {
+    const val = event.detail.value;
+    this.settingService.setArabicFontSize(val);
+  }
+
+  onTamilSizeChange(event: any) {
+    const val = event.detail.value;
+    this.settingService.setTamilFontSize(val);
+  }
+
+  async resetFontSizes() {
+    await this.settingService.resetToDefaults();
+    await this.triggerHapticFeedback();
+  }
+
+  toggleReaderMode() {
+    this.isReaderMode = !this.isReaderMode;
+    this.triggerHapticFeedback();
+  }
+
+  async onScroll(event: any) {
+    const scrollElement = await event.target.getScrollElement();
+    const scrollTop = event.detail.scrollTop;
+    const scrollHeight = scrollElement.scrollHeight;
+    const clientHeight = scrollElement.clientHeight;
+    
+    const totalScrollable = scrollHeight - clientHeight;
+    if (totalScrollable > 0) {
+      this.scrollProgress = (scrollTop / totalScrollable) * 100;
+    } else {
+      this.scrollProgress = 0;
+    }
   }
 }

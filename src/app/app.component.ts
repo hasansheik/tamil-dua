@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform, NavController } from '@ionic/angular';
 import { DuaService } from './shared/service/dua.service';
+import { SettingService } from './shared/service/setting.service';
 import { App } from '@capacitor/app';
 
 @Component({
@@ -12,11 +13,14 @@ export class AppComponent {
   public appPages: any[] = [];
   public labels = [];
   selectedPage = 0;
+  sidebarSearchQuery = '';
+  favoritesCount = 0;
 
   constructor(
     private platform: Platform,
     private duaService: DuaService,
-    private navController: NavController
+    private navController: NavController,
+    private settingService: SettingService
   ) {
     this.initializeApp();
   }
@@ -26,6 +30,7 @@ export class AppComponent {
     
     // Load initial dua pages
     await this.duaService.getDuaPageList();
+    await this.loadFavoritesCount();
 
     // Subscribe to page list changes
     this.duaService.observablePageList.subscribe(
@@ -50,4 +55,23 @@ export class AppComponent {
       }
     });
   }
+
+  getChapters() {
+    const chapters = this.appPages.filter(p => p.url !== '/home');
+    if (!this.sidebarSearchQuery || this.sidebarSearchQuery.trim() === '') {
+      return chapters;
+    }
+    const query = this.sidebarSearchQuery.toLowerCase().trim();
+    return chapters.filter(c => c.title.toLowerCase().includes(query));
+  }
+
+  async loadFavoritesCount() {
+    try {
+      const favs = await this.settingService.getFavorites();
+      this.favoritesCount = favs.length;
+    } catch (e) {
+      this.favoritesCount = 0;
+    }
+  }
+
 }

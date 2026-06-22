@@ -1,36 +1,118 @@
+/* Redesigned Premium Prayer Acceptance Stylesheet */
 
 
-ion-card {
-  margin: 10px;
+
+.apple-content-bg {
+  --background: var(--home-bg) !important;
 }
 
-ion-card-title {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #3880ff;
-}
+.premium-settings-card {
+  background: var(--home-card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--home-card-border);
+  box-shadow: 0 3px 12px rgba(162, 132, 94, 0.06), 0 1px 2px rgba(162, 132, 94, 0.04);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
 
-ion-card-content {
-  font-size: 1em;
-  color: #222;
-}
-
-
-
-/* Add this CSS to your styles */
-p {
-  color: var(--ion-color-text);
-  margin: 5px 0;
-
-}
-
-:host {
-  --ion-color-text: #000000; /* Light mode text color */
-}
-
-@media (prefers-color-scheme: dark) {
-  :host {
-    --ion-color-text: #ffffff; /* Dark mode text color */
+  :host-context(body.dark) & {
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
   }
 }
 
+/* Force consistent layout constraints */
+.ios-settings-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 12px 12px 60px 12px;
+  box-sizing: border-box !important;
+  width: 100%;
+
+  * {
+    box-sizing: border-box !important;
+  }
+}
+
+.ios-dua-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Card Header */
+.premium-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: 0.5px solid var(--home-card-border);
+  width: 100%;
+  box-sizing: border-box;
+
+  .header-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .dua-card-title {
+    font-family: var(--font-family-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: var(--tamil-line-height, 1.4);
+    margin: 0;
+    word-wrap: break-word;
+  }
+}
+
+.premium-card-content {
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Paragraph spacing overrides */
+.ios-prayer-paragraph {
+  &:last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Animations */
+.animate-in {
+  animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive columns */
+@media (min-width: 768px) {
+  .ios-dua-list-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 16px;
+  }
+
+  .premium-settings-card {
+    margin: 0 !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}

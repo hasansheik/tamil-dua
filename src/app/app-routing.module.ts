@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'prayer-acceptance/:id',
     loadChildren: () => import('./prayer-acceptance/prayer-acceptance.module').then(m => m.PrayerAcceptancePageModule)
+  },
+  {
+    path: 'favorites',
+    loadChildren: () => import('./favorites/favorites.module').then(m => m.FavoritesPageModule)
   }
 
 ];

@@ -1,0 +1,184 @@
+<ion-header class="ion-no-border apple-header-glass">
+  <ion-toolbar class="apple-toolbar-glass">
+    <ion-buttons slot="start">
+      <button routerLink="/home" routerDirection="back" class="apple-header-btn-circular" aria-label="Go back">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title class="apple-header-title-centered">விருப்பங்கள்</ion-title>
+
+    <ion-buttons slot="end">
+      <button (click)="toggleReaderMode()" class="apple-header-btn-circular" [class.active]="isReaderMode" aria-label="Toggle reader mode">
+        <ion-icon [name]="isReaderMode ? 'book' : 'book-outline'"></ion-icon>
+      </button>
+      <button id="fav-font-customizer-trigger" class="apple-header-btn-circular" aria-label="Font settings">
+        <ion-icon name="text-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="apple-content-bg">
+  <div class="fav-container">
+
+    <!-- Loading Skeleton -->
+    <div *ngIf="isLoading" class="fav-skeleton-list">
+      <div class="fav-card" *ngFor="let i of [1, 2, 3]">
+        <div class="fav-card-header">
+          <ion-skeleton-text animated style="width: 28px; height: 28px; border-radius: 50%;"></ion-skeleton-text>
+          <div style="flex: 1;">
+            <ion-skeleton-text animated style="width: 55%; height: 16px; border-radius: 4px; margin-bottom: 6px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 35%; height: 12px; border-radius: 4px;"></ion-skeleton-text>
+          </div>
+        </div>
+        <div class="fav-card-body">
+          <ion-skeleton-text animated style="width: 100%; height: 70px; border-radius: 8px; margin-bottom: 14px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 85%; height: 14px; border-radius: 4px; margin-bottom: 8px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 70%; height: 14px; border-radius: 4px;"></ion-skeleton-text>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!isLoading && favoriteDuas.length === 0" class="fav-empty-state">
+      <ion-icon name="heart-dislike-outline" class="fav-empty-icon"></ion-icon>
+      <h2 class="fav-empty-title">விருப்பமானவை ஏதுமில்லை</h2>
+      <p class="fav-empty-subtitle">துஆக்களின் கீழ் உள்ள இதயக் குறியீட்டை அழுத்தி இங்கு சேர்க்கலாம்.</p>
+    </div>
+
+    <!-- Favorites Dua Cards -->
+    <div *ngIf="!isLoading && favoriteDuas.length > 0" class="fav-card-list">
+      <div *ngFor="let dua of favoriteDuas; let i = index"
+           class="fav-card animate-in"
+           [style.animation-delay.ms]="i * 50">
+
+        <!-- Card Header -->
+        <div class="fav-card-header">
+          <span class="fav-number-badge">{{ i + 1 }}</span>
+          <div class="fav-header-text">
+            <h3 class="fav-dua-title">{{ dua.DuaTitle }}</h3>
+            <span class="fav-chapter-ref">{{ dua.PageTitle }}</span>
+          </div>
+        </div>
+
+        <!-- Card Body -->
+        <div class="fav-card-body">
+
+          <!-- Notes -->
+          <p *ngIf="dua.DuaContent?.Notes && !isReaderMode" class="fav-notes">
+            {{ dua.DuaContent.Notes }}
+          </p>
+
+          <!-- Arabic Text -->
+          <div *ngIf="dua.DuaContent?.ArabicDua"
+               class="fav-arabic"
+               [class]="selectedArabicFont"
+               [class.reader-mode]="isReaderMode"
+               [style.font-size.px]="arabicFontSizeVal">
+            {{ dua.DuaContent.ArabicDua }}
+          </div>
+
+          <!-- Tamil Pronunciation -->
+          <div *ngIf="showTamilDua && !isReaderMode && dua.DuaContent?.TamilDua"
+               class="fav-section">
+            <span class="fav-section-label">உச்சரிப்பு</span>
+            <p class="fav-tamil-text" [style.font-size.px]="tamilFontSizeVal">
+              {{ dua.DuaContent.TamilDua }}
+            </p>
+          </div>
+
+          <!-- Translation -->
+          <div *ngIf="showTranslation && !isReaderMode && dua.DuaContent?.Translation"
+               class="fav-section">
+            <span class="fav-section-label muted">பொருள்</span>
+            <p class="fav-translation-text" [style.font-size.px]="tamilFontSizeVal">
+              {{ dua.DuaContent.Translation }}
+            </p>
+          </div>
+
+          <!-- Hadith References -->
+          <div *ngIf="showHadees && !isReaderMode && dua.DuaContent?.HadithReferences?.length"
+               class="fav-references">
+            <span class="fav-ref-label">ஆதாரம்</span>
+            <span *ngFor="let hadith of dua.DuaContent.HadithReferences" class="fav-ref-item">
+              {{ hadith.ReadableReference }}
+            </span>
+          </div>
+
+        </div>
+
+        <!-- Action Bar -->
+        <div class="fav-action-bar" *ngIf="!isReaderMode">
+          <button (click)="toggleFavorite(dua)" class="fav-action-btn" aria-label="Remove from favorites">
+            <ion-icon name="heart" style="color: #ff2d55;"></ion-icon>
+          </button>
+          <button (click)="copyToClipboard(dua)" class="fav-action-btn" aria-label="Copy to clipboard">
+            <ion-icon name="copy-outline"></ion-icon>
+          </button>
+          <button (click)="onShare(dua)" class="fav-action-btn" aria-label="Share">
+            <ion-icon name="share-social-outline"></ion-icon>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Font Customizer Popover -->
+  <ion-popover trigger="fav-font-customizer-trigger" dismiss-on-select="false" mode="ios" class="premium-popover-theme">
+    <ng-template>
+      <div class="popover-container-padding popover-content-bg">
+        <div class="popover-header-row">
+          <h3 class="popover-heading">அளவுகள் & எழுத்துரு</h3>
+          <button (click)="resetFontSizes()" class="popover-reset-icon-btn" aria-label="Reset sizes">
+            <ion-icon name="reload-outline"></ion-icon>
+          </button>
+        </div>
+        
+        <!-- Arabic Font Size -->
+        <div class="popover-control-row">
+          <div class="popover-info-row">
+            <div class="popover-label-wrapper">
+              <ion-icon name="text-outline" class="popover-row-icon"></ion-icon>
+              <span class="popover-label-text">அரபி</span>
+            </div>
+            <span class="popover-badge">{{ arabicFontSizeVal }}px</span>
+          </div>
+          <ion-range 
+            [min]="20" 
+            [max]="60" 
+            [value]="arabicFontSizeVal" 
+            (ionChange)="onArabicSizeChange($event)"
+            mode="ios"
+            class="luxury-range-gold">
+            <span slot="start" class="popover-range-cap sm">A</span>
+            <span slot="end" class="popover-range-cap lg">A</span>
+          </ion-range>
+        </div>
+
+        <!-- Tamil Font Size -->
+        <div class="popover-control-row">
+          <div class="popover-info-row">
+            <div class="popover-label-wrapper">
+              <ion-icon name="text-outline" class="popover-row-icon"></ion-icon>
+              <span class="popover-label-text">தமிழ்</span>
+            </div>
+            <span class="popover-badge">{{ tamilFontSizeVal }}px</span>
+          </div>
+          <ion-range 
+            [min]="12" 
+            [max]="28" 
+            [value]="tamilFontSizeVal" 
+            (ionChange)="onTamilSizeChange($event)"
+            mode="ios"
+            class="luxury-range-gold">
+            <span slot="start" class="popover-range-cap sm">A</span>
+            <span slot="end" class="popover-range-cap lg">A</span>
+          </ion-range>
+        </div>
+      </div>
+    </ng-template>
+  </ion-popover>
+</ion-content>

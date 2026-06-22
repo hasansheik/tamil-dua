@@ -1,162 +1,241 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header class="ion-no-border apple-header-glass">
+  <ion-toolbar class="apple-toolbar-glass">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <button routerLink="/home" routerDirection="back" class="apple-header-btn-circular" aria-label="Go back">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
     </ion-buttons>
-    <ion-title>அமைப்புகள்</ion-title>
+    
+    <ion-title class="apple-header-title-centered">அமைப்புகள்</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-list>
-    <ion-item-group>
-      <ion-item-divider>
-        <ion-label>எழுத்துரு அமைப்புகள்</ion-label>
-      </ion-item-divider>
+<ion-content class="apple-content-bg ion-padding">
+  <div class="ios-settings-container">
 
-      <!-- <ion-item>
-        <ion-label>அரபி எழுத்துரு அளவு</ion-label>
-        <ion-button (click)="decreaseArabicFontSize()">
-          <ion-icon name="remove"></ion-icon>
-        </ion-button>
-        <ion-button (click)="increaseArabicFontSize()">
-          <ion-icon name="add"></ion-icon>
-        </ion-button>
-      </ion-item> -->
+    <!-- Section 1: Flatter borderless typography live preview -->
+    <div class="minimalist-preview-block animate-in">
+      <div class="preview-text-container">
+        <p [style.font-size.px]="arabicFontSize" class="preview-arabic-text" [class]="selectedArabicFont">
+          بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+        </p>
+        <p [style.font-size.px]="tamilFontSize" class="preview-tamil-text">
+          அல்லாஹ்வின் பெயரால், அளவற்ற அருளாளன், நிகரற்ற அன்புடையோன்...
+        </p>
+      </div>
+    </div>
 
-      <!-- <ion-item>
-        <ion-label>தமிழ் எழுத்துரு அளவு</ion-label>
-        <ion-button (click)="decreaseTamilFontSize()">
-          <ion-icon name="remove"></ion-icon>
-        </ion-button>
-        <ion-button (click)="increaseTamilFontSize()">
-          <ion-icon name="add"></ion-icon>
-        </ion-button>
-      </ion-item> -->
-
-      <ion-item>
-        <ion-label>அரபி எழுத்துரு</ion-label>
-        <ion-select [(ngModel)]="arabicFont" (ionChange)="onArabicFontChange()">
-          <ion-select-option value="arabic">Arabic</ion-select-option>
-          <ion-select-option value="noorehuda">Noore Huda</ion-select-option>
-          <ion-select-option value="noorehidayat">Noore Hidayat</ion-select-option>
-          <ion-select-option value="pdms">PDMS</ion-select-option>
-        </ion-select>
-      </ion-item>
-
-
-      <!-- Arabic Font Style -->
-      <ion-radio-group [(ngModel)]="selectedArabicFont" (ionChange)="onArabicFontChange($event)">
-        <ion-item>
-          <ion-label>
-            <p class="arabic preview-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
-          </ion-label>
-          <ion-radio slot="start" value="arabic"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>
-            <p class="ar preview-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
-          </ion-label>
-          <ion-radio slot="start" value="ar"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>
-            <p class="arab preview-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
-          </ion-label>
-          <ion-radio slot="start" value="arab"></ion-radio>
-        </ion-item>
-        <!-- <ion-item>
-          <ion-label>
-            <p class="arab2 preview-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
-          </ion-label>
-          <ion-radio slot="start" value="arab2"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>
-            <p class="arab3 preview-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
-          </ion-label>
-          <ion-radio slot="start" value="arab3"></ion-radio>
-        </ion-item> -->
-      </ion-radio-group>
-
-        <!-- Arabic Font Size -->
-        <ion-item lines="none">
-          <ion-label>அரபி எழுத்துரு அளவு</ion-label>
-          <ion-range
-            [value]="arabicFontSize"
-            (ionChange)="onArabicFontSizeChange($event)"
-            min="15"
-            max="50"
-            step="3"
-            snaps="true"
-            pin="true"
-            color="primary"
+    <!-- Section 2: Typography Configurations -->
+    <div class="ios-section-label">எழுத்துரு & வாசிப்பு</div>
+    <div class="glass-settings-card animate-in">
+      
+      <!-- Arabic Font Selection Grid -->
+      <div class="settings-inner-padding">
+        <span class="sub-section-title">அரபி எழுத்துரு வகை</span>
+        <div class="font-selection-grid">
+          <button 
+            *ngFor="let font of ['arabic', 'ar', 'arab', 'arab2', 'arab3']"
+            [class.active]="selectedArabicFont === font"
+            (click)="selectedArabicFont = font; onArabicFontChange()"
+            class="font-grid-btn ripple"
           >
-            <ion-icon slot="start" name="text-outline" size="small"></ion-icon>
-            <ion-icon slot="end" name="text-outline" size="large"></ion-icon>
+            <div class="btn-meta">
+              <span class="font-display-name" [ngSwitch]="font">
+                <span *ngSwitchCase="'arabic'">Scheherazade</span>
+                <span *ngSwitchCase="'ar'">Katibeh</span>
+                <span *ngSwitchCase="'arab'">Qahiri</span>
+                <span *ngSwitchCase="'arab2'">Amiri</span>
+                <span *ngSwitchCase="'arab3'">Scheherazade OT</span>
+              </span>
+              <span class="font-sample-preview" [class]="font">بسم الله</span>
+            </div>
+            <div class="font-selected-indicator" *ngIf="selectedArabicFont === font">
+              <ion-icon name="checkmark-circle"></ion-icon>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="row-divider"></div>
+
+      <!-- Arabic Slider Row -->
+      <div class="custom-slider-row">
+        <div class="slider-header">
+          <div class="slider-title-wrap">
+            <span class="slider-title">அரபி எழுத்துரு அளவு</span>
+          </div>
+          <span class="slider-val-badge">{{ arabicFontSize }}px</span>
+        </div>
+        <div class="slider-control">
+          <ion-range 
+            [value]="arabicFontSize" 
+            (ionChange)="onArabicFontSizeChange($event)" 
+            min="15" 
+            max="50" 
+            step="3" 
+            snaps="true" 
+            mode="ios" 
+            class="custom-range-slider"
+          >
+            <span slot="start" class="range-cap sm">A</span>
+            <span slot="end" class="range-cap lg">A</span>
           </ion-range>
-        </ion-item>
+        </div>
+      </div>
 
-      <!-- Tamil Font Size -->
-      <ion-item lines="none">
-        <ion-label>தமிழ் எழுத்துரு அளவு</ion-label>
-        <ion-range
-          [value]="tamilFontSize"
-          (ionChange)="onTamilFontSizeChange($event)"
-          min="8"
-          max="32"
-          step="3"
-          snaps="true"
-          pin="true"
-          color="primary"
-        >
-          <ion-icon slot="start" name="text-outline" size="small"></ion-icon>
-          <ion-icon slot="end" name="text-outline" size="large"></ion-icon>
-        </ion-range>
-      </ion-item>
-    </ion-item-group>
+      <div class="row-divider"></div>
 
-    <ion-item-group>
-      <ion-item-divider>
-        <ion-label>முன்னோட்டம்</ion-label>
-      </ion-item-divider>
-      <ion-card class="preview-card">
-        <ion-card-header>
-          <ion-card-subtitle>முன்னோட்டம்</ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-          <p [style.font-size.px]="arabicFontSize" [class]="selectedArabicFont">
-            بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
-          </p>
-          <p [style.font-size.px]="tamilFontSize" class="tamil-text">
-            அல்லாஹ்வின் பெயரால் அருளாளனும் நிகரற்ற அன்புடையோனும்
-          </p>
-        </ion-card-content>
-      </ion-card>
-    </ion-item-group>
+      <!-- Tamil Slider Row -->
+      <div class="custom-slider-row">
+        <div class="slider-header">
+          <div class="slider-title-wrap">
+            <span class="slider-title">தமிழ் எழுத்துரு அளவு</span>
+          </div>
+          <span class="slider-val-badge">{{ tamilFontSize }}px</span>
+        </div>
+        <div class="slider-control">
+          <ion-range 
+            [value]="tamilFontSize" 
+            (ionChange)="onTamilFontSizeChange($event)" 
+            min="8" 
+            max="32" 
+            step="3" 
+            snaps="true" 
+            mode="ios" 
+            class="custom-range-slider"
+          >
+            <span slot="start" class="range-cap sm">A</span>
+            <span slot="end" class="range-cap lg">A</span>
+          </ion-range>
+        </div>
+      </div>
 
-    <ion-item-group>
-      <ion-item-divider>
-        <ion-label>காட்சி அமைப்புகள்</ion-label>
-      </ion-item-divider>
+    </div>
 
-      <ion-item>
-        <ion-label>தமிழ் துஆ காட்டு</ion-label>
-        <ion-toggle [(ngModel)]="showTamilDua" (ionChange)="onShowTamilDuaChange()"></ion-toggle>
-      </ion-item>
+    <!-- Section 3: Theme Accent Color selection -->
+    <div class="ios-section-label">வண்ண வடிவமைப்பு (Premium Theme)</div>
+    <div class="glass-settings-card animate-in">
+      <div class="settings-inner-padding">
+        <span class="sub-section-title">பயன்பாட்டின் முதன்மை நிறம்</span>
+        <div class="theme-selection-grid">
+          <button 
+            *ngFor="let theme of themesList"
+            [class.active]="selectedTheme === theme.id"
+            (click)="selectTheme(theme.id)"
+            class="theme-grid-btn ripple"
+            [attr.aria-label]="theme.nameEn + ' theme'"
+          >
+            <div class="theme-color-preview-circle" [style.background-color]="theme.color"></div>
+            <div class="theme-meta">
+              <span class="theme-name">{{ theme.name }}</span>
+              <span class="theme-name-en">{{ theme.nameEn }}</span>
+            </div>
+            <div class="theme-selected-indicator" *ngIf="selectedTheme === theme.id">
+              <ion-icon name="checkmark-circle"></ion-icon>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
 
-      <ion-item>
-        <ion-label>பொருள் காட்டு</ion-label>
-        <ion-toggle [(ngModel)]="showTranslation" (ionChange)="onShowTranslationChange()"></ion-toggle>
-      </ion-item>
-<!--
-      <ion-item>
-        <ion-label>ஹதீஸ் ஆதாரங்கள் காட்டு</ion-label>
-        <ion-toggle [(ngModel)]="showHadees" (ionChange)="onShowHadeesChange()"></ion-toggle>
-      </ion-item> -->
-    </ion-item-group>
+    <!-- Section 4: Clean Display Toggles without colorful icons -->
+    <div class="ios-section-label">காட்சி அமைப்புகள்</div>
+    <div class="glass-settings-card animate-in">
+      
+      <!-- Tamil Pronunciation Toggle -->
+      <div class="custom-toggle-row">
+        <div class="toggle-text-details">
+          <span class="toggle-title">தமிழ் உச்சரிப்பு</span>
+          <span class="toggle-desc">துஆக்களின் தமிழ் ஒலிபெயர்ப்பு</span>
+        </div>
+        <ion-toggle [(ngModel)]="showTamilDua" (ionChange)="onShowTamilDuaChange()" mode="ios" class="custom-toggle"></ion-toggle>
+      </div>
 
-    <!-- Preview Section -->
+      <div class="row-divider"></div>
 
-  </ion-list>
+      <!-- Translation Toggle -->
+      <div class="custom-toggle-row">
+        <div class="toggle-text-details">
+          <span class="toggle-title">தமிழ் மொழிபெயர்ப்பு</span>
+          <span class="toggle-desc">துஆக்களின் தமிழ் அர்த்தம்</span>
+        </div>
+        <ion-toggle [(ngModel)]="showTranslation" (ionChange)="onShowTranslationChange()" mode="ios" class="custom-toggle"></ion-toggle>
+      </div>
+
+      <div class="row-divider"></div>
+
+      <!-- References Toggle -->
+      <div class="custom-toggle-row">
+        <div class="toggle-text-details">
+          <span class="toggle-title">துஆவின் ஆதாரம்</span>
+          <span class="toggle-desc">ஹதீஸ் மற்றும் வரலாற்று குறிப்புகள்</span>
+        </div>
+        <ion-toggle [(ngModel)]="showHadees" (ionChange)="onShowHadeesChange()" mode="ios" class="custom-toggle"></ion-toggle>
+      </div>
+
+    </div>
+
+    <!-- Section 4: Data Vault -->
+    <div class="ios-section-label">தரவு காப்புப்பிரதி</div>
+    <div class="glass-settings-card padding-box animate-in">
+      <p class="vault-instructions">விருப்பமான துஆக்கள் பட்டியலை காப்புக்குறியீடு மூலம் சேமிக்கலாம் அல்லது மீட்டெடுக்கலாம்.</p>
+      
+      <div class="vault-vertical-flow">
+        <!-- Generate Block -->
+        <div class="vault-block">
+          <button class="vault-btn primary-gold ripple" (click)="generateBackup()">
+            <ion-icon name="cloud-download-outline"></ion-icon>
+            <span>காப்புக்குறி உருவாக்கு</span>
+          </button>
+          
+          <div *ngIf="backupCode" class="backup-code-display animate-in">
+            <textarea readonly class="vault-textarea-box" rows="2">{{ backupCode }}</textarea>
+            <div class="vault-copied-status">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+              <span>குறியீடு நகலெடுக்கப்பட்டது!</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="vault-flow-divider">
+          <span class="divider-bar"></span>
+          <span class="divider-txt">அல்லது</span>
+          <span class="divider-bar"></span>
+        </div>
+
+        <!-- Restore Block -->
+        <div class="vault-block">
+          <textarea 
+            [(ngModel)]="restoreCode" 
+            placeholder="காப்புக்குறியீட்டை இங்கே ஒட்டவும்..." 
+            class="vault-textarea-input-box" 
+            rows="2"
+          ></textarea>
+          
+          <button class="vault-btn success-green ripple" (click)="restoreBackup()" [disabled]="!restoreCode">
+            <ion-icon name="cloud-upload-outline"></ion-icon>
+            <span>மீட்டெடு (Restore)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Maintenance -->
+    <div class="ios-section-label">பராமரிப்பு</div>
+    <div class="glass-settings-card animate-in">
+      <div class="custom-danger-row ripple" (click)="resetDefaults()">
+        <div class="danger-left-wrap">
+          <div class="danger-details">
+            <span class="danger-title-text">அமைப்புகளை மீட்டமை</span>
+            <span class="danger-desc-text">அனைத்து அமைப்புகளையும் இயல்புநிலைக்கு மாற்று</span>
+          </div>
+        </div>
+        <ion-icon name="chevron-forward-outline" class="danger-chevron-icon"></ion-icon>
+      </div>
+    </div>
+
+    <!-- Extra Space at bottom to look premium -->
+    <div class="settings-bottom-spacer"></div>
+
+  </div>
 </ion-content>

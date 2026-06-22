@@ -1,207 +1,449 @@
-ion-menu ion-content {
-  --background: var(--ion-item-background, var(--ion-background-color, #fff));
-}
+/* Apple Developer Edition Inset Grouped Sidebar Redesign */
 
-ion-menu.md ion-content {
-  --padding-start: 8px;
-  --padding-end: 8px;
-  --padding-top: 20px;
-  --padding-bottom: 20px;
-}
-
-ion-menu.md ion-list {
-  padding: 20px 0;
-}
-
-ion-menu.md ion-note {
-  margin-bottom: 30px;
-}
-
-ion-menu.md ion-list-header,
-ion-menu.md ion-note {
-  padding-left: 10px;
-}
-
-ion-menu.md ion-list#inbox-list {
-  border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
-}
-
-ion-menu.md ion-list#inbox-list ion-list-header {
-  font-size: 22px;
-  font-weight: 600;
-
-  min-height: 20px;
-}
-
-ion-menu.md ion-list#labels-list ion-list-header {
-  font-size: 16px;
-
-  margin-bottom: 18px;
-
-  color: #757575;
-
-  min-height: 26px;
-}
-
-ion-menu.md ion-item {
-  --padding-start: 10px;
-  --padding-end: 10px;
-  border-radius: 4px;
-}
-
-ion-menu.md ion-item.selected {
-  --background: rgba(var(--ion-color-primary-rgb), 0.14);
-}
-
-ion-menu.md ion-item.selected ion-icon {
-  color: var(--ion-color-primary);
-}
-
-ion-menu.md ion-item ion-icon {
-  color: #616e7e;
-}
-
-ion-menu.md ion-item ion-label {
-  font-weight: 500;
-}
-
-ion-menu.ios ion-content {
-  --padding-bottom: 20px;
-}
-
-ion-menu.ios ion-list {
-  padding: 20px 0 0 0;
-}
-
-ion-menu.ios ion-note {
-  line-height: 24px;
-  margin-bottom: 20px;
-}
-
-ion-menu.ios ion-item {
-  --padding-start: 16px;
-  --padding-end: 16px;
-  --min-height: 50px;
-}
-
-ion-menu.ios ion-item.selected ion-icon {
-  color: var(--ion-color-primary);
-}
-
-ion-menu.ios ion-item ion-icon {
-  font-size: 24px;
-  color: #73849a;
-}
-
-ion-menu.ios ion-list#labels-list ion-list-header {
-  margin-bottom: 8px;
-}
-
-ion-menu.ios ion-list-header,
-ion-menu.ios ion-note {
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-ion-menu.ios ion-note {
-  margin-bottom: 8px;
-}
-
-ion-note {
-  display: inline-block;
-  font-size: 16px;
-
-  color: var(--ion-color-medium-shade);
-}
-
-ion-item.selected {
-  --color: var(--ion-color-primary);
-}
-
-ion-menu {
-  --ion-background-color: var(--ion-color-light);
+:host {
+  /* Light Mode - Side Bar will still follow Dark console theme rules as requested */
+  --sidebar-bg: var(--theme-sidebar-bg, rgba(16, 16, 15, 0.88));
+  --sidebar-border: var(--theme-sidebar-border, rgba(var(--home-accent-rgb), 0.1));
   
-  ion-header {
-    ion-toolbar.menu-header {
-      --background: var(--ion-color-primary);
-      --color: var(--ion-color-primary-contrast);
-      
-      .app-title {
-        font-size: 1.4rem;
-        font-weight: 600;
-        margin-bottom: 4px;
-      }
+  --sidebar-card-bg: var(--theme-sidebar-card-bg, rgba(28, 28, 30, 0.5));
+  --sidebar-card-border: var(--theme-sidebar-card-border, rgba(var(--home-accent-rgb), 0.08));
+  
+  --sidebar-text-main: var(--theme-sidebar-text-main, #f4efeb);
+  --sidebar-text-muted: var(--theme-sidebar-text-muted, #9c948c);
+  --sidebar-accent: var(--home-accent);
+  --sidebar-accent-rgb: var(--home-accent-rgb);
+  --sidebar-accent-tint: var(--home-accent-tint);
+  --sidebar-accent-shade: var(--ion-color-primary-shade);
+  
+  --sidebar-list-item-hover: var(--theme-sidebar-list-item-hover, rgba(255, 255, 255, 0.04));
+  --sidebar-list-item-active: var(--theme-sidebar-list-item-active, rgba(var(--home-accent-rgb), 0.12));
+  
+  --sidebar-badge-bg: var(--theme-sidebar-badge-bg, rgba(255, 255, 255, 0.05));
+  --premium-shadow-sm: var(--premium-shadow-sm);
+}
 
-      ion-note {
-        font-size: 0.9rem;
-        color: var(--ion-color-primary-contrast);
+@media (prefers-color-scheme: dark) {
+  :host {
+    /* Dark Mode - Consistent sidebar theme variables */
+    --sidebar-bg: var(--theme-sidebar-bg, rgba(16, 16, 15, 0.88));
+    --sidebar-border: var(--theme-sidebar-border, rgba(var(--home-accent-rgb), 0.1));
+    
+    --sidebar-card-bg: var(--theme-sidebar-card-bg, rgba(28, 28, 30, 0.5));
+    --sidebar-card-border: var(--theme-sidebar-card-border, rgba(var(--home-accent-rgb), 0.08));
+    
+    --sidebar-text-main: var(--theme-sidebar-text-main, #f4efeb);
+    --sidebar-text-muted: var(--theme-sidebar-text-muted, #9c948c);
+    --sidebar-accent: var(--home-accent);
+    --sidebar-accent-rgb: var(--home-accent-rgb);
+    --sidebar-accent-tint: var(--home-accent-tint);
+    --sidebar-accent-shade: var(--ion-color-primary-shade);
+    
+    --sidebar-list-item-hover: var(--theme-sidebar-list-item-hover, rgba(255, 255, 255, 0.04));
+    --sidebar-list-item-active: var(--theme-sidebar-list-item-active, rgba(var(--home-accent-rgb), 0.12));
+    
+    --sidebar-badge-bg: var(--theme-sidebar-badge-bg, rgba(255, 255, 255, 0.05));
+    --premium-shadow-sm: var(--premium-shadow-sm);
+  }
+}
+
+:host-context(body.dark) {
+  /* Explicit dark mode class override */
+  --sidebar-bg: var(--theme-sidebar-bg, rgba(16, 16, 15, 0.88));
+  --sidebar-border: var(--theme-sidebar-border, rgba(var(--home-accent-rgb), 0.1));
+  
+  --sidebar-card-bg: var(--theme-sidebar-card-bg, rgba(28, 28, 30, 0.5));
+  --sidebar-card-border: var(--theme-sidebar-card-border, rgba(var(--home-accent-rgb), 0.08));
+  
+  --sidebar-text-main: var(--theme-sidebar-text-main, #f4efeb);
+  --sidebar-text-muted: var(--theme-sidebar-text-muted, #9c948c);
+  --sidebar-accent: var(--home-accent);
+  --sidebar-accent-rgb: var(--home-accent-rgb);
+  --sidebar-accent-tint: var(--home-accent-tint);
+  --sidebar-accent-shade: var(--ion-color-primary-shade);
+  
+  --sidebar-list-item-hover: var(--theme-sidebar-list-item-hover, rgba(255, 255, 255, 0.04));
+  --sidebar-list-item-active: var(--theme-sidebar-list-item-active, rgba(var(--home-accent-rgb), 0.12));
+  
+  --sidebar-badge-bg: var(--theme-sidebar-badge-bg, rgba(255, 255, 255, 0.05));
+  --premium-shadow-sm: var(--premium-shadow-sm);
+}
+
+/* Ionic Menu Container Overrides for Glassmorphism */
+ion-menu {
+  --background: transparent !important;
+  --width: 290px !important;       /* Widened sidebar menu size */
+  --max-width: 290px !important;
+  
+  &::part(container) {
+    background: var(--sidebar-bg) !important;
+    backdrop-filter: blur(30px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(190%) !important;
+    border-right: 0.5px solid var(--sidebar-border) !important;
+    box-shadow: none !important;
+  }
+
+  ion-content.ios-sidebar-content {
+    --background: transparent !important;
+    --padding-start: 0;
+    --padding-end: 0;
+    --padding-top: 0;
+    --padding-bottom: 40px;
+    
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--sidebar-accent-rgb), 0.15) transparent;
+
+    &::part(scroll) {
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: rgba(var(--sidebar-accent-rgb), 0.12);
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+/* Apple Header */
+.ios-sidebar-header {
+  padding: 44px 20px 24px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  overflow: visible !important;
+
+  .ios-logo-box {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 9px !important;
+    overflow: hidden !important;
+    border: 0.5px solid rgba(var(--sidebar-accent-rgb), 0.15);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    .ios-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &:hover .ios-logo-box {
+    transform: scale(1.04);
+  }
+
+  .ios-header-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: visible !important;
+    justify-content: center;
+    
+    .ios-greet {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--sidebar-text-muted);
+      line-height: 1.6 !important;
+      overflow: visible !important;
+      padding-top: 2px !important;
+      padding-bottom: 2px !important;
+    }
+
+    .ios-app-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--sidebar-text-main);
+      margin: 2px 0;
+      line-height: 1.6 !important;
+      overflow: visible !important;
+      padding-top: 3px !important;
+      padding-bottom: 3px !important;
+      letter-spacing: -0.3px;
+    }
+
+    .ios-sub {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--sidebar-accent);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      line-height: 1.4 !important;
+      overflow: visible !important;
+      padding-top: 1px !important;
+      padding-bottom: 1px !important;
+    }
+  }
+}
+
+/* Inset Grouped Section Headers */
+.ios-section-header {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--sidebar-text-muted);
+  letter-spacing: 0.8px;
+  margin: 18px 20px 6px 20px;
+  font-family: var(--font-family-heading);
+}
+
+/* Apple Inset Grouped List Containers */
+.ios-grouped-container {
+  background: var(--sidebar-card-bg);
+  border: 0.5px solid var(--sidebar-card-border);
+  border-radius: 12px;
+  margin: 0 12px 14px 12px; /* Reduced side margins to 12px to give inside elements more room */
+  padding: 0;
+  overflow: hidden;
+  box-shadow: var(--premium-shadow-sm);
+
+  ion-menu-toggle {
+    display: block;
+    width: 100%;
+  }
+
+  .ios-grouped-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px; /* Increased vertical padding to 10px for spacious row layout */
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:not(:last-child) {
+      border-bottom: 0.5px solid rgba(var(--sidebar-accent-rgb), 0.08);
+    }
+
+    &:hover {
+      background-color: var(--sidebar-list-item-hover);
+      
+      .row-chevron {
+        transform: translateX(1.5px);
         opacity: 0.8;
       }
     }
+
+    &.active {
+      background-color: var(--sidebar-list-item-active) !important;
+      
+      .row-label {
+        color: var(--sidebar-text-main);
+        font-weight: 600;
+      }
+
+      .row-chevron {
+        color: var(--sidebar-accent);
+        opacity: 0.8;
+      }
+
+      .chapter-circle-num {
+        background: rgba(var(--sidebar-accent-rgb), 0.12);
+        color: var(--sidebar-accent);
+        border-color: rgba(var(--sidebar-accent-rgb), 0.22);
+      }
+    }
+
+    .row-left {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* iOS Apple-style settings icon square boxes (Strict Flex Center Alignment) */
+    .ios-icon-box {
+      width: 28px !important;
+      height: 28px !important;
+      border-radius: 7px;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      color: #ffffff;
+      flex-shrink: 0;
+      margin-right: 10px; /* Reduced from 12px to maximize horizontal labels room */
+
+      .ios-row-icon {
+        font-size: 14px !important;
+        width: 14px !important;
+        height: 14px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        line-height: 1 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      &.bg-gold { background: linear-gradient(135deg, var(--sidebar-accent-tint) 0%, var(--sidebar-accent) 100%); }
+      &.bg-rose { background: #ff2d55; }
+      &.bg-gray { background: #8e8e93; }
+      &.bg-bronze { background: #6e5434; }
+      &.bg-gold-tint { background: #d1a86a; }
+      &.bg-sage { background: #8fa89b; }
+      &.bg-copper { background: #cf9c98; }
+      &.bg-steel { background: #a3a6ad; }
+    }
+
+    /* Chapter Index Circle Badges (Strict Flex Center Alignment) */
+    .chapter-circle-num {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 22px !important;
+      height: 22px !important;
+      border-radius: 50% !important;
+      background: var(--sidebar-badge-bg);
+      border: 0.5px solid rgba(var(--sidebar-accent-rgb), 0.1);
+      color: var(--sidebar-text-muted);
+      font-size: 0.68rem;
+      font-weight: 600;
+      margin-right: 10px; /* Reduced from 12px to maximize horizontal labels room */
+      flex-shrink: 0;
+      font-family: var(--font-family-heading);
+      transition: all 0.25s ease;
+      line-height: 1 !important;
+
+      span {
+        line-height: 1 !important;
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+    }
+
+    .row-label {
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--sidebar-text-main);
+      line-height: var(--tamil-line-height);
+      transition: color 0.2s ease;
+    }
+
+    .row-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .row-subtext {
+      font-size: 0.72rem;
+      color: var(--sidebar-text-muted);
+    }
+
+    .row-chevron {
+      font-size: 11px;
+      color: var(--sidebar-text-muted);
+      opacity: 0.45;
+      transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .row-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #ff2d55;
+      padding: 1px 6px;
+      border-radius: 10px;
+      min-width: 18px;
+      text-align: center;
+      line-height: 1.2;
+    }
   }
 
-  ion-content {
-    --background: var(--ion-color-light);
+  .ios-no-results {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    color: var(--sidebar-text-muted);
+    gap: 10px;
 
-    ion-list {
-      background: transparent;
-      padding: 8px;
+    .no-results-icon {
+      font-size: 18px;
+      color: var(--sidebar-text-muted);
+    }
 
-      ion-menu-toggle {
-        .menu-item {
-          --padding-start: 16px;
-          --padding-end: 16px;
-          --padding-top: 12px;
-          --padding-bottom: 12px;
-          --background: transparent;
-          --min-height: 48px;
-          margin-bottom: 4px;
-          border-radius: 8px;
-          
-          &:hover {
-            --background: var(--ion-color-light-shade);
-          }
-
-          &.selected {
-            --background: var(--ion-color-primary-tint);
-            --color: var(--ion-color-primary);
-            font-weight: 500;
-
-            ion-icon {
-              color: var(--ion-color-primary);
-            }
-          }
-
-          ion-icon {
-            font-size: 20px;
-            margin-right: 12px;
-            color: var(--ion-color-medium);
-          }
-
-          ion-label {
-            font-size: min(3.8vw, 15px);
-            font-weight: 400;
-            color: var(--ion-color-dark);
-          }
-        }
-      }
+    span {
+      font-size: 0.8rem;
+      font-weight: 500;
     }
   }
 }
 
-// Media query for larger screens
-@media (min-width: 768px) {
-  ion-menu {
-    ion-content {
-      ion-list {
-        ion-menu-toggle {
-          .menu-item {
-            ion-label {
-              font-size: 15px;
-            }
-          }
-        }
-      }
-    }
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Sidebar Info Footer */
+.ios-sidebar-footer {
+  padding: 20px 20px 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 10px;
+
+  .ios-footer-line {
+    width: 40px;
+    height: 0.5px;
+    background: rgba(var(--sidebar-accent-rgb), 0.15);
+    margin-bottom: 12px;
+  }
+
+  .ios-footer-title {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--sidebar-text-main);
+    line-height: var(--tamil-line-height);
+  }
+
+  .ios-footer-sub {
+    font-size: 0.64rem;
+    color: var(--sidebar-text-muted);
+    line-height: var(--tamil-line-height);
+  }
+
+  .ios-footer-version {
+    font-size: 0.58rem;
+    font-weight: 600;
+    color: var(--sidebar-text-muted);
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+}
+
+/* Entrance Animations */
+.ios-sidebar-header,
+.ios-grouped-container,
+.ios-section-header,
+.ios-sidebar-footer {
+  animation: slideUpFade 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) both;
+}
+
+.ios-sidebar-header { animation-delay: 0.02s; }
+.ios-grouped-container:nth-of-type(1) { animation-delay: 0.04s; }
+.ios-grouped-container:nth-of-type(2) { animation-delay: 0.06s; }
+.ios-sidebar-footer { animation-delay: 0.08s; }
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

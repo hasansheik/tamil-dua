@@ -1,4 +1,4 @@
-/* Redesigned Premium Minimal Folder (Category Details) Stylesheet */
+/* Overhauled Premium Minimal Favorites Styling */
 
 
 
@@ -32,156 +32,6 @@
   padding: 16px 16px 60px 16px;
   box-sizing: border-box;
   width: 100%;
-}
-
-/* Collapsible Index Header styles */
-.index-trigger-card {
-  background: var(--home-card-bg);
-  border-radius: 12px;
-  border: 1px solid var(--home-card-border);
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  margin-bottom: 16px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(162, 132, 94, 0.02);
-  transition: all 0.2s ease;
-
-  &:active {
-    transform: scale(0.99);
-  }
-
-  .index-trigger-left {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .index-icon {
-    font-size: 18px;
-    color: var(--home-accent);
-  }
-
-  .index-title-text {
-    font-family: var(--font-family-heading);
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--home-text-main);
-  }
-
-  .index-count-badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: var(--home-badge-bg);
-    color: var(--home-accent);
-    font-family: var(--font-family-sans);
-    font-size: 0.74rem;
-    font-weight: 700;
-    margin-left: 2px;
-  }
-
-  .index-arrow-icon {
-    font-size: 16px;
-    color: var(--home-text-muted);
-    opacity: 0.7;
-  }
-}
-
-.index-list-card {
-  background: var(--home-card-bg);
-  border-radius: 14px;
-  border: 1px solid var(--home-card-border);
-  padding: 18px;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 12px rgba(162, 132, 94, 0.02);
-
-  .index-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 10px;
-    width: 100%;
-  }
-
-  .index-item-btn {
-    background: var(--home-search-bg);
-    border: 1px solid var(--home-card-border);
-    border-radius: 10px;
-    padding: 10px 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 4px;
-    height: 72px;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: all 0.2s ease;
-
-    &:active {
-      transform: scale(0.96);
-    }
-
-    .index-item-label {
-      font-family: var(--font-family-heading);
-      font-size: 0.7rem;
-      font-weight: 800;
-      color: var(--home-accent);
-      text-transform: uppercase;
-      letter-spacing: 0.2px;
-    }
-
-    .index-item-title {
-      font-family: var(--font-family-sans);
-      font-size: 0.74rem;
-      font-weight: 600;
-      color: var(--home-text-main);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      width: 100%;
-      display: block;
-    }
-  }
-}
-
-/* Offline Banner styling */
-.offline-banner-card {
-  background: rgba(255, 149, 0, 0.08);
-  border: 1px solid rgba(255, 149, 0, 0.2);
-  border-radius: 12px;
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-
-  .offline-icon {
-    font-size: 18px;
-    color: #ff9500;
-    flex-shrink: 0;
-  }
-
-  .offline-text {
-    font-family: var(--font-family-sans);
-    font-size: 0.8rem;
-    color: var(--home-text-main);
-    font-weight: 500;
-  }
-}
-
-/* Spotlight Search Bar styles */
-.apple-search-container {
-  display: flex;
-  align-items: center;
-  background: var(--home-search-bg);
-  border: 1px solid var(--home-card-border);
-  border-radius: 10px;
-  box-sizing: border-box;
 }
 
 /* Card Container */
@@ -396,12 +246,6 @@
     transform: scale(0.9);
   }
 
-  &.active {
-    background: rgba(255, 45, 85, 0.08) !important;
-    border-color: rgba(255, 45, 85, 0.2) !important;
-    color: #ff2d55 !important;
-  }
-
   ion-icon {
     font-size: 15px;
   }
@@ -490,23 +334,3 @@
     }
   }
 }
-
-
-
-/* Category Large Title styling */
-.apple-category-title-card {
-  padding: 18px 8px 8px 8px;
-  margin-bottom: 12px;
-}
-
-.apple-category-title {
-  font-family: var(--font-family-heading) !important;
-  font-size: 1.4rem !important;
-  font-weight: 800 !important;
-  color: var(--home-text-main) !important;
-  line-height: 1.45 !important;
-  margin: 0 !important;
-  text-align: left;
-}
-
-

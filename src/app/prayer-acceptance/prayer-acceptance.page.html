@@ -1,24 +1,47 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header class="ion-no-border apple-header-glass">
+  <ion-toolbar class="apple-toolbar-glass">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <button routerLink="/home" routerDirection="back" class="apple-header-btn-circular" aria-label="Go back">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
     </ion-buttons>
-    <ion-title class="ion-text-center">
-      {{PageTitle}}
-    </ion-title>
+    
+    <ion-title class="apple-header-title-centered">வழிகாட்டல்</ion-title>
+
   </ion-toolbar>
+  
+  <!-- Sleek Apple HIG style Scroll Progress Bar -->
+  <div class="apple-progress-container" style="height: 2px; width: 100%; background: var(--home-card-border);">
+    <div class="apple-progress-bar" [style.width.%]="scrollProgress" style="height: 100%; background: var(--home-accent); transition: width 0.1s ease;"></div>
+  </div>
 </ion-header>
 
+<ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="onScroll($event)" class="apple-content-bg ion-padding">
+  <div class="ios-settings-container">
 
-  <ion-content [fullscreen]="true">
-    <ion-card *ngFor="let item of data">
-      <ion-card-header>
-        <ion-card-title>{{ item.SectionTitle }}
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p *ngFor="let paragraph of item.Paragraphs" style="text-align: justify;">{{ paragraph }}</p>
-      </ion-card-content>
-    </ion-card>
-  </ion-content>
+    <!-- Condense Section Header Title -->
+    <div class="apple-section-header ion-margin-bottom animate-in" *ngIf="PageTitle">
+      <span class="apple-section-title">{{ PageTitle }}</span>
+    </div>
 
+    <!-- Content Narrative Cards -->
+    <div class="ios-dua-list-wrapper">
+      <div *ngFor="let item of data" class="premium-settings-card ion-margin-bottom animate-in">
+        <!-- Section Title Header if exists -->
+        <div class="premium-card-header" *ngIf="item.SectionTitle">
+          <div class="header-text-group" style="margin-left: 0;">
+            <h2 class="dua-card-title" style="color: var(--home-accent);">{{ item.SectionTitle }}</h2>
+          </div>
+        </div>
+
+        <!-- Section Content paragraphs -->
+        <div class="premium-card-content" style="padding: 16px 20px;">
+          <p *ngFor="let paragraph of item.Paragraphs" class="ios-prayer-paragraph" style="font-family: var(--font-family-sans); font-size: 0.88rem; line-height: var(--tamil-line-height, 1.5); color: var(--home-text-main); margin: 0 0 12px 0; text-align: justify;">
+            {{ paragraph }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ion-content>
