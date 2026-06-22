@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+  namespace "com.hasan.app.tamildua"
   compileSdk rootProject.ext.compileSdkVersion
   defaultConfig {
         applicationId "com.hasan.app.tamildua"
