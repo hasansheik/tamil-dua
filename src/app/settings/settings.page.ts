@@ -5,9 +5,10 @@ import { DuaService } from '../shared/service/dua.service';
 import { Clipboard } from '@capacitor/clipboard';
 
 @Component({
-  selector: 'app-settings',
-  templateUrl: './settings.page.html',
-  styleUrls: ['./settings.page.scss'],
+    selector: 'app-settings',
+    templateUrl: './settings.page.html',
+    styleUrls: ['./settings.page.scss'],
+    standalone: false
 })
 export class SettingsPage implements OnInit {
   // Active settings configuration states

@@ -12,9 +12,10 @@ import { StorageService } from '../shared/service/storage.service';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
 
 @Component({
-  selector: 'app-folder',
-  templateUrl: './folder.page.html',
-  styleUrls: ['./folder.page.scss'],
+    selector: 'app-folder',
+    templateUrl: './folder.page.html',
+    styleUrls: ['./folder.page.scss'],
+    standalone: false
 })
 export class FolderPage implements OnInit, OnDestroy {
   duaList = [];

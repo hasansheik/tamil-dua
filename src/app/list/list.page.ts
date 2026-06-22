@@ -5,9 +5,10 @@ import { StateService } from '../shared/service/state.service';
 import { DuaService } from '../shared/service/dua.service';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: 'list.page.html',
-  styleUrls: ['list.page.scss']
+    selector: 'app-list',
+    templateUrl: 'list.page.html',
+    styleUrls: ['list.page.scss'],
+    standalone: false
 })
 export class ListPage implements OnInit {
   public appPages = [];

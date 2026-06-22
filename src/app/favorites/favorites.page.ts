@@ -8,9 +8,10 @@ import { Clipboard } from '@capacitor/clipboard';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
 
 @Component({
-  selector: 'app-favorites',
-  templateUrl: './favorites.page.html',
-  styleUrls: ['./favorites.page.scss'],
+    selector: 'app-favorites',
+    templateUrl: './favorites.page.html',
+    styleUrls: ['./favorites.page.scss'],
+    standalone: false
 })
 export class FavoritesPage implements OnInit, OnDestroy {
   favoriteDuas: any[] = [];

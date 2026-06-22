@@ -4,9 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
-  selector: 'app-prayer-acceptance',
-  templateUrl: './prayer-acceptance.page.html',
-  styleUrls: ['./prayer-acceptance.page.scss'],
+    selector: 'app-prayer-acceptance',
+    templateUrl: './prayer-acceptance.page.html',
+    styleUrls: ['./prayer-acceptance.page.scss'],
+    standalone: false
 })
 export class PrayerAcceptancePage implements OnInit {
   data: any[] = [];
