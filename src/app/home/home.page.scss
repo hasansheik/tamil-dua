@@ -39,7 +39,7 @@
   --background: transparent !important;
   --border-width: 0px !important;
   border: none !important;
-  padding: 8px 12px 4px 12px !important;
+  padding: calc(env(safe-area-inset-top) + 8px) 12px 4px 12px !important;
   box-shadow: none !important;
 }
 
@@ -426,7 +426,24 @@
   }
 }
 
-/* 6. Featured Daily Supplication */
+/* 6. Recent Duas */
+.recent-duas-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-family-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--home-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+
+  ion-icon {
+    font-size: 1rem;
+  }
+}
+
 .apple-featured-dua-widget {
   background: linear-gradient(135deg, #ffffff 0%, #f7f4ed 100%);
   border: 1px solid rgba(var(--home-accent-rgb), 0.28) !important;
@@ -517,6 +534,15 @@
     border-bottom: 0.5px solid var(--home-card-border);
     margin-bottom: 4px;
     word-wrap: break-word;
+  }
+
+  .dua-notes {
+    font-family: var(--font-family-sans);
+    font-size: 0.82rem;
+    color: var(--home-text-muted);
+    margin: 0;
+    padding: 2px 0;
+    line-height: 1.6;
   }
 
   .dua-tamil, .dua-translation {

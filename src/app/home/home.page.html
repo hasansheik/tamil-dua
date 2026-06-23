@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button class="apple-header-btn-circular"></ion-menu-button>
     </ion-buttons>
-    
+
     <ion-title class="apple-header-title-centered">தமிழ் துஆ</ion-title>
 
     <ion-buttons slot="end">
@@ -17,54 +17,54 @@
   <!-- iOS-Style Category Segment Controls -->
   <div class="apple-segment-wrapper" *ngIf="searchText.trim() === ''">
     <div class="apple-segment-control">
-      <button 
-        (click)="selectTab('today')" 
+      <button
+        (click)="selectTab('today')"
         [class.active]="activeTab === 'today'"
         class="apple-segment-btn"
       >
         இன்று
       </button>
-      <button 
-        (click)="selectTab('chapters')" 
+      <button
+        (click)="selectTab('chapters')"
         [class.active]="activeTab === 'chapters'"
         class="apple-segment-btn"
       >
-        பிரிவுகள்
+        அட்டவணை
       </button>
-      <button 
-        (click)="selectTab('guidance')" 
+      <button
+        (click)="selectTab('guidance')"
         [class.active]="activeTab === 'guidance'"
         class="apple-segment-btn"
       >
-        நெறிகள்
+        முன்னுரை
       </button>
-      <button 
-        (click)="selectTab('about')" 
+      <button
+        (click)="selectTab('about')"
         [class.active]="activeTab === 'about'"
         class="apple-segment-btn"
       >
-        விவரம்
+        தொடர்புகள்
       </button>
     </div>
   </div>
 </ion-header>
 
 <ion-content class="apple-content-bg ion-padding">
-  
+
   <!-- Spotlight Search Widget -->
   <div class="apple-search-wrapper">
     <div class="apple-search-container">
       <ion-icon name="search-outline" class="apple-search-icon"></ion-icon>
-      <input 
-        type="text" 
-        [(ngModel)]="searchText" 
-        (input)="onSearchInput()" 
-        placeholder="தேடுக..." 
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        (input)="onSearchInput()"
+        placeholder="தேடுக..."
         class="apple-search-input"
       />
-      <button 
-        *ngIf="searchText" 
-        (click)="clearSearch()" 
+      <button
+        *ngIf="searchText"
+        (click)="clearSearch()"
         class="apple-search-clear-btn"
         aria-label="Clear search"
       >
@@ -76,13 +76,13 @@
   <!-- Search Results Override -->
   <div *ngIf="searchText.trim() !== ''" class="search-results-wrapper animate-fade">
     <div class="ios-section-label">தேடல் முடிவுகள் ({{ searchResults.length }})</div>
-    
+
     <div class="ios-grouped-list" *ngIf="searchResults.length > 0">
-      <div 
-        *ngFor="let result of searchResults" 
-        [routerLink]="['/folder', result.PageId]" 
+      <div
+        *ngFor="let result of searchResults"
+        [routerLink]="['/folder', result.PageId]"
         [queryParams]="{ duaId: result.Id }"
-        class="ios-list-row ripple-item" 
+        class="ios-list-row ripple-item"
       >
         <div class="ios-row-left">
           <div class="ios-icon-badge blue"><ion-icon name="bookmark"></ion-icon></div>
@@ -94,7 +94,7 @@
         <ion-icon name="chevron-forward-outline" class="ios-row-chevron"></ion-icon>
       </div>
     </div>
-    
+
     <div *ngIf="searchResults.length === 0" class="apple-empty-state animate-fade">
       <ion-icon name="alert-circle-outline" class="apple-empty-icon"></ion-icon>
       <h2>பொருந்தும் துஆக்கள் ஏதுமில்லை</h2>
@@ -127,7 +127,7 @@
         <div class="dashboard-widget ripple-item" (click)="showAllPages()">
           <div class="widget-icon-wrap bg-gold-tint"><ion-icon name="grid-outline"></ion-icon></div>
           <div class="widget-meta">
-            <span class="widget-label">அனைத்து துஆக்கள்</span>
+            <span class="widget-label"> துஆக்கள்</span>
             <span class="widget-sub">All Duas</span>
           </div>
         </div>
@@ -163,44 +163,51 @@
         </div>
       </div>
 
-      <!-- Smart Featured Daily Dua Card -->
-      <div *ngIf="dailyDua" class="apple-featured-dua-widget ion-margin-bottom">
-        <div class="widget-header">
-          <div class="widget-tag">
-            <ion-icon name="sparkles" class="tag-glow-icon"></ion-icon>
-            <span>இன்றைய பிரார்த்தனை</span>
-          </div>
-          <button class="favorite-toggle-btn" (click)="toggleFavorite(dailyDua)" aria-label="Toggle favorite">
-            <ion-icon [name]="isFavorite(dailyDua.Id) ? 'heart' : 'heart-outline'" [class.active-fav]="isFavorite(dailyDua.Id)"></ion-icon>
-          </button>
+      <!-- Recently Visited Duas -->
+      <div *ngIf="recentDuas.length > 0">
+        <div class="recent-duas-header">
+          <ion-icon name="time-outline" class="tag-glow-icon"></ion-icon>
+          <span>சமீபத்தில் வாசித்தவை</span>
         </div>
-
-        <div class="widget-body">
-          <h2 class="dua-title">{{ dailyDua.DuaTitle }}</h2>
-          <div class="dua-arabic" *ngIf="dailyDua.DuaContent?.ArabicDua">
-            {{ dailyDua.DuaContent.ArabicDua }}
+        <div *ngFor="let dua of recentDuas" class="apple-featured-dua-widget ion-margin-bottom">
+          <div class="widget-header">
+            <div class="widget-tag">
+              <ion-icon name="sparkles" class="tag-glow-icon"></ion-icon>
+              <span>{{ dua.PageTitle }}</span>
+            </div>
+            <button class="favorite-toggle-btn" (click)="toggleFavorite(dua)" aria-label="Toggle favorite">
+              <ion-icon [name]="isFavorite(dua.Id) ? 'heart' : 'heart-outline'" [class.active-fav]="isFavorite(dua.Id)"></ion-icon>
+            </button>
           </div>
-          <p class="dua-tamil" *ngIf="dailyDua.DuaContent?.TamilDua">
-            <strong>உச்சரிப்பு:</strong> {{ dailyDua.DuaContent.TamilDua }}
-          </p>
-          <p class="dua-translation" *ngIf="dailyDua.DuaContent?.Translation">
-            <strong>பொருள்:</strong> {{ dailyDua.DuaContent.Translation }}
-          </p>
-        </div>
 
-        <div class="widget-footer">
-          <span class="dua-chapter-ref">{{ dailyDua.PageTitle }}</span>
-          <div class="action-buttons-group">
-            <button class="action-icon-btn" (click)="copyToClipboard(dailyDua)" aria-label="Copy">
-              <ion-icon name="copy-outline"></ion-icon>
-            </button>
-            <button class="action-icon-btn" (click)="onShare(dailyDua)" aria-label="Share">
-              <ion-icon name="share-social-outline"></ion-icon>
-            </button>
-            <button [routerLink]="['/folder', dailyDua.PageId]" [queryParams]="{ duaId: dailyDua.Id }" class="widget-action-btn">
-              <span>வாசிக்க</span>
-              <ion-icon name="arrow-forward-outline"></ion-icon>
-            </button>
+          <div class="widget-body">
+            <h2 class="dua-title">{{ dua.DuaTitle }}</h2>
+            <p class="dua-notes" *ngIf="dua.DuaContent?.Notes">{{ dua.DuaContent.Notes }}</p>
+            <div class="dua-arabic" *ngIf="dua.DuaContent?.ArabicDua">
+              {{ dua.DuaContent.ArabicDua }}
+            </div>
+            <p class="dua-tamil" *ngIf="dua.DuaContent?.TamilDua">
+              <strong>உச்சரிப்பு:</strong> {{ dua.DuaContent.TamilDua }}
+            </p>
+            <p class="dua-translation" *ngIf="dua.DuaContent?.Translation">
+              <strong>பொருள்:</strong> {{ dua.DuaContent.Translation }}
+            </p>
+          </div>
+
+          <div class="widget-footer">
+            <span class="dua-chapter-ref">{{ dua.PageTitle }}</span>
+            <div class="action-buttons-group">
+              <button class="action-icon-btn" (click)="copyToClipboard(dua)" aria-label="Copy">
+                <ion-icon name="copy-outline"></ion-icon>
+              </button>
+              <button class="action-icon-btn" (click)="onShare(dua)" aria-label="Share">
+                <ion-icon name="share-social-outline"></ion-icon>
+              </button>
+              <button [routerLink]="['/folder', dua._pageId]" [queryParams]="{ duaId: dua.Id }" class="widget-action-btn">
+                <span>வாசிக்க</span>
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -211,9 +218,9 @@
       <div class="ios-section-label">துஆ பிரிவுகள் ({{ duaPages.length }} தலைப்புகள்)</div>
 
       <div class="ios-grouped-list">
-        <a 
-          *ngFor="let page of duaPages; let i = index" 
-          [routerLink]="['/folder', page.PageId]" 
+        <a
+          *ngFor="let page of duaPages; let i = index"
+          [routerLink]="['/folder', page.PageId]"
           class="ios-list-row ripple-item"
         >
           <div class="ios-row-left">

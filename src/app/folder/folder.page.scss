@@ -17,7 +17,7 @@
   --background: transparent !important;
   --border-width: 0px !important;
   border: none !important;
-  padding: 8px 12px 4px 12px !important;
+  padding: calc(env(safe-area-inset-top) + 8px) 12px 4px 12px !important;
   box-shadow: none !important;
 }
 
@@ -112,12 +112,10 @@
     background: var(--home-search-bg);
     border: 1px solid var(--home-card-border);
     border-radius: 10px;
-    padding: 10px 12px;
+    padding: 8px 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 4px;
-    height: 72px;
     cursor: pointer;
     box-sizing: border-box;
     transition: all 0.2s ease;
@@ -126,25 +124,17 @@
       transform: scale(0.96);
     }
 
-    .index-item-label {
-      font-family: var(--font-family-heading);
-      font-size: 0.7rem;
-      font-weight: 800;
-      color: var(--home-accent);
-      text-transform: uppercase;
-      letter-spacing: 0.2px;
-    }
-
     .index-item-title {
       font-family: var(--font-family-sans);
-      font-size: 0.74rem;
+      font-size: 0.68rem;
       font-weight: 600;
       color: var(--home-text-main);
-      white-space: nowrap;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
       overflow: hidden;
-      text-overflow: ellipsis;
       width: 100%;
-      display: block;
+      line-height: 1.4;
     }
   }
 }

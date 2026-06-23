@@ -88,6 +88,7 @@ export class FolderPage implements OnInit, OnDestroy {
       }
       console.log('Route changed - Updating last visited pages');
       await this.updateLastVisitedPages(id!);
+      await this.saveRecentDua(id!);
     });
 
     // Subscribe to settings changes
@@ -380,22 +381,34 @@ export class FolderPage implements OnInit, OnDestroy {
 
   private async updateLastVisitedPages(pageId: string) {
     try {
-      // Get current list of last visited pages
       let lastVisited: string[] = await this.storageService.getData('lastVisitedPages') || [];
-
-      // Remove the current page if it exists in the list
       lastVisited = lastVisited.filter(id => id !== pageId);
-
-      // Add the current page to the beginning
       lastVisited.unshift(pageId);
-
-      // Keep only the last 10 visited pages
       lastVisited = lastVisited.slice(0, 10);
-
-      // Save back to storage
       await this.storageService.setData('lastVisitedPages', lastVisited);
     } catch (error) {
       console.error('Error updating last visited pages:', error);
+    }
+  }
+
+  private async saveRecentDua(pageId: string) {
+    try {
+      const duaGroup = await this.duaService.getDuaGroupById(pageId);
+      const duaList: any[] = duaGroup?.DuaList || [];
+      if (duaList.length === 0) return;
+
+      const bestDua = duaList.find(d =>
+        d.DuaContent?.ArabicDua || d.DuaContent?.TamilDua || d.DuaContent?.Translation
+      ) || duaList[0];
+
+      const entry = { duaId: bestDua.Id, pageId };
+      let recent: { duaId: string; pageId: string }[] = await this.storageService.getData('recentDuas') || [];
+      recent = recent.filter(r => r.pageId !== pageId);
+      recent.unshift(entry);
+      recent = recent.slice(0, 3);
+      await this.storageService.setData('recentDuas', recent);
+    } catch (error) {
+      console.error('Error saving recent dua:', error);
     }
   }
 
