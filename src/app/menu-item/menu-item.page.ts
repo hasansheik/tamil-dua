@@ -3,9 +3,10 @@ import { DuaService } from '../shared/service/dua.service';
 import { Platform } from '@ionic/angular';
 
 @Component({
-  selector: 'app-menu-item',
-  templateUrl: './menu-item.page.html',
-  styleUrls: ['./menu-item.page.scss'],
+    selector: 'app-menu-item',
+    templateUrl: './menu-item.page.html',
+    styleUrls: ['./menu-item.page.scss'],
+    standalone: false
 })
 export class MenuItemPage implements OnInit {
   public appPages = [

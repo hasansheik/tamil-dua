@@ -5,7 +5,7 @@
         <ion-icon name="chevron-back-outline"></ion-icon>
       </button>
     </ion-buttons>
-    
+
     <ion-title class="apple-header-title-centered">துஆக்கள்</ion-title>
 
     <ion-buttons slot="end">
@@ -18,7 +18,7 @@
       <button (click)="toggleReaderMode()" class="apple-header-btn-circular" [class.active]="isReaderMode" aria-label="Toggle reader mode">
         <ion-icon [name]="isReaderMode ? 'book' : 'book-outline'"></ion-icon>
       </button>
-      
+
       <!-- Font Customizer Trigger -->
       <button id="font-customizer-trigger" class="apple-header-btn-circular" aria-label="Font settings">
         <ion-icon name="text-outline"></ion-icon>
@@ -30,17 +30,17 @@
   <ion-toolbar *ngIf="showSearch" class="apple-toolbar-glass" style="padding-top: 4px !important; padding-bottom: 8px !important;">
     <div class="apple-search-container" style="margin: 0 12px; width: calc(100% - 24px);">
       <ion-icon name="search-outline" class="apple-search-icon" style="color: var(--home-text-muted); margin-left: 10px;"></ion-icon>
-      <input 
-        type="text" 
-        [(ngModel)]="searchText" 
-        (input)="filterDuas()" 
-        placeholder="இப்பக்கத்தில் தேடுக..." 
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        (input)="filterDuas()"
+        placeholder="இப்பக்கத்தில் தேடுக..."
         class="apple-search-input"
         style="width: 100%; border: none; background: transparent; padding: 8px 6px; outline: none; font-size: 0.9rem; color: var(--home-text-main);"
       />
-      <button 
-        *ngIf="searchText" 
-        (click)="searchText = ''; filterDuas()" 
+      <button
+        *ngIf="searchText"
+        (click)="searchText = ''; filterDuas()"
         class="apple-search-clear-btn"
         aria-label="Clear search"
         style="background: transparent; border: none; color: var(--home-text-muted); font-size: 16px; display: flex; align-items: center; cursor: pointer; margin-right: 10px;"
@@ -68,7 +68,7 @@
     <div class="index-trigger-card animate-in" (click)="toggleNavigationMenu($event)">
       <div class="index-trigger-left">
         <ion-icon name="list-outline" class="index-icon"></ion-icon>
-        <span class="index-title-text">துஆக்கள் அட்டவணை</span>
+        <span class="index-title-text">துஆக்கள்</span>
         <span class="index-count-badge">{{ filteredDuas.length }}</span>
       </div>
       <ion-icon [name]="showNavigationMenu ? 'chevron-up-outline' : 'chevron-down-outline'" class="index-arrow-icon"></ion-icon>
@@ -77,10 +77,9 @@
     <!-- Collapsible Index List -->
     <div *ngIf="showNavigationMenu && !isLoading && filteredDuas.length > 0" class="index-list-card animate-in">
       <div class="index-grid">
-        <div *ngFor="let dua of filteredDuas; let i = index" 
-             (click)="scrollToDua(i)" 
+        <div *ngFor="let dua of filteredDuas; let i = index"
+             (click)="scrollToDua(i)"
              class="index-item-btn ripple-item">
-          <span class="index-item-label">துஆ {{ i + 1 }}</span>
           <span class="index-item-title">{{ dua.DuaTitle }}</span>
         </div>
       </div>
@@ -121,7 +120,7 @@
     <div *ngIf="!isLoading && filteredDuas.length > 0" class="fav-card-list">
       <div *ngFor="let dua of filteredDuas; let i = index" class="dua-item-anchor" [id]="'dua-' + i">
         <div class="fav-card animate-in" [style.animation-delay.ms]="i * 50">
-          
+
           <!-- Card Header -->
           <div class="fav-card-header">
             <span class="fav-number-badge">{{ i + 1 }}</span>
@@ -139,9 +138,9 @@
             </p>
 
             <!-- Arabic Typography Block -->
-            <div class="fav-arabic" 
-                 [class.reader-mode]="isReaderMode" 
-                 [style.font-size.px]="arabicFontSizeVal" 
+            <div class="fav-arabic"
+                 [class.reader-mode]="isReaderMode"
+                 [style.font-size.px]="arabicFontSizeVal"
                  [class]="selectedArabicFont">
               {{ dua.DuaContent.ArabicDua }}
             </div>
@@ -201,7 +200,7 @@
             <ion-icon name="reload-outline"></ion-icon>
           </button>
         </div>
-        
+
         <!-- Arabic Font Size -->
         <div class="popover-control-row">
           <div class="popover-info-row">
@@ -211,10 +210,10 @@
             </div>
             <span class="popover-badge">{{ arabicFontSizeVal }}px</span>
           </div>
-          <ion-range 
-            [min]="20" 
-            [max]="60" 
-            [value]="arabicFontSizeVal" 
+          <ion-range
+            [min]="20"
+            [max]="60"
+            [value]="arabicFontSizeVal"
             (ionChange)="onArabicSizeChange($event)"
             mode="ios"
             class="luxury-range-gold">
@@ -232,10 +231,10 @@
             </div>
             <span class="popover-badge">{{ tamilFontSizeVal }}px</span>
           </div>
-          <ion-range 
-            [min]="12" 
-            [max]="28" 
-            [value]="tamilFontSizeVal" 
+          <ion-range
+            [min]="12"
+            [max]="28"
+            [value]="tamilFontSizeVal"
             (ionChange)="onTamilSizeChange($event)"
             mode="ios"
             class="luxury-range-gold">

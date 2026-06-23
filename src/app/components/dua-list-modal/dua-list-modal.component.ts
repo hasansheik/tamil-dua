@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-dua-list-modal',
-  template: `
+    selector: 'app-dua-list-modal',
+    template: `
     <ion-header class="ion-no-border apple-header-glass">
       <ion-toolbar class="apple-toolbar-glass">
         <div class="apple-header-title">அனைத்து பிரிவுகள்</div>
@@ -78,7 +78,7 @@ import { ModalController } from '@ionic/angular';
       </div>
     </ion-content>
   `,
-  styles: [`
+    styles: [`
     /* Dynamic Theme Variables mapping to body variables */
     :host {
       display: flex !important;
@@ -428,7 +428,8 @@ import { ModalController } from '@ionic/angular';
       background: transparent;
       flex-shrink: 0;
     }
-  `]
+  `],
+    standalone: false
 })
 export class DuaListModalComponent implements OnInit {
   @Input() duaPages: any[] = [];

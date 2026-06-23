@@ -9,9 +9,10 @@ import { Clipboard } from '@capacitor/clipboard';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+    selector: 'app-home',
+    templateUrl: './home.page.html',
+    styleUrls: ['./home.page.scss'],
+    standalone: false
 })
 export class HomePage implements OnInit {
   subscription: any;
@@ -22,7 +23,7 @@ export class HomePage implements OnInit {
   greetingText = 'அஸ்ஸலாமு அலைக்கும்';
   greetingIcon = 'sunny-outline';
   greetingTime: 'morning' | 'afternoon' | 'evening' | 'night' = 'morning';
-  dailyDua: any = null;
+  recentDuas: any[] = [];
   favoritesCount = 0;
   searchText = '';
   searchResults: any[] = [];
@@ -51,6 +52,7 @@ export class HomePage implements OnInit {
 
   async ionViewWillEnter() {
     await this.loadFavorites();
+    await this.loadRecentDuas();
     this.setGreeting();
   }
 
@@ -157,7 +159,7 @@ export class HomePage implements OnInit {
         this.lastVisitedPages = this.duaPages.slice(0, 5);
       }
 
-      await this.loadDailyDua();
+      await this.loadRecentDuas();
       await this.loadFavorites();
     } catch (error) {
       console.error('Error loading dua pages:', error);
@@ -205,16 +207,22 @@ export class HomePage implements OnInit {
     this.favoritesCount = this.favorites.length;
   }
 
-  async loadDailyDua() {
+  async loadRecentDuas() {
     try {
-      const allDuas = await this.duaService.getAllDuas();
-      if (allDuas && allDuas.length > 0) {
-        const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 1).getTime()) / 86400000);
-        const index = dayOfYear % allDuas.length;
-        this.dailyDua = allDuas[index];
+      const recent: { duaId: string; pageId: string }[] = await this.storageService.getData('recentDuas') || [];
+      if (recent.length === 0) {
+        this.recentDuas = [];
+        return;
       }
+      const allDuas = await this.duaService.getAllDuas();
+      this.recentDuas = recent
+        .map(r => {
+          const dua = allDuas.find((d: any) => d.Id === r.duaId);
+          return dua ? { ...dua, _pageId: r.pageId } : null;
+        })
+        .filter(Boolean);
     } catch (error) {
-      console.error('Error loading daily dua:', error);
+      console.error('Error loading recent duas:', error);
     }
   }
 
